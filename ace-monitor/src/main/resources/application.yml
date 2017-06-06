@@ -1,0 +1,12 @@
+spring:
+    application:
+        name: ace-monitor
+
+server:
+    port: 8764 #启动端口
+
+security:
+    user:
+        name: whb
+        password: 123456
+        role: USER

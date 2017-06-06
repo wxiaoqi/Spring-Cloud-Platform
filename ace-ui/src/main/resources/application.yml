@@ -1,0 +1,6 @@
+spring:
+    application:
+        name: ace-ui
+
+server:
+    port: 8766

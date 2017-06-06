@@ -1,0 +1,17 @@
+spring:
+    application:
+        name: ace-admin
+    boot:
+        admin:
+             url: http://localhost:8764
+
+server:
+    port: 8762
+
+eureka:
+    instance:
+        statusPageUrlPath: ${management.context-path}/info
+        healthCheckUrlPath: ${management.context-path}/health
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
