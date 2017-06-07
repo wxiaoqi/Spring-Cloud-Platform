@@ -1,0 +1,16 @@
+/*table*/
+.site-table tbody tr td {text-align: center;}
+.site-table tbody tr td .layui-btn+.layui-btn{margin-left: 0px;}
+.admin-table-page {position: fixed;z-index: 19940201;bottom: 0;width: 100%;background-color: #eee;border-bottom: 1px solid #ddd;left: 0px;}
+.admin-table-page .page{padding-left:20px;}
+.admin-table-page .page .layui-laypage {margin: 6px 0 0 0;}
+.table-hover tbody tr:hover{ background-color: #EEEEEE; }
+
+.admin-table{
+	
+}
+.admin-table .layui-form-checkbox{
+	margin-top: 0;
+	height: 20px;
+	line-height: 20px;
+}

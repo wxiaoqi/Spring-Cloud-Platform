@@ -1,6 +1,9 @@
 spring:
     application:
         name: ace-ui
+    thymeleaf:
+        mode: LEGACYHTML5
+        cache: false
 
 server:
     port: 8766

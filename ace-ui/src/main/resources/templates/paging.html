@@ -1,0 +1,366 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Paging</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+
+		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="css/global.css" media="all">
+		<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+	</head>
+
+	<body>
+		<div style="margin: 15px;">
+			<blockquote class="layui-elem-quote">
+				<h1>Laytpl + Laypage结合动态渲染数据并分页</h1></blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>演示</legend>
+				<div class="layui-field-box">
+					<div>
+						<form>
+							<input type="text" name="name" />
+							<button type="button" id="search">搜索</button>
+						</form>
+						<table class="site-table table-hover">
+							<thead>
+								<tr>
+									<th><input type="checkbox" id="selected-all"></th>
+									<th>姓名</th>
+									<th>年龄</th>
+									<th>创建时间</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<!--内容容器-->
+							<tbody id="con">
+								<tr>
+									<td><input type="checkbox"></td>
+									<td>Layui</td>
+									<td>Beginner</td>
+									<td>2016-11-16 11:50</td>
+									<td>
+										<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+										<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>
+										<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<!--分页容器-->
+						<div id="paged"></div>
+					</div>
+					<pre class="layui-code">
+						//示例代码
+						layui.config({
+    base: 'js/'
+}).use(['paging', 'code'], function() {
+    layui.code();
+    var $ = layui.jquery,
+        paging = layui.paging();
+    paging.init({
+        url: 'datas/laytpl_laypage_data.json', //地址
+        elem: '#con', //内容容器
+        params: { //发送到服务端的参数
+            t: Math.random(),
+            action: 'GetXxx'
+        },
+        tempElem: '#conTemp', //模块容器
+        pageConfig: { //分页参数配置
+            elem: '#paged', //分页容器
+            pageSize: 3 //分页大小
+        },
+        success: function() { //渲染成功的回调
+            //alert('渲染成功');
+        },
+        fail: function(msg) { //获取数据失败的回调
+            //alert('获取数据失败')
+        },
+        complate: function() { //完成的回调
+            //alert('处理完成');
+        },
+    });
+});
+//ps:服务端是永远可以获取到pageIndex  和 pageSize 这两个参数的
+						</pre>
+				</div>
+			</fieldset>
+			<fieldset class="layui-elem-field">
+				<legend>参数</legend>
+				<div class="layui-field-box">
+					<table class="layui-table">
+						<thead>
+							<tr>
+								<th>属性名称</th>
+								<th>类型</th>
+								<th>默认值</th>
+								<th>描述</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="text-align: center;">url</td>
+								<td style="text-align: center;">string</td>
+								<td style="text-align: center;">undefined</td>
+								<td>
+									<p>远程URL</p>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">type</td>
+								<td style="text-align: center;">string</td>
+								<td style="text-align: center;">POST</td>
+								<td>
+									<p>请求的方式，可选参数：GET、POST</p>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">elem</td>
+								<td style="text-align: center;">string</td>
+								<td style="text-align: center;">undefined</td>
+								<td>
+									<p>内容容器. 1/id选择器 : #id 2/类选择器：.class</p>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">params</td>
+								<td style="text-align: center;">object</td>
+								<td style="text-align: center;">null</td>
+								<td>
+									<p>请求附带的参数</p>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">tempElem</td>
+								<td style="text-align: center;">string</td>
+								<td style="text-align: center;">undefined</td>
+								<td>
+									<p>模板容器. 1/id选择器 : #id 2/类选择器：.class</p>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">tempElem</td>
+								<td style="text-align: center;">string</td>
+								<td style="text-align: center;">undefined</td>
+								<td>
+									<p>模板容器. 1/id选择器 : #id 2/类选择器：.class</p>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">tempType</td>
+								<td style="text-align: center;">number</td>
+								<td style="text-align: center;">0</td>
+								<td>
+									<p>模版的获取方式：0为提供选择器给组件获取，1为直接提供模板字符串<i style="color:red;">v1.0.2+</i></p>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">pageConfig</td>
+								<td style="text-align: center;">object</td>
+								<td style="text-align: center;"></td>
+								<td>
+									<p>参数说明</p>
+									<blockquote class="layui-elem-quote">注意：参数<span style="color: #FF5722;"> paged </span>为<span style="color: #5FB878;"> true </span>时才生效</blockquote>
+									<p>elem：分页容器. 1/id选择器 : #id 2/类选择器：.class</p>
+									<p>pageSize：分页大小. 默认为15</p>
+									<p>其他，与laypage组件一至，请参考：
+										<a href="http://www.layui.com/doc/modules/laypage.html" target="_blank">http://www.layui.com/doc/modules/laypage.html</a>
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">success</td>
+								<td style="text-align: center;">function</td>
+								<td style="text-align: center;">undefined</td>
+								<td>
+									<p>渲染成功后的回调方法</p>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">fail</td>
+								<td style="text-align: center;">function</td>
+								<td style="text-align: center;">undefined</td>
+								<td>
+									<p>获取数据失败后的回调方法</p>
+									<blockquote class="layui-elem-quote">fail:function(msg){}</blockquote>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">complate</td>
+								<td style="text-align: center;">function</td>
+								<td style="text-align: center;">undefined</td>
+								<td>
+									<p>渲染完成后的回调方法（无论渲染成功与否，此回调都会执行）</p>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">serverError</td>
+								<td style="text-align: center;">function</td>
+								<td style="text-align: center;">undefined</td>
+								<td>
+									<p>服务器发生错误时的回调方法</p>
+									<blockquote class="layui-elem-quote">serverError:function(xhr,status,error){}</blockquote>
+								</td>
+							</tr>
+                            <tr>
+                                <td style="text-align: center;">renderBefore</td>
+                                <td style="text-align: center;">function</td>
+                                <td style="text-align: center;">undefined</td>
+                                <td>
+                                    <p>数据渲染之前发生 v0.2.0+</p>
+                                    <blockquote class="layui-elem-quote">
+                                        serverError:renderBefore(html, function (formatHtml) {});                                        
+                                    </blockquote>
+                                </td>
+                            </tr>
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
+			<fieldset class="layui-elem-field">
+				<legend>方法</legend>
+				<div class="layui-field-box">
+					<table class="layui-table">
+						<thead>
+							<tr>
+								<th>名称</th>
+								<th>参数说明</th>
+								<th>描述</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="text-align: center;">get</td>
+								<td style="text-align: center;">
+									<p>参数名：options</p>
+									<p>类型：object</p>
+								</td>
+								<td>
+									<p>要发送到服务端的参数</p>
+									<p>示例</p>
+									<p>
+										<pre class="layui-code">
+										//调用get方法获取数据
+										paging.get({
+										    name: '张三', //获取输入的关键字。
+										    date:'2016-11-11'
+										});
+										</pre>
+									</p>
+								</td>
+							</tr>							
+						</tbody>
+					</table>
+				</div>
+			</fieldset>			
+			<fieldset class="layui-elem-field">
+				<legend>数据结构</legend>
+				<div class="layui-field-box">
+					<p>请严格按照以下数据结构设置数据</p>
+					<pre class="layui-code">
+						{
+    "rel": true,
+    "msg": "获取成功",
+    "list": [
+        {
+            "name": "张三",
+            "age":21,
+            "createtime": "2017-01-10 10:42:36"
+        },
+        {
+            "name": "李四",
+            "age":31,
+            "createtime": "2017-01-10 10:42:36"
+        },{
+            "name": "王五",
+            "age":23,
+            "createtime": "2017-01-10 10:42:36"
+        },{
+            "name": "赵六",
+            "age":18,
+            "createtime": "2017-01-10 10:42:36"
+        }
+    ],
+    "count": 57
+}
+				</pre>
+				</div>
+			</fieldset>
+		</div>
+		<!--模板-->
+		<script type="text/html" id="conTemp">
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>{{ item.name }}</td>
+				<td>{{ item.age }}</td>
+				<td>{{ item.createtime }}</td>
+				<td>
+					<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+					<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>
+					<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+				</td>
+			</tr>
+			{{# }); }}
+		</script>
+		<script type="text/javascript" src="plugins/layui/layui.js"></script>
+		<script>
+			layui.config({
+				base: 'js/'
+			}).use(['paging', 'code'], function() {
+				layui.code();
+				var $ = layui.jquery,
+					paging = layui.paging();
+
+                paging.init({
+                    openWait: true,
+                    url: 'datas/laytpl_laypage_data.json?v=' + new Date().getTime(), //地址
+					elem: '#con', //内容容器
+					type:'post',
+					params: { //发送到服务端的参数
+						t: Math.random(),
+						token:'F8F5AE2137BFAEF77FF7408476AF6C64',
+						pageIndex: 1
+					},
+					type:'GET',
+					tempElem: '#conTemp', //模块容器
+					pageConfig: { //分页参数配置
+						elem: '#paged', //分页容器
+						pageSize: 3 //分页大小
+					},
+					success: function() { //渲染成功的回调
+						//alert('渲染成功');
+					},
+					fail: function(msg) { //获取数据失败的回调
+						//alert('获取数据失败')
+					},
+					complate: function(res) { //完成的回调
+						//alert('处理完成');
+						console.log(res);
+					},
+				});
+				//搜索
+				$('#search').on('click', function() {
+					var $this = $(this);
+					var name = $this.prev('input[name=name]').val();
+					if(name === '' || name.length === 0) {
+						layer.msg('请输入关键字！');
+						return;
+					}
+					//调用get方法获取数据
+					paging.get({
+						t: Math.random(),
+						name: name //获取输入的关键字。
+					});
+				});
+			});
+		</script>
+	</body>
+
+</html>

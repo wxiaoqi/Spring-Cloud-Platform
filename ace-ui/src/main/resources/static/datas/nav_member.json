@@ -1,0 +1,18 @@
+[
+ {
+		"title": "会员管理",
+		"icon": "&#x1002;",
+		"spread": true,
+		"children": [
+			{
+				"title": "会员列表",
+				"icon": "fa-check-square-o",
+				"href": "https:www.baidu.com"
+			},{
+				"title": "会员等级",
+				"icon": "fa-check-square-o",
+				"href": "level.html"
+			}
+		]
+	}
+ ]

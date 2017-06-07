@@ -1,6 +1,8 @@
 package com.github.wxiaoqi.security.monitor.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -12,4 +14,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 "classpath:/static/hystrix/");
         super.addResourceHandlers(registry);
     }
+
 }

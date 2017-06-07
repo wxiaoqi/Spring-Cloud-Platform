@@ -26,6 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/login.html", "/**/*.css", "/img/**", "/api/**") // 放开"/api/**"：为了给被监控端免登录注册
         .permitAll().and().authorizeRequests().antMatchers("/**").authenticated();
     http.csrf().disable();
+    http.headers().frameOptions().disable();
     http.httpBasic();
   }
 

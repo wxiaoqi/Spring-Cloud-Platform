@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Layui</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="css/begtable.css" />
+	</head>
+
+	<body>
+		<div style="margin: 15px;">
+			<blockquote class="layui-elem-quote">
+				努力开发中...
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>字段集区块 - 默认风格</legend>
+				<div class="layui-field-box">
+					<div id="xx" style=" width: 1024px; height: 450px; ; border: 1px solid #DDDDDD;"></div>
+				</div>
+			</fieldset>
+			<hr>
+			<div style="width: 600px; height: 400px; border: 1px solid #009688;">
+				<div class="beg-table-box">
+					<div class="beg-table-body">
+						<table class="beg-table beg-table-bordered beg-table-striped beg-table-hovered">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>姓名</th>
+									<th>年龄</th>
+									<th>是否可用</th>
+									<th>创建时间</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>#</td>
+									<td>Beginner</td>
+									<td>18</td>
+									<td>是</td>
+									<td>2015-02-01</td>
+								</tr>
+								<tr>
+									<td>#</td>
+									<td>Van</td>
+									<td>21</td>
+									<td>是</td>
+									<td>2016-11-01</td>
+								</tr>
+								<tr>
+									<td>#</td>
+									<td>Van</td>
+									<td>21</td>
+									<td>是</td>
+									<td>2016-11-01</td>
+								</tr>
+								<tr>
+									<td>#</td>
+									<td>Van</td>
+									<td>21</td>
+									<td>是</td>
+									<td>2016-11-01</td>
+								</tr>
+								<tr>
+									<td>#</td>
+									<td>Beginner</td>
+									<td>18</td>
+									<td>是</td>
+									<td>2015-02-01</td>
+								</tr>
+								<tr>
+									<td>#</td>
+									<td>Van</td>
+									<td>21</td>
+									<td>是</td>
+									<td>2016-11-01</td>
+								</tr>
+								<tr>
+									<td>#</td>
+									<td>Van</td>
+									<td>21</td>
+									<td>是</td>
+									<td>2016-11-01</td>
+								</tr>
+								<tr>
+									<td>#</td>
+									<td>Van</td>
+									<td>21</td>
+									<td>是</td>
+									<td>2016-11-01</td>
+								</tr>
+								<tr>
+									<td>#</td>
+									<td>Beginner</td>
+									<td>18</td>
+									<td>是</td>
+									<td>2015-02-01</td>
+								</tr>
+								<tr>
+									<td>#</td>
+									<td>Van</td>
+									<td>21</td>
+									<td>是</td>
+									<td>2016-11-01</td>
+								</tr>
+								<tr>
+									<td>#</td>
+									<td>Van</td>
+									<td>21</td>
+									<td>是</td>
+									<td>2016-11-01</td>
+								</tr>
+								<tr>
+									<td>#</td>
+									<td>Van</td>
+									<td>22</td>
+									<td>是</td>
+									<td>2016-11-01</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="beg-table-paged"></div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="plugins/layui/layui.js"></script>
+		<script>
+			layui.config({
+				base: 'js/'
+			});
+
+			layui.use('begtable', function() {
+				var begtable = layui.begtable(),
+					layer = layui.layer,
+					$ = layui.jquery,
+					laypage = layui.laypage;
+
+				laypage({
+					cont: $('.beg-table-paged'),
+					pages: 25 //总页数
+						,
+					groups: 5 //连续显示分页数
+						,
+					jump: function(obj, first) {
+						//得到了当前页，用于向服务端请求对应数据
+						var curr = obj.curr;
+						if(!first) {
+							//layer.msg('第 '+ obj.curr +' 页');
+						}
+					}
+				});
+
+				var columns = [{
+					title: '用户名',
+					field: 'name'
+				}, {
+					title: '年龄',
+					field: 'age'
+				}, {
+					title: '是否启用',
+					field: 'isEnable',
+					format: function(value) {
+
+					}
+				}, {
+					title: '性别',
+					field: 'sex'
+				}, {
+					title: '备注',
+					field: 'remarks'
+				}];
+				var data = [{
+					name: '张三',
+					age: 19,
+					sex: '男',
+					isEnable: true,
+					remarks: 'aaa'
+				}, {
+					name: '李四',
+					age: 21,
+					sex: '男',
+					isEnable: false,
+					remarks: 'bbb'
+				}, {
+					name: '王小丽',
+					age: 29,
+					sex: '女',
+					isEnable: true,
+					remarks: 'ccc'
+				}, {
+					name: 'f赵六',
+					age: 15,
+					sex: '男',
+					isEnable: true,
+					remarks: 'ddd'
+				}];
+				begtable.set({
+					bordered: true,
+					hovered: true,
+					striped: true,
+					elem: '#xx',
+					columns: columns,
+					data: data,
+					checked: true,
+					//paged:false
+				}).init();
+
+				console.log(begtable.getSelectedRows());
+				console.log(location);
+			});
+		</script>
+
+	</body>
+
+</html>
