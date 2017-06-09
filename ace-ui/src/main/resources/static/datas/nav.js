@@ -10,7 +10,7 @@ var navs = [{
     }, {
         "title": "用户管理",
         "icon": "fa-user",
-        "href": "http://localhost:8765/user"
+        "href": "user"
     }, {
         "title": "用户组管理",
         "icon": "fa-users",

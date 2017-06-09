@@ -21,7 +21,7 @@ http://localhost:8763
 ### ace-gate 网关负载中心，统一请求入口
 http://localhost:8765
 
-### ace-ui 前端UI，系统入口
+### ace-ui 前端UI
 http://localhost:8766
 
 ### ace-api 公共服务接口包
@@ -41,4 +41,4 @@ http://localhost:8766
 
 - 完成后端的UI的选型
 - 完成首页改进
-- 访问入口：http://localhost:8766/admin/index
+- 访问入口：http://localhost:8765/admin/index

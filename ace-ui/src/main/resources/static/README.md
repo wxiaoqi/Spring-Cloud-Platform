@@ -11,4 +11,3 @@
 
 - 完成后端的UI的选型
 - 完成首页改进
-- 访问入口：http://localhost:8766/admin/index

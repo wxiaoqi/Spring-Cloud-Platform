@@ -20,6 +20,7 @@
         <module>ace-monitor</module>
         <module>ace-gate</module>
         <module>ace-ui</module>
+        <module>ace-common</module>
     </modules>
     <packaging>pom</packaging>
 

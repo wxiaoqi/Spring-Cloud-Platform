@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @create 2017-06-06 13:34
  */
 @Controller
-@RequestMapping("admin")
+@RequestMapping("")
 public class HomeController {
     @RequestMapping(value = "index",method = RequestMethod.GET)
     public String index(){
@@ -21,5 +21,8 @@ public class HomeController {
     public String about(){
         return "about";
     }
-
+    @RequestMapping(value = "user",method = RequestMethod.GET)
+    public String user(){
+        return "user";
+    }
 }
