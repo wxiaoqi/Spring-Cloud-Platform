@@ -1,6 +1,6 @@
 # AG-Admin
 基于Spring Cloud的云分布式后台管理系统架构，核心技术采用Eureka、Fegin、Ribbon、Zuul、Hystrix、Security、OAth、Mybatis、Ace-cache等主要框架和中间件，UI采用Bootstrap、jquery等前端组件。访问地址：http://localhost:8765/admin/index
-![img](http://ofsc32t59.bkt.clouddn.com/17-06-07/1496827841773.jpg?imageView2/2/w/800)
+![Markdown](http://i2.muimg.com/1949/6d92e3a30f083ef9.png)
 
 ---------
 
@@ -45,6 +45,7 @@ http://localhost:8766
 
 ### 2017年6月10日 用户管理增删改查例子
 
+![Markdown](http://i2.muimg.com/1949/6d92e3a30f083ef9.png)
 - 完成用户模块的增删该查
 - 完成前后端分离的模块联通
 - 完成监控模块
