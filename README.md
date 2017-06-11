@@ -27,6 +27,12 @@ http://localhost:8766
 ### ace-api 公共服务接口包
 
 ------------
+# 启动指南
+
+- 运行数据库脚本，创建库：ag_admin，脚本：ace-admin/db/init.sql
+- 依次运行main类：CenterBootstrap（ace-center）、GateBootstrap（ace-gate）、AdminBootstrap（ace-admin）、UIBootstrap（ace-ui）、MonitorBootstrap（ace-monitor）
+- 访问地址: http://localhost:8765/admin/index
+---------
 
 # 版本日志
 ### 2017年6月6日 初步架构搭建
@@ -41,7 +47,6 @@ http://localhost:8766
 
 - 完成后端的UI的选型
 - 完成首页改进
-- 访问入口：http://localhost:8765/admin/index
 
 ### 2017年6月10日 用户管理增删改查例子
 
