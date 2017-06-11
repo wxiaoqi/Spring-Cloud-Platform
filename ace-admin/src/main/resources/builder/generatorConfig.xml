@@ -17,7 +17,7 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/ag_admin?useUnicode=true&amp;characterEncoding=UTF8"
                         userId="root"
-                        password="">
+                        password="123456">
         </jdbcConnection>
 
         <javaModelGenerator targetPackage="${targetModelPackage}" targetProject="${targetJavaProject}"/>
@@ -27,7 +27,10 @@
         <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER" />
 
         <table tableName="base_user" domainObjectName="User" >
-        	<generatedKey column="id" identity="false" sqlStatement="Mysql"/>
+        	<generatedKey column="id" identity="false" sqlStatement="myql"/>
+        </table>
+        <table tableName="base_menu" domainObjectName="Menu" >
+            <generatedKey column="id" identity="false" sqlStatement="myql"/>
         </table>
     </context>
 </generatorConfiguration>
