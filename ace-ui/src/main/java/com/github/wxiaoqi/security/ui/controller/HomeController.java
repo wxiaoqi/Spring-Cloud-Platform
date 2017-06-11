@@ -25,4 +25,8 @@ public class HomeController {
     public String user(){
         return "user";
     }
+    @RequestMapping(value = "user/edit",method = RequestMethod.GET)
+    public String userEdit(){
+        return "user/edit";
+    }
 }

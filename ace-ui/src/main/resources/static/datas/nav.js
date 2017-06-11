@@ -4,13 +4,13 @@ var navs = [{
     "href": "",
     "spread": true,
     "children": [{
-        "title": "菜单管理",
-        "icon": "fa-list",
-        "href": "http://localhost:8765/menu"
-    }, {
         "title": "用户管理",
         "icon": "fa-user",
         "href": "user"
+    }, {
+        "title": "菜单管理",
+        "icon": "fa-list",
+        "href": "http://localhost:8765/menu"
     }, {
         "title": "用户组管理",
         "icon": "fa-users",

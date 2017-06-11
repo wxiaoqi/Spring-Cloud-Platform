@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Table</title>
-		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="css/layui.css" media="all" />
 		<link rel="stylesheet" href="css/global.css" media="all">
 		<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/table.css" />
@@ -38,8 +38,7 @@
 							<tr>
 								<th style="width: 30px;"><input type="checkbox" lay-filter="allselector" lay-skin="primary"></th>
 								<th>姓名</th>
-								<th>年龄</th>
-								<th>创建时间</th>
+								<th>账户</th>
 								<th>操作</th>
 							</tr>
 						</thead>
@@ -59,17 +58,16 @@
 			<tr>
 				<td><input type="checkbox" lay-skin="primary"></td>
 				<td>{{ item.name }}</td>
-				<td>{{ item.age }}</td>
-				<td>{{ item.createtime }}</td>
+				<td>{{ item.username }}</td>
 				<td>
-					<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
-					<a href="javascript:;" data-name="{{ item.name }}" data-opt="edit" class="layui-btn layui-btn-mini">编辑</a>
-					<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+					<a href="javascript:;" data-id="{{ item.id }}" data-opt="preview" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+					<a href="javascript:;" data-id="{{ item.id }}" data-opt="edit" class="layui-btn layui-btn-mini">编辑</a>
+					<a href="javascript:;" data-id="{{ item.id }}" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
 				</td>
 			</tr>
 			{{# }); }}
 		</script>
-		<script type="text/javascript" src="plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="layui.js"></script>
 		<script>
 			layui.config({
 				base: 'js/'
@@ -92,7 +90,7 @@
 					tempElem: '#tpl', //模块容器
 					pageConfig: { //分页参数配置
 						elem: '#paged', //分页容器
-						pageSize: 20 //分页大小
+						pageSize: 9 //分页大小
 					},
 					success: function() { //渲染成功的回调
 						//alert('渲染成功');
@@ -119,9 +117,118 @@
 						$('#content').children('tr').each(function() {
 							var $that = $(this);
 							$that.children('td:last-child').children('a[data-opt=edit]').on('click', function() {
-								layer.msg($(this).data('name'));
-							});
+								$.get('/back/user/'+$(this).data('id'), null, function(data) {
+									var result = data.result;
+									$.get('user/edit', null, function(form) {
+										layer.open({
+											type: 1,
+											title: '编辑用户',
+											content: form,
+											btn: ['保存', '取消'],
+											shade: false,
+											offset: ['100px', '30%'],
+											area: ['600px', '400px'],
+											zIndex: 19950924,
+											maxmin: true,
+											yes: function(index) {
+												//触发表单的提交事件
+												$('form.layui-form').find('button[lay-filter=edit]').click();
+											},
+											full: function(elem) {
+												var win = window.top === window.self ? window : parent.window;
+												$(win).on('resize', function() {
+													var $this = $(this);
+													elem.width($this.width()).height($this.height()).css({
+														top: 0,
+														left: 0
+													});
+													elem.children('div.layui-layer-content').height($this.height() - 95);
+												});
+											},
+											success: function (layero, index) {
+												var form = layui.form();
+												form.render();
+												setFromValues(layero,result);
+												layero.find(":input[name='username']").attr("disabled","");
+												form.on('submit(edit)', function(data) {
+													$.ajax({
+														url:'/back/user/'+result.id,
+														type:'put',
+														data: data.field,
+														dataType: "json",
+														success:function () {
+															layerTips.msg('更新成功');
+															layerTips.close(index);
+															location.reload();
+														}
 
+													});
+													//这里可以写ajax方法提交表单
+													return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+												});
+											}
+										});
+									});
+								});
+							});
+							$that.children('td:last-child').children('a[data-opt=del]').on('click', function() {
+								var id = $(this).data('id');
+								layer.confirm('确定删除数据吗？',null, function(index){
+									$.ajax({
+										url: "/back/user/"+id,
+										type: "DELETE",
+										success: function(data){
+											console.log(data);
+											if(data.rel==true){
+												layerTips.msg("移除成功！");
+												location.reload();
+											}else{
+												layerTips.msg("移除失败！")
+												location.reload();
+											}
+										}
+									});
+									layer.close(index);
+								});
+							});
+							$that.children('td:last-child').children('a[data-opt=preview]').on('click', function() {
+								$.get('/back/user/'+$(this).data('id'), null, function(data) {
+									var result = data.result;
+									$.get('user/edit', null, function(form) {
+										layer.open({
+											type: 1,
+											title: '预览用户',
+											content: form,
+											shade: false,
+											offset: ['100px', '30%'],
+											area: ['600px', '400px'],
+											zIndex: 19950924,
+											maxmin: true,
+											yes: function(index) {
+												//触发表单的提交事件
+												$('form.layui-form').find('button[lay-filter=edit]').click();
+											},
+											full: function(elem) {
+												var win = window.top === window.self ? window : parent.window;
+												$(win).on('resize', function() {
+													var $this = $(this);
+													elem.width($this.width()).height($this.height()).css({
+														top: 0,
+														left: 0
+													});
+													elem.children('div.layui-layer-content').height($this.height() - 95);
+												});
+											},
+											success: function (layero, index) {
+												var form = layui.form();
+												form.render();
+												layero.find(":input").attr("disabled","");
+												setFromValues(layero,result);
+											}
+										});
+									});
+								});
+							});
 						});
 
 					},
@@ -149,10 +256,10 @@
 					if(addBoxIndex !== -1)
 						return;
 					//本表单通过ajax加载 --以模板的形式，当然你也可以直接写在页面上读取
-					$.get('temp/edit-form.html', null, function(form) {
-						addBoxIndex = layer.open({
+					$.get('user/edit', null, function(form) {
+							addBoxIndex = layer.open({
 							type: 1,
-							title: '添加表单',
+							title: '添加用户',
 							content: form,
 							btn: ['保存', '取消'],
 							shade: false,
@@ -176,29 +283,23 @@
 								});
 							},
 							success: function(layero, index) {
-								//弹出窗口成功后渲染表单
 								var form = layui.form();
 								form.render();
 								form.on('submit(edit)', function(data) {
-									console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
-									console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
-									console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-									//调用父窗口的layer对象
-									layerTips.open({
-										title: '这里面是表单的信息',
-										type: 1,
-										content: JSON.stringify(data.field),
-										area: ['500px', '300px'],
-										btn: ['关闭并刷新', '关闭'],
-										yes: function(index, layero) {
-											layerTips.msg('你点击了关闭并刷新');
+									$.ajax({
+										url:'/back/user',
+										type:'post',
+										data: data.field,
+										dataType: "json",
+										success:function () {
+											layerTips.msg('保存成功');
 											layerTips.close(index);
-											location.reload(); //刷新
+											location.reload();
 										}
 
 									});
 									//这里可以写ajax方法提交表单
-									return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。									
+									return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 								});
 								//console.log(layero, index);
 							},
@@ -215,6 +316,13 @@
 					$('#layui-layer' + index).children('div.layui-layer-content').css('color', '#000000');
 				});
 			});
+			function setFromValues(el, data)
+			{
+				for (var p in data)
+				{
+					el.find(":input[name='" + p + "']").val(data[p]);
+				}
+			}
 		</script>
 	</body>
 

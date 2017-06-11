@@ -1,5 +1,5 @@
 layui.config({
-	base: 'plugins/layui/modules/'
+	base: 'modules/'
 });
 layui.define(['layer', 'laypage', 'icheck'], function(exports) {
 	"use strict";

@@ -1,16 +1,12 @@
 package com.github.wxiaoqi.security.common.msg;
 
 /**
- * ${DESCRIPTION}
- *
- * @author wanghaobin
- * @create 2017-06-09 7:32
+ * Created by Ace on 2017/6/11.
  */
-public class ListRestResponse<T> {
+public class ObjectRestResponse<T> {
     boolean rel;
     String msg;
     T result;
-    int count;
 
     public boolean isRel() {
         return rel;
@@ -36,30 +32,17 @@ public class ListRestResponse<T> {
         this.result = result;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public ListRestResponse count(int count) {
-        this.setCount(count);
-        return this;
-    }
-
-    public ListRestResponse rel(boolean rel) {
+    public ObjectRestResponse rel(boolean rel) {
         this.setRel(rel);
         return this;
     }
 
-    public ListRestResponse msg(String msg) {
+    public ObjectRestResponse msg(String msg) {
         this.setMsg(msg);
         return this;
     }
 
-    public ListRestResponse result(T result) {
+    public ObjectRestResponse result(T result) {
         this.setResult(result);
         return this;
     }

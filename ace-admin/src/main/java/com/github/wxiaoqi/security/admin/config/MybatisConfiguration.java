@@ -4,6 +4,7 @@ package com.github.wxiaoqi.security.admin.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -104,6 +105,8 @@ public class MybatisConfiguration implements EnvironmentAware {
         pageHelper.setProperties(properties);
         //添加XML目录
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        Interceptor[] plugins =  new Interceptor[]{pageHelper};
+        bean.setPlugins(plugins);
         try {
             bean.setMapperLocations(resolver.getResources(xmlLocation));
             return bean.getObject();
