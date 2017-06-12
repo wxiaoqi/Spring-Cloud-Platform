@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Ace on 2017/6/12.
  */
-public class TreeUtil {
+public class TreeUtil{
     public static int ROOT = -1;
   /**
    * 两层循环实现建树
@@ -16,17 +16,17 @@ public class TreeUtil {
    * @param treeNodes 传入的树节点列表
    * @return
    */
-  public static List<TreeNode> bulid(List<TreeNode> treeNodes) {
+  public static <T extends TreeNode> List<T> bulid(List<T> treeNodes) {
 
-    List<TreeNode> trees = new ArrayList<TreeNode>();
+    List<T> trees = new ArrayList<T>();
 
-    for (TreeNode treeNode : treeNodes) {
+    for (T treeNode : treeNodes) {
 
       if (ROOT == treeNode.getParentId()) {
         trees.add(treeNode);
       }
 
-      for (TreeNode it : treeNodes) {
+      for (T it : treeNodes) {
         if (it.getParentId() == treeNode.getId()) {
           if (treeNode.getChildren() == null) {
             treeNode.setChildren(new ArrayList<TreeNode>());
@@ -44,9 +44,9 @@ public class TreeUtil {
    * @param treeNodes
    * @return
    */
-  public static List<TreeNode> buildByRecursive(List<TreeNode> treeNodes) {
-    List<TreeNode> trees = new ArrayList<TreeNode>();
-    for (TreeNode treeNode : treeNodes) {
+  public static <T extends TreeNode> List<T> buildByRecursive(List<T> treeNodes) {
+    List<T> trees = new ArrayList<T>();
+    for (T treeNode : treeNodes) {
       if (ROOT == treeNode.getParentId()) {
         trees.add(findChildren(treeNode, treeNodes));
       }
@@ -60,8 +60,8 @@ public class TreeUtil {
    * @param treeNodes
    * @return
    */
-  public static TreeNode findChildren(TreeNode treeNode, List<TreeNode> treeNodes) {
-    for (TreeNode it : treeNodes) {
+  public static <T extends TreeNode> T findChildren(T treeNode, List<T> treeNodes) {
+    for (T it : treeNodes) {
       if (treeNode.getId() == it.getParentId()) {
         if (treeNode.getChildren() == null) {
           treeNode.setChildren(new ArrayList<TreeNode>());
@@ -71,4 +71,5 @@ public class TreeUtil {
     }
     return treeNode;
   }
+
 }

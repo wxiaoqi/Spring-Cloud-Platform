@@ -7,8 +7,8 @@ import java.util.List;
  * Created by Ace on 2017/6/12.
  */
 public class TreeNode {
-    int id;
-    int parentId;
+    protected int id;
+    protected int parentId;
 
     public List<TreeNode> getChildren() {
         return children;

@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table(name = "base_menu")
 public class Menu {
     @Id
-    @SequenceGenerator(name="",sequenceName="myql")
     private Integer id;
 
     private String code;

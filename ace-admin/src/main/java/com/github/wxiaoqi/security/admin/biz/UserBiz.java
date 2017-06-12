@@ -1,7 +1,10 @@
 package com.github.wxiaoqi.security.admin.biz;
 
+import com.github.wxiaoqi.security.admin.entity.User;
 import com.github.wxiaoqi.security.common.biz.BaseBiz;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.github.wxiaoqi.security.admin.mapper.UserMapper;
 
 /**
  * ${DESCRIPTION}
@@ -10,5 +13,5 @@ import org.springframework.stereotype.Service;
  * @create 2017-06-08 16:23
  */
 @Service
-public class UserService<UserMapper,User> extends BaseBiz {
+public class UserBiz extends BaseBiz<UserMapper,User> {
 }

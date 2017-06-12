@@ -1,7 +1,7 @@
 package com.github.wxiaoqi.security.admin.rest;
 
 import com.github.pagehelper.PageHelper;
-import com.github.wxiaoqi.security.admin.biz.UserService;
+import com.github.wxiaoqi.security.admin.biz.UserBiz;
 import com.github.wxiaoqi.security.admin.entity.User;
 import com.github.wxiaoqi.security.common.msg.ListRestResponse;
 import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
@@ -26,7 +26,7 @@ import java.util.List;
 public class UserController {
     @Lazy
     @Autowired
-    private UserService userService;
+    private UserBiz userService;
     @RequestMapping(value = "/page/{pageIndex}/{pageSize}",method = RequestMethod.GET)
     @ResponseBody
     public List<User> list(@PathVariable int pageIndex,@PathVariable int pageSize){

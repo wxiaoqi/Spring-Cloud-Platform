@@ -12,9 +12,11 @@ import java.util.List;
  * Version 1.0.0
  */
 public abstract class BaseBiz<M extends Mapper<T>, T> {
-
     @Autowired
     protected M mapper;
+    public void setMapper(M mapper){
+        this.mapper = mapper;
+    }
 
     public T selectOne(T entity) {
         return mapper.selectOne(entity);

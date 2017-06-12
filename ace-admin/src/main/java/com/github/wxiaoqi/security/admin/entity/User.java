@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table(name = "base_user")
 public class User {
     @Id
-    @SequenceGenerator(name="",sequenceName="myql")
     private Integer id;
 
     private String username;
