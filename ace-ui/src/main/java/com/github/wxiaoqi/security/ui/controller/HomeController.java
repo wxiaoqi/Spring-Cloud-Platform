@@ -23,10 +23,14 @@ public class HomeController {
     }
     @RequestMapping(value = "user",method = RequestMethod.GET)
     public String user(){
-        return "user";
+        return "user/list";
     }
     @RequestMapping(value = "user/edit",method = RequestMethod.GET)
     public String userEdit(){
         return "user/edit";
+    }
+    @RequestMapping(value = "menu",method = RequestMethod.GET)
+    public String menu(){
+        return "menu/list";
     }
 }
