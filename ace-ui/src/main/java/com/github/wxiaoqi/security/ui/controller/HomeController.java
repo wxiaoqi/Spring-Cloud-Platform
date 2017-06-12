@@ -33,4 +33,8 @@ public class HomeController {
     public String menu(){
         return "menu/list";
     }
+    @RequestMapping(value = "login",method = RequestMethod.GET)
+    public String login(){
+        return "login";
+    }
 }

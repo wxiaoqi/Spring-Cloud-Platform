@@ -1,7 +1,9 @@
 spring:
     application:
         name: ace-gate
-
+    thymeleaf:
+        mode: LEGACYHTML5
+        cache: false
 server:
     port: 8765 #启动端口
 
@@ -32,3 +34,8 @@ eureka:
     client:
         serviceUrl:
             defaultZone: http://localhost:8761/eureka/
+security:
+    user:
+        name: admin
+        password: admin
+        role: USER

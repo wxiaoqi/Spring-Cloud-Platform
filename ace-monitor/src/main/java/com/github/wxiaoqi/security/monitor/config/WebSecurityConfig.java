@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http.formLogin().loginPage("/login").permitAll().and()
         .logout().logoutUrl("/logout").and().authorizeRequests()
-        .antMatchers("/login.html", "/**/*.css", "/img/**", "/api/**") // 放开"/api/**"：为了给被监控端免登录注册
+        .antMatchers("/**/*.css", "/img/**", "/api/**") // 放开"/api/**"：为了给被监控端免登录注册
         .permitAll().and().authorizeRequests().antMatchers("/**").authenticated();
     http.csrf().disable();
     http.headers().frameOptions().disable();
