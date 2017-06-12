@@ -1,7 +1,7 @@
 package com.github.wxiaoqi.security.admin.mapper;
 
 import com.github.wxiaoqi.security.admin.entity.Menu;
-import org.magic.frame.common.mapper.CommonMapper;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface MenuMapper extends CommonMapper<Menu> {
+public interface MenuMapper extends Mapper<Menu> {
 }

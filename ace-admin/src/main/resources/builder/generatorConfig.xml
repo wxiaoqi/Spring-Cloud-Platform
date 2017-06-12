@@ -11,7 +11,7 @@
         <property name="endingDelimiter" value="`"/>
         <property name="mergeable" value="false"></property>
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-          <property name="mappers" value="org.magic.frame.common.mapper.CommonMapper"/>
+          <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
         </plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"

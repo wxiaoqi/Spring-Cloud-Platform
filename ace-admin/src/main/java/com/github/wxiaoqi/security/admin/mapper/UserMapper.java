@@ -1,7 +1,7 @@
 package com.github.wxiaoqi.security.admin.mapper;
 
 import com.github.wxiaoqi.security.admin.entity.User;
-import org.magic.frame.common.mapper.CommonMapper;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface UserMapper extends CommonMapper<User> {
+public interface UserMapper extends Mapper<User> {
 }

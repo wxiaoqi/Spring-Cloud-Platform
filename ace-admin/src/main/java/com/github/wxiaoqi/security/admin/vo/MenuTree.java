@@ -1,11 +1,11 @@
 package com.github.wxiaoqi.security.admin.vo;
 
-import com.github.wxiaoqi.security.common.vo.Node;
+import com.github.wxiaoqi.security.common.vo.TreeNode;
 
 /**
  * Created by Ace on 2017/6/12.
  */
-public class MenuTree extends Node {
+public class MenuTree extends TreeNode {
     String icon;
     String title;
     String href;
