@@ -26,44 +26,45 @@ import java.util.List;
 public class UserController {
     @Lazy
     @Autowired
-    private UserBiz userService;
+    private UserBiz userBiz;
     @RequestMapping(value = "/page/{pageIndex}/{pageSize}",method = RequestMethod.GET)
     @ResponseBody
     public List<User> list(@PathVariable int pageIndex,@PathVariable int pageSize){
         PageHelper.startPage(pageIndex, pageSize);
-       return userService.selectListAll();
+       return userBiz.selectListAll();
     }
     @RequestMapping(value = "/page",method = RequestMethod.GET)
     @ResponseBody
     public ListRestResponse<List<User>> page(int pageIndex, int pageSize){
-        Long count = userService.selectCount(new User());
+        Long count = userBiz.selectCount(new User());
         PageHelper.startPage(pageIndex, pageSize);
-        return new ListRestResponse<List<User>>().rel(true).result(userService.selectListAll()).count(count.intValue());
+        return new ListRestResponse<List<User>>().rel(true).result(userBiz.selectListAll()).count(count.intValue());
     }
+
     @RequestMapping(value = "",method = RequestMethod.POST)
     @ResponseBody
     public ObjectRestResponse<User> add(User user){
-        userService.insertSelective(user);
+        userBiz.insertSelective(user);
         return new ObjectRestResponse<User>().rel(true);
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody
     public ObjectRestResponse<User> get(@PathVariable int id){
-        return new ObjectRestResponse<User>().rel(true).result(userService.selectById(id));
+        return new ObjectRestResponse<User>().rel(true).result(userBiz.selectById(id));
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
     @ResponseBody
     public ObjectRestResponse<User> get(User user){
-        userService.updateById(user);
+        userBiz.updateById(user);
         return new ObjectRestResponse<User>().rel(true);
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     @ResponseBody
     public ObjectRestResponse<User> remove(@PathVariable int id){
-        userService.deleteById(id);
+        userBiz.deleteById(id);
         return new ObjectRestResponse<User>().rel(true);
     }
 }

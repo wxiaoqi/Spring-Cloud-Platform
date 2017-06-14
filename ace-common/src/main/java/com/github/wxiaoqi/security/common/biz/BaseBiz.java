@@ -2,6 +2,8 @@ package com.github.wxiaoqi.security.common.biz;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.Mapper;
+import tk.mybatis.mapper.common.example.SelectByExampleMapper;
+import tk.mybatis.mapper.common.example.SelectCountByExampleMapper;
 
 import java.util.List;
 
@@ -82,7 +84,12 @@ public abstract class BaseBiz<M extends Mapper<T>, T> {
         mapper.updateByPrimaryKeySelective(entity);
 
     }
-
+    List<T> selectByExample(Object example){
+        return mapper.selectByExample(example);
+    }
+    int selectCountByExample(Object example){
+        return mapper.selectCountByExample(example);
+    }
 //    public void deleteBatchByIds(List<Object> ids) {
 //        mapper.batchDeleteByIds(ids);
 //    }

@@ -63,6 +63,13 @@ public class Menu {
 
     private String attr8;
 
+    public Menu(String title) {
+        this.title = title;
+    }
+
+    public Menu() {
+    }
+
     /**
      * @return id
      */

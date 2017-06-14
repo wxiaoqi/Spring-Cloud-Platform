@@ -61,4 +61,55 @@ CREATE TABLE `base_menu` (
 PRIMARY KEY (`id`)
 )
 ;
+CREATE TABLE `base_group` (
+`id`  int NOT NULL AUTO_INCREMENT ,
+`code`  varchar(255) NULL ,
+`title`  varchar(255) NULL ,
+`parent_id`  int NOT NULL ,
+`type`  char(1) NULL,
+`group_type`  int NOT NULL ,
+`description`  varchar(255) NULL ,
+`crt_time`  date NULL ,
+`crt_user`  varchar(255) NULL ,
+`crt_name`  varchar(255) NULL ,
+`crt_host`  varchar(255) NULL ,
+`upd_time`  date NULL ,
+`upd_user`  varchar(255) NULL ,
+`upd_name`  varchar(255) NULL ,
+`upd_host`  varchar(255) NULL ,
+`attr1`  varchar(255) NULL ,
+`attr2`  varchar(255) NULL ,
+`attr3`  varchar(255) NULL ,
+`attr4`  varchar(255) NULL ,
+`attr5`  varchar(255) NULL ,
+`attr6`  varchar(255) NULL ,
+`attr7`  varchar(255) NULL ,
+`attr8`  varchar(255) NULL ,
+PRIMARY KEY (`id`)
+)
+;
+CREATE TABLE `base_group_type` (
+`id`  int NOT NULL AUTO_INCREMENT ,
+`code`  varchar(255) NULL ,
+`title`  varchar(255) NULL ,
+`description`  varchar(255) NULL ,
+`crt_time`  date NULL ,
+`crt_user`  varchar(255) NULL ,
+`crt_name`  varchar(255) NULL ,
+`crt_host`  varchar(255) NULL ,
+`upd_time`  date NULL ,
+`upd_user`  varchar(255) NULL ,
+`upd_name`  varchar(255) NULL ,
+`upd_host`  varchar(255) NULL ,
+`attr1`  varchar(255) NULL ,
+`attr2`  varchar(255) NULL ,
+`attr3`  varchar(255) NULL ,
+`attr4`  varchar(255) NULL ,
+`attr5`  varchar(255) NULL ,
+`attr6`  varchar(255) NULL ,
+`attr7`  varchar(255) NULL ,
+`attr8`  varchar(255) NULL ,
+PRIMARY KEY (`id`)
+)
+;
 

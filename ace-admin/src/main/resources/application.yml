@@ -1,3 +1,9 @@
+logging:
+    level:
+        tk.mybatis: DEBUG
+        com.github.wxiaoqi.security.admin: DEBUG
+  #  config: classpath:logback.xml
+    path: /ace-admin
 spring:
     application:
         name: ace-admin

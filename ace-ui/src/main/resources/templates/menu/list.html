@@ -7,65 +7,128 @@
     <link rel="stylesheet" href="css/layui.css" media="all"/>
     <link rel="stylesheet" href="css/global.css" media="all">
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/table.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="plugins/bootstrap-table/css/bootstrap-table.min.css"/>
 </head>
 
 <body>
 <div class="admin-main">
-    <div class="ibox-content">
-        <div class="row row-lg">
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <a href="javascript:;" class="layui-btn layui-btn-small" id="search">
-                            <i class="layui-icon">&#xe615;</i> 搜索
-                        </a>
-                        <a href="javascript:;" class="layui-btn layui-btn-small" id="add">
-                            <i class="layui-icon">&#xe608;</i> 添加
-                        </a>
-                    </div>
-                </div>
+    <form  class="layui-form layui-form-pane">
+        <div class="layui-form-item" style="margin-bottom:0px;">
+            <label class="layui-form-label">菜单</label>
+            <div class="layui-input-inline">
+                <input type="text" onsubmit="" class="layui-input" id="title">
             </div>
+            <button type="button" id="btn_query"  class="layui-btn layui-btn">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
         </div>
+    </form>
+    <div  id="toolbar" class="layui-btn-group">
+        <button class="layui-btn layui-btn-small">
+            <i class="layui-icon">&#xe654;</i>
+        </button>
+        <button class="layui-btn layui-btn-small">
+            <i class="layui-icon">&#xe642;</i>
+        </button>
+        <button class="layui-btn layui-btn-small">
+            <i class="layui-icon">&#xe640;</i>
+        </button>
     </div>
-</div>
-<fieldset class="layui-elem-field">
-    <legend>数据列表</legend>
-    <div class="layui-field-box layui-form">
-        <table data-toggle="table">
-            <thead>
-            <tr>
-                <th>Item ID</th>
-                <th>Item Name</th>
-                <th>Item Price</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>Item 1</td>
-                <td>$1</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Item 2</td>
-                <td>$2</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</fieldset>
-<div class="admin-table-page">
-    <div id="paged" class="page">
-    </div>
+    <table id="menu">
+
+    </table>
+
 </div>
 
 <script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap.min.js"></script>
 <script type="text/javascript" src="plugins/bootstrap-table/bootstrap-table.min.js"></script>
 <script type="text/javascript" src="layui.js"></script>
 <script>
+    $(function () {
 
+        //1.初始化Table
+        var oTable = new TableInit();
+        oTable.Init();
+
+        //2.初始化Button的点击事件
+        var oButtonInit = new ButtonInit();
+        oButtonInit.Init();
+
+    });
+
+
+    var TableInit = function () {
+        var oTableInit = new Object();
+        //初始化Table
+        oTableInit.Init = function () {
+            $('#menu').bootstrapTable({
+                url: '/back/menu/page', //请求后台的URL（*）
+                method: 'get', //请求方式（*）
+                toolbar: '#toolbar', //工具按钮用哪个容器
+                striped: true, //是否显示行间隔色
+                cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                pagination: true, //是否显示分页（*）
+                sortable: false, //是否启用排序
+                sortOrder: "asc", //排序方式
+                queryParams: oTableInit.queryParams,//传递参数（*）
+                sidePagination: "server", //分页方式：client客户端分页，server服务端分页（*）
+                pageNumber: 1, //初始化加载第一页，默认第一页
+                pageSize: 10, //每页的记录行数（*）
+                pageList: [10, 25, 50, 100], //可供选择的每页的行数（*）
+                search: false, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                strictSearch: false,
+                showColumns: false, //是否显示所有的列
+                showRefresh: true, //是否显示刷新按钮
+                minimumCountColumns: 2, //最少允许的列数
+                clickToSelect: true, //是否启用点击选中行
+                height: 500, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                uniqueId: "ID", //每一行的唯一标识，一般为主键列
+                showToggle: true, //是否显示详细视图和列表视图的切换按钮
+                cardView: false, //是否显示详细视图
+                detailView: false, //是否显示父子表
+                columns: [{
+                    checkbox: true
+                }, {
+                    field: 'title',
+                    title: '菜单'
+                }, {
+                    field: 'name',
+                    title: '上级部门'
+                }]
+            });
+        };
+
+        //得到查询的参数
+        oTableInit.queryParams = function (params) {
+            var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                limit: params.limit, //页面大小
+                offset: params.offset, //页码
+                title: $("#title").val()
+            };
+            return temp;
+        };
+        return oTableInit;
+    };
+
+
+    var ButtonInit = function () {
+        var oInit = new Object();
+        var postdata = {};
+
+        oInit.Init = function () {
+            //初始化页面上面的按钮事件
+            $('#btn_query').on('click',function(){
+                // 刷新表格
+                var queryData = {};
+                queryData['title'] = $("#title").val();
+                $('#menu').bootstrapTable('refresh',queryData);
+            }) ;
+        };
+
+        return oInit;
+    };
 </script>
 </body>
 
