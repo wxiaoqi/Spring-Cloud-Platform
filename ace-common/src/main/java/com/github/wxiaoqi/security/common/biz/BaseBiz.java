@@ -84,10 +84,10 @@ public abstract class BaseBiz<M extends Mapper<T>, T> {
         mapper.updateByPrimaryKeySelective(entity);
 
     }
-    List<T> selectByExample(Object example){
+    public  List<T> selectByExample(Object example){
         return mapper.selectByExample(example);
     }
-    int selectCountByExample(Object example){
+    public int selectCountByExample(Object example){
         return mapper.selectCountByExample(example);
     }
 //    public void deleteBatchByIds(List<Object> ids) {

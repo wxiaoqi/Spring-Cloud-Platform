@@ -33,6 +33,10 @@ public class HomeController {
     public String menu(){
         return "menu/list";
     }
+    @RequestMapping(value = "menu/edit",method = RequestMethod.GET)
+    public String menuEdit(){
+        return "menu/edit";
+    }
     @RequestMapping(value = "login",method = RequestMethod.GET)
     public String login(){
         return "login";
