@@ -2,12 +2,16 @@ package com.github.wxiaoqi.security.common.rest;
 
 import com.github.wxiaoqi.security.common.biz.BaseBiz;
 import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
+import com.github.wxiaoqi.security.common.msg.TableResultResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import tk.mybatis.mapper.entity.Example;
+
+import java.util.List;
 
 /**
  * ${DESCRIPTION}
@@ -43,5 +47,11 @@ public class BaseController<Biz extends BaseBiz,Entity> {
     public ObjectRestResponse<Entity> remove(@PathVariable int id){
         baseBiz.deleteById(id);
         return new ObjectRestResponse<Entity>().rel(true);
+    }
+
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @ResponseBody
+    public List<Entity> list(){
+        return baseBiz.selectListAll();
     }
 }

@@ -14,6 +14,10 @@ public class MenuTree extends TreeNode {
     String title;
     String href;
     boolean spread = false;
+
+    public MenuTree() {
+    }
+
     public MenuTree(int id, String name, int parentId) {
         this.id = id;
         this.parentId = parentId;

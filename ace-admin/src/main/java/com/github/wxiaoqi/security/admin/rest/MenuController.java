@@ -3,15 +3,19 @@ package com.github.wxiaoqi.security.admin.rest;
 import com.github.pagehelper.PageHelper;
 import com.github.wxiaoqi.security.admin.biz.MenuBiz;
 import com.github.wxiaoqi.security.admin.entity.Menu;
+import com.github.wxiaoqi.security.admin.vo.MenuTree;
 import com.github.wxiaoqi.security.common.msg.ListRestResponse;
 import com.github.wxiaoqi.security.common.rest.BaseController;
 import com.github.wxiaoqi.security.common.msg.TableResultResponse;
+import com.github.wxiaoqi.security.common.util.TreeUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,9 +42,18 @@ public class MenuController extends BaseController<MenuBiz,Menu> {
     public ListRestResponse<List<Menu>> page(){
         return new ListRestResponse<List<Menu>>().rel(true).result(baseBiz.selectListAll());
     }
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+
+    @RequestMapping(value = "/all",method = RequestMethod.GET)
     @ResponseBody
-    public List<Menu> list(){
-        return baseBiz.selectListAll();
+    public List<MenuTree> menuList(){
+        List<MenuTree> trees = new ArrayList<MenuTree>();
+        MenuTree node = null;
+        for(Menu menu:baseBiz.selectListAll()){
+            node = new MenuTree();
+            BeanUtils.copyProperties(menu,node);
+            trees.add(node);
+        }
+       return TreeUtil.bulid(trees);
     }
+
 }
