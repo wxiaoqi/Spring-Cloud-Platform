@@ -7,6 +7,15 @@
     <groupId>com.github.wxiaoqi</groupId>
     <artifactId>ace-security</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <url>https://github.com/wxiaoqi/ace-security</url>
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -23,7 +32,12 @@
         <module>ace-common</module>
     </modules>
     <packaging>pom</packaging>
-
+    <developers>
+        <developer>
+            <name>ace</name>
+            <email>463540703@qq.com</email>
+        </developer>
+    </developers>
     <!--依赖管理，用于管理spring-cloud的依赖，其中Camden.SR3是版本号-->
     <dependencyManagement>
         <dependencies>

@@ -31,8 +31,7 @@ http://localhost:8766
 
 - 运行数据库脚本，创建库：ag_admin，脚本：ace-admin/db/init.sql
 - 依次运行main类：CenterBootstrap（ace-center）、GateBootstrap（ace-gate）、AdminBootstrap（ace-admin）、UIBootstrap（ace-ui）、MonitorBootstrap（ace-monitor）
-- 访问地址: http://localhost:8765/admin/index 账户/密码：admin/admin
-
+- 访问地址: http://localhost:8765/admin/index
 ---------
 
 # 版本日志
@@ -43,14 +42,26 @@ http://localhost:8766
 - 完成监控中心的搭建
 
 ### 2017年6月10日 初步后台首页搭建
+
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-07/1496827841773.jpg?imageView2/2/w/800)
+
 - 完成后端的UI的选型
 - 完成首页改进
 
 ### 2017年6月10日 用户管理增删改查例子
 
 ![Markdown](http://i2.muimg.com/1949/6d92e3a30f083ef9.png)
-- 完成用户模块的增删改查
-- 完成前后端模块分离
+- 完成用户模块的增删该查
+- 完成前后端分离的模块联通
 - 完成监控模块
 
+
 ### 2017年6月13日 完成登录统一拦截
+- 引入spring security进行统一登录拦截
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-15/1497541226023.jpg?imageView2/2/w/800)
+
+### 2017年6月15日 完成菜单管理模块
+- 引入boostrap table
+- 抽象基础Controller类
+- 完成菜单的增删改查和树状
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-15/1497540870148.jpg?imageView2/2/w/800)

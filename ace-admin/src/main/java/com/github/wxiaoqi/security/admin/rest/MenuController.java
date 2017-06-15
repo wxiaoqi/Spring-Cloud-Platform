@@ -3,6 +3,7 @@ package com.github.wxiaoqi.security.admin.rest;
 import com.github.pagehelper.PageHelper;
 import com.github.wxiaoqi.security.admin.biz.MenuBiz;
 import com.github.wxiaoqi.security.admin.entity.Menu;
+import com.github.wxiaoqi.security.common.msg.ListRestResponse;
 import com.github.wxiaoqi.security.common.rest.BaseController;
 import com.github.wxiaoqi.security.common.msg.TableResultResponse;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import tk.mybatis.mapper.entity.Example;
+
+import java.util.List;
 
 /**
  * ${DESCRIPTION}
@@ -28,5 +31,16 @@ public class MenuController extends BaseController<MenuBiz,Menu> {
         int count = baseBiz.selectCountByExample(example);
         PageHelper.startPage(offset, limit);
         return new TableResultResponse<Menu>(count,baseBiz.selectByExample(example));
+    }
+
+    @RequestMapping(value = "/all",method = RequestMethod.GET)
+    @ResponseBody
+    public ListRestResponse<List<Menu>> page(){
+        return new ListRestResponse<List<Menu>>().rel(true).result(baseBiz.selectListAll());
+    }
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @ResponseBody
+    public List<Menu> list(){
+        return baseBiz.selectListAll();
     }
 }
