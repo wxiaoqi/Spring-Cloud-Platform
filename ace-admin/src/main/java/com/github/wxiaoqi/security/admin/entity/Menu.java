@@ -1,5 +1,7 @@
 package com.github.wxiaoqi.security.admin.entity;
 
+import com.github.wxiaoqi.security.common.util.TreeUtil;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -13,7 +15,7 @@ public class Menu {
     private String title;
 
     @Column(name = "parent_id")
-    private Integer parentId;
+    private Integer parentId = TreeUtil.ROOT;
 
     private String href;
 
