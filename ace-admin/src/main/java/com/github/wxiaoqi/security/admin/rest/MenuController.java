@@ -8,6 +8,7 @@ import com.github.wxiaoqi.security.common.msg.ListRestResponse;
 import com.github.wxiaoqi.security.common.rest.BaseController;
 import com.github.wxiaoqi.security.common.msg.TableResultResponse;
 import com.github.wxiaoqi.security.common.util.TreeUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +32,8 @@ public class MenuController extends BaseController<MenuBiz,Menu> {
     @ResponseBody
     public TableResultResponse<Menu> page(int limit, int offset, String title){
         Example example = new Example(Menu.class);
-        example.createCriteria().andLike("title", "%" + title + "%");
+        if(StringUtils.isNotBlank(title))
+            example.createCriteria().andLike("title", "%" + title + "%");
         int count = baseBiz.selectCountByExample(example);
         PageHelper.startPage(offset, limit);
         return new TableResultResponse<Menu>(count,baseBiz.selectByExample(example));

@@ -15,11 +15,11 @@
 
 <body>
 <div class="admin-main">
-    <form  class="layui-form layui-form-pane">
+    <form  class="layui-form layui-form-pane" onsubmit="javascript:return false;">
         <div class="layui-form-item" style="margin-bottom:0px;">
             <label class="layui-form-label">菜单</label>
             <div class="layui-input-inline">
-                <input type="text" onsubmit="" class="layui-input" id="title">
+                <input type="text" onchange="javascript:$('#btn_query').click();" class="layui-input" id="title">
             </div>
             <button type="button" id="btn_query"  class="layui-btn layui-btn">
                 <i class="fa fa-search" aria-hidden="true"></i>
@@ -55,10 +55,11 @@
         base: 'js/'
     });
     var allMenu = null;
+    var editIndex;
     $.get('/back/menu/all',null,function(data){
         allMenu = data.result;
     }) ;
-    layui.use(['form'], function () {
+    layui.use(['form', 'layedit', 'laydate'], function () {
         //1.初始化Table
         var oTable = new TableInit();
         oTable.Init();
@@ -68,7 +69,8 @@
         oButtonInit.Init();
         var layerTips = parent.layer === undefined ? layui.layer : parent.layer, //获取父窗口的layer对象
                 layer = layui.layer, //获取当前窗口的layer对象
-                form = layui.form();
+                form = layui.form(),
+                layedit = layui.layedit;
 //初始化页面上面的按钮事件
         $('#btn_query').on('click',function(){
             var queryData = {};
@@ -97,6 +99,7 @@
                     zIndex: 19950924,
                     maxmin: true,
                     yes: function (index) {
+                        layedit.sync(editIndex);
                         //触发表单的提交事件
                         $('form.layui-form').find('button[lay-filter=edit]').click();
                     },
@@ -113,6 +116,7 @@
                     },
                     success: function (layero, index) {
                         var form = layui.form();
+                        editIndex = layedit.build('description_editor');
                         form.render();
                         for(var i=0;i<allMenu.length;i++)
                             layero.find('#parentId').append('<option value="'+allMenu[i].id+'" >'+allMenu[i].title+'</option>');
@@ -165,6 +169,7 @@
                         zIndex: 19950924,
                         maxmin: true,
                         yes: function (index) {
+                            layedit.sync(editIndex);
                             //触发表单的提交事件
                             $('form.layui-form').find('button[lay-filter=edit]').click();
                         },
@@ -181,13 +186,16 @@
                         },
                         success: function (layero, index) {
                             var form = layui.form();
-                            form.render();
                             setFromValues(layero, result);
-                            layero.find(":input[name='code']").attr("disabled", "");
+                            layero.find('#description_editor').val(result.description);
+                            editIndex = layedit.build('description_editor');
                             for(var i=0;i<allMenu.length;i++)
                                 layero.find('#parentId').append('<option value="'+allMenu[i].id+'" >'+allMenu[i].title+'</option>');
                             layero.find("select[name='parentId']").val(result['parentId']);
                             form.render('select');
+                            layero.find(":input[name='code']").attr("disabled", "");
+                            form.render();
+
                             form.on('submit(edit)', function (data) {
                                 $.ajax({
                                     url: '/back/menu/' + result.id,
