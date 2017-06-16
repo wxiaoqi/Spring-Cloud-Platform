@@ -27,7 +27,7 @@ public class BaseController<Biz extends BaseBiz,Entity> {
     @ResponseBody
     public ObjectRestResponse<Entity> add(Entity entity){
         baseBiz.insertSelective(entity);
-        return new ObjectRestResponse<SecurityProperties.User>().rel(true);
+        return new ObjectRestResponse<Entity>().rel(true);
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
