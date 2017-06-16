@@ -53,7 +53,9 @@ layui.config({
     });
     $.get("/back/menu/sys",null,function(data){
         for(var i=0;i<data.length;i++){
-            $('#menuSys').append('<dd><a href="javascript:;" onclick="javascript:refreshMenu('+data[i].id+')">'+data[i].title+'</a></dd>');
+            $('#menuSys').append('<dd><a href="javascript:;" onclick="javascript:refreshMenu('+data[i].id+')"><i class="fa '+data[i].icon+'" aria-hidden="true"></i>  '+data[i].title+'</a></dd>');
+            $('#menuSysMobile').prepend('<dd><a href="javascript:;" onclick="javascript:refreshMenu('+data[i].id+')"><i class="fa '+data[i].icon+'" aria-hidden="true"></i> '+data[i].title+'</a></dd>');
+
         }
     });
     //清除缓存

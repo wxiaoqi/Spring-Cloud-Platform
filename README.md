@@ -1,9 +1,11 @@
 # AG-Admin
 基于Spring Cloud的云分布式后台管理系统架构，核心技术采用Eureka、Fegin、Ribbon、Zuul、Hystrix、Security、OAth、Mybatis、Ace-cache等主要框架和中间件，UI采用Bootstrap、jquery等前端组件。
 
+具有常用的用户管理、菜单管理等功能，同时支持多业务系统切换。
+
 群号：169824183。
 
-![Markdown](http://i2.muimg.com/1949/6d92e3a30f083ef9.png)
+![Markdown](http://i1.buimg.com/1949/39fbe8cbf5fd961f.png)
 
 ---------
 
@@ -68,6 +70,9 @@ http://localhost:8766
 - 抽象基础Controller类
 - 完成菜单的增删改查和树状
 ![img](http://ofsc32t59.bkt.clouddn.com/17-06-15/1497540870148.jpg?imageView2/2/w/800)
+
+### 2017年6月17日 完成多系统菜单切换功能
+![Markdown](http://i1.buimg.com/1949/39fbe8cbf5fd961f.png)
 
 # 欢迎交流
 ![img](http://ofsc32t59.bkt.clouddn.com/17-06-16/1497595760484.jpg)
