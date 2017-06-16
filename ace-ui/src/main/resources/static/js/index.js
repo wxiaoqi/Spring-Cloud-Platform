@@ -1,6 +1,7 @@
 /** index.js By Beginner Emain:zheng_jinfan@126.com HomePage:http://www.zhengjinfan.cn */
 
 var tab;
+var navbar;
 
 layui.config({
     base: 'js/',
@@ -8,8 +9,8 @@ layui.config({
 }).use(['element', 'layer', 'navbar', 'tab'], function () {
     var element = layui.element(),
         $ = layui.jquery,
-        layer = layui.layer,
-        navbar = layui.navbar();
+        layer = layui.layer;
+    navbar = layui.navbar();
     tab = layui.tab({
         elem: '.admin-nav-card' //设置选项卡容器
         ,
@@ -49,6 +50,11 @@ layui.config({
     //监听点击事件
     navbar.on('click(side)', function (data) {
         tab.tabAdd(data.field);
+    });
+    $.get("/back/menu/sys",null,function(data){
+        for(var i=0;i<data.length;i++){
+            $('#menuSys').append('<dd><a href="javascript:;" onclick="javascript:refreshMenu('+data[i].id+')">'+data[i].title+'</a></dd>');
+        }
     });
     //清除缓存
     $('#clearCached').on('click', function () {
@@ -133,7 +139,22 @@ layui.config({
         $('body').removeClass('site-mobile');
     });
 });
-
+function refreshMenu(parentId){
+//设置navbar
+    navbar.set({
+        spreadOne: true,
+        elem: '#admin-navbar-side',
+        cached: true,
+        //data: navs
+        cached:false,
+        url: '/back/menu/menu?parentId='+parentId
+    });
+    navbar.render();
+    //监听点击事件
+    navbar.on('click(side)', function (data) {
+        tab.tabAdd(data.field);
+    });
+}
 var isShowLock = false;
 function lock($, layer) {
     if (isShowLock)

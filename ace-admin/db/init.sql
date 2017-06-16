@@ -44,6 +44,7 @@ CREATE TABLE `base_menu` (
 `type`  char(1) NULL ,
 `order_num`  int NOT NULL ,
 `description`  varchar(255) NULL ,
+`path` varchar(500) NULL ,
 `enabled` char(1) NULL ,
 `crt_time`  date NULL ,
 `crt_user`  varchar(255) NULL ,

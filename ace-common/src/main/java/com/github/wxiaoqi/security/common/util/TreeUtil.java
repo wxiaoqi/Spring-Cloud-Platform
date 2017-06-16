@@ -16,13 +16,13 @@ public class TreeUtil{
    * @param treeNodes 传入的树节点列表
    * @return
    */
-  public static <T extends TreeNode> List<T> bulid(List<T> treeNodes) {
+  public static <T extends TreeNode> List<T> bulid(List<T> treeNodes,int root) {
 
     List<T> trees = new ArrayList<T>();
 
     for (T treeNode : treeNodes) {
 
-      if (ROOT == treeNode.getParentId()) {
+      if (root == treeNode.getParentId()) {
         trees.add(treeNode);
       }
 

@@ -49,7 +49,7 @@ public class BaseController<Biz extends BaseBiz,Entity> {
         return new ObjectRestResponse<Entity>().rel(true);
     }
 
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @RequestMapping(value = "/all",method = RequestMethod.GET)
     @ResponseBody
     public List<Entity> list(){
         return baseBiz.selectListAll();

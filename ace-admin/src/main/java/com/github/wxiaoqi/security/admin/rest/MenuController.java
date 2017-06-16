@@ -27,35 +27,44 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("menu")
-public class MenuController extends BaseController<MenuBiz,Menu> {
-    @RequestMapping(value = "/page",method = RequestMethod.GET)
+public class MenuController extends BaseController<MenuBiz, Menu> {
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public TableResultResponse<Menu> page(int limit, int offset, String title){
+    public List<Menu> list(String title) {
         Example example = new Example(Menu.class);
-        if(StringUtils.isNotBlank(title))
+        if (StringUtils.isNotBlank(title))
             example.createCriteria().andLike("title", "%" + title + "%");
-        int count = baseBiz.selectCountByExample(example);
-        PageHelper.startPage(offset, limit);
-        return new TableResultResponse<Menu>(count,baseBiz.selectByExample(example));
+        return baseBiz.selectByExample(example);
     }
 
-    @RequestMapping(value = "/all",method = RequestMethod.GET)
+    @RequestMapping(value = "/sys", method = RequestMethod.GET)
     @ResponseBody
-    public ListRestResponse<List<Menu>> page(){
-        return new ListRestResponse<List<Menu>>().rel(true).result(baseBiz.selectListAll());
+    public List<Menu> getSys() {
+        Menu menu = new Menu();
+        menu.setParentId(TreeUtil.ROOT);
+        return baseBiz.selectList(menu);
     }
 
-    @RequestMapping(value = "/menu",method = RequestMethod.GET)
+    @RequestMapping(value = "/menu", method = RequestMethod.GET)
     @ResponseBody
-    public List<MenuTree> menuList(){
+    public List<MenuTree> listMenu(Integer parentId) {
+        try {
+            if (parentId == null) {
+                parentId = this.getSys().get(0).getId();
+            }
+        } catch (Exception e) {
+            return new ArrayList<MenuTree>();
+        }
         List<MenuTree> trees = new ArrayList<MenuTree>();
         MenuTree node = null;
-        for(Menu menu:baseBiz.selectListAll()){
+        Example example = new Example(Menu.class);
+        Menu parent = baseBiz.selectById(parentId);
+        example.createCriteria().andLike("path", parent.getPath() + "%").andNotEqualTo("id",parent.getId());
+        for (Menu menu : baseBiz.selectByExample(example)) {
             node = new MenuTree();
-            BeanUtils.copyProperties(menu,node);
+            BeanUtils.copyProperties(menu, node);
             trees.add(node);
         }
-       return TreeUtil.bulid(trees);
+        return TreeUtil.bulid(trees,parent.getId());
     }
-
 }

@@ -1,0 +1,358 @@
+@charset "utf-8";
+/**
+* @Author: Paco
+* @Date: 2017-01-31
+* @lastModify 2017-03-22
+* +----------------------------------------------------------------------
+* | jqadmin [ jq酷打造的一款懒人后台模板 ]
+* | Copyright (c) 2017 http://jqadmin.jqcool.net All rights reserved.
+* | Licensed ( http://jqadmin.jqcool.net/licenses/ )
+* | Author: Paco <admin@jqcool.net>
+* +----------------------------------------------------------------------
+*/
+
+a:link,
+a:hover,
+a:active,
+a:visited {
+    text-decoration: none;
+    outline: none;
+}
+/**
+* 头部
+*/
+
+.layui-header::before {
+    position: absolute;
+    bottom: 0;
+    content: "";
+    width: 100%;
+    border-bottom: 5px solid #1AA094;
+    left: 0;
+}
+
+.layui-header .jqadmin-logo-box {
+    display: block;
+    float: left;
+    left: 20px;
+    width: 173px;
+}
+
+.layui-header.logo img {
+    width: 143px;
+    height: 60px;
+}
+
+.layui-header .menu-type {
+    display: inline-block;
+    background: #009688;
+    padding: 0 5px;
+    line-height: 56px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.layui-header .jqadmin-main-menu {
+    left: 200px;
+    float: left;
+}
+
+.layui-header .header-right {
+    float: right;
+}
+
+.layui-header .header-right .right-menu {
+    right: 70px;
+}
+
+.layui-header .header-right .fresh-btn {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+}
+
+.layui-header .layui-nav {
+    top: 0;
+    padding: 0;
+    background: none;
+}
+
+.layui-header .layui-nav .layui-nav-item {
+    margin: 0px;
+}
+
+.layui-header .jqadmin-header-item {
+    margin-right: 10px;
+}
+
+.layui-header .layui-nav .layui-nav-item a.msg {
+    position: relative;
+}
+
+.layui-header .layui-nav .layui-nav-item .msg-num {
+    background: red;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    border-radius: 10px;
+    line-height: 18px;
+    font-size: 12px;
+    color: #FFF;
+    text-align: center;
+    position: absolute;
+    top: 14px;
+    right: 5px;
+}
+
+.layui-nav-child dd {
+    line-height: 36px;
+}
+/**
+*左边菜单
+*/
+
+.layui-side .jqadmin-home {
+    height: 50px;
+    line-height: 50px;
+    background: #2B2E37;
+    text-indent: 10px;
+}
+
+.layui-side .jqadmin-home a {
+    color: #ccc;
+}
+
+.layui-side .sub-menu {
+    display: none;
+}
+
+.layui-side .show {
+    display: block;
+}
+
+.sub-menu .layui-nav-item dl dd:hover {
+    background: #1AA094;
+}
+
+.sub-menu .layui-nav-item dl dd a {
+    padding-left: 30px;
+}
+/**
+*内容主体
+*/
+
+.layui-layout-admin .jqadmin-body {
+    border-left: solid 1px #1AA094;
+    overflow-y: hidden;
+}
+
+.layui-tab-content {
+    height: 100%;
+    padding: 0;
+}
+
+.layui-body {
+    overflow: hidden;
+}
+
+.layui-body .layui-tab {
+    margin: 0;
+}
+
+.layui-tab-content .layui-tab-item {
+    position: absolute;
+    top: 42px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.jqadmin-body .jqadmin-tab-box {
+    box-shadow: none;
+    border-bottom: 1px solid #1AA094;
+}
+
+.jqadmin-tab-box .layui-tab-title {
+    border-bottom: none;
+    overflow: hidden;
+    height: 40px;
+    background: linear-gradient(#F1F1F1, #F3F3F3);
+}
+
+.jqadmin-tab-box .layui-tab-title li {
+    border-right: 1px solid #E2E2E2;
+}
+
+.jqadmin-tab-box .layui-tab-title li em {
+    font-style: normal;
+    margin-left: 5px;
+}
+
+.layui-tab-title .layui-this:after {
+    border: none;
+}
+
+.jqadmin-tab-box .layui-tab-title .layui-this {
+    background: #1FA094;
+    background: linear-gradient(#1FA094, #009688);
+    color: #FFF;
+}
+
+.layui-tab-content .layui-tab-item .jqadmin-iframe {
+    width: 100%;
+    border: 0;
+    height: 100%;
+}
+
+.jqadmin-tab-box .tab-move-btn {
+    position: absolute;
+    right: 0;
+    top: 0px;
+    background: #FFF;
+    height: 42px;
+    line-height: 40px;
+    display: none;
+    text-align: center;
+    cursor: pointer;
+    padding: 4px 15px;
+    border: 1px solid #1FA094;
+    border-bottom: none;
+    border-top: none;
+    z-index: 10000;
+}
+
+.menu-list {
+    position: absolute;
+    right: 0;
+    top: 102px;
+    width: 120px;
+    padding: 10px 15px;
+    z-index: 998;
+    background: #FFF;
+    border: 1px solid #1FA094;
+    border-top: none;
+    border-radius: 0 0 3px 3px;
+    display: none;
+}
+
+.menu-list li {
+    height: 28px;
+    line-height: 28px;
+}
+
+.jqadmin-tab-box .tab-move-btn span {
+    font-size: 12px;
+}
+
+.jqadmin-tab-box .tab-move-btn span i {
+    font-size: 8px;
+    padding-left: 5px;
+}
+
+.jqadmin-tab-box .tab-move-btn .move-left-btn,
+.jqadmin-tab-box .tab-move-btn .move-right-btn {
+    padding: 11px 5px;
+    cursor: pointer;
+    border-left: 1px solid #ccc;
+}
+/**
+*底部
+*/
+
+.jqadmin-foot {
+    height: 30px;
+    padding: 5px 0;
+    line-height: 30px;
+    text-align: center;
+    color: #666;
+    font-weight: 300;
+    border-left: 1px solid #1AA094;
+    border-top: 1px solid #DDD;
+    z-index: 998;
+}
+
+.jqadmin-foot .jqadmin-author {
+    float: right;
+}
+
+.my-tip {
+    display: none;
+}
+
+.right-click-menu {
+    position: absolute;
+    width: 120px;
+    line-height: 24px;
+    z-index: 999;
+    background: #FFF;
+    border: 1px solid #F2F2F2;
+    border-bottom: none;
+    border-radius: 3px;
+    display: none;
+}
+
+.right-click-menu li a {
+    display: block;
+    padding: 4px 10px;
+    color: #CCC;
+    border-bottom: 1px solid #F2F2F2;
+}
+
+.right-click-menu li a:hover {
+    background: #EEE;
+    color: #666;
+}
+
+.menu-btn {
+    position: fixed;
+    right: 0;
+    top: 61px;
+    width: 30px;
+    height: 40px;
+    border-left: 1px solid #1FA094;
+    line-height: 40px;
+    font-size: 18px;
+    color: #009688;
+    text-align: center;
+    background: #CCC;
+    display: none;
+}
+
+@media screen and (max-width:54.8571rem) {
+    .layui-header .jqadmin-logo-box {
+        width: 2.57rem;
+    }
+    .layui-header .jqadmin-logo-box .logo {
+        display: none;
+    }
+    .layui-header .header-right .my-tips {
+        display: none;
+    }
+    .layui-header .layui-side {
+        width: 0;
+    }
+}
+
+@media screen and (max-width:45.7142rem) {
+    .jqadmin-main-menu .layui-nav {
+        position: absolute;
+        z-index: 10;
+        background: #CCC;
+        width: 100%;
+        display: none;
+    }
+    .jqadmin-main-menu .layui-nav .layui-nav-item a {
+        color: #333;
+    }
+    .jqadmin-main-menu .layui-nav .layui-this a {
+        color: #1AA094;
+    }
+    .jqadmin-copyright .layui {
+        display: none;
+    }
+    .menu-btn {
+        display: block;
+    }
+}

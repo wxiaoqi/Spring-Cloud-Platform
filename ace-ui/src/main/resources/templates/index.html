@@ -26,14 +26,19 @@
 						<div class="admin-side-toggle">
 							<i class="fa fa-bars" aria-hidden="true"></i>
 						</div>
-						<div class="admin-side-full">
-							<i class="fa fa-life-bouy" aria-hidden="true"></i>
-						</div>
+						<!--<div class="admin-side-full">-->
+							<!--<i class="fa fa-life-bouy" aria-hidden="true"></i>-->
+						<!--</div>-->
 						<a class="logo" style="left: 0;">
 							<span style="font-size: 22px;">AG-Admin</span>
 						</a>
 					</div>
-					<ul class="layui-nav admin-header-item">
+					<ul class="layui-nav admin-header-item" >
+						<li class="layui-nav-item">
+							<a href="javascript:;"><i class="fa fa-television"></i></a>
+							<dl class="layui-nav-child" id="menuSys"> <!-- 二级菜单 -->
+							</dl>
+						</li>
 						<li class="layui-nav-item">
 							<a href="http://www.jianshu.com/u/86feb75a6296" target="_blank">关于我</a>
 						</li>
@@ -63,7 +68,19 @@
 					</ul>
 					<ul class="layui-nav admin-header-item-mobile">
 						<li class="layui-nav-item">
-							<a href="login.html"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
+							<a href="javascript:;"><i class="fa fa-television"></i></a>
+							<dl class="layui-nav-child"> <!-- 二级菜单 -->
+								<dd><a href="">移动模块</a></dd>
+								<dd><a href="">后台模版</a></dd>
+								<dd><a href="">电商平台</a></dd>
+								<dd>
+									<a href="javascript:;"><i class="fa fa-user-circle" aria-hidden="true"></i> 个人信息</a>
+								</dd>
+								<dd>
+									<a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
+								</dd>
+							</dl>
+
 						</li>
 					</ul>
 				</div>
