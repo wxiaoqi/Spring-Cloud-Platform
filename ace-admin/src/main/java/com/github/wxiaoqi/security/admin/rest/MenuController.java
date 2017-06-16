@@ -43,7 +43,7 @@ public class MenuController extends BaseController<MenuBiz,Menu> {
         return new ListRestResponse<List<Menu>>().rel(true).result(baseBiz.selectListAll());
     }
 
-    @RequestMapping(value = "/all",method = RequestMethod.GET)
+    @RequestMapping(value = "/menu",method = RequestMethod.GET)
     @ResponseBody
     public List<MenuTree> menuList(){
         List<MenuTree> trees = new ArrayList<MenuTree>();
