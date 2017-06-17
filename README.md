@@ -78,5 +78,11 @@ http://localhost:8766
 ### 2017年6月17日 完成多系统菜单切换功能
 ![Markdown](http://i1.buimg.com/1949/39fbe8cbf5fd961f.png)
 
+### 2017年6月18日 完成用户角色、部门组模块
+- 完成动态用户组设计
+- 完成动态角色、部门组功能
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-17/1497698348097.jpg?imageView2/2/w/800)
+
+
 # 欢迎交流
 ![img](http://ofsc32t59.bkt.clouddn.com/17-06-16/1497595760484.jpg)
