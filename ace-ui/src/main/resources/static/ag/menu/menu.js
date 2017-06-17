@@ -53,6 +53,7 @@ menu.init = function () {
         cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
         ajaxParams: menu.queryParams,//传递参数（*）
         expandColumn: menu.explandColumn,//在哪一列上面显示展开按钮,从0开始
+        expandAll:false,
         columns: menu.columns()
     });
 };

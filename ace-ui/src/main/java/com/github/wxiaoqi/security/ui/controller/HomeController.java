@@ -37,8 +37,21 @@ public class HomeController {
     public String menuEdit(){
         return "menu/edit";
     }
-    @RequestMapping(value = "login",method = RequestMethod.GET)
-    public String login(){
-        return "login";
+    @RequestMapping(value = "group",method = RequestMethod.GET)
+    public String group(){
+        return "group/list";
     }
+    @RequestMapping(value = "group/edit",method = RequestMethod.GET)
+    public String groupEdit(){
+        return "group/edit";
+    }
+    @RequestMapping(value = "groupType",method = RequestMethod.GET)
+    public String groupType(){
+        return "groupType/list";
+    }
+    @RequestMapping(value = "groupType/edit",method = RequestMethod.GET)
+    public String groupTypeEdit(){
+        return "groupType/edit";
+    }
+
 }

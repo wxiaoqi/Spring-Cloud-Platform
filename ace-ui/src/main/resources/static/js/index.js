@@ -20,11 +20,11 @@ layui.config({
         //},
         contextMenu: true,
         onSwitch: function (data) {
-            console.log(data.id); //当前Tab的Id
-            console.log(data.index); //得到当前Tab的所在下标
-            console.log(data.elem); //得到当前的Tab大容器
-
-            console.log(tab.getCurrentTabId())
+            //console.log(data.id); //当前Tab的Id
+            //console.log(data.index); //得到当前Tab的所在下标
+            //console.log(data.elem); //得到当前的Tab大容器
+            //
+            //console.log(tab.getCurrentTabId())
         }
     });
     //iframe自适应

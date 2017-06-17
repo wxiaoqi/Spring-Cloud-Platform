@@ -1,10 +1,12 @@
 package com.github.wxiaoqi.security.admin.biz;
 
-import com.github.wxiaoqi.security.admin.entity.Menu;
-import com.github.wxiaoqi.security.common.biz.BaseBiz;
 import com.github.wxiaoqi.security.admin.constant.CommonConstant;
+import com.github.wxiaoqi.security.admin.entity.Group;
+import com.github.wxiaoqi.security.admin.entity.Group;
+import com.github.wxiaoqi.security.admin.mapper.GroupMapper;
 import org.springframework.stereotype.Service;
-import com.github.wxiaoqi.security.admin.mapper.MenuMapper;
+
+import com.github.wxiaoqi.security.common.biz.BaseBiz;
 
 /**
  * ${DESCRIPTION}
@@ -13,24 +15,24 @@ import com.github.wxiaoqi.security.admin.mapper.MenuMapper;
  * @create 2017-06-12 8:48
  */
 @Service
-public class MenuBiz extends BaseBiz<MenuMapper,Menu> {
+public class GroupBiz extends BaseBiz<GroupMapper,Group> {
     @Override
-    public void insertSelective(Menu entity) {
+    public void insertSelective(Group entity) {
         if(CommonConstant.ROOT == entity.getParentId()){
             entity.setPath("/"+entity.getCode());
         }else{
-            Menu parent = this.selectById(entity.getParentId());
+            Group parent = this.selectById(entity.getParentId());
             entity.setPath(parent.getPath()+"/"+entity.getCode());
         }
         super.insertSelective(entity);
     }
 
     @Override
-    public void updateById(Menu entity) {
+    public void updateById(Group entity) {
         if(CommonConstant.ROOT == entity.getParentId()){
             entity.setPath("/"+entity.getCode());
         }else{
-            Menu parent = this.selectById(entity.getParentId());
+            Group parent = this.selectById(entity.getParentId());
             entity.setPath(parent.getPath()+"/"+entity.getCode());
         }
         super.updateById(entity);

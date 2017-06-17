@@ -1,13 +1,11 @@
 package com.github.wxiaoqi.security.admin.rest;
 
-import com.github.pagehelper.PageHelper;
 import com.github.wxiaoqi.security.admin.biz.MenuBiz;
 import com.github.wxiaoqi.security.admin.entity.Menu;
 import com.github.wxiaoqi.security.admin.vo.MenuTree;
-import com.github.wxiaoqi.security.common.msg.ListRestResponse;
 import com.github.wxiaoqi.security.common.rest.BaseController;
-import com.github.wxiaoqi.security.common.msg.TableResultResponse;
 import com.github.wxiaoqi.security.common.util.TreeUtil;
+import com.github.wxiaoqi.security.admin.constant.CommonConstant;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
@@ -41,7 +39,7 @@ public class MenuController extends BaseController<MenuBiz, Menu> {
     @ResponseBody
     public List<Menu> getSys() {
         Menu menu = new Menu();
-        menu.setParentId(TreeUtil.ROOT);
+        menu.setParentId(CommonConstant.ROOT);
         return baseBiz.selectList(menu);
     }
 

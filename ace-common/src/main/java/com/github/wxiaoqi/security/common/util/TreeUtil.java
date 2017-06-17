@@ -9,20 +9,19 @@ import java.util.List;
  * Created by Ace on 2017/6/12.
  */
 public class TreeUtil{
-    public static int ROOT = -1;
   /**
    * 两层循环实现建树
    * 
    * @param treeNodes 传入的树节点列表
    * @return
    */
-  public static <T extends TreeNode> List<T> bulid(List<T> treeNodes,int root) {
+  public static <T extends TreeNode> List<T> bulid(List<T> treeNodes,Object root) {
 
     List<T> trees = new ArrayList<T>();
 
     for (T treeNode : treeNodes) {
 
-      if (root == treeNode.getParentId()) {
+      if (root.equals(treeNode.getParentId())) {
         trees.add(treeNode);
       }
 
@@ -44,10 +43,10 @@ public class TreeUtil{
    * @param treeNodes
    * @return
    */
-  public static <T extends TreeNode> List<T> buildByRecursive(List<T> treeNodes) {
+  public static <T extends TreeNode> List<T> buildByRecursive(List<T> treeNodes,Object root) {
     List<T> trees = new ArrayList<T>();
     for (T treeNode : treeNodes) {
-      if (ROOT == treeNode.getParentId()) {
+      if (root.equals(treeNode.getParentId())) {
         trees.add(findChildren(treeNode, treeNodes));
       }
     }
