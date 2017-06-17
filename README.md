@@ -1,9 +1,13 @@
 # AG-Admin
 基于Spring Cloud的云分布式后台管理系统架构，核心技术采用Eureka、Fegin、Ribbon、Zuul、Hystrix、Security、OAth、Mybatis、Ace-cache等主要框架和中间件，UI采用Bootstrap、jquery等前端组件。
 
-具有常用的用户管理、菜单管理等功能，同时支持多业务系统切换。
+AG-Admin具有常用的用户管理、菜单管理等功能.可以通过任意扩展服务，来做到多系统并行，目前仅初步实现用权限管理系统的部分功能。
 
-群号：169824183。
+QQ群号：169824183
+
+访问地址: http://120.77.133.155/admin/index 
+
+账号/密码：admin/admin
 
 ![Markdown](http://i1.buimg.com/1949/39fbe8cbf5fd961f.png)
 
@@ -36,7 +40,7 @@ http://localhost:8766
 
 - 运行数据库脚本，创建库：ag_admin，脚本：ace-admin/db/init.sql
 - 依次运行main类：CenterBootstrap（ace-center）、GateBootstrap（ace-gate）、AdminBootstrap（ace-admin）、UIBootstrap（ace-ui）、MonitorBootstrap（ace-monitor）
-- 访问地址: http://localhost:8765/admin/index
+- 访问地址: http://localhost:8765/admin/index  账号/密码：admin/admin
 ---------
 
 # 版本日志
