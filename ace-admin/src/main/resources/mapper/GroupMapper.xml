@@ -30,4 +30,26 @@
     <result column="attr7" jdbcType="VARCHAR" property="attr7" />
     <result column="attr8" jdbcType="VARCHAR" property="attr8" />
   </resultMap>
+  <delete id="deleteGroupMembersById">
+      delete from base_group_member where group_id = #{groupId}
+  </delete>
+  <delete id="deleteGroupLeadersById">
+    delete from base_group_leader where group_id = #{groupId}
+  </delete>
+  <insert id="insertGroupMembersById">
+    insert into base_group_member (
+       group_id,user_id
+    )
+    values(
+       #{groupId},#{userId}
+    )
+  </insert>
+  <insert id="insertGroupLeadersById">
+    insert into base_group_leader (
+       group_id,user_id
+    )
+    values(
+       #{groupId},#{userId}
+    )
+  </insert>
 </mapper>

@@ -25,13 +25,16 @@ public class UserController extends BaseController<UserBiz,User> {
 
     @RequestMapping(value = "/page",method = RequestMethod.GET)
     @ResponseBody
-    public TableResultResponse<User> page(int limit, int offset, String name){
+    public TableResultResponse<User> page(@RequestParam(defaultValue = "10") int limit, @RequestParam(defaultValue = "1")int offset, String name){
         Example example = new Example(User.class);
-        if(StringUtils.isNotBlank(name))
+        if(StringUtils.isNotBlank(name)) {
             example.createCriteria().andLike("name", "%" + name + "%");
+            example.createCriteria().andLike("username", "%" + name + "%");
+        }
         int count = baseBiz.selectCountByExample(example);
         PageHelper.startPage(offset, limit);
         return new TableResultResponse<User>(count,baseBiz.selectByExample(example));
     }
+
 
 }

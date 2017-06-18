@@ -266,4 +266,85 @@ layui.use(['form', 'layedit', 'laydate','element'], function () {
             });
         }
     })  ;
+    $('#btn_userManager').on("click",function(){
+        if (group.select(layerTips)) {
+            var id = group.currentItem.id;
+            $.get(group.entity + '/user', null, function (form) {
+                var index = layer.open({
+                    type: 1,
+                    title: '添加用户',
+                    content: form,
+                    btn: ['保存', '取消'],
+                    shade: false,
+                    offset: ['20px', '20%'],
+                    area: ['600px', '400px'],
+                    maxmin: true,
+                    yes: function (index) {
+                        //触发表单的提交事件
+                        $('form.layui-form').find('button[lay-filter=edit]').click();
+                    },
+                    full: function (elem) {
+                        var win = window.top === window.self ? window : parent.window;
+                        $(win).on('resize', function () {
+                            debugger;
+                            var $this = $(this);
+                            elem.width($this.width()).height($this.height()).css({
+                                top: 0,
+                                left: 0
+                            });
+                            elem.children('div.layui-layer-content').height($this.height() - 95);
+                        });
+                    },
+                    success: function (layero, index) {
+                        var form = layui.form();
+                        // 获取人员
+                        $.get(group.baseUrl + '/' + id+"/user",null,function(data){
+                            if(!data.rel){
+                                layerTips.msg('获取数据异常！');
+                                return ;
+                            }
+                            var members = data.result.members;
+                            var leaders = data.result.leaders;
+                            var memOpts = "";
+                            var leaOpts = "";
+                            for(var i=0;i<members.length;i++){
+                                // layero.find("#groupMember").append();
+                                memOpts+='<option  value="'+members[i].id+'" selected>'+members[i].name+'</option>';
+                            }
+                            for(var i=0;i<leaders.length;i++){
+                                leaOpts+='<option  value="'+leaders[i].id+'" selected>'+leaders[i].name+'</option>';
+                            }
+                            // 加载人员
+                            layero.find("#groupMember").append(memOpts).trigger('change');
+                            layero.find("#groupLeader").append(leaOpts).trigger('change');
+                        });
+
+                        form.on('submit(edit)', function (data) {
+                            var vals = {};
+                            var leas =layero.find("#groupLeader").val()
+                            var  mems = layero.find("#groupMember").val();
+                            if(mems)
+                            vals.members =mems.join();
+                            if(leas)
+                            vals.leaders = leas.join();
+                            $.ajax({
+                                url: group.baseUrl + '/' + id+"/user",
+                                type: 'put',
+                                data: vals,
+                                dataType: "json",
+                                success: function () {
+                                    layerTips.msg('更新成功');
+                                    layerTips.close(index);
+                                    // location.reload();
+                                }
+
+                            });
+                            //这里可以写ajax方法提交表单
+                            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+                        });
+                    }
+                });
+            });
+        }
+    });
 });

@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.wxiaoqi.security.admin.constant.CommonConstant;
+import com.github.wxiaoqi.security.admin.vo.GroupUsers;
+import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -71,5 +74,18 @@ public class GroupController extends BaseController<GroupBiz, Group> {
             trees.add(node);
         }
         return TreeUtil.bulid(trees,parent.getId());
+    }
+
+    @RequestMapping(value = "/{id}/user", method = RequestMethod.PUT)
+    @ResponseBody
+    public ObjectRestResponse addUsers(@PathVariable int id,String members,String leaders){
+        baseBiz.addGroupUsers(id,members,leaders);
+        return new ObjectRestResponse().rel(true);
+    }
+
+    @RequestMapping(value = "/{id}/user", method = RequestMethod.GET)
+    @ResponseBody
+    public ObjectRestResponse<GroupUsers> getUsers(@PathVariable int id){
+        return new ObjectRestResponse<GroupUsers>().rel(true).result(baseBiz.getGroupUsers(id));
     }
 }
