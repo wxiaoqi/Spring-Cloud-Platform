@@ -169,6 +169,31 @@ CREATE TABLE `base_group_member` (
 PRIMARY KEY (`id`)
 )
 ;
+DROP TABLE IF EXISTS `base_resource_authority`;
+CREATE TABLE `base_resource_authority` (
+`id`  int NOT NULL AUTO_INCREMENT ,
+`authority_id`  varchar(255) NULL ,
+`authority_type`  varchar(255) NULL ,
+`resource_id`  varchar(255) NULL ,
+`resource_type`  varchar(255) NULL ,
+`description`  varchar(255) NULL ,
+`crt_time`  date NULL ,
+`crt_user`  varchar(255) NULL ,
+`crt_name`  varchar(255) NULL ,
+`crt_host`  varchar(255) NULL ,
+`attr1`  varchar(255) NULL ,
+`attr2`  varchar(255) NULL ,
+`attr3`  varchar(255) NULL ,
+`attr4`  varchar(255) NULL ,
+`attr5`  varchar(255) NULL ,
+`attr6`  varchar(255) NULL ,
+`attr7`  varchar(255) NULL ,
+`attr8`  varchar(255) NULL ,
+PRIMARY KEY (`id`)
+)
+;
+
+
 -- 初始化菜单数据
 INSERT INTO `ag_admin`.`base_menu` (`id`, `code`, `title`, `parent_id`, `href`, `icon`, `type`, `order_num`, `description`, `path`, `enabled`, `crt_time`, `crt_user`, `crt_name`, `crt_host`, `upd_time`, `upd_user`, `upd_name`, `upd_host`, `attr1`, `attr2`, `attr3`, `attr4`, `attr5`, `attr6`, `attr7`, `attr8`) VALUES ('1', 'userManager', '用户管理', '5', 'user', 'fa-user', NULL, '0', '', '/adminSys/baseManager/userManager', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `ag_admin`.`base_menu` (`id`, `code`, `title`, `parent_id`, `href`, `icon`, `type`, `order_num`, `description`, `path`, `enabled`, `crt_time`, `crt_user`, `crt_name`, `crt_host`, `upd_time`, `upd_user`, `upd_name`, `upd_host`, `attr1`, `attr2`, `attr3`, `attr4`, `attr5`, `attr6`, `attr7`, `attr8`) VALUES ('5', 'baseManager', '基础配置管理', '13', '', 'fa fa-cog fa-spin', NULL, '0', '', '/adminSys/baseManager', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
