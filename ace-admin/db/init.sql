@@ -176,7 +176,7 @@ CREATE TABLE `base_resource_authority` (
 `authority_type`  varchar(255) NULL ,
 `resource_id`  varchar(255) NULL ,
 `resource_type`  varchar(255) NULL ,
-`parent_id`  int NOT NULL ,
+`parent_id`  varchar(255) NULL ,
 `path` varchar(2000) NULL ,
 `description`  varchar(255) NULL ,
 `crt_time`  date NULL ,

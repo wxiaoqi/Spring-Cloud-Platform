@@ -3,7 +3,12 @@
         <div class="row">
             <hr>
             <div class="col-sm-4">
-                <div id="treeview-checkable"></div>
+                <div class="form-group">
+                    <label for="input-check-node" class="sr-only">Search Tree:</label>
+                    <input type="input" class="form-control" id="input-check-node"
+                           placeholder="Identify node...">
+                </div>
+                <div id="menuTreeview"></div>
             </div>
             <div class="col-sm-4">
             </div>
@@ -17,35 +22,43 @@
         type: "GET",
         url: "/back/menu/authority",
         success: function (defaultData) {
-            var $checkableTree = $('#treeview-checkable').treeview({
+            var $checkableTree = $('#menuTreeview').treeview({
                 data: defaultData,
                 levels: 1,
                 showIcon: false,
-                showCheckbox: true,
-                onNodeSelected: function (event, node) {
-
-                },
-                onNodeChecked: function(event, node) {
-                    $('#checkable-output').prepend('<p>' + node.text + ' was checked</p>');
-                },
-                onNodeUnchecked: function (event, node) {
-                    $('#checkable-output').prepend('<p>' + node.text + ' was unchecked</p>');
+                showCheckbox: false,
+                multiSelect:true,
+                levels: 5,
+                state: {
+                    checked: true,
+                    disabled: true,
+                    expanded: true,
+                    selected: true
                 }
-            });
-//            var findCheckableNodess = function () {
-//                return $checkableTree.treeview('search', [
-//                    $('#input-check-node').val(), {
-//                        ignoreCase: false,
-//                        exactMatch: false
-//                    }]);
-//            };
-//            var checkableNodes = findCheckableNodess();
+//                onNodeSelected: function (event, node) {
 //
-//            $('#input-check-node').on('keyup', function (e) {
-//                checkableNodes = findCheckableNodess();
-//                $('.check-node')
-//                        .prop('disabled', !(checkableNodes.length >= 1));
-//            });
+//                },
+//                onNodeChecked: function(event, node) {
+//                    $('#checkable-output').prepend('<p>' + node.text + ' was checked</p>');
+//                },
+//                onNodeUnchecked: function (event, node) {
+//                    $('#checkable-output').prepend('<p>' + node.text + ' was unchecked</p>');
+//                }
+            });
+            var findCheckableNodess = function () {
+                return $checkableTree.treeview('search', [
+                    $('#input-check-node').val(), {
+                        ignoreCase: false,
+                        exactMatch: false
+                    }]);
+            };
+            var checkableNodes = findCheckableNodess();
+
+            $('#input-check-node').on('keyup', function (e) {
+                checkableNodes = findCheckableNodess();
+                $('.check-node')
+                        .prop('disabled', !(checkableNodes.length >= 1));
+            });
         }
     });
 </script>

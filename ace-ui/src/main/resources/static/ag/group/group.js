@@ -334,7 +334,7 @@ layui.use(['form', 'layedit', 'laydate','element'], function () {
                                 dataType: "json",
                                 success: function () {
                                     layerTips.msg('更新成功');
-                                    layerTips.close(index);
+                                    layer.close(index);
                                     // location.reload();
                                 }
 
@@ -380,18 +380,18 @@ layui.use(['form', 'layedit', 'laydate','element'], function () {
                         var form = layui.form();
 
                         form.on('submit(edit)', function (data) {
-                            //$.ajax({
-                            //    url: group.baseUrl + '/' + id+"/user",
-                            //    type: 'put',
-                            //    data: vals,
-                            //    dataType: "json",
-                            //    success: function () {
-                            //        layerTips.msg('更新成功');
-                            //        layerTips.close(index);
-                            //        // location.reload();
-                            //    }
-                            //
-                            //});
+                            $.ajax({
+                               url: group.baseUrl + '/' + id+"/authority/menu",
+                               type: 'put',
+                               data: {"menuTrees":JSON.stringify(layero.find('#menuTreeview').treeview('getSelected'))},
+                               dataType: "json",
+                               success: function () {
+                                   layerTips.msg('更新成功');
+                                   layer.close(index);
+                                   // location.reload();
+                               }
+
+                            });
                             //这里可以写ajax方法提交表单
                             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
                         });

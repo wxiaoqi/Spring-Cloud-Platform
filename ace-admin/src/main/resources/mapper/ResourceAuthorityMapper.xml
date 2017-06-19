@@ -10,6 +10,8 @@
     <result column="authority_type" jdbcType="VARCHAR" property="authorityType" />
     <result column="resource_id" jdbcType="VARCHAR" property="resourceId" />
     <result column="resource_type" jdbcType="VARCHAR" property="resourceType" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="crt_time" jdbcType="DATE" property="crtTime" />
     <result column="crt_user" jdbcType="VARCHAR" property="crtUser" />
@@ -24,4 +26,7 @@
     <result column="attr7" jdbcType="VARCHAR" property="attr7" />
     <result column="attr8" jdbcType="VARCHAR" property="attr8" />
   </resultMap>
+  <delete id="deleteByAuthorityIdAndResourceType">
+    delete from base_resource_authority where authority_id = #{authorityId} and resource_type = #{resourceType}
+  </delete>
 </mapper>

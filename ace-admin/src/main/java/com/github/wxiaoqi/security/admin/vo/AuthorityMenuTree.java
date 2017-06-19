@@ -3,6 +3,7 @@ package com.github.wxiaoqi.security.admin.vo;
 import com.github.wxiaoqi.security.common.vo.TreeNode;
 import org.springframework.beans.BeanUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * @author wanghaobin
  * @create 2017-06-19 13:03
  */
-public class AuthorityMenuTree extends TreeNode {
+public class AuthorityMenuTree extends TreeNode implements Serializable{
     String text;
     List<AuthorityMenuTree> nodes = new ArrayList<AuthorityMenuTree>();
     String icon;

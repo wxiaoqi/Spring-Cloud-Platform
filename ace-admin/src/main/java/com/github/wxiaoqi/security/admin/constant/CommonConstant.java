@@ -9,4 +9,7 @@ package com.github.wxiaoqi.security.admin.constant;
 public class CommonConstant {
     public final static int ROOT = -1;
     public final static int DEFAULT_GROUP_TYPE = 0;
+    public final static String AUTHORITY_TYPE_GROUP = "group";
+    public final static String RESOURCE_TYPE_MENU = "menu";
+    public final static String RESOURCE_TYPE_BTN = "button";
 }

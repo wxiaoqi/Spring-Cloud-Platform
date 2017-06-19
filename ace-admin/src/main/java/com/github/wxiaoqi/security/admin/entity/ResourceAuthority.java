@@ -20,6 +20,11 @@ public class ResourceAuthority {
     @Column(name = "resource_type")
     private String resourceType;
 
+    @Column(name = "parent_id")
+    private String parentId;
+
+    private String path;
+
     private String description;
 
     @Column(name = "crt_time")
@@ -49,6 +54,14 @@ public class ResourceAuthority {
     private String attr7;
 
     private String attr8;
+
+    public ResourceAuthority(String authorityId, String resourceType) {
+        this.authorityId = authorityId;
+        this.resourceType = resourceType;
+    }
+
+    public ResourceAuthority() {
+    }
 
     /**
      * @return id
@@ -118,6 +131,34 @@ public class ResourceAuthority {
      */
     public void setResourceType(String resourceType) {
         this.resourceType = resourceType;
+    }
+
+    /**
+     * @return parent_id
+     */
+    public String getParentId() {
+        return parentId;
+    }
+
+    /**
+     * @param parentId
+     */
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+    /**
+     * @return path
+     */
+    public String getPath() {
+        return path;
+    }
+
+    /**
+     * @param path
+     */
+    public void setPath(String path) {
+        this.path = path;
     }
 
     /**

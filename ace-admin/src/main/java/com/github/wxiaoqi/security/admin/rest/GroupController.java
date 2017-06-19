@@ -3,7 +3,9 @@ package com.github.wxiaoqi.security.admin.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.wxiaoqi.security.admin.constant.CommonConstant;
+import com.github.wxiaoqi.security.admin.vo.AuthorityMenuTree;
 import com.github.wxiaoqi.security.admin.vo.GroupUsers;
 import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import org.apache.commons.lang3.StringUtils;
@@ -78,7 +80,7 @@ public class GroupController extends BaseController<GroupBiz, Group> {
 
     @RequestMapping(value = "/{id}/user", method = RequestMethod.PUT)
     @ResponseBody
-    public ObjectRestResponse addUsers(@PathVariable int id,String members,String leaders){
+    public ObjectRestResponse modifiyUsers(@PathVariable int id,String members,String leaders){
         baseBiz.addGroupUsers(id,members,leaders);
         return new ObjectRestResponse().rel(true);
     }
@@ -87,5 +89,13 @@ public class GroupController extends BaseController<GroupBiz, Group> {
     @ResponseBody
     public ObjectRestResponse<GroupUsers> getUsers(@PathVariable int id){
         return new ObjectRestResponse<GroupUsers>().rel(true).result(baseBiz.getGroupUsers(id));
+    }
+
+    @RequestMapping(value = "/{id}/authority/menu", method = RequestMethod.PUT)
+    @ResponseBody
+    public ObjectRestResponse modifiyMenuAuthority(@PathVariable  int id, String menuTrees){
+        List<AuthorityMenuTree> menus =  JSONObject.parseArray(menuTrees,AuthorityMenuTree.class);
+        baseBiz.modifyMenuAuthority(id,menus);
+        return new ObjectRestResponse().rel(true);
     }
 }
