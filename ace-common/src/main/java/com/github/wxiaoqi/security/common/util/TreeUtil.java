@@ -30,7 +30,7 @@ public class TreeUtil{
           if (treeNode.getChildren() == null) {
             treeNode.setChildren(new ArrayList<TreeNode>());
           }
-          treeNode.getChildren().add(it);
+          treeNode.add(it);
         }
       }
     }
@@ -65,7 +65,7 @@ public class TreeUtil{
         if (treeNode.getChildren() == null) {
           treeNode.setChildren(new ArrayList<TreeNode>());
         }
-        treeNode.getChildren().add(findChildren(it, treeNodes));
+        treeNode.add(findChildren(it, treeNodes));
       }
     }
     return treeNode;

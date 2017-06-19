@@ -347,4 +347,58 @@ layui.use(['form', 'layedit', 'laydate','element'], function () {
             });
         }
     });
+    $('#btn_resourceManager').on("click",function(){
+        if (group.select(layerTips)) {
+            var id = group.currentItem.id;
+            $.get(group.entity + '/authority', null, function (form) {
+                var index = layer.open({
+                    type: 1,
+                    title: '分配权限',
+                    content: form,
+                    btn: ['保存', '取消'],
+                    shade: false,
+                    offset: ['20px', '20%'],
+                    area: ['600px', '400px'],
+                    maxmin: true,
+                    yes: function (index) {
+                        //触发表单的提交事件
+                        $('form.layui-form').find('button[lay-filter=edit]').click();
+                    },
+                    full: function (elem) {
+                        var win = window.top === window.self ? window : parent.window;
+                        $(win).on('resize', function () {
+                            debugger;
+                            var $this = $(this);
+                            elem.width($this.width()).height($this.height()).css({
+                                top: 0,
+                                left: 0
+                            });
+                            elem.children('div.layui-layer-content').height($this.height() - 95);
+                        });
+                    },
+                    success: function (layero, index) {
+                        var form = layui.form();
+
+                        form.on('submit(edit)', function (data) {
+                            //$.ajax({
+                            //    url: group.baseUrl + '/' + id+"/user",
+                            //    type: 'put',
+                            //    data: vals,
+                            //    dataType: "json",
+                            //    success: function () {
+                            //        layerTips.msg('更新成功');
+                            //        layerTips.close(index);
+                            //        // location.reload();
+                            //    }
+                            //
+                            //});
+                            //这里可以写ajax方法提交表单
+                            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+                        });
+                    }
+                });
+                layer.full(index);
+            });
+        }
+    });
 });

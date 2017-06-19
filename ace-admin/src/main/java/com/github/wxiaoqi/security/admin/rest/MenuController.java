@@ -2,6 +2,7 @@ package com.github.wxiaoqi.security.admin.rest;
 
 import com.github.wxiaoqi.security.admin.biz.MenuBiz;
 import com.github.wxiaoqi.security.admin.entity.Menu;
+import com.github.wxiaoqi.security.admin.vo.AuthorityMenuTree;
 import com.github.wxiaoqi.security.admin.vo.MenuTree;
 import com.github.wxiaoqi.security.common.rest.BaseController;
 import com.github.wxiaoqi.security.common.util.TreeUtil;
@@ -64,5 +65,19 @@ public class MenuController extends BaseController<MenuBiz, Menu> {
             trees.add(node);
         }
         return TreeUtil.bulid(trees,parent.getId());
+    }
+
+    @RequestMapping(value = "/authority", method = RequestMethod.GET)
+    @ResponseBody
+    public List<AuthorityMenuTree> listAuthorityMenu() {
+        List<AuthorityMenuTree> trees = new ArrayList<AuthorityMenuTree>();
+        AuthorityMenuTree node = null;
+        for (Menu menu : baseBiz.selectListAll()) {
+            node = new AuthorityMenuTree();
+            node.setText(menu.getTitle());
+            BeanUtils.copyProperties(menu, node);
+            trees.add(node);
+        }
+        return TreeUtil.bulid(trees,CommonConstant.ROOT);
     }
 }

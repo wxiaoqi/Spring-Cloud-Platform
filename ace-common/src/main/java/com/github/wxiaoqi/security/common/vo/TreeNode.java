@@ -35,4 +35,8 @@ public class TreeNode {
     public void setParentId(int parentId) {
         this.parentId = parentId;
     }
+
+    public void add(TreeNode node){
+        children.add(node);
+    }
 }

@@ -45,6 +45,10 @@ public class HomeController {
     public String groupUser(){
         return "group/user";
     }
+    @RequestMapping(value = "group/authority",method = RequestMethod.GET)
+    public String groupAuthority(){
+        return "group/authority";
+    }
     @RequestMapping(value = "group/edit",method = RequestMethod.GET)
     public String groupEdit(){
         return "group/edit";

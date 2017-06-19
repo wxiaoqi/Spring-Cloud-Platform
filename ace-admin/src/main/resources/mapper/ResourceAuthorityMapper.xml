@@ -1,27 +1,27 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.github.wxiaoqi.security.admin.mapper.ResourceAuthorityMapper" >
-  <resultMap id="BaseResultMap" type="com.github.wxiaoqi.security.admin.entity.ResourceAuthority" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.wxiaoqi.security.admin.mapper.ResourceAuthorityMapper">
+  <resultMap id="BaseResultMap" type="com.github.wxiaoqi.security.admin.entity.ResourceAuthority">
     <!--
       WARNING - @mbggenerated
     -->
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="authority_id" property="authorityId" jdbcType="VARCHAR" />
-    <result column="authority_type" property="authorityType" jdbcType="VARCHAR" />
-    <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
-    <result column="resource_type" property="resourceType" jdbcType="VARCHAR" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
-    <result column="crt_time" property="crtTime" jdbcType="DATE" />
-    <result column="crt_user" property="crtUser" jdbcType="VARCHAR" />
-    <result column="crt_name" property="crtName" jdbcType="VARCHAR" />
-    <result column="crt_host" property="crtHost" jdbcType="VARCHAR" />
-    <result column="attr1" property="attr1" jdbcType="VARCHAR" />
-    <result column="attr2" property="attr2" jdbcType="VARCHAR" />
-    <result column="attr3" property="attr3" jdbcType="VARCHAR" />
-    <result column="attr4" property="attr4" jdbcType="VARCHAR" />
-    <result column="attr5" property="attr5" jdbcType="VARCHAR" />
-    <result column="attr6" property="attr6" jdbcType="VARCHAR" />
-    <result column="attr7" property="attr7" jdbcType="VARCHAR" />
-    <result column="attr8" property="attr8" jdbcType="VARCHAR" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="authority_id" jdbcType="VARCHAR" property="authorityId" />
+    <result column="authority_type" jdbcType="VARCHAR" property="authorityType" />
+    <result column="resource_id" jdbcType="VARCHAR" property="resourceId" />
+    <result column="resource_type" jdbcType="VARCHAR" property="resourceType" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="crt_time" jdbcType="DATE" property="crtTime" />
+    <result column="crt_user" jdbcType="VARCHAR" property="crtUser" />
+    <result column="crt_name" jdbcType="VARCHAR" property="crtName" />
+    <result column="crt_host" jdbcType="VARCHAR" property="crtHost" />
+    <result column="attr1" jdbcType="VARCHAR" property="attr1" />
+    <result column="attr2" jdbcType="VARCHAR" property="attr2" />
+    <result column="attr3" jdbcType="VARCHAR" property="attr3" />
+    <result column="attr4" jdbcType="VARCHAR" property="attr4" />
+    <result column="attr5" jdbcType="VARCHAR" property="attr5" />
+    <result column="attr6" jdbcType="VARCHAR" property="attr6" />
+    <result column="attr7" jdbcType="VARCHAR" property="attr7" />
+    <result column="attr8" jdbcType="VARCHAR" property="attr8" />
   </resultMap>
 </mapper>
