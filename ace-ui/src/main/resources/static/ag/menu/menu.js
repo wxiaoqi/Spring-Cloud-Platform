@@ -157,6 +157,7 @@ layui.use(['form', 'layedit', 'laydate'], function () {
        if(menu.select(layerTips)) {
            var id = menu.currentItem.id;
            $.get(menu.baseUrl+'/' + id, null, function (data) {
+               console.log(data);
                var result = data.result;
                $.get(menu.entity+'/edit', null, function (form) {
                    layer.open({

@@ -15,6 +15,8 @@ zuul:
       path: /admin/** #匹配/techouse/usersystem/** 均路由到cloud-client
     admin-back:
       path: /back/**
+    admin-monitor:
+      path: /monitor/**
 
 ribbon:
   eureka:
@@ -26,6 +28,9 @@ admin-ui:
 admin-back:
   ribbon:
     listOfServers: 127.0.0.1:8762
+admin-monitor:
+  ribbon:
+    listOfServers: 127.0.0.1:8764
 
 eureka:
     instance:

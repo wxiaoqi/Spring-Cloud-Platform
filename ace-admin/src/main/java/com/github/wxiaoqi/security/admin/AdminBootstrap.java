@@ -16,7 +16,7 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 @EnableEurekaClient
 @EnableHystrix
 @SpringBootApplication
-@ServletComponentScan
+@ServletComponentScan("com.github.wxiaoqi.security.admin.config.druid")
 public class AdminBootstrap {
     public static void main(String[] args) {
         new SpringApplicationBuilder(AdminBootstrap.class).web(true).run(args);    }
