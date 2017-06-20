@@ -18,47 +18,5 @@
 </div>
 
 <script type="text/javascript">
-    $.ajax({
-        type: "GET",
-        url: "/back/menu/authority",
-        success: function (defaultData) {
-            var $checkableTree = $('#menuTreeview').treeview({
-                data: defaultData,
-                levels: 1,
-                showIcon: false,
-                showCheckbox: false,
-                multiSelect:true,
-                levels: 5,
-                state: {
-                    checked: true,
-                    disabled: true,
-                    expanded: true,
-                    selected: true
-                }
-//                onNodeSelected: function (event, node) {
-//
-//                },
-//                onNodeChecked: function(event, node) {
-//                    $('#checkable-output').prepend('<p>' + node.text + ' was checked</p>');
-//                },
-//                onNodeUnchecked: function (event, node) {
-//                    $('#checkable-output').prepend('<p>' + node.text + ' was unchecked</p>');
-//                }
-            });
-            var findCheckableNodess = function () {
-                return $checkableTree.treeview('search', [
-                    $('#input-check-node').val(), {
-                        ignoreCase: false,
-                        exactMatch: false
-                    }]);
-            };
-            var checkableNodes = findCheckableNodess();
 
-            $('#input-check-node').on('keyup', function (e) {
-                checkableNodes = findCheckableNodess();
-                $('.check-node')
-                        .prop('disabled', !(checkableNodes.length >= 1));
-            });
-        }
-    });
 </script>

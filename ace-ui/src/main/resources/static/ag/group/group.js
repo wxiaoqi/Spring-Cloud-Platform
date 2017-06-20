@@ -6,10 +6,10 @@ var group = {
     unique: "id",
     order: "asc",
     currentItem: {},
-    code:"id",
-    parentCode:"parentId",
+    code: "id",
+    parentCode: "parentId",
     rootValue: -1,
-    explandColumn:1
+    explandColumn: 1
 };
 group.columns = function () {
     return [
@@ -22,10 +22,10 @@ group.columns = function () {
         }, {
             field: 'code',
             title: '编码'
-        },{
+        }, {
             field: 'type',
             title: '类型'
-        },{
+        }, {
             field: 'description',
             title: '描述'
         }];
@@ -39,19 +39,19 @@ group.queryParams = function () {
     return temp;
 };
 group.init = function () {
-    group.table = $('#'+group.tableId).bootstrapTreeTable({
+    group.table = $('#' + group.tableId).bootstrapTreeTable({
         id: group.unique,// 选取记录返回的值
         code: group.code,// 用于设置父子关系
         parentCode: group.parentCode,// 用于设置父子关系
         rootCodeValue: group.rootValue,
-        url: group.baseUrl+'/list', //请求后台的URL（*）
+        url: group.baseUrl + '/list', //请求后台的URL（*）
         method: 'get', //请求方式（*）
-        toolbar: '#'+group.toolbarId, //工具按钮用哪个容器
+        toolbar: '#' + group.toolbarId, //工具按钮用哪个容器
         striped: true, //是否显示行间隔色
         cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
         ajaxParams: group.queryParams,//传递参数（*）
         expandColumn: group.explandColumn,//在哪一列上面显示展开按钮,从0开始
-        expandAll:false,
+        expandAll: false,
         columns: group.columns()
     });
 };
@@ -65,19 +65,19 @@ group.select = function (layerTips) {
         return false;
     }
 };
-group.refresh = function(){
-    group.table.bootstrapTreeTable('refresh',group.queryParams());
+group.refresh = function () {
+    group.table.bootstrapTreeTable('refresh', group.queryParams());
 };
 
 
-layui.use(['form', 'layedit', 'laydate','element'], function () {
+layui.use(['form', 'layedit', 'laydate', 'element'], function () {
     group.init();
     var allItems = null;
     var editIndex;
     var allGroupItems = null;
-    $.get(group.baseUrl+'/all',null,function(data){
+    $.get(group.baseUrl + '/all', null, function (data) {
         allItems = data;
-    }) ;
+    });
     var layerTips = parent.layer === undefined ? layui.layer : parent.layer, //获取父窗口的layer对象
         layer = layui.layer, //获取当前窗口的layer对象
         form = layui.form(),
@@ -102,20 +102,20 @@ layui.use(['form', 'layedit', 'laydate','element'], function () {
         group.refresh();
     });
     //初始化页面上面的按钮事件
-    $('#btn_query').on('click',function(){
-        group.table.bootstrapTreeTable('refresh',group.queryParams());
-    }) ;
+    $('#btn_query').on('click', function () {
+        group.table.bootstrapTreeTable('refresh', group.queryParams());
+    });
     var addBoxIndex = -1;
-    $('#btn_add').on('click',function(){
+    $('#btn_add').on('click', function () {
         if (addBoxIndex !== -1)
             return;
-        var rows=  group.table.bootstrapTreeTable('getSelections');
+        var rows = group.table.bootstrapTreeTable('getSelections');
         var id = "-1";
-        if(rows.length==1){
+        if (rows.length == 1) {
             id = rows[0].id;
         }
         //本表单通过ajax加载 --以模板的形式，当然你也可以直接写在页面上读取
-        $.get(group.entity+'/edit', null, function (form) {
+        $.get(group.entity + '/edit', null, function (form) {
             addBoxIndex = layer.open({
                 type: 1,
                 title: '添加菜单',
@@ -145,8 +145,8 @@ layui.use(['form', 'layedit', 'laydate','element'], function () {
                     var form = layui.form();
                     editIndex = layedit.build('description_editor');
                     form.render();
-                    for(var i=0;i<allItems.length;i++)
-                        layero.find('#parentId').append('<option value="'+allItems[i].id+'" >'+allItems[i].name+'</option>');
+                    for (var i = 0; i < allItems.length; i++)
+                        layero.find('#parentId').append('<option value="' + allItems[i].id + '" >' + allItems[i].name + '</option>');
                     for (var i = 0; i < allGroupItems.length; i++)
                         layero.find('#groupType').append('<option value="' + allGroupItems[i].id + '" >' + allGroupItems[i].name + '</option>');
                     layero.find("select[name='parentId']").val(id);
@@ -175,13 +175,13 @@ layui.use(['form', 'layedit', 'laydate','element'], function () {
             });
         });
     });
-    $('#btn_edit').on('click',function(){
-        var rows= group.table.bootstrapTreeTable('getSelections');
-        if(group.select(layerTips)) {
+    $('#btn_edit').on('click', function () {
+        var rows = group.table.bootstrapTreeTable('getSelections');
+        if (group.select(layerTips)) {
             var id = group.currentItem.id;
-            $.get(group.baseUrl+'/' + id, null, function (data) {
+            $.get(group.baseUrl + '/' + id, null, function (data) {
                 var result = data.result;
-                $.get(group.entity+'/edit', null, function (form) {
+                $.get(group.entity + '/edit', null, function (form) {
                     layer.open({
                         type: 1,
                         title: '编辑菜单',
@@ -224,7 +224,7 @@ layui.use(['form', 'layedit', 'laydate','element'], function () {
 
                             form.on('submit(edit)', function (data) {
                                 $.ajax({
-                                    url: group.baseUrl+'/' + result.id,
+                                    url: group.baseUrl + '/' + result.id,
                                     type: 'put',
                                     data: data.field,
                                     dataType: "json",
@@ -243,8 +243,8 @@ layui.use(['form', 'layedit', 'laydate','element'], function () {
                 });
             });
         }
-    })  ;
-    $('#btn_del').on('click',function(){
+    });
+    $('#btn_del').on('click', function () {
         if (group.select(layerTips)) {
             var id = group.currentItem.id;
             layer.confirm('确定删除数据吗？', null, function (index) {
@@ -265,8 +265,8 @@ layui.use(['form', 'layedit', 'laydate','element'], function () {
                 layer.close(index);
             });
         }
-    })  ;
-    $('#btn_userManager').on("click",function(){
+    });
+    $('#btn_userManager').on("click", function () {
         if (group.select(layerTips)) {
             var id = group.currentItem.id;
             $.get(group.entity + '/user', null, function (form) {
@@ -298,21 +298,21 @@ layui.use(['form', 'layedit', 'laydate','element'], function () {
                     success: function (layero, index) {
                         var form = layui.form();
                         // 获取人员
-                        $.get(group.baseUrl + '/' + id+"/user",null,function(data){
-                            if(!data.rel){
+                        $.get(group.baseUrl + '/' + id + "/user", null, function (data) {
+                            if (!data.rel) {
                                 layerTips.msg('获取数据异常！');
-                                return ;
+                                return;
                             }
                             var members = data.result.members;
                             var leaders = data.result.leaders;
                             var memOpts = "";
                             var leaOpts = "";
-                            for(var i=0;i<members.length;i++){
+                            for (var i = 0; i < members.length; i++) {
                                 // layero.find("#groupMember").append();
-                                memOpts+='<option  value="'+members[i].id+'" selected>'+members[i].name+'</option>';
+                                memOpts += '<option  value="' + members[i].id + '" selected>' + members[i].name + '</option>';
                             }
-                            for(var i=0;i<leaders.length;i++){
-                                leaOpts+='<option  value="'+leaders[i].id+'" selected>'+leaders[i].name+'</option>';
+                            for (var i = 0; i < leaders.length; i++) {
+                                leaOpts += '<option  value="' + leaders[i].id + '" selected>' + leaders[i].name + '</option>';
                             }
                             // 加载人员
                             layero.find("#groupMember").append(memOpts).trigger('change');
@@ -321,14 +321,14 @@ layui.use(['form', 'layedit', 'laydate','element'], function () {
 
                         form.on('submit(edit)', function (data) {
                             var vals = {};
-                            var leas =layero.find("#groupLeader").val()
-                            var  mems = layero.find("#groupMember").val();
-                            if(mems)
-                            vals.members =mems.join();
-                            if(leas)
-                            vals.leaders = leas.join();
+                            var leas = layero.find("#groupLeader").val()
+                            var mems = layero.find("#groupMember").val();
+                            if (mems)
+                                vals.members = mems.join();
+                            if (leas)
+                                vals.leaders = leas.join();
                             $.ajax({
-                                url: group.baseUrl + '/' + id+"/user",
+                                url: group.baseUrl + '/' + id + "/user",
                                 type: 'put',
                                 data: vals,
                                 dataType: "json",
@@ -347,7 +347,7 @@ layui.use(['form', 'layedit', 'laydate','element'], function () {
             });
         }
     });
-    $('#btn_resourceManager').on("click",function(){
+    $('#btn_resourceManager').on("click", function () {
         if (group.select(layerTips)) {
             var id = group.currentItem.id;
             $.get(group.entity + '/authority', null, function (form) {
@@ -378,18 +378,92 @@ layui.use(['form', 'layedit', 'laydate','element'], function () {
                     },
                     success: function (layero, index) {
                         var form = layui.form();
+                        $.ajax({
+                            type: "GET",
+                            url: "/back/menu/authorityTree",
+                            success: function (defaultData) {
+                                var $checkableTree = $('#menuTreeview').treeview({
+                                    data: defaultData,
+                                    levels: 1,
+                                    showIcon: false,
+                                    showCheckbox: false,
+                                    multiSelect: true,
+//                showCheckbox:true,
+                                    levels: 5,
+                                    state: {
+                                        checked: true,
+                                        disabled: true,
+                                        expanded: true,
+                                        selected: true
+                                    },
+                                    onNodeUnselected: function (event, data) {
+                                        var selectNodes = treeViewHelper.getChildrenNodeIdArr(data);//获取所有子节点
+                                        if (selectNodes) { //子节点不为空，则选中所有子节点
+                                            //var arrayInfo = data.nodes;
+                                            //for (var i = 0; i < arrayInfo.length; i++) {
+                                            $('#menuTreeview').treeview('unselectNode', [selectNodes, {silent: true}]);
+                                            //}
+                                        }
+                                        var parNodes = treeViewHelper.getParentIdArr("menuTreeview", data);
+                                        if (parNodes) {
+                                            $('#menuTreeview').treeview('unselectNode', [parNodes, {silent: true}]);
+
+                                        }
+                                    },
+                                    onNodeSelected: function (event, data) {
+                                        var selectNodes = treeViewHelper.getChildrenNodeIdArr(data);//获取所有子节点
+                                        if (selectNodes) {
+                                            $('#menuTreeview').treeview('selectNode', [selectNodes, {silent: true}]);
+                                        }
+                                        var parNodes = treeViewHelper.getParentIdArr("menuTreeview", data);
+                                        if (parNodes) {
+                                            $('#menuTreeview').treeview('selectNode', [parNodes, {silent: true}]);
+
+                                        }
+                                    }
+//
+                                });
+                                var findCheckableNodess = function () {
+                                    return $checkableTree.treeview('search', [
+                                        $('#input-check-node').val(), {
+                                            ignoreCase: false,
+                                            exactMatch: false
+                                        }]);
+                                };
+                                var checkableNodes = findCheckableNodess();
+
+                                $('#input-check-node').on('keyup', function (e) {
+                                    checkableNodes = findCheckableNodess();
+                                    $('.check-node')
+                                        .prop('disabled', !(checkableNodes.length >= 1));
+                                });
+                                $.get(group.baseUrl + '/' + id + "/authority/menu", null, function (data) {
+                                    if (data.rel) {
+                                        var nodes = $('#menuTreeview').treeview('getUnselected', 0);
+                                        var map = {};
+                                        for (var i = 0; i < nodes.length; i++) {
+                                            map[nodes[i].id] = nodes[i].nodeId;
+                                        }
+                                        for (var i = 0; i < data.result.length; i++) {
+                                            var node = data.result[i];
+                                            $('#menuTreeview').treeview('selectNode', [map[node.id], {silent: true}]);
+                                        }
+                                    }
+                                });
+                            }
+                        });
 
                         form.on('submit(edit)', function (data) {
                             $.ajax({
-                               url: group.baseUrl + '/' + id+"/authority/menu",
-                               type: 'put',
-                               data: {"menuTrees":JSON.stringify(layero.find('#menuTreeview').treeview('getSelected'))},
-                               dataType: "json",
-                               success: function () {
-                                   layerTips.msg('更新成功');
-                                   layer.close(index);
-                                   // location.reload();
-                               }
+                                url: group.baseUrl + '/' + id + "/authority/menu",
+                                type: 'put',
+                                data: {"menuTrees": JSON.stringify(layero.find('#menuTreeview').treeview('getSelected'))},
+                                dataType: "json",
+                                success: function () {
+                                    layerTips.msg('更新成功');
+                                    layer.close(index);
+                                    // location.reload();
+                                }
 
                             });
                             //这里可以写ajax方法提交表单

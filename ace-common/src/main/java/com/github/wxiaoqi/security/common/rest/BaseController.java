@@ -38,7 +38,7 @@ public class BaseController<Biz extends BaseBiz,Entity> {
 
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
     @ResponseBody
-    public ObjectRestResponse<Entity> get(Entity entity){
+    public ObjectRestResponse<Entity> update(Entity entity){
         baseBiz.updateById(entity);
         return new ObjectRestResponse<Entity>().rel(true);
     }

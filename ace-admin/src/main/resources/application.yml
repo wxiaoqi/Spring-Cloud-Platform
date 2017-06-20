@@ -46,3 +46,9 @@ eureka:
     client:
         serviceUrl:
             defaultZone: http://localhost:8761/eureka/
+swagger:
+    basepackage: com.github.wxiaoqi.security.admin.rest
+    service:
+        name: ace-admin
+        description: ace-admin后端服务接口
+        developer: 老A

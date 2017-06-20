@@ -55,8 +55,8 @@ public class ResourceAuthority {
 
     private String attr8;
 
-    public ResourceAuthority(String authorityId, String resourceType) {
-        this.authorityId = authorityId;
+    public ResourceAuthority(String authorityType, String resourceType) {
+        this.authorityType = authorityType;
         this.resourceType = resourceType;
     }
 

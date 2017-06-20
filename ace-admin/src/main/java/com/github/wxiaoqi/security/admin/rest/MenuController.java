@@ -36,20 +36,20 @@ public class MenuController extends BaseController<MenuBiz, Menu> {
         return baseBiz.selectByExample(example);
     }
 
-    @RequestMapping(value = "/sys", method = RequestMethod.GET)
+    @RequestMapping(value = "/system", method = RequestMethod.GET)
     @ResponseBody
-    public List<Menu> getSys() {
+    public List<Menu> getSystem() {
         Menu menu = new Menu();
         menu.setParentId(CommonConstant.ROOT);
         return baseBiz.selectList(menu);
     }
 
-    @RequestMapping(value = "/menu", method = RequestMethod.GET)
+    @RequestMapping(value = "/menuTree", method = RequestMethod.GET)
     @ResponseBody
     public List<MenuTree> listMenu(Integer parentId) {
         try {
             if (parentId == null) {
-                parentId = this.getSys().get(0).getId();
+                parentId = this.getSystem().get(0).getId();
             }
         } catch (Exception e) {
             return new ArrayList<MenuTree>();
@@ -67,7 +67,7 @@ public class MenuController extends BaseController<MenuBiz, Menu> {
         return TreeUtil.bulid(trees,parent.getId());
     }
 
-    @RequestMapping(value = "/authority", method = RequestMethod.GET)
+    @RequestMapping(value = "/authorityTree", method = RequestMethod.GET)
     @ResponseBody
     public List<AuthorityMenuTree> listAuthorityMenu() {
         List<AuthorityMenuTree> trees = new ArrayList<AuthorityMenuTree>();
