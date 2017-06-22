@@ -1,4 +1,4 @@
-package com.github.wxiaoqi.security.api.user.vo;
+package com.github.wxiaoqi.security.api.vo.user;
 
 /**
  * ${DESCRIPTION}

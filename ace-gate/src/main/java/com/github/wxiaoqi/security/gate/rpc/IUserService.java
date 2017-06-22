@@ -1,12 +1,11 @@
 package com.github.wxiaoqi.security.gate.rpc;
 
-import com.github.wxiaoqi.security.api.user.vo.UserInfo;
+import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
+import com.github.wxiaoqi.security.api.vo.user.UserInfo;
 import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
@@ -19,4 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public interface IUserService {
   @RequestMapping(value = "/user/username/{username}", method = RequestMethod.GET)
   public UserInfo getUserByUsername(@PathVariable("username") String username);
+  @RequestMapping(value = "/user/{id}/permissions", method = RequestMethod.GET)
+  public PermissionInfo getPermissionByUserId(@PathVariable("id") String userId);
 }
