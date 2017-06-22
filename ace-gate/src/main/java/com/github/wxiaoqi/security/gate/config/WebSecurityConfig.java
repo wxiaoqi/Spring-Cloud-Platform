@@ -1,6 +1,5 @@
 package com.github.wxiaoqi.security.gate.config;
 
-import com.github.wxiaoqi.security.api.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
