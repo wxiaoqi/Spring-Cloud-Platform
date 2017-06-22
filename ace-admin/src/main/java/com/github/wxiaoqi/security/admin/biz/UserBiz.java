@@ -45,4 +45,10 @@ public class UserBiz extends BaseBiz<UserMapper,User> {
     public List<Menu> getUserAuthroityMenu(int id){
        return menuMapper.selectAuthorityMenuByUserId(id);
     }
+
+    public User getUserByUsername(String username){
+        User user = new User();
+        user.setUsername(username);
+        return mapper.selectOne(user);
+    }
 }

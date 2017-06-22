@@ -36,7 +36,7 @@ PRIMARY KEY (`id`)
 DROP TABLE IF EXISTS `base_menu`;
 CREATE TABLE `base_menu` (
 `id`  int NOT NULL AUTO_INCREMENT ,
-`code`  varchar(255) NULL ,
+`code`  varchar(255) NULL,
 `title`  varchar(255) NULL ,
 `parent_id`  int NOT NULL ,
 `href`  varchar(255) NULL ,
@@ -68,7 +68,7 @@ PRIMARY KEY (`id`)
 DROP TABLE IF EXISTS `base_group`;
 CREATE TABLE `base_group` (
 `id`  int NOT NULL AUTO_INCREMENT ,
-`code`  varchar(255) NULL ,
+`code`  varchar(255) NULL,
 `name`  varchar(255) NULL ,
 `parent_id`  int NOT NULL ,
 `path` varchar(2000) NULL ,
@@ -97,7 +97,7 @@ PRIMARY KEY (`id`)
 DROP TABLE IF EXISTS `base_group_type`;
 CREATE TABLE `base_group_type` (
 `id`  int NOT NULL AUTO_INCREMENT ,
-`code`  varchar(255) NULL ,
+`code`  varchar(255) NULL,
 `name`  varchar(255) NULL ,
 `description`  varchar(255) NULL ,
 `crt_time`  date NULL ,

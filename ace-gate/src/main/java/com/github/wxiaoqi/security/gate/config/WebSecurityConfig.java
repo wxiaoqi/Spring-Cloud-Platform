@@ -1,9 +1,15 @@
 package com.github.wxiaoqi.security.gate.config;
 
+import com.github.wxiaoqi.security.api.user.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+import java.util.List;
 
 /**
  * ${DESCRIPTION}
@@ -14,14 +20,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-  // @Value("${spring.profiles}")
-  // private String env;
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.formLogin().loginPage("/login").defaultSuccessUrl("/admin/index").permitAll().and()
-        .logout().logoutSuccessUrl("/login")
-            .invalidateHttpSession(true) .and().authorizeRequests()
+        .logout().logoutSuccessUrl("/login").invalidateHttpSession(true).and().authorizeRequests()
         .antMatchers("/**/*.css", "/img/**", "/api/**", "/**/*.js") // 放开"/api/**"：为了给被监控端免登录注册
         .permitAll().and().authorizeRequests().antMatchers("/**").authenticated();
     http.csrf().disable();
