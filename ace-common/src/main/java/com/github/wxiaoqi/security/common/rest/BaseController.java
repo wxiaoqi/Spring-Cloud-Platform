@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -20,6 +21,8 @@ import java.util.List;
  * @create 2017-06-15 8:48
  */
 public class BaseController<Biz extends BaseBiz,Entity> {
+    @Autowired
+    protected HttpServletRequest request;
     @Autowired
     protected Biz baseBiz;
 

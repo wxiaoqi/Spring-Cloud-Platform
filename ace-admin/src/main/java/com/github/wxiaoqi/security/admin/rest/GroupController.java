@@ -54,37 +54,6 @@ public class GroupController extends BaseController<GroupBiz, Group> {
         return baseBiz.selectByExample(example);
     }
 
-//    @RequestMapping(value = "/sys", method = RequestMethod.GET)
-//    @ResponseBody
-//    public List<Group> getSysMenu() {
-//        Group Group = new Group();
-//        Group.setParentId(CommonConstant.ROOT);
-//        return baseBiz.selectList(Group);
-//    }
-//
-//    @RequestMapping(value = "/tree", method = RequestMethod.GET)
-//    @ResponseBody
-//    public List<GroupTree> listGroup(Integer parentId) {
-//        try {
-//            if (parentId == null) {
-//                parentId = this.getSysMenu().get(0).getId();
-//            }
-//        } catch (Exception e) {
-//            return new ArrayList<GroupTree>();
-//        }
-//        List<GroupTree> trees = new ArrayList<GroupTree>();
-//        GroupTree node = null;
-//        Example example = new Example(Group.class);
-//        Group parent = baseBiz.selectById(parentId);
-//        example.createCriteria().andLike("path", parent.getPath() + "%").andNotEqualTo("id",parent.getId());
-//        for (Group Group : baseBiz.selectByExample(example)) {
-//            node = new GroupTree();
-//            BeanUtils.copyProperties(Group, node);
-//            trees.add(node);
-//        }
-//        return TreeUtil.bulid(trees,parent.getId());
-//    }
-
     @RequestMapping(value = "/{id}/user", method = RequestMethod.PUT)
     @ResponseBody
     public ObjectRestResponse modifiyUsers(@PathVariable int id,String members,String leaders){

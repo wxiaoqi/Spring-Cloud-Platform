@@ -31,6 +31,11 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+    redis:
+        database: 1
+        host: localhost
+        pool:
+            max-active: 20
 
 mybatis:
     basepackage: com.github.wxiaoqi.security.admin.mapper

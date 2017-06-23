@@ -4,6 +4,11 @@ spring:
     thymeleaf:
         mode: LEGACYHTML5
         cache: false
+    redis:
+        database: 1
+        host: localhost
+        pool:
+            max-active: 20
 server:
     port: 8765 #启动端口
 

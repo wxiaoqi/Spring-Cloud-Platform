@@ -4,9 +4,11 @@ import com.github.wxiaoqi.security.admin.biz.MenuBiz;
 import com.github.wxiaoqi.security.admin.entity.Menu;
 import com.github.wxiaoqi.security.admin.vo.AuthorityMenuTree;
 import com.github.wxiaoqi.security.admin.vo.MenuTree;
+import com.github.wxiaoqi.security.api.vo.user.UserInfo;
 import com.github.wxiaoqi.security.common.rest.BaseController;
 import com.github.wxiaoqi.security.common.util.TreeUtil;
 import com.github.wxiaoqi.security.admin.constant.CommonConstant;
+import io.undertow.security.impl.SecurityContextImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,5 +83,14 @@ public class MenuController extends BaseController<MenuBiz, Menu> {
             trees.add(node);
         }
         return TreeUtil.bulid(trees,CommonConstant.ROOT);
+    }
+    @RequestMapping(value = "/user/authorityTree", method = RequestMethod.GET)
+    @ResponseBody
+    public List<MenuTree> listUserAuthorityMen(){
+        HttpSession session=request.getSession();
+        System.out.println(request.getHeader("Cookie"));
+//        SecurityContextImpl securityContextImpl = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
+//        System.out.println(securityContextImpl.getAuthenticatedAccount().getPrincipal().getName());
+        return null;
     }
 }

@@ -1,12 +1,14 @@
 package com.github.wxiaoqi.security.api.vo.user;
 
+import java.io.Serializable;
+
 /**
  * ${DESCRIPTION}
  *
  * @author wanghaobin
  * @create 2017-06-21 8:12
  */
-public class UserInfo {
+public class UserInfo implements Serializable{
     public String id;
     public String username;
     public String password;
