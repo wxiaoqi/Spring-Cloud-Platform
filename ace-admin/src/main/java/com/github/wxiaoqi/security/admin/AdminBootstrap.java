@@ -18,7 +18,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @EnableHystrix
 @SpringBootApplication
 @ServletComponentScan("com.github.wxiaoqi.security.admin.config.druid")
-@EnableRedisHttpSession
+//@EnableRedisHttpSession
 public class AdminBootstrap {
     public static void main(String[] args) {
         new SpringApplicationBuilder(AdminBootstrap.class).web(true).run(args);    }

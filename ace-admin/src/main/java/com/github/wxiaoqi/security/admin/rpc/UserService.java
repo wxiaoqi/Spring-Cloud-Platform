@@ -1,12 +1,12 @@
 package com.github.wxiaoqi.security.admin.rpc;
 
+import com.github.wxiaoqi.security.admin.biz.MenuBiz;
 import com.github.wxiaoqi.security.admin.biz.UserBiz;
 import com.github.wxiaoqi.security.admin.constant.CommonConstant;
 import com.github.wxiaoqi.security.admin.entity.Menu;
 import com.github.wxiaoqi.security.admin.entity.User;
 import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
 import com.github.wxiaoqi.security.api.vo.user.UserInfo;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +28,8 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserBiz userBiz;
+    @Autowired
+    private MenuBiz menuBiz;
 
 //    @HystrixCommand(fallbackMethod = "fallbackMethod")
     @RequestMapping(value = "/user/username/{username}",method = RequestMethod.GET, produces="application/json")
@@ -41,7 +43,7 @@ public class UserService {
 
     @RequestMapping(value = "/user/{id}/permissions", method = RequestMethod.GET)
     public @ResponseBody List<PermissionInfo> getPermissionByUserId(@PathVariable("id") String userId){
-        List<Menu> menus = userBiz.getUserAuthroityMenu(Integer.parseInt(userId));
+        List<Menu> menus = menuBiz.getUserAuthorityMenuByUserId(Integer.parseInt(userId));
         List<PermissionInfo> result = new ArrayList<PermissionInfo>();
         PermissionInfo info = null;
         for(Menu menu:menus){

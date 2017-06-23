@@ -6,6 +6,8 @@ import com.github.wxiaoqi.security.admin.constant.CommonConstant;
 import org.springframework.stereotype.Service;
 import com.github.wxiaoqi.security.admin.mapper.MenuMapper;
 
+import java.util.List;
+
 /**
  * ${DESCRIPTION}
  *
@@ -34,5 +36,22 @@ public class MenuBiz extends BaseBiz<MenuMapper,Menu> {
             entity.setPath(parent.getPath()+"/"+entity.getCode());
         }
         super.updateById(entity);
+    }
+    /**
+     * 获取用户可以访问的菜单
+     * @param id
+     * @return
+     */
+    public List<Menu> getUserAuthorityMenuByUserId(int id){
+        return mapper.selectAuthorityMenuByUserId(id);
+    }
+
+    /**
+     * 根据用户获取可以访问的系统
+     * @param id
+     * @return
+     */
+    public List<Menu> getUserAuthoritySystemByUserId(int id){
+        return mapper.selectAuthoritySystemByUserId(id);
     }
 }

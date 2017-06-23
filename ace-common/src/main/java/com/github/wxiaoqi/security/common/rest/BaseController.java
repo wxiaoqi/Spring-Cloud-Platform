@@ -5,6 +5,7 @@ import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import com.github.wxiaoqi.security.common.msg.TableResultResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -56,5 +58,10 @@ public class BaseController<Biz extends BaseBiz,Entity> {
     @ResponseBody
     public List<Entity> list(){
         return baseBiz.selectListAll();
+    }
+
+    public String getCurrentUserName(){
+        String authorization = request.getHeader("Authorization");
+        return new String(Base64Utils.decodeFromString(authorization));
     }
 }

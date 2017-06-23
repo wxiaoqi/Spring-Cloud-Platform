@@ -4,11 +4,15 @@ import com.github.wxiaoqi.security.api.vo.user.UserInfo;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextImpl;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.session.Session;
 import org.springframework.session.SessionRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Base64Utils;
 
 import javax.servlet.http.HttpSession;
 
@@ -43,7 +47,13 @@ public class SessionPreFilter extends ZuulFilter {
     RequestContext ctx = RequestContext.getCurrentContext();
     HttpSession httpSession = ctx.getRequest().getSession();
     Session session = repository.getSession(httpSession.getId());
-    ctx.addZuulRequestHeader("Cookie", "SESSION=" + session.getId());
+    SecurityContextImpl securityContextImpl =
+        (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
+    User user = (User) securityContextImpl.getAuthentication().getPrincipal();
+//    ctx.addZuulRequestHeader("Authorization",
+//        Base64Utils.encodeToString((user.getUsername() + ":" + user.getPassword()).getBytes()));
+    ctx.addZuulRequestHeader("Authorization",
+        Base64Utils.encodeToString(user.getUsername().getBytes()));
     return null;
   }
 }

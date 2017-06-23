@@ -20,7 +20,7 @@ treeViewHelper.getChildrenNodeIdArr = function ( node ){
         for(x in node.nodes){
             ts.push(node.nodes[x].nodeId)
             if(node.nodes[x].nodes){
-                var getNodeDieDai = getNodeIdArr(node.nodes[x]);
+                var getNodeDieDai = this.getChildrenNodeIdArr(node.nodes[x]);
                 for(j in getNodeDieDai){
                     ts.push(getNodeDieDai[j]);
                 }

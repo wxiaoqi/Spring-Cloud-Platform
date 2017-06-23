@@ -399,10 +399,7 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
                                     onNodeUnselected: function (event, data) {
                                         var selectNodes = treeViewHelper.getChildrenNodeIdArr(data);//获取所有子节点
                                         if (selectNodes) { //子节点不为空，则选中所有子节点
-                                            //var arrayInfo = data.nodes;
-                                            //for (var i = 0; i < arrayInfo.length; i++) {
                                             $('#menuTreeview').treeview('unselectNode', [selectNodes, {silent: true}]);
-                                            //}
                                         }
                                         var parNodes = treeViewHelper.getParentIdArr("menuTreeview", data);
                                         if (parNodes) {
