@@ -26,21 +26,41 @@
                 </button>
         </div>
     </form>
-    <div  id="toolbar" class="layui-btn-group">
-        <button class="layui-btn layui-btn-small" id="btn_add">
-            <i class="layui-icon">&#xe654;</i>
-        </button>
-        <button class="layui-btn layui-btn-small" id="btn_edit">
-            <i class="layui-icon">&#xe642;</i>
-        </button>
-        <button class="layui-btn layui-btn-small" id="btn_del">
-            <i class="layui-icon">&#xe640;</i>
-        </button>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div  id="toolbar" class="layui-btn-group">
+                <button class="layui-btn layui-btn-small" id="btn_add">
+                    <i class="layui-icon">&#xe654;</i>
+                </button>
+                <button class="layui-btn layui-btn-small" id="btn_edit">
+                    <i class="layui-icon">&#xe642;</i>
+                </button>
+                <button class="layui-btn layui-btn-small" id="btn_del">
+                    <i class="layui-icon">&#xe640;</i>
+                </button>
+            </div>
+            <table id="menuTable">
+
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <div  id="elementToolbar" class="layui-btn-group">
+                <button class="layui-btn layui-btn-small" id="btn_element_add">
+                    <i class="layui-icon">&#xe654;</i>
+                </button>
+                <button class="layui-btn layui-btn-small" id="btn_element_edit">
+                    <i class="layui-icon">&#xe642;</i>
+                </button>
+                <button class="layui-btn layui-btn-small" id="btn_element_del">
+                    <i class="layui-icon">&#xe640;</i>
+                </button>
+            </div>
+            <table id="elementTable">
+
+            </table>
+        </div>
     </div>
-    <table id="menuTable">
-
-    </table>
-
 </div>
 
 <script type="text/javascript" src="plugins/jquery.min.js"></script>
@@ -52,6 +72,7 @@
 <script type="text/javascript" src="layui.js"></script>
 <script type="text/javascript" src="ag/common/util.js"></script>
 <script type="text/javascript" src="ag/menu/menu.js"></script>
+<script type="text/javascript" src="ag/menu/element.js"></script>
 <script>
 
 

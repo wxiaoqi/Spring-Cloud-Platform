@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  * @create 2017-06-23 8:25
  */
 @Component
-public class SessionPreFilter extends ZuulFilter {
+public class SessionAccessFilter extends ZuulFilter {
   @Autowired
   private SessionRepository<?> repository;
 

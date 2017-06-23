@@ -25,12 +25,6 @@ menu.columns = function () {
         },{
             field: 'href',
             title: 'url'
-        },{
-            field: 'icon',
-            title: '图标'
-        },{
-            field: 'description',
-            title: '描述'
         }];
 };
 //得到查询的参数

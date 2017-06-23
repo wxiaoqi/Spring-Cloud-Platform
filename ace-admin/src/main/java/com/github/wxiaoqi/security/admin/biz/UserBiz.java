@@ -6,7 +6,6 @@ import com.github.wxiaoqi.security.admin.mapper.MenuMapper;
 import com.github.wxiaoqi.security.common.biz.BaseBiz;
 import com.github.wxiaoqi.security.common.constant.UserConstant;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.github.wxiaoqi.security.admin.mapper.UserMapper;
@@ -54,8 +53,8 @@ public class UserBiz extends BaseBiz<UserMapper,User> {
      * @param securityContextImpl
      * @return
      */
-    public int getSecurityUserId(SecurityContextImpl securityContextImpl) {
+/*    public int getSecurityUserId(SecurityContextImpl securityContextImpl) {
         org.springframework.security.core.userdetails.User securityUser = (org.springframework.security.core.userdetails.User) securityContextImpl.getAuthentication().getPrincipal();
         return this.getUserByUsername(securityUser.getUsername()).getId();
-    }
+    }*/
 }

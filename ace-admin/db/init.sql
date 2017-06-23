@@ -194,6 +194,32 @@ CREATE TABLE `base_resource_authority` (
 PRIMARY KEY (`id`)
 )
 ;
+DROP TABLE IF EXISTS `base_element`;
+CREATE TABLE `base_element` (
+`id`  int NOT NULL AUTO_INCREMENT ,
+`code`  varchar(255) NULL,
+`type`  varchar(255) NULL ,
+`name`  varchar(255) NULL ,
+`uri`  varchar(255) NULL ,
+`menu_id`  varchar(255) NULL ,
+`parent_id`  varchar(255) NULL ,
+`path` varchar(2000) NULL ,
+`description`  varchar(255) NULL ,
+`crt_time`  date NULL ,
+`crt_user`  varchar(255) NULL ,
+`crt_name`  varchar(255) NULL ,
+`crt_host`  varchar(255) NULL ,
+`attr1`  varchar(255) NULL ,
+`attr2`  varchar(255) NULL ,
+`attr3`  varchar(255) NULL ,
+`attr4`  varchar(255) NULL ,
+`attr5`  varchar(255) NULL ,
+`attr6`  varchar(255) NULL ,
+`attr7`  varchar(255) NULL ,
+`attr8`  varchar(255) NULL ,
+PRIMARY KEY (`id`)
+)
+;
 
 
 -- 初始化菜单数据

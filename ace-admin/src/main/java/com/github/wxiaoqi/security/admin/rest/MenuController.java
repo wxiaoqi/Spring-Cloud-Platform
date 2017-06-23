@@ -9,7 +9,6 @@ import com.github.wxiaoqi.security.common.rest.BaseController;
 import com.github.wxiaoqi.security.common.util.TreeUtil;
 import com.github.wxiaoqi.security.admin.constant.CommonConstant;
 import org.springframework.beans.factory.annotation.Autowired;
-import  org.springframework.security.core.context.SecurityContextImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
