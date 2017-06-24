@@ -117,10 +117,4 @@ public class SessionAccessInterceptor extends HandlerInterceptorAdapter {
     Matcher matcher = pattern.matcher(str);
     return matcher.find();
   }
-
-  public static void main(String[] args) {
-    String url = "/user/page";
-    String regex =  "^/user$" ;
-    System.out.println(match(regex,url));
-  }
 }
