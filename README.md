@@ -6,7 +6,7 @@ QQ群号：169824183
 
 访问地址: http://120.77.133.155/admin/index 
 
-账号/密码：admin/admin
+账号/密码：test/test
 
 ![Markdown](http://i1.buimg.com/1949/39fbe8cbf5fd961f.png)
 
