@@ -48,10 +48,8 @@ public class SessionAccessFilter extends ZuulFilter {
     HttpSession httpSession = ctx.getRequest().getSession();
     Session session = repository.getSession(httpSession.getId());
     SecurityContextImpl securityContextImpl =
-        (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
+        (SecurityContextImpl) httpSession.getAttribute("SPRING_SECURITY_CONTEXT");
     User user = (User) securityContextImpl.getAuthentication().getPrincipal();
-//    ctx.addZuulRequestHeader("Authorization",
-//        Base64Utils.encodeToString((user.getUsername() + ":" + user.getPassword()).getBytes()));
     ctx.addZuulRequestHeader("Authorization",
         Base64Utils.encodeToString(user.getUsername().getBytes()));
     return null;

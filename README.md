@@ -64,6 +64,7 @@ QQ群号：169824183
 - 运行数据库脚本，创建库：ag_admin，脚本：ace-admin/db/init.sql
 - 依次运行main类：CenterBootstrap（ace-center）、GateBootstrap（ace-gate）、AdminBootstrap（ace-admin）、UIBootstrap（ace-ui）、MonitorBootstrap（ace-monitor）
 - 访问地址: http://localhost:8765/admin/index  账号/密码：admin/admin
+- 启动一个redis，用于ace-gate的session管理
 ---------
 
 # 版本日志
@@ -103,6 +104,20 @@ QQ群号：169824183
 - 完成角色与用户的关联
 - 完成角色与菜单的关联
 
+### 2017年6月24日 完善监控模块
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-24/1498313933332.jpg)
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-24/1498314057039.jpg)
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-24/1498314097360.jpg)
+- druid监控集成
+- spring boot监控集成
+- hystrix监控集成
+### 2017年6月25日 完成资源权限管控
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-24/1498313864701.jpg)
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-24/1498313774449.jpg)
+- 集成spring session
+- 完成服务无状态权限拦截
+- 完成前端和后端权限拦截
+- 页面按钮权限显示和隐藏（待完成）
 
 
 # 欢迎交流

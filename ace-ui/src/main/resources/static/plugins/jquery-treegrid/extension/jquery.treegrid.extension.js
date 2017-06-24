@@ -180,13 +180,15 @@
 								}
 							}
 						}
+						if(options.clickRow)
+							options.clickRow();
 					});
 				},
 			    error:function(xhr,textStatus){
 					var _errorMsg = '<tr><td colspan="'+options.columns.length+'"><div style="display: block;text-align: center;">'+xhr.responseText+'</div></td></tr>'
 					tbody.html(_errorMsg);
 					debugger;
-			    },
+			    }
 			});
 		}
 		if (options.url) {
@@ -223,7 +225,7 @@
 			}else{
                 target.load();
 			}
-		},
+		}
 	// 组件的其他方法也可以进行类似封装........
 	};
 

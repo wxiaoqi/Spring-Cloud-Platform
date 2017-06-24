@@ -1,11 +1,12 @@
-package com.github.wxiaoqi.security.gate.rpc;
+package com.github.wxiaoqi.security.ui.rpc;
 
-import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
-import com.github.wxiaoqi.security.api.vo.user.UserInfo;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
+import com.github.wxiaoqi.security.api.vo.user.UserInfo;
 
 import java.util.List;
 

@@ -85,8 +85,6 @@ public class MenuController extends BaseController<MenuBiz, Menu> {
     @RequestMapping(value = "/user/authorityTree", method = RequestMethod.GET)
     @ResponseBody
     public List<MenuTree> listUserAuthorityMenu(Integer parentId){
-//        HttpSession session=request.getSession();
-//        SecurityContextImpl securityContextImpl = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
         int userId = userBiz.getUserByUsername(getCurrentUserName()).getId();
         try {
             if (parentId == null) {
@@ -101,8 +99,6 @@ public class MenuController extends BaseController<MenuBiz, Menu> {
     @RequestMapping(value = "/user/system", method = RequestMethod.GET)
     @ResponseBody
     public List<Menu> listUserAuthoritySystem() {
-//        HttpSession session=request.getSession();
-//        SecurityContextImpl securityContextImpl = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
         int userId = userBiz.getUserByUsername(getCurrentUserName()).getId();
         return baseBiz.getUserAuthoritySystemByUserId(userId);
     }

@@ -1,10 +1,8 @@
 package com.github.wxiaoqi.security.admin.biz;
 
 import com.github.wxiaoqi.security.admin.constant.CommonConstant;
+import com.github.wxiaoqi.security.admin.entity.*;
 import com.github.wxiaoqi.security.admin.entity.Group;
-import com.github.wxiaoqi.security.admin.entity.Group;
-import com.github.wxiaoqi.security.admin.entity.Menu;
-import com.github.wxiaoqi.security.admin.entity.ResourceAuthority;
 import com.github.wxiaoqi.security.admin.mapper.GroupMapper;
 import com.github.wxiaoqi.security.admin.mapper.MenuMapper;
 import com.github.wxiaoqi.security.admin.mapper.ResourceAuthorityMapper;
@@ -108,6 +106,35 @@ public class GroupBiz extends BaseBiz<GroupMapper,Group>{
     }
 
     /**
+     * 分配资源权限
+     * @param groupId
+     * @param menuId
+     * @param elementId
+     */
+    public void modifyAuthorityElement(int groupId,int menuId,int elementId){
+        ResourceAuthority authority = new ResourceAuthority(CommonConstant.AUTHORITY_TYPE_GROUP,CommonConstant.RESOURCE_TYPE_BTN);
+        authority.setAuthorityId(groupId + "");
+        authority.setResourceId(elementId + "");
+        authority.setParentId("-1");
+        resourceAuthorityMapper.insertSelective(authority);
+    }
+
+    /**
+     * 移除资源权限
+     * @param groupId
+     * @param menuId
+     * @param elementId
+     */
+    public void removeAuthorityElement(int groupId, int menuId, int elementId) {
+        ResourceAuthority authority = new ResourceAuthority();
+        authority.setAuthorityId(groupId+"");
+        authority.setResourceId(elementId + "");
+        authority.setParentId("-1");
+        resourceAuthorityMapper.delete(authority);
+    }
+
+
+    /**
      * 获取群主关联的菜单
      * @param groupId
      * @return
@@ -123,5 +150,17 @@ public class GroupBiz extends BaseBiz<GroupMapper,Group>{
             trees.add(node);
         }
         return trees;
+    }
+
+
+    public List<Integer> getAuthorityElement(int groupId) {
+        ResourceAuthority authority = new ResourceAuthority(CommonConstant.AUTHORITY_TYPE_GROUP,CommonConstant.RESOURCE_TYPE_BTN);
+        authority.setAuthorityId(groupId+"");
+        List<ResourceAuthority> authorities = resourceAuthorityMapper.select(authority);
+        List<Integer> ids = new ArrayList<Integer>();
+        for(ResourceAuthority auth:authorities){
+            ids.add(Integer.parseInt(auth.getResourceId()));
+        }
+        return ids;
     }
 }

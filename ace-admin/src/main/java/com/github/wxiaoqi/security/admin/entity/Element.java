@@ -24,6 +24,8 @@ public class Element {
 
     private String path;
 
+    private String method;
+
     private String description;
 
     @Column(name = "crt_time")
@@ -164,6 +166,20 @@ public class Element {
      */
     public void setPath(String path) {
         this.path = path;
+    }
+
+    /**
+     * @return method
+     */
+    public String getMethod() {
+        return method;
+    }
+
+    /**
+     * @param method
+     */
+    public void setMethod(String method) {
+        this.method = method;
     }
 
     /**

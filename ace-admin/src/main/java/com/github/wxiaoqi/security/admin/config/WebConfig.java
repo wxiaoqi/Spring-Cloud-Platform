@@ -1,11 +1,12 @@
-package com.github.wxiaoqi.security.ui.config;
+package com.github.wxiaoqi.security.admin.config;
 
-import com.github.wxiaoqi.security.ui.interceptor.SessionAccessInterceptor;
+import com.github.wxiaoqi.security.admin.interceptor.SessionAccessInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
@@ -20,11 +21,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return new SessionAccessInterceptor() ;
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/admin/**").addResourceLocations(
-                "classpath:/static/*");
-        super.addResourceHandlers(registry);
-    }
 
 }

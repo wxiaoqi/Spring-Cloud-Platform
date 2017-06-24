@@ -40,7 +40,7 @@
     and ra.resource_type = 'menu'
   </select>
     <select id="selectAuthorityMenuByUserId" resultMap="BaseResultMap">
-     select t.* from base_resource_authority ra
+     select distinct t.* from base_resource_authority ra
     inner join base_menu t
     on ra.resource_id = t.id
     and ra.authority_id in (
@@ -51,7 +51,7 @@
     and ra.resource_type = 'menu'
   </select>
     <select id="selectAuthoritySystemByUserId" resultMap="BaseResultMap">
-        select t.* from base_resource_authority ra
+        select distinct t.* from base_resource_authority ra
         inner join base_menu t
         on ra.resource_id = t.id
         and ra.authority_id in (

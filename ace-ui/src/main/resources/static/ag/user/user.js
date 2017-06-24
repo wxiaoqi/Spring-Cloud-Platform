@@ -76,6 +76,7 @@ user.select = function (layerTips) {
 
 layui.use(['form', 'layedit', 'laydate'], function () {
     user.init();
+
     var editIndex;
     var layerTips = parent.layer === undefined ? layui.layer : parent.layer, //获取父窗口的layer对象
         layer = layui.layer, //获取当前窗口的layer对象

@@ -6,6 +6,7 @@ import java.util.List;
 import com.alibaba.fastjson.JSONObject;
 import com.github.wxiaoqi.security.admin.biz.ResourceAuthorityBiz;
 import com.github.wxiaoqi.security.admin.constant.CommonConstant;
+import com.github.wxiaoqi.security.admin.entity.Element;
 import com.github.wxiaoqi.security.admin.vo.AuthorityMenuTree;
 import com.github.wxiaoqi.security.admin.vo.GroupUsers;
 import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
@@ -67,7 +68,7 @@ public class GroupController extends BaseController<GroupBiz, Group> {
         return new ObjectRestResponse<GroupUsers>().rel(true).result(baseBiz.getGroupUsers(id));
     }
 
-    @RequestMapping(value = "/{id}/authority/menu", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}/authority/menu", method = RequestMethod.POST)
     @ResponseBody
     public ObjectRestResponse modifiyMenuAuthority(@PathVariable  int id, String menuTrees){
         List<AuthorityMenuTree> menus =  JSONObject.parseArray(menuTrees,AuthorityMenuTree.class);
@@ -80,4 +81,25 @@ public class GroupController extends BaseController<GroupBiz, Group> {
     public ObjectRestResponse<List<AuthorityMenuTree>> getMenuAuthority(@PathVariable  int id){
         return new ObjectRestResponse().result(baseBiz.getAuthorityMenu(id)).rel(true);
     }
+
+    @RequestMapping(value = "/{id}/authority/element/add", method = RequestMethod.POST)
+    @ResponseBody
+    public ObjectRestResponse addElementAuthority(@PathVariable  int id,int menuId, int elementId){
+        baseBiz.modifyAuthorityElement(id,menuId,elementId);
+        return new ObjectRestResponse().rel(true);
+    }
+
+    @RequestMapping(value = "/{id}/authority/element/remove", method = RequestMethod.POST)
+    @ResponseBody
+    public ObjectRestResponse removeElementAuthority(@PathVariable int id,int menuId, int elementId){
+        baseBiz.removeAuthorityElement(id,menuId,elementId);
+        return new ObjectRestResponse().rel(true);
+    }
+
+    @RequestMapping(value = "/{id}/authority/element", method = RequestMethod.GET)
+    @ResponseBody
+    public ObjectRestResponse<List<Integer>> addElementAuthority(@PathVariable  int id){
+        return new ObjectRestResponse().result(baseBiz.getAuthorityElement(id)).rel(true);
+    }
+
 }

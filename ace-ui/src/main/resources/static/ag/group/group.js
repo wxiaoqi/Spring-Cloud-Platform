@@ -9,7 +9,8 @@ var group = {
     code: "id",
     parentCode: "parentId",
     rootValue: -1,
-    explandColumn: 1
+    explandColumn: 1,
+    currentAuthorityMenu: {}
 };
 group.columns = function () {
     return [
@@ -350,6 +351,7 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
     $('#btn_resourceManager').on("click", function () {
         if (group.select(layerTips)) {
             var id = group.currentItem.id;
+            var nodeMap = {};
             $.get(group.entity + '/authority', null, function (form) {
                 var index = layer.open({
                     type: 1,
@@ -382,13 +384,13 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
                             type: "GET",
                             url: "/back/menu/authorityTree",
                             success: function (defaultData) {
+                                authorityElement.init();
                                 var $checkableTree = $('#menuTreeview').treeview({
                                     data: defaultData,
                                     levels: 1,
                                     showIcon: false,
-                                    showCheckbox: false,
-                                    multiSelect: true,
-//                showCheckbox:true,
+                                    showCheckbox: true,
+                                    multiSelect: false,
                                     levels: 5,
                                     state: {
                                         checked: true,
@@ -396,27 +398,32 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
                                         expanded: true,
                                         selected: true
                                     },
-                                    onNodeUnselected: function (event, data) {
+                                    onNodeUnchecked: function (event, data) {
+
                                         var selectNodes = treeViewHelper.getChildrenNodeIdArr(data);//获取所有子节点
                                         if (selectNodes) { //子节点不为空，则选中所有子节点
-                                            $('#menuTreeview').treeview('unselectNode', [selectNodes, {silent: true}]);
+                                            $('#menuTreeview').treeview('uncheckNode', [selectNodes, {silent: true}]);
+                                        }
+                                    },
+                                    onNodeChecked: function (event, data) {
+                                        group.currentAuthorityMenu = data;
+                                        var selectNodes = treeViewHelper.getChildrenNodeIdArr(data);//获取所有子节点
+                                        if (selectNodes) {
+                                            $('#menuTreeview').treeview('checkNode', [selectNodes, {silent: true}]);
                                         }
                                         var parNodes = treeViewHelper.getParentIdArr("menuTreeview", data);
                                         if (parNodes) {
-                                            $('#menuTreeview').treeview('unselectNode', [parNodes, {silent: true}]);
+                                            $('#menuTreeview').treeview('checkNode', [parNodes, {silent: true}]);
 
                                         }
                                     },
-                                    onNodeSelected: function (event, data) {
-                                        var selectNodes = treeViewHelper.getChildrenNodeIdArr(data);//获取所有子节点
-                                        if (selectNodes) {
-                                            $('#menuTreeview').treeview('selectNode', [selectNodes, {silent: true}]);
-                                        }
-                                        var parNodes = treeViewHelper.getParentIdArr("menuTreeview", data);
-                                        if (parNodes) {
-                                            $('#menuTreeview').treeview('selectNode', [parNodes, {silent: true}]);
-
-                                        }
+                                    onNodeSelected: function(event, data) {
+                                        group.currentAuthorityMenu = data;
+                                        authorityElement.refresh();
+                                    } ,
+                                    onNodeUnselected: function(event, data) {
+                                        group.currentAuthorityMenu = {};
+                                        authorityElement.refresh();
                                     }
 //
                                 });
@@ -440,10 +447,11 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
                                         var map = {};
                                         for (var i = 0; i < nodes.length; i++) {
                                             map[nodes[i].id] = nodes[i].nodeId;
+                                            nodeMap[nodes[i].nodeId] = nodes[i];
                                         }
                                         for (var i = 0; i < data.result.length; i++) {
                                             var node = data.result[i];
-                                            $('#menuTreeview').treeview('selectNode', [map[node.id], {silent: true}]);
+                                            $('#menuTreeview').treeview('checkNode', [map[node.id], {silent: true}]);
                                         }
                                     }
                                 });
@@ -451,10 +459,16 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
                         });
 
                         form.on('submit(edit)', function (data) {
+                            var menuList = [];
+                            layero.find('#menuTreeview li').each(function(){
+                                if($(this).hasClass("list-group-item node-menuTreeview node-checked")){
+                                    menuList.push(nodeMap[parseInt($(this).attr('data-nodeid'))]);
+                                }
+                            });
                             $.ajax({
                                 url: group.baseUrl + '/' + id + "/authority/menu",
-                                type: 'put',
-                                data: {"menuTrees": JSON.stringify(layero.find('#menuTreeview').treeview('getSelected'))},
+                                type: 'POST',
+                                data: {"menuTrees": JSON.stringify(menuList)},
                                 dataType: "json",
                                 success: function () {
                                     layerTips.msg('更新成功');
@@ -466,6 +480,10 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
                             //这里可以写ajax方法提交表单
                             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
                         });
+                    },
+                    end:function(){
+                        group.currentAuthorityMenu = {};
+                        element.currentItem = {};
                     }
                 });
                 layer.full(index);

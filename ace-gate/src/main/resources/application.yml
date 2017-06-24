@@ -25,7 +25,7 @@ zuul:
 
 ribbon:
   eureka:
-    enabled: false #配置zuul路由时用将此属性设置为false
+    enabled: true #配置zuul路由时用将此属性设置为false
 
 ace-ui:
   ribbon:

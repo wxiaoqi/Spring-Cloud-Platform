@@ -46,3 +46,34 @@ treeViewHelper.getParentIdArr = function (treeId,node){
     }
     return ts;
 }
+var tip = {
+    alert: function (info, iconIndex) {
+        parent.layer.msg(info, {
+            icon: iconIndex
+        });
+    }
+} ;
+$(function(){
+    // 设置jQuery Ajax全局的参数
+    $.ajaxSetup({
+        type: "POST",
+        error: function(jqXHR, textStatus, errorThrown){
+            switch (jqXHR.status){
+                case(500):
+                    tip.alert("服务器系统内部错误");
+                    break;
+                case(401):
+                    tip.alert("未登录");
+                    break;
+                case(403):
+                    tip.alert("无权限执行此操作");
+                    break;
+                case(408):
+                    tip.alert("请求超时");
+                    break;
+                default:
+                    tip.alert("未知错误");
+            }
+        }
+    });
+});

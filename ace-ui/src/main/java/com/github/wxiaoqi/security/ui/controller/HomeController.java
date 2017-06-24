@@ -61,5 +61,8 @@ public class HomeController {
     public String groupTypeEdit(){
         return "groupType/edit";
     }
-
+    @RequestMapping(value="element/edit",method = RequestMethod.GET)
+    public String elementEdit(){
+        return "element/edit";
+    }
 }
