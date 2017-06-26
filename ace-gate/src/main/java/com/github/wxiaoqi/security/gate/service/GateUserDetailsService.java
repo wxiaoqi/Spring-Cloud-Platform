@@ -21,22 +21,22 @@ import java.util.Set;
  */
 @Service
 public class GateUserDetailsService implements UserDetailsService {
-    @Autowired
-    private UserSecurity userSecurity;
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        if (StringUtils.isBlank(username)) {
-            throw new UsernameNotFoundException("用户名为空");
-        }
+  @Autowired
+  private UserSecurity userSecurity;
 
-        UserInfo info = userSecurity.getUserByUsername(username);
-        Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-        return new org.springframework.security.core.userdetails.User(
-                username, info.getPassword(),
-                true,//是否可用
-                true,//是否过期
-                true,//证书不过期为true
-                true,//账户未锁定为true
-                authorities);
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    if (StringUtils.isBlank(username)) {
+      throw new UsernameNotFoundException("用户名为空");
     }
+
+    UserInfo info = userSecurity.getUserByUsername(username);
+    Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+    return new org.springframework.security.core.userdetails.User(username, info.getPassword(),
+        true, // 是否可用
+        true, // 是否过期
+        true, // 证书不过期为true
+        true, // 账户未锁定为true
+        authorities);
+  }
 }

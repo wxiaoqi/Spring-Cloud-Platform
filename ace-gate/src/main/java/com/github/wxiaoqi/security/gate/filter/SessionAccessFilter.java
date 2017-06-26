@@ -7,6 +7,7 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,8 @@ import java.util.regex.Pattern;
  * @create 2017-06-23 8:25
  */
 @Component
+@Slf4j
 public class SessionAccessFilter extends ZuulFilter {
-  private final Logger log = LoggerFactory.getLogger(SessionAccessFilter.class);
-
   @Autowired
   private SessionRepository<?> repository;
   @Autowired
