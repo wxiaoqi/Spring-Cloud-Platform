@@ -6,38 +6,38 @@ spring:
         cache: false
     redis:
         database: 1
-        host: localhost
+        host: 127.0.0.1
         pool:
             max-active: 20
 server:
     port: 8765 #启动端口
-
-zuul:
-  #prefix: /techouse #为zuul设置一个公共的前缀
-  #ignoredServices: '*'
-  routes:
-    ace-ui: #随便定义，当不存在serviceId时，默认该值为serviceId（就是注册服务的名称，属性spring.application.name）
-      path: /admin/** #匹配/techouse/usersystem/** 均路由到cloud-client
-    ace-admin:
-      path: /back/**
-    ace-monitor:
-      path: /monitor/**
+#
+#zuul:
+#  #prefix: /techouse #为zuul设置一个公共的前缀
+#  #ignoredServices: '*'
+#  routes:
+#    ace-ui: #随便定义，当不存在serviceId时，默认该值为serviceId（就是注册服务的名称，属性spring.application.name）
+#      path: /admin/** #匹配/techouse/usersystem/** 均路由到cloud-client
+#    ace-admin:
+#      path: /back/**
+#    ace-monitor:
+#      path: /monitor/**
 
 ribbon:
   eureka:
     enabled: true #配置zuul路由时用将此属性设置为false
-
-ace-ui:
-  ribbon:
-    listOfServers: 127.0.0.1:8766 #为cloud-client服务指定一组服务地址，应该是用于负载均衡
-
-ace-admin:
-  ribbon:
-    listOfServers: 127.0.0.1:8762
-
-ace-monitor:
-  ribbon:
-    listOfServers: 127.0.0.1:8764
+#
+#ace-ui:
+#  ribbon:
+#    listOfServers: 127.0.0.1:8766 #为cloud-client服务指定一组服务地址，应该是用于负载均衡
+#
+#ace-admin:
+#  ribbon:
+#    listOfServers: 127.0.0.1:8762
+#
+#ace-monitor:
+#  ribbon:
+#    listOfServers: 127.0.0.1:8764
 
 eureka:
     instance:

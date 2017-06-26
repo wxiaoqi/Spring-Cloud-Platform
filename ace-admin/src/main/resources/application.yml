@@ -3,10 +3,10 @@ logging:
         tk.mybatis: DEBUG
         com.github.wxiaoqi.security.admin: DEBUG
   #  config: classpath:logback.xml
-    path: /ace-admin
+    path: /ag/admin
 spring:
     application:
-        name: ace-admin
+        name: back
     boot:
         admin:
              url: http://localhost:8764

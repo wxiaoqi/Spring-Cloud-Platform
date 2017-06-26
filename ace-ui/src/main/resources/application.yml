@@ -1,6 +1,6 @@
 spring:
     application:
-        name: ace-ui
+        name: admin
     thymeleaf:
         mode: LEGACYHTML5
         cache: false
