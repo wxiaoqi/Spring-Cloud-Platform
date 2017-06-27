@@ -15,6 +15,11 @@ eureka:
     client:
         serviceUrl:
             defaultZone: http://localhost:8761/eureka/
+
+back:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
+
 hystrix:
   command:
     default:

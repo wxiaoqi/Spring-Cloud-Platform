@@ -20,6 +20,6 @@ import java.util.List;
 public interface IUserService {
   @RequestMapping(value = "/service/user/username/{username}", method = RequestMethod.GET)
   public UserInfo getUserByUsername(@PathVariable("username") String username);
-  @RequestMapping(value = "/service/user/{id}/permissions", method = RequestMethod.GET)
-  public List<PermissionInfo> getPermissionByUserId(@PathVariable("id") String userId);
+  @RequestMapping(value = "/service/user/un/{username}/permissions", method = RequestMethod.GET)
+  public List<PermissionInfo> getPermissionByUserId(@PathVariable("username") String username);
 }

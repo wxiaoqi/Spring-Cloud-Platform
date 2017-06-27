@@ -43,7 +43,7 @@ layui.config({
         cached: true,
         //data: navs
 		cached:false,
-		url: '/back/menu/user/authorityTree'
+		url: '/admin/user/menu'
     });
     //渲染navbar
     navbar.render();
@@ -51,7 +51,8 @@ layui.config({
     navbar.on('click(side)', function (data) {
         tab.tabAdd(data.field);
     });
-    $.get("/back/menu/user/system",null,function(data){
+    $.get("/admin/user/system",null,function(data){
+        var data = eval("("+data+")");
         for(var i=0;i<data.length;i++){
             $('#menuSys').append('<dd><a href="javascript:;" onclick="javascript:refreshMenu('+data[i].id+')"><i class="fa '+data[i].icon+'" aria-hidden="true"></i>  '+data[i].title+'</a></dd>');
             $('#menuSysMobile').prepend('<dd><a href="javascript:;" onclick="javascript:refreshMenu('+data[i].id+')"><i class="fa '+data[i].icon+'" aria-hidden="true"></i> '+data[i].title+'</a></dd>');
@@ -149,7 +150,7 @@ function refreshMenu(parentId){
         cached: true,
         //data: navs
         cached:false,
-        url: '/back/menu/user/authorityTree?parentId='+parentId
+        url: '/admin/user/menu?parentId='+parentId
     });
     navbar.render();
     //监听点击事件

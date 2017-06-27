@@ -69,3 +69,8 @@ feign:
       min-request-size: 2048
     response:
       enabled: true
+
+gate:
+  ignore:
+    startWith: /back/menu/user,/admin/index,/admin/about
+    contain: .
