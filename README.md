@@ -6,14 +6,15 @@ QQ群号：169824183
 
 访问地址: http://120.77.133.155/admin/index 
 
-账号/密码：test/test
+账号/密码：admin/admin
 
 ![Markdown](http://i1.buimg.com/1949/39fbe8cbf5fd961f.png)
 
 ---------
 
 # 模块说明
-![实战架构图](http://upload-images.jianshu.io/upload_images/5700335-ffdaae430bd39548.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800)
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-28/1498635351391.jpg)
+
 ### 架构详解
 #### 监控
 利用Spring Boot Admin 来监控各个独立Service的运行状态；利用Hystrix Dashboard来实时查看接口的运行状态和调用频率等。
@@ -75,7 +76,7 @@ QQ群号：169824183
 - 完成监控中心的搭建
 
 
-### 2017年6月10日 用户管理增删改查例子
+### 2017年6月10日 用户管理增删改查
 ![Markdown](http://i1.buimg.com/1949/39fbe8cbf5fd961f.png)
 - 完成后端的UI的选型
 - 完成首页改进

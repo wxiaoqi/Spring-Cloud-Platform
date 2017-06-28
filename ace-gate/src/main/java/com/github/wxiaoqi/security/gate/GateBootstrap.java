@@ -14,7 +14,6 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
  * Created by Ace on 2017/6/2.
  */
 @SpringBootApplication
-@EnableEurekaClient
 @EnableDiscoveryClient
 @EnableFeignClients
 @EnableZuulProxy
