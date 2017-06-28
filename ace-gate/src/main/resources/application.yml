@@ -12,12 +12,12 @@ spring:
 server:
     port: 8765 #启动端口
 #
-#zuul:
+zuul:
 #  #prefix: /techouse #为zuul设置一个公共的前缀
 #  #ignoredServices: '*'
-#  routes:
-#    ace-monitor:
-#      path: /monitor/**
+  routes:
+    back:
+      path: /api/**
 
 ribbon:
   eureka:
@@ -62,3 +62,5 @@ gate:
   ignore:
     startWith: /back/menu/user,/admin/index,/admin/about
     contain: .
+  oauth:
+    prefix: /api

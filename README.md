@@ -6,7 +6,7 @@ QQ群号：169824183
 
 访问地址: http://120.77.133.155/admin/index 
 
-账号/密码：admin/admin
+账号/密码：test/test
 
 ![Markdown](http://i1.buimg.com/1949/39fbe8cbf5fd961f.png)
 
@@ -112,6 +112,7 @@ QQ群号：169824183
 - druid监控集成
 - spring boot监控集成
 - hystrix监控集成
+
 ### 2017年6月25日 完成资源权限管控
 ![img](http://ofsc32t59.bkt.clouddn.com/17-06-24/1498313864701.jpg)
 ![img](http://ofsc32t59.bkt.clouddn.com/17-06-24/1498313774449.jpg)
@@ -120,6 +121,11 @@ QQ群号：169824183
 - 完成前端和后端权限拦截
 - 页面按钮权限显示和隐藏（待完成）
 
+### 2017年6月28日 完成初级网关
+- 用户合法性拦截
+- 用户资源权限拦截
+- 访问日志流水（待完成）
+- oauth2.0集成（待完成）
 
 # 欢迎交流
 ![img](http://ofsc32t59.bkt.clouddn.com/17-06-16/1497595760484.jpg)

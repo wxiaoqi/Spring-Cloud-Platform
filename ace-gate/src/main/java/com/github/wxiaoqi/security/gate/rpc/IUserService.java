@@ -18,8 +18,8 @@ import java.util.List;
  */
 @FeignClient("back")
 public interface IUserService {
-  @RequestMapping(value = "/service/user/username/{username}", method = RequestMethod.GET)
+  @RequestMapping(value = "/user/username/{username}", method = RequestMethod.GET)
   public UserInfo getUserByUsername(@PathVariable("username") String username);
-  @RequestMapping(value = "/service/user/un/{username}/permissions", method = RequestMethod.GET)
+  @RequestMapping(value = "/user/un/{username}/permissions", method = RequestMethod.GET)
   public List<PermissionInfo> getPermissionByUserId(@PathVariable("username") String username);
 }

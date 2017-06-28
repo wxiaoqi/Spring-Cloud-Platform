@@ -46,6 +46,8 @@ public class SessionAccessFilter extends ZuulFilter {
     private String startWith;
     @Value("${gate.ignore.contain}")
     private String contain;
+    @Value("${gate.oauth.prefix}")
+    private String oauthPrefix;
 
     @Override
     public String filterType() {
@@ -66,17 +68,13 @@ public class SessionAccessFilter extends ZuulFilter {
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpSession httpSession = ctx.getRequest().getSession();
-        Session session = repository.getSession(httpSession.getId());
-        SecurityContextImpl securityContextImpl =
-                (SecurityContextImpl) httpSession.getAttribute("SPRING_SECURITY_CONTEXT");
-        User user = (User) securityContextImpl.getAuthentication().getPrincipal();
         HttpServletRequest request = ctx.getRequest();
         final String requestUri = request.getRequestURI();
         final String method = request.getMethod();
         // 不进行拦截的地址
-        if (isStartWith(requestUri) || isContains(requestUri))
+        if (isStartWith(requestUri) || isContains(requestUri)|| isOAuth(requestUri))
             return null;
-        log.debug("uri：" + requestUri + "----method：" + method);
+        User user = getSessionUser(httpSession);
         String username = user.getUsername();
         List<PermissionInfo> permissionInfos = getPermissionInfos(request, username);
         // 查找合法链接
@@ -87,6 +85,33 @@ public class SessionAccessFilter extends ZuulFilter {
         return null;
     }
 
+    /**
+     * 判定是否oauth资源
+     * @param requestUri
+     * @return
+     */
+    private boolean isOAuth(String requestUri) {
+        return requestUri.startsWith(oauthPrefix);
+    }
+
+    /**
+     * 返回session中的用户信息
+     * @param httpSession
+     * @return
+     */
+    private User getSessionUser(HttpSession httpSession) {
+        Session session = repository.getSession(httpSession.getId());
+        SecurityContextImpl securityContextImpl =
+                (SecurityContextImpl) httpSession.getAttribute("SPRING_SECURITY_CONTEXT");
+        return (User) securityContextImpl.getAuthentication().getPrincipal();
+    }
+
+    /**
+     * 读取权限
+     * @param request
+     * @param username
+     * @return
+     */
     private List<PermissionInfo> getPermissionInfos(HttpServletRequest request, String username) {
         List<PermissionInfo> permissionInfos;
         if (request.getSession().getAttribute("permission") == null) {
@@ -98,7 +123,14 @@ public class SessionAccessFilter extends ZuulFilter {
         return permissionInfos;
     }
 
+    /**
+     * 权限校验
+     * @param requestUri
+     * @param method
+     * @param permissionInfos
+     */
     private void checkAllow(final String requestUri, final String method, List<PermissionInfo> permissionInfos) {
+        log.debug("uri：" + requestUri + "----method：" + method);
         Collection<PermissionInfo> result =
                 Collections2.filter(permissionInfos, new Predicate<PermissionInfo>() {
                     @Override
@@ -111,10 +143,15 @@ public class SessionAccessFilter extends ZuulFilter {
                     }
                 });
         if (result.size() <= 0) {
-            setFailedRequest("<h1>Forbidden!</h1>", 403);
+            setFailedRequest("403 Forbidden!", 403);
         }
     }
 
+    /**
+     * 是否包含某种特征
+     * @param requestUri
+     * @return
+     */
     private boolean isContains(String requestUri) {
         boolean flag = false;
         for (String s : contain.split(",")) {
@@ -124,6 +161,11 @@ public class SessionAccessFilter extends ZuulFilter {
         return flag;
     }
 
+    /**
+     * URI是否以什么打头
+     * @param requestUri
+     * @return
+     */
     private boolean isStartWith(String requestUri) {
         boolean flag = false;
         for (String s : startWith.split(",")) {
