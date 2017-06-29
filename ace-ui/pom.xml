@@ -64,6 +64,17 @@
         </dependency>
     </dependencies>
     <build>
+        <!--<resources>-->
+            <!--<resource>-->
+                <!--<directory>${project.basedir}/src/main/resources</directory>-->
+                <!--<filtering>true</filtering>-->
+                <!--<excludes>-->
+                    <!--<exclude>static/fonts/**</exclude>-->
+                    <!--<exclude>static/font/**</exclude>-->
+                    <!--<exclude>static/plugins/font-awesome/**</exclude>-->
+                <!--</excludes>-->
+            <!--</resource>-->
+        <!--</resources>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

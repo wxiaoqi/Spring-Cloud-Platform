@@ -457,3 +457,34 @@ CREATE TABLE `base_user` (
 -- ----------------------------
 INSERT INTO `base_user` VALUES ('1', 'admin', '$2a$12$phuHRCCgXJwNJEhGd.euE./1J.orK1ildZa3KtbT6djqWRLPKKI9K', 'admin', '', null, '', null, '', '男', null, null, '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_user` VALUES ('2', 'test', '$2a$12$3YEZaMGj9CkJj17P4wKZgOhrIunylOA7dpA99uIJU/q9UfmC1LAD6', 'test', '', null, '', null, '', '男', null, null, '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+
+DROP TABLE IF EXISTS `gate_client`;
+CREATE TABLE `gate_client` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) DEFAULT NULL,
+  `secret` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `locked` char(1) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `crt_time` date DEFAULT NULL,
+  `crt_user` varchar(255) DEFAULT NULL,
+  `crt_name` varchar(255) DEFAULT NULL,
+  `crt_host` varchar(255) DEFAULT NULL,
+  `upd_time` date DEFAULT NULL,
+  `upd_user` varchar(255) DEFAULT NULL,
+  `upd_name` varchar(255) DEFAULT NULL,
+  `upd_host` varchar(255) DEFAULT NULL,
+  `attr1` varchar(255) DEFAULT NULL,
+  `attr2` varchar(255) DEFAULT NULL,
+  `attr3` varchar(255) DEFAULT NULL,
+  `attr4` varchar(255) DEFAULT NULL,
+  `attr5` varchar(255) DEFAULT NULL,
+  `attr6` varchar(255) DEFAULT NULL,
+  `attr7` varchar(255) DEFAULT NULL,
+  `attr8` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+
+
+
+--

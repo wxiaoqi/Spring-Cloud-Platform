@@ -65,4 +65,12 @@ public class HomeController {
     public String elementEdit(){
         return "element/edit";
     }
+    @RequestMapping(value = "gateClient",method = RequestMethod.GET)
+    public String gateClient(){
+        return "gateClient/list";
+    }
+    @RequestMapping(value = "gateClient/edit",method = RequestMethod.GET)
+    public String gateClientEdit(){
+        return "gateClient/edit";
+    }
 }

@@ -13,6 +13,17 @@ public class PermissionInfo implements Serializable{
     private String type;
     private String uri;
     private String method;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
 
     public String getMethod() {
         return method;

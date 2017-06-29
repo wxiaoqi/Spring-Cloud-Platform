@@ -40,7 +40,9 @@
         </table>-->
         <!--<table tableName="base_resource_authority" domainObjectName="ResourceAuthority" >
         </table>-->
-        <table tableName="base_element" domainObjectName="Element">
+        <!--<table tableName="base_element" domainObjectName="Element">-->
+        <!--</table>-->
+        <table tableName="gate_client" domainObjectName="GateClient">
         </table>
     </context>
 </generatorConfiguration>

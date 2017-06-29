@@ -16,7 +16,6 @@
     layui.use('layer', function() {
         var $ = layui.jquery;
         $.get("README.md", function (response, status, xhr) {
-            console.log(marked(response));
             $("#about").html(marked(response));
         });
     });

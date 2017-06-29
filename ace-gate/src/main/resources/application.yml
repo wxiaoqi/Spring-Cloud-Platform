@@ -64,3 +64,4 @@ gate:
     contain: .
   oauth:
     prefix: /api
+#    authorizationUrl:

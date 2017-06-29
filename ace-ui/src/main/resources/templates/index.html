@@ -142,9 +142,6 @@
 							area: ['800px', '500px']
 						});
                     });
-					$.get("content/essential.md", function(response, status, xhr){
-						$("#content").html(marked(response));
-					});
 					$('#about').load('README.md');
 				});
 			</script>
