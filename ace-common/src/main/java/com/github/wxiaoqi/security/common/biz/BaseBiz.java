@@ -1,5 +1,6 @@
 package com.github.wxiaoqi.security.common.biz;
 
+import com.github.wxiaoqi.security.common.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.example.SelectByExampleMapper;
@@ -56,11 +57,13 @@ public abstract class BaseBiz<M extends Mapper<T>, T> {
 
 
     public void insert(T entity) {
+        EntityUtils.setCreateInfo(entity);
         mapper.insert(entity);
     }
 
 
     public void insertSelective(T entity) {
+        EntityUtils.setCreateInfo(entity);
         mapper.insertSelective(entity);
     }
 
@@ -76,11 +79,13 @@ public abstract class BaseBiz<M extends Mapper<T>, T> {
 
 
     public void updateById(T entity) {
+        EntityUtils.setUpdatedInfo(entity);
         mapper.updateByPrimaryKey(entity);
     }
 
 
     public void updateSelectiveById(T entity) {
+        EntityUtils.setUpdatedInfo(entity);
         mapper.updateByPrimaryKeySelective(entity);
 
     }

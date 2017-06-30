@@ -485,6 +485,20 @@ CREATE TABLE `gate_client` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS `gate_log`;
+CREATE TABLE `gate_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `menu` varchar(255) DEFAULT NULL,
+  `option` varchar(255) DEFAULT NULL,
+  `uri` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `crt_time` date DEFAULT NULL,
+  `crt_user` varchar(255) DEFAULT NULL,
+  `crt_name` varchar(255) DEFAULT NULL,
+  `crt_host` varchar(255) DEFAULT NULL
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+
 
 
 --

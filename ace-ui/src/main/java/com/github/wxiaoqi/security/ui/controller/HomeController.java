@@ -73,4 +73,8 @@ public class HomeController {
     public String gateClientEdit(){
         return "gateClient/edit";
     }
+    @RequestMapping(value = "geteClient/authority",method = RequestMethod.GET)
+    public String gateClientAuthority(){
+        return "gateClient/authority";
+    }
 }

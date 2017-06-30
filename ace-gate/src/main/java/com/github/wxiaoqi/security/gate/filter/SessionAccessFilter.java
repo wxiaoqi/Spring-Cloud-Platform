@@ -2,6 +2,7 @@ package com.github.wxiaoqi.security.gate.filter;
 
 import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
 import com.github.wxiaoqi.security.api.vo.user.UserInfo;
+import com.github.wxiaoqi.security.common.util.ClientUtil;
 import com.github.wxiaoqi.security.gate.rpc.IUserService;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
@@ -76,6 +77,7 @@ public class SessionAccessFilter extends ZuulFilter {
             return null;
         User user = getSessionUser(httpSession);
         String username = user.getUsername();
+        setCurrentUserInfo(ctx, username);
         List<PermissionInfo> permissionInfos = getPermissionInfos(request, username);
         // 查找合法链接
         checkAllow(requestUri, method, permissionInfos);
@@ -83,6 +85,13 @@ public class SessionAccessFilter extends ZuulFilter {
         ctx.addZuulRequestHeader("Authorization",
                 Base64Utils.encodeToString(user.getUsername().getBytes()));
         return null;
+    }
+
+    private void setCurrentUserInfo(RequestContext ctx, String username) {
+        UserInfo info = userService.getUserByUsername(username);
+        ctx.addZuulRequestHeader("userId", info.getId());
+        ctx.addZuulRequestHeader("userName", info.getName());
+        ctx.addZuulRequestHeader("userHost", ClientUtil.getClientIp(ctx.getRequest()));
     }
 
     /**
@@ -144,6 +153,8 @@ public class SessionAccessFilter extends ZuulFilter {
                 });
         if (result.size() <= 0) {
             setFailedRequest("403 Forbidden!", 403);
+        } else{
+
         }
     }
 

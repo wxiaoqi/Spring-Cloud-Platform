@@ -69,6 +69,7 @@ public class UserService {
             info.setMethod(CommonConstant.RESOURCE_REQUEST_METHOD_GET);
             result.add(info
             );
+            info.setMenu(menu.getTitle());
         }
         List<Element> elements = elementBiz.getAuthorityElementByUserId(user.getId()+"");
         for(Element element:elements){
@@ -78,6 +79,7 @@ public class UserService {
             info.setUri(element.getUri());
             info.setMethod(element.getMethod());
             info.setName(element.getName());
+            info.setMenu(element.getMenuId());
             result.add(info);
         }
         return result;

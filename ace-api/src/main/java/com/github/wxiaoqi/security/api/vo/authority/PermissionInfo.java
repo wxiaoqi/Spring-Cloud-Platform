@@ -14,6 +14,15 @@ public class PermissionInfo implements Serializable{
     private String uri;
     private String method;
     private String name;
+    private String menu;
+
+    public String getMenu() {
+        return menu;
+    }
+
+    public void setMenu(String menu) {
+        this.menu = menu;
+    }
 
     public String getName() {
         return name;

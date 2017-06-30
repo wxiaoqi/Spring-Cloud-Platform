@@ -29,7 +29,7 @@
         <result column="attr8" jdbcType="VARCHAR" property="attr8"/>
     </resultMap>
     <select id="selectAuthorityElementByUserId" resultMap="BaseResultMap">
-    select distinct t.* from base_resource_authority ra
+    select distinct t.code,t.type,t.name,t.uri,t.method,m.title as menu_id from base_resource_authority ra
         inner join base_element t
        on ra.resource_id = t.id
         and ra.authority_id in (
@@ -38,6 +38,8 @@
         )
         and ra.authority_type = 'group'
         and ra.resource_type = 'button'
+        inner join base_menu m
+       on t.menu_id = m.id
   </select>
     <select id="selectAuthorityMenuElementByUserId" resultMap="BaseResultMap">
         select distinct t.* from base_resource_authority ra
