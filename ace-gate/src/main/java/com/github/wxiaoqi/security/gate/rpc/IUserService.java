@@ -16,7 +16,8 @@ import java.util.List;
  * @author wanghaobin
  * @create 2017-06-21 8:11
  */
-@FeignClient("back")
+@FeignClient("admin-back")
+@RequestMapping("api")
 public interface IUserService {
   @RequestMapping(value = "/user/username/{username}", method = RequestMethod.GET)
   public UserInfo getUserByUsername(@PathVariable("username") String username);

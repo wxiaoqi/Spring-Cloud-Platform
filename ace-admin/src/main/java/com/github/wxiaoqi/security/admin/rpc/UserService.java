@@ -31,7 +31,7 @@ import java.util.List;
  * @create 2017-06-21 8:15
  */
 @Controller
-@RequestMapping("")
+@RequestMapping("api")
 public class UserService {
     @Autowired
     private UserBiz userBiz;

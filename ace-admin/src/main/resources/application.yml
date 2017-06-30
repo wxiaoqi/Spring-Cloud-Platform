@@ -6,7 +6,7 @@ logging:
     path: /ag/admin
 spring:
     application:
-        name: back
+        name: admin-back
     boot:
         admin:
              url: http://localhost:8764
@@ -46,8 +46,8 @@ eureka:
         serviceUrl:
             defaultZone: http://localhost:8761/eureka/
 swagger:
-    basepackage: com.github.wxiaoqi.security.admin.rest
+    basepackage: com.github.wxiaoqi.security.admin
     service:
-        name: ace-admin
-        description: ace-admin后端服务接口
+        name: Admin Back
+        description: Admin Back后端服务
         developer: 老A

@@ -1,6 +1,6 @@
 spring:
     application:
-        name: ace-gate
+        name: admin-gate
     thymeleaf:
         mode: LEGACYHTML5
         cache: false
@@ -13,11 +13,17 @@ server:
     port: 8765 #启动端口
 #
 zuul:
-#  #prefix: /techouse #为zuul设置一个公共的前缀
+#  prefix: /api #为zuul设置一个公共的前缀
 #  #ignoredServices: '*'
   routes:
     back:
-      path: /api/**
+      path: /back/**
+      serviceId: admin-back
+
+    ui:
+      path: /admin/**
+      serviceId: admin-ui
+
 
 ribbon:
   eureka:
