@@ -18,8 +18,4 @@ public class SessionApplicationInitializer  extends AbstractHttpSessionApplicati
     protected void afterSessionRepositoryFilter(ServletContext servletContext) {
         servletContext.addListener(new HttpSessionEventPublisher());
     }
-//    @Override
-//    protected Class<?>[] getRootConfigClasses() {
-//        return new Class<?>[] {ASessionConfig.class};
-//    }
 }

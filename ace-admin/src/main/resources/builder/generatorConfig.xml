@@ -42,7 +42,9 @@
         </table>-->
         <!--<table tableName="base_element" domainObjectName="Element">-->
         <!--</table>-->
-        <table tableName="gate_client" domainObjectName="GateClient">
+        <!--<table tableName="gate_client" domainObjectName="GateClient">-->
+        <!--</table>-->
+        <table tableName="gate_log" domainObjectName="GateLog">
         </table>
     </context>
 </generatorConfiguration>

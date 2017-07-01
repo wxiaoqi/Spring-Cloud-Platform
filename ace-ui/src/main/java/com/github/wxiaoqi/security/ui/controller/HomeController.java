@@ -77,4 +77,9 @@ public class HomeController {
     public String gateClientAuthority(){
         return "gateClient/authority";
     }
+    @RequestMapping(value = "gateLog",method = RequestMethod.GET)
+    public String gateLog(){
+        return "gateLog/list";
+    }
+
 }

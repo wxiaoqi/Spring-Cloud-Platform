@@ -61,7 +61,7 @@ public class UserService {
             info = new PermissionInfo();
             info.setCode(menu.getCode());
             info.setType(CommonConstant.RESOURCE_TYPE_MENU);
-            info.setName(menu.getTitle());
+            info.setName(CommonConstant.RESOURCE_ACTION_VISIT);
             String uri = menu.getHref();
             if(!uri.startsWith("/"))
                 uri = "/"+uri;

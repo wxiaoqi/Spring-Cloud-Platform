@@ -24,4 +24,6 @@ public class CommonConstant {
     public final static String RESOURCE_REQUEST_METHOD_DELETE = "DELETE";
     public final static String RESOURCE_REQUEST_METHOD_POST = "POST";
 
+    public final static String RESOURCE_ACTION_VISIT = "访问";
+
 }

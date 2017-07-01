@@ -1,6 +1,7 @@
 package com.github.wxiaoqi.security.gate;
 
 
+import com.github.wxiaoqi.security.gate.utils.DBLog;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -20,6 +21,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @EnableRedisHttpSession(redisFlushMode = RedisFlushMode.IMMEDIATE)
 public class GateBootstrap {
     public static void main(String[] args) {
+        DBLog.getInstance().start();
         SpringApplication.run(GateBootstrap.class, args);
     }
 }

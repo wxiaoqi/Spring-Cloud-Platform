@@ -7,6 +7,9 @@ logging:
 spring:
     application:
         name: admin-back
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
     boot:
         admin:
              url: http://localhost:8764
