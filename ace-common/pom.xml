@@ -11,7 +11,7 @@
 
     <artifactId>ace-common</artifactId>
     <properties>
-        <mapper.version>3.3.6</mapper.version>
+        <mapper.version>3.4.0</mapper.version>
     </properties>
     <dependencies>
         <dependency>

@@ -1,41 +1,23 @@
 spring:
     application:
-        name: admin-gate
-    thymeleaf:
-        mode: LEGACYHTML5
-        cache: false
-    redis:
-        database: 1
-        host: 127.0.0.1
-        pool:
-            max-active: 20
+        name: api-gate
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
 server:
-    port: 8765 #启动端口
-#
+    port: 8767 #启动端口
+
 zuul:
-#  prefix: /api #为zuul设置一个公共的前缀
-#  #ignoredServices: '*'
   routes:
-    back:
-      path: /back/**
+    uc:
+      path: /uc/**
       serviceId: admin-back
 
-    ui:
-      path: /admin/**
-      serviceId: admin-ui
-
-    api:
-      path: /api/**
-      serviceId: api-gate
 
 
 ribbon:
   eureka:
     enabled: true
 
-#ace-monitor:
-#  ribbon:
-#    listOfServers: 127.0.0.1:8764
 
 eureka:
     instance:
@@ -67,11 +49,13 @@ feign:
       min-request-size: 2048
     response:
       enabled: true
-
-gate:
-  ignore:
-    startWith: /back/menu/user,/admin/index,/admin/about
-    contain: .
-  oauth:
-    prefix: /api
-#    authorizationUrl:
+# JWT
+jwt:
+  header: access-token
+  secret: mySecret
+  expiration: 7200
+  tokenHead: Bearer
+  route:
+    authentication:
+      path: auth
+      refresh: refresh

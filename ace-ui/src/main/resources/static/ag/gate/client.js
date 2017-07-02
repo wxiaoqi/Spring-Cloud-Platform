@@ -15,15 +15,23 @@ gateClient.columns = function () {
         title: '客户端'
     }, {
         field: 'code',
-        title: '标志'
+        title: 'clientId'
     },{
         field: 'secret',
         title: '密钥'
     }, {
-        field: 'description',
-        title: '描述'
+        field: 'locked',
+        title: '状态',
+        formatter: gateClient.lockFormatter
     }];
 };
+gateClient.lockFormatter = function(value, row, index) {
+     if(value=="0"){
+         return "<i class='fa fa-unlock'>";
+     }else{
+         return "<i class='fa fa-lock'>";
+     }
+}   ;
 gateClient.queryParams = function (params) {
     if (!params)
         return {

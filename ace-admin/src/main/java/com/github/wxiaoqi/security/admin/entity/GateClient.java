@@ -1,5 +1,7 @@
 package com.github.wxiaoqi.security.admin.entity;
 
+import com.github.wxiaoqi.security.admin.constant.CommonConstant;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -14,7 +16,7 @@ public class GateClient {
 
     private String name;
 
-    private String locked;
+    private String locked = CommonConstant.BOOLEAN_NUMBER_FALSE;
 
     private String description;
 
