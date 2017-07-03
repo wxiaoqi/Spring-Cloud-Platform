@@ -53,4 +53,10 @@
         and ra.resource_type = 'button'
         and t.menu_id = #{menuId}
     </select>
+    <select id="selectAuthorityElementByClientId" resultMap="BaseResultMap">
+        select distinct t.* from gate_client_service cs
+         inner join base_element t
+         on t.id = cs.service_id
+         and cs.client_id = #{clientId}
+    </select>
 </mapper>

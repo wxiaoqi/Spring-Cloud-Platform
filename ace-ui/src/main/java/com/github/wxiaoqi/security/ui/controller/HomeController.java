@@ -81,5 +81,9 @@ public class HomeController {
     public String gateLog(){
         return "gateLog/list";
     }
+    @RequestMapping(value = "service",method = RequestMethod.GET)
+    public String service(){
+        return "service/list";
+    }
 
 }

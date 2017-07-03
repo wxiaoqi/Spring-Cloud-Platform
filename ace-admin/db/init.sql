@@ -548,3 +548,24 @@ CREATE TABLE `gate_log` (
 -- Records of gate_log
 -- ----------------------------
 INSERT INTO `gate_log` VALUES ('11', '用户管理', '编辑', '/back/user', '2017-07-01 21:13:09', '1', 'admin', '0:0:0:0:0:0:0:1');
+
+DROP TABLE IF EXISTS `gate_client_service`;
+CREATE TABLE `gate_client_service` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `service_id` varchar(255) DEFAULT NULL,
+  `client_id` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `crt_time` datetime DEFAULT NULL,
+  `crt_user` varchar(255) DEFAULT NULL,
+  `crt_name` varchar(255) DEFAULT NULL,
+  `crt_host` varchar(255) DEFAULT NULL,
+  `attr1` varchar(255) DEFAULT NULL,
+  `attr2` varchar(255) DEFAULT NULL,
+  `attr3` varchar(255) DEFAULT NULL,
+  `attr4` varchar(255) DEFAULT NULL,
+  `attr5` varchar(255) DEFAULT NULL,
+  `attr6` varchar(255) DEFAULT NULL,
+  `attr7` varchar(255) DEFAULT NULL,
+  `attr8` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
