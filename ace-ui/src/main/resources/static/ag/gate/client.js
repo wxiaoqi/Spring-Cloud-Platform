@@ -275,4 +275,75 @@ layui.use(['form', 'layedit', 'laydate'], function () {
             });
         }
     });
+    $('#btn_authority').on("click", function () {
+        if (gateClient.select(layerTips)) {
+            var id = gateClient.currentItem.id;
+            $.get(gateClient.entity + '/service', null, function (form) {
+                var index = layer.open({
+                    type: 1,
+                    title: '添加用户',
+                    content: form,
+                    btn: ['保存', '取消'],
+                    shade: false,
+                    offset: ['20px', '20%'],
+                    area: ['600px', '400px'],
+                    maxmin: true,
+                    yes: function (index) {
+                        //触发表单的提交事件
+                        $('form.layui-form').find('button[lay-filter=edit]').click();
+                    },
+                    full: function (elem) {
+                        var win = window.top === window.self ? window : parent.window;
+                        $(win).on('resize', function () {
+                            debugger;
+                            var $this = $(this);
+                            elem.width($this.width()).height($this.height()).css({
+                                top: 0,
+                                left: 0
+                            });
+                            elem.children('div.layui-layer-content').height($this.height() - 95);
+                        });
+                    },
+                    success: function (layero, index) {
+                        var form = layui.form();
+                        // 获取人员
+                        $.get(gateClient.baseUrl + '/' + id + "/service", null, function (data) {
+                            if (!data.rel) {
+                                layerTips.msg('获取数据异常！');
+                                return;
+                            }
+                          var services = data.result;
+                            var serviceOpt = "";
+                            for (var i = 0; i < services.length; i++) {
+                                // layero.find("#groupMember").append();
+                                serviceOpt += '<option  value="' + services[i].id + '" selected>' + services[i].name + '</option>';
+                            }
+                            // 加载人员
+                            layero.find("#service").append(serviceOpt).trigger('change');
+                        });
+
+                        form.on('submit(edit)', function (data) {
+                            var vals = {};
+                            var leas = layero.find("#service").val()
+                            if (leas)
+                                vals.services = leas.join();
+                            $.ajax({
+                                url: gateClient.baseUrl + '/' + id + "/user",
+                                type: 'put',
+                                data: vals,
+                                dataType: "json",
+                                success: function () {
+                                    layerTips.msg('更新成功');
+                                    layer.close(index);
+                                }
+
+                            });
+                            //这里可以写ajax方法提交表单
+                            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+                        });
+                    }
+                });
+            });
+        }
+    });
 });
