@@ -4,6 +4,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.lang.reflect.Field;
+import java.net.URLDecoder;
 import java.sql.Timestamp;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
@@ -47,6 +48,7 @@ public class EntityUtils {
 		if(request!=null) {
 			hostIp = String.valueOf(request.getHeader("userHost"));
 			name = String.valueOf(request.getHeader("userName"));
+			name = URLDecoder.decode(name);
 			id = String.valueOf(request.getHeader("userId"));
 		}
 		// 默认属性
@@ -76,6 +78,7 @@ public class EntityUtils {
 		if(request!=null) {
 			hostIp = String.valueOf(request.getHeader("userHost"));
 			name = String.valueOf(request.getHeader("userName"));
+			name = URLDecoder.decode(name);
 			id = String.valueOf(request.getHeader("userId"));
 		}
 		// 默认属性

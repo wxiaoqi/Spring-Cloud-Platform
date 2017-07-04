@@ -22,6 +22,7 @@
             data: function (params) {
                 return {
                     name: params.term, // search term
+                    menuId: -1,
                     offset: params.page
                 };
             },
@@ -32,6 +33,8 @@
                     var obj = {};
                     obj.id = data.rows[i].id;
                     obj.text = data.rows[i].name;
+                    obj.uri = data.rows[i].uri;
+                    obj.method = data.rows[i].method;
                     result.push(obj);
                 }
                 return {
@@ -48,9 +51,9 @@
 //            maximumSelectionLength: 3,  //设置最多可以选择多少项
         placeholder: "请选择",
         tags: false, //设置必须存在的选项 才能选中
-//        templateResult: function (item) {
-//            return '<span style="color:white">' + item.name + '</span><span style="font-size:8px">: ' + item.description + '</span>'
-//        },
+        templateResult: function (item) {
+            return '<span >' + item.text + '</span><span style="font-size:8px"> : ' + item.uri + '</span><span style="font-size:8px"> : ' + item.method + '</span>'
+        },
 //        templateSelection: function (item) {
 //            return item.name
 //        },

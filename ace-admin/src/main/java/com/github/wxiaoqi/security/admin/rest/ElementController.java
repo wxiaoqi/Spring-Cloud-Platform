@@ -36,12 +36,11 @@ public class ElementController extends BaseController<ElementBiz, Element> {
   @ResponseBody
   public TableResultResponse<Element> page(@RequestParam(defaultValue = "10") int limit,
       @RequestParam(defaultValue = "1") int offset,String name, @RequestParam(defaultValue = "0") int menuId) {
-//    Element element = new Element();
-//    element.setMenuId(menuId + "");
     Example example = new Example(Element.class);
-    example.createCriteria().andEqualTo("menuId",menuId);
+    Example.Criteria criteria = example.createCriteria();
+    criteria.andEqualTo("menuId", menuId);
     if(StringUtils.isNotBlank(name)){
-      example.createCriteria().andEqualTo("name",name);
+      criteria.andLike("name", "%" + name + "%");
     }
     List<Element> elements = baseBiz.selectByExample(example);
     return new TableResultResponse<Element>(elements.size(), elements);

@@ -12,7 +12,7 @@ element.columns = function () {
         checkbox: true
     }, {
         field: 'name',
-        title: '按钮'
+        title: '服务名称'
     }, {
         field: 'code',
         title: '权限编码'

@@ -1,5 +1,6 @@
 package com.github.wxiaoqi.security.admin.biz;
 
+import com.github.wxiaoqi.security.admin.constant.CommonConstant;
 import com.github.wxiaoqi.security.admin.entity.Element;
 import com.github.wxiaoqi.security.admin.entity.GateClient;
 import com.github.wxiaoqi.security.admin.mapper.ElementMapper;
@@ -27,12 +28,15 @@ public class GateClientBiz extends BaseBiz<GateClientMapper,GateClient> {
     public void insertSelective(GateClient entity) {
         String secret = new BCryptPasswordEncoder(UserConstant.PW_ENCORDER_SALT).encode(entity.getSecret());
         entity.setSecret(secret);
+        entity.setLocked(CommonConstant.BOOLEAN_NUMBER_FALSE);
         super.insertSelective(entity);
     }
 
     @Override
     public void updateById(GateClient entity) {
-        GateClient old = (GateClient) mapper.selectByIds(entity.getId() + "").get(0);
+        GateClient old =  new GateClient();
+        old.setId(entity.getId());
+        old = mapper.selectOne(old);
         if(!entity.getSecret().equals(old.getSecret())){
             String secret = new BCryptPasswordEncoder(UserConstant.PW_ENCORDER_SALT).encode(entity.getSecret());
             entity.setSecret(secret);

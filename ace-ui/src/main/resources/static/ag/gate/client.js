@@ -262,7 +262,7 @@ layui.use(['form', 'layedit', 'laydate'], function () {
         if (gateClient.select(layerTips)) {
             var id = gateClient.currentItem.id;
             var result = gateClient.currentItem;
-            result.locked = 1;
+            result.locked = 0;
             $.ajax({
                 url: gateClient.baseUrl + "/" + id+"/lock",
                 type: 'put',
@@ -278,7 +278,7 @@ layui.use(['form', 'layedit', 'laydate'], function () {
     $('#btn_authority').on("click", function () {
         if (gateClient.select(layerTips)) {
             var id = gateClient.currentItem.id;
-            $.get(gateClient.entity + '/service', null, function (form) {
+            $.get(gateClient.entity + '/authority', null, function (form) {
                 var index = layer.open({
                     type: 1,
                     title: '添加用户',
@@ -328,7 +328,7 @@ layui.use(['form', 'layedit', 'laydate'], function () {
                             if (leas)
                                 vals.services = leas.join();
                             $.ajax({
-                                url: gateClient.baseUrl + '/' + id + "/user",
+                                url: gateClient.baseUrl + '/' + id + "/service",
                                 type: 'put',
                                 data: vals,
                                 dataType: "json",

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50612
 File Encoding         : 65001
 
-Date: 2017-07-01 21:17:17
+Date: 2017-07-04 18:08:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `base_element` (
   `attr7` varchar(255) DEFAULT NULL,
   `attr8` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of base_element
@@ -53,8 +53,8 @@ INSERT INTO `base_element` VALUES ('4', 'userManager:btn_edit', 'button', '编�
 INSERT INTO `base_element` VALUES ('5', 'userManager:btn_del	', 'button', '删除', '/back/user', '1', null, null, 'DELETE', '', null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_element` VALUES ('9', 'menuManager:element', 'uri', '按钮页面', '/admin/element', '6', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_element` VALUES ('10', 'menuManager:btn_add', 'button', '新增', '/back/menu', '6', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('11', 'menuManager:btn_edit', 'button', '编辑', '/back/menu', '6', '', '', 'PUT', '', '2017-06-24', '', '', '', '', '', '', '', '', '', '', '');
-INSERT INTO `base_element` VALUES ('12', 'menuManager:btn_del	', 'button', '删除', '/back/menu', '6', '', '', 'DELETE', '', '2017-06-24', '', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO `base_element` VALUES ('11', 'menuManager:btn_edit', 'button', '编辑', '/back/menu', '6', '', '', 'PUT', '', '2017-06-24 00:00:00', '', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO `base_element` VALUES ('12', 'menuManager:btn_del	', 'button', '删除', '/back/menu', '6', '', '', 'DELETE', '', '2017-06-24 00:00:00', '', '', '', '', '', '', '', '', '', '', '');
 INSERT INTO `base_element` VALUES ('13', 'menuManager:btn_element_add', 'button', '新增元素', '/back/element', '6', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_element` VALUES ('14', 'menuManager:btn_element_edit', 'button', '编辑元素', '/back/element', '6', null, null, 'PUT', '', null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_element` VALUES ('15', 'btn_element_del', 'button', '删除元素', '/back/element', '6', null, null, 'DELETE', '', null, null, null, null, null, null, null, null, null, null, null, null);
@@ -65,8 +65,8 @@ INSERT INTO `base_element` VALUES ('19', 'groupManager:btn_userManager', 'button
 INSERT INTO `base_element` VALUES ('20', 'groupManager:btn_resourceManager', 'button', '分配权限', '/back/group/{*}/authority', '7', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_element` VALUES ('21', 'groupManager:menu', 'uri', '分配菜单', '/back/group/{*}/authority/menu', '7', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_element` VALUES ('22', 'groupManager:element', 'uri', '分配资源', '/back/group/{*}/authority/element', '7', null, null, 'POST', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('23', 'userManager:view	', 'uri', '查看', '/back/user', '1', '', '', 'GET', '', '2017-06-26', '', '', '', '', '', '', '', '', '', '', '');
-INSERT INTO `base_element` VALUES ('24', 'menuManager:view', 'uri', '查看', '/back/menu', '6', '', '', 'GET', '', '2017-06-26', '', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO `base_element` VALUES ('23', 'userManager:view	', 'uri', '查看', '/back/user', '1', '', '', 'GET', '', '2017-06-26 00:00:00', '', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO `base_element` VALUES ('24', 'menuManager:view', 'uri', '查看', '/back/menu', '6', '', '', 'GET', '', '2017-06-26 00:00:00', '', '', '', '', '', '', '', '', '', '', '');
 INSERT INTO `base_element` VALUES ('27', 'menuManager:element_view', 'uri', '查看', '/back/element', '6', null, null, 'GET', null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_element` VALUES ('28', 'groupManager:view', 'uri', '查看', '/back/group', '7', null, null, 'GET', null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_element` VALUES ('30', 'adminAPI:view', 'uri', '查看', '/back/swagger', '23', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
@@ -80,7 +80,10 @@ INSERT INTO `base_element` VALUES ('37', 'gateClientManager:btn_add', 'button', 
 INSERT INTO `base_element` VALUES ('38', 'gateClientManager:btn_edit', 'button', '编辑', '/back/gateClient', '26', null, null, 'PUT', '', null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_element` VALUES ('39', 'gateClientManager:btn_del', 'button', '删除', '/back/gateClient', '26', null, null, 'DELETE', '', null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_element` VALUES ('40', 'adminAPI:swagger_resources', 'uri', '查看', '/back/swagger-resources', '23', null, null, 'GET', '', null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_element` VALUES ('41', 'gateLogManager:view', 'button', '查看', '/back/gateLog', '27', null, null, 'GET', '', '2017-07-01', '1', 'admin', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
+INSERT INTO `base_element` VALUES ('41', 'gateLogManager:view', 'button', '查看', '/back/gateLog', '27', null, null, 'GET', '', '2017-07-01 00:00:00', '1', 'admin', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
+INSERT INTO `base_element` VALUES ('42', 'user:info', 'uri', '获取用户信息', '/api/user/username', '-1', null, null, 'GET', '', '2017-07-03 21:39:44', '1', '¡X', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
+INSERT INTO `base_element` VALUES ('43', 'user:permission', 'uri', '获取用户权限', '/api/user/un/{*}/permissions', '-1', null, null, 'GET', '', '2017-07-03 21:43:18', '1', '¡X', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
+INSERT INTO `base_element` VALUES ('44', 'user:system', 'uri', '获取用户系统', '/api/user/un/{*}/system', '-1', null, null, 'GET', '', '2017-07-03 21:49:12', '1', '¡X', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for base_group
@@ -260,7 +263,7 @@ CREATE TABLE `base_menu` (
   `attr7` varchar(255) DEFAULT NULL,
   `attr8` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of base_menu
@@ -284,7 +287,8 @@ INSERT INTO `base_menu` VALUES ('23', 'adminAPI', 'Admin Rest API', '22', '/back
 INSERT INTO `base_menu` VALUES ('24', 'druidMonitor', 'Admin Druid数据监控', '9', '/back/druid/datasource.html', 'fa fa-line-chart', null, '0', '', '/adminSys/monitorManager/druidMonitor', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_menu` VALUES ('25', 'gateWayManager', '网关管理', '13', '', 'fa fa-bug', null, '0', '', '/adminSys/gateWayManager', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_menu` VALUES ('26', 'gateClientManager', '客户端管理', '25', '/admin/gateClient', 'fa fa-laptop', null, '0', '', '/adminSys/gateWayManager/gataClientManager', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_menu` VALUES ('27', 'gateLogManager', '操作日志', '5', '/admin/gateLog', 'fa fa-book', null, '0', '', '/adminSys/baseManager/gateLogManager', null, '2017-07-01', '1', 'admin', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_menu` VALUES ('27', 'gateLogManager', '操作日志', '5', '/admin/gateLog', 'fa fa-book', null, '0', '', '/adminSys/baseManager/gateLogManager', null, '2017-07-01 00:00:00', '1', 'admin', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_menu` VALUES ('28', 'serviceManger', '服务注册', '25', '/admin/service', 'fa fa-exchange', null, '0', '', '/adminSys/gateWayManager/serviceManger', null, '2017-07-03 20:43:01', '1', '¡X', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for base_resource_authority
@@ -312,7 +316,7 @@ CREATE TABLE `base_resource_authority` (
   `attr7` varchar(255) DEFAULT NULL,
   `attr8` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=534 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=575 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of base_resource_authority
@@ -412,26 +416,6 @@ INSERT INTO `base_resource_authority` VALUES ('492', '1', 'group', '30', 'button
 INSERT INTO `base_resource_authority` VALUES ('493', '1', 'group', '31', 'button', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_resource_authority` VALUES ('494', '1', 'group', '40', 'button', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_resource_authority` VALUES ('495', '1', 'group', '41', 'button', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('496', '1', 'group', '13', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('497', '1', 'group', '5', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('498', '1', 'group', '1', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('499', '1', 'group', '6', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('500', '1', 'group', '7', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('501', '1', 'group', '8', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('502', '1', 'group', '21', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('503', '1', 'group', '27', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('504', '1', 'group', '9', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('505', '1', 'group', '10', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('506', '1', 'group', '11', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('507', '1', 'group', '24', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('508', '1', 'group', '22', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('509', '1', 'group', '23', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('510', '1', 'group', '25', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('511', '1', 'group', '26', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('512', '1', 'group', '14', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('513', '1', 'group', '20', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('514', '1', 'group', '17', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `base_resource_authority` VALUES ('515', '1', 'group', '18', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_resource_authority` VALUES ('516', '4', 'group', '41', 'button', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_resource_authority` VALUES ('517', '4', 'group', '30', 'button', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_resource_authority` VALUES ('518', '4', 'group', '31', 'button', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
@@ -450,6 +434,26 @@ INSERT INTO `base_resource_authority` VALUES ('530', '4', 'group', '22', 'menu',
 INSERT INTO `base_resource_authority` VALUES ('531', '4', 'group', '23', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_resource_authority` VALUES ('532', '4', 'group', '25', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `base_resource_authority` VALUES ('533', '4', 'group', '26', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('555', '1', 'group', '13', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('556', '1', 'group', '5', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('557', '1', 'group', '1', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('558', '1', 'group', '6', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('559', '1', 'group', '7', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('560', '1', 'group', '8', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('561', '1', 'group', '27', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('562', '1', 'group', '9', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('563', '1', 'group', '10', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('564', '1', 'group', '11', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('565', '1', 'group', '24', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('566', '1', 'group', '22', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('567', '1', 'group', '23', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('568', '1', 'group', '25', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('569', '1', 'group', '26', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('570', '1', 'group', '28', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('571', '1', 'group', '14', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('572', '1', 'group', '20', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('573', '1', 'group', '17', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `base_resource_authority` VALUES ('574', '1', 'group', '18', 'menu', '-1', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for base_user
@@ -491,8 +495,8 @@ CREATE TABLE `base_user` (
 -- ----------------------------
 -- Records of base_user
 -- ----------------------------
-INSERT INTO `base_user` VALUES ('1', 'admin', '$2a$12$qb.WpfxqnHHKYSdIPfmG7uV4Hz8pYa6fuheMvCp1FpO0TkJ1F7aZW', '管理员', '', null, '', null, '', '男', null, null, '', null, null, null, null, '2017-07-01', '1', 'admin', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
-INSERT INTO `base_user` VALUES ('2', 'test', '$2a$12$zmM.eBOEpcp7wUfo7ypBSemy23bcGSEESLlIreg1FhHWV3ADoap/q', '测试账户', '', null, '', null, '', '男', null, null, '123123', null, null, null, null, '2017-07-01', '1', 'admin', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
+INSERT INTO `base_user` VALUES ('1', 'admin', '$2a$12$qb.WpfxqnHHKYSdIPfmG7uV4Hz8pYa6fuheMvCp1FpO0TkJ1F7aZW', '管理员', '', null, '', null, '', '男', null, null, '', null, null, null, null, '2017-07-01 00:00:00', '1', 'admin', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
+INSERT INTO `base_user` VALUES ('2', 'test', '$2a$12$zmM.eBOEpcp7wUfo7ypBSemy23bcGSEESLlIreg1FhHWV3ADoap/q', '测试账户', '', null, '', null, '', '男', null, null, '123123', null, null, null, null, '2017-07-01 00:00:00', '1', 'admin', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for gate_client
@@ -522,33 +526,18 @@ CREATE TABLE `gate_client` (
   `attr7` varchar(255) DEFAULT NULL,
   `attr8` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of gate_client
 -- ----------------------------
+INSERT INTO `gate_client` VALUES ('1', 'admin-ui', '$2a$12$9k3PWcqSPgdwGSI7PtORJeHKj9brCLGwuMzj40uWDlMGEJnsVJgS.', 'admin-ui', '0', '', '2017-07-02 16:54:22', '1', '¡X', '0:0:0:0:0:0:0:1', '2017-07-04 13:21:52', '1', '管理员', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
+INSERT INTO `gate_client` VALUES ('2', 'admin-gate', '$2a$12$YrnmswOZOA7pTCBQ.mj5c.vWHNgcJp4bpyL21M5x7iQ3uPl0vU6Dq', 'admin-gate', '0', '', '2017-07-02 22:31:48', '1', '¡X', '0:0:0:0:0:0:0:1', '2017-07-04 13:21:56', '1', '管理员', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null);
+INSERT INTO `gate_client` VALUES ('3', 'admin-api-gate', '$2a$12$pSI.LmQ0fqFNW7/zlSQvgu8ddaaOwGB4qSwrDWYCUcbD4D6me56ku', 'admin-api-gate', '0', '', '2017-07-02 22:32:09', '1', '¡X', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null, null, null, null, null);
 
 -- ----------------------------
--- Table structure for gate_log
+-- Table structure for gate_client_service
 -- ----------------------------
-DROP TABLE IF EXISTS `gate_log`;
-CREATE TABLE `gate_log` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `menu` varchar(255) DEFAULT NULL,
-  `opt` varchar(255) DEFAULT NULL,
-  `uri` varchar(255) DEFAULT NULL,
-  `crt_time` datetime DEFAULT NULL,
-  `crt_user` varchar(255) DEFAULT NULL,
-  `crt_name` varchar(255) DEFAULT NULL,
-  `crt_host` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of gate_log
--- ----------------------------
-INSERT INTO `gate_log` VALUES ('11', '用户管理', '编辑', '/back/user', '2017-07-01 21:13:09', '1', 'admin', '0:0:0:0:0:0:0:1');
-
 DROP TABLE IF EXISTS `gate_client_service`;
 CREATE TABLE `gate_client_service` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -568,4 +557,77 @@ CREATE TABLE `gate_client_service` (
   `attr7` varchar(255) DEFAULT NULL,
   `attr8` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of gate_client_service
+-- ----------------------------
+INSERT INTO `gate_client_service` VALUES ('5', '42', '2', null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `gate_client_service` VALUES ('6', '44', '2', null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `gate_client_service` VALUES ('7', '42', '1', null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `gate_client_service` VALUES ('8', '43', '1', null, null, null, null, null, null, null, null, null, null, null, null, null);
+
+-- ----------------------------
+-- Table structure for gate_log
+-- ----------------------------
+DROP TABLE IF EXISTS `gate_log`;
+CREATE TABLE `gate_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `menu` varchar(255) DEFAULT NULL,
+  `opt` varchar(255) DEFAULT NULL,
+  `uri` varchar(255) DEFAULT NULL,
+  `crt_time` datetime DEFAULT NULL,
+  `crt_user` varchar(255) DEFAULT NULL,
+  `crt_name` varchar(255) DEFAULT NULL,
+  `crt_host` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of gate_log
+-- ----------------------------
+INSERT INTO `gate_log` VALUES ('11', '用户管理', '编辑', '/back/user', '2017-07-01 21:13:09', '1', 'admin', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('12', '客户端管理', '新增', '/back/gateClient', '2017-07-02 16:54:22', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('13', '客户端管理', '新增', '/back/gateClient', '2017-07-02 22:31:47', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('14', '客户端管理', '新增', '/back/gateClient', '2017-07-02 22:32:08', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('15', '客户端管理', '编辑', '/back/gateClient', '2017-07-03 13:35:45', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('16', '客户端管理', '编辑', '/back/gateClient', '2017-07-03 13:35:57', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('17', '客户端管理', '编辑', '/back/gateClient', '2017-07-03 05:38:12', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('18', '客户端管理', '编辑', '/back/gateClient', '2017-07-03 05:38:23', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('19', '客户端管理', '编辑', '/back/gateClient', '2017-07-03 05:38:42', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('20', '客户端管理', '编辑', '/back/gateClient', '2017-07-03 05:39:14', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('21', '菜单管理', '新增', '/back/menu', '2017-07-03 12:43:01', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('22', '角色组管理', '新增', '/back/group', '2017-07-03 12:43:29', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('23', '菜单管理', '新增元素', '/back/element', '2017-07-03 13:39:43', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('24', '菜单管理', '新增元素', '/back/element', '2017-07-03 13:43:17', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('25', '菜单管理', '新增元素', '/back/element', '2017-07-03 13:49:11', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('26', '角色组管理', '新增', '/back/group', '2017-07-03 13:52:00', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('27', '客户端管理', '编辑', '/back/gateClient', '2017-07-03 14:08:58', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('28', '客户端管理', '编辑', '/back/gateClient', '2017-07-03 14:56:28', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('29', '客户端管理', '编辑', '/back/gateClient', '2017-07-03 14:56:30', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('30', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 00:14:47', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('31', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 00:14:49', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('32', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 00:17:50', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('33', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 00:17:51', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('34', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 00:35:58', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('35', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 00:36:16', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('36', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 00:43:08', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('37', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 00:47:31', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('38', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 00:47:34', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('39', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 00:47:44', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('40', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 00:48:24', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('41', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 00:49:00', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('42', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 00:52:04', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('43', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 00:52:58', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('44', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 05:16:24', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('45', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 05:16:40', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('46', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 05:17:11', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('47', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 05:20:39', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('48', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 05:21:52', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('49', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 05:21:55', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('50', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 05:25:19', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('51', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 05:26:02', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('52', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 05:26:12', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('53', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 05:26:38', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('54', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 05:26:51', '1', '管理员', '0:0:0:0:0:0:0:1');
+INSERT INTO `gate_log` VALUES ('55', '客户端管理', '编辑', '/back/gateClient', '2017-07-04 05:29:01', '1', '管理员', '0:0:0:0:0:0:0:1');

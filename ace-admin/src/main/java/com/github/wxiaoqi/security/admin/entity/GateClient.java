@@ -1,6 +1,7 @@
 package com.github.wxiaoqi.security.admin.entity;
 
 import com.github.wxiaoqi.security.admin.constant.CommonConstant;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import javax.persistence.*;
@@ -16,11 +17,12 @@ public class GateClient {
 
     private String name;
 
-    private String locked = CommonConstant.BOOLEAN_NUMBER_FALSE;
+    private String locked;
 
     private String description;
 
     @Column(name = "crt_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date crtTime;
 
     @Column(name = "crt_user")
@@ -33,6 +35,7 @@ public class GateClient {
     private String crtHost;
 
     @Column(name = "upd_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updTime;
 
     @Column(name = "upd_user")
