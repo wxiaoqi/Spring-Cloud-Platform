@@ -6,11 +6,11 @@ spring:
 server:
     port: 8767 #启动端口
 
-zuul:
-  routes:
-    uc:
-      path: /uc/**
-      serviceId: admin-back
+#zuul:
+#  routes:
+#    uc:
+#      path: /admin/**
+#      serviceId: admin-back
 
 
 
@@ -54,8 +54,16 @@ jwt:
   header: access-token
   secret: mySecret
   expiration: 7200
-  tokenHead: Bearer
+  tokenHead: ApiGateToken
   route:
     authentication:
       path: auth
       refresh: refresh
+
+gate:
+  client:
+    clientId: admin-api-gate
+    secret: $2a$12$03C/g.y/QHnDe8P90Oi3cOS1nViIb22EoRUoeK9cWALmv5NJi1sUC
+    authHeader: access-token
+    authHost: http://localhost:8765/api
+    tokenHead: ApiGateToken

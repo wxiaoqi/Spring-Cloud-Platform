@@ -27,9 +27,9 @@ zuul:
       path: /admin/**
       serviceId: admin-ui
 
-#    api:
-#      path: /api/**
-#      serviceId: api-gate
+    api:
+      path: /api/**
+      serviceId: api-gate
 
 
 ribbon:

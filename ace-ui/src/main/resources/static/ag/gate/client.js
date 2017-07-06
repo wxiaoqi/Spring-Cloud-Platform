@@ -16,10 +16,10 @@ gateClient.columns = function () {
     }, {
         field: 'code',
         title: 'clientId'
-    },{
+    }, {
         field: 'secret',
         title: '密钥'
-    }, {
+    },{
         field: 'locked',
         title: '状态',
         formatter: gateClient.lockFormatter
@@ -197,7 +197,7 @@ layui.use(['form', 'layedit', 'laydate'], function () {
                             editIndex = layedit.build('description_editor');
                             form.render();
                             layero.find(":input[name='code']").attr("disabled", "");
-                            layero.find(":input[name='secret']").attr("disabled", "");
+                            //layero.find(":input[name='secret']").attr("disabled", "");
                             form.on('submit(edit)', function (data) {
                                 $.ajax({
                                     url: gateClient.baseUrl + "/" + result.id,

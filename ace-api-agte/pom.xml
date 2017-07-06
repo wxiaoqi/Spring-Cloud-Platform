@@ -56,6 +56,11 @@
              <artifactId>jjwt</artifactId>
              <version>0.6.0</version>
          </dependency>
+         <dependency>
+             <groupId>com.github.wxiaoqi</groupId>
+             <artifactId>ace-api-agent</artifactId>
+             <version>1.0-SNAPSHOT</version>
+         </dependency>
      </dependencies>
 
 </project>
