@@ -1,5 +1,5 @@
 var element = {
-    baseUrl: "/back/element",
+    baseUrl: "/gate/service",
     entity: "element",
     tableId: "elementTable",
     toolbarId: "elementToolbar",

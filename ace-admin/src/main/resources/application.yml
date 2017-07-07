@@ -55,3 +55,7 @@ swagger:
         name: Admin Back
         description: Admin Back后端服务
         developer: 老A
+
+gate:
+  client:
+    authHost: http://localhost:8765/api

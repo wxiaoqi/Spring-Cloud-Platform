@@ -3,6 +3,30 @@ spring:
         name: api-gate
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
+    datasource:
+        name: test
+        url: jdbc:mysql://localhost:3306/ag_gate?useUnicode=true&characterEncoding=UTF8
+        username: root
+        password: 123456
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+mybatis:
+    basepackage: com.github.wxiaoqi.security.api.gate.mapper
+    xmlLocation: classpath:mapper/**/*.xml
 server:
     port: 8767 #启动端口
 
@@ -55,15 +79,12 @@ jwt:
   secret: mySecret
   expiration: 7200
   tokenHead: ApiGateToken
-  route:
-    authentication:
-      path: auth
-      refresh: refresh
+
 
 gate:
   client:
     clientId: admin-api-gate
-    secret: $2a$12$03C/g.y/QHnDe8P90Oi3cOS1nViIb22EoRUoeK9cWALmv5NJi1sUC
+    secret: $2a$12$AeVHvq5Q6kv54uqmpGXo2OnS8GaEB.5CffhxU0.THi3aHWlvOAhoO
     authHeader: access-token
     authHost: http://localhost:8765/api
     tokenHead: ApiGateToken

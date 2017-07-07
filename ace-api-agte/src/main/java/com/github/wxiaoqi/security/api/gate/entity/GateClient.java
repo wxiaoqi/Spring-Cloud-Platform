@@ -1,10 +1,11 @@
-package com.github.wxiaoqi.security.admin.entity;
+package com.github.wxiaoqi.security.api.gate.entity;
 
-import com.github.wxiaoqi.security.admin.constant.CommonConstant;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "gate_client")
 public class GateClient {

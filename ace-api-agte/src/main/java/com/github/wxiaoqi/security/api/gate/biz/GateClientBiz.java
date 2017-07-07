@@ -1,10 +1,11 @@
-package com.github.wxiaoqi.security.admin.biz;
+package com.github.wxiaoqi.security.api.gate.biz;
 
-import com.github.wxiaoqi.security.admin.constant.CommonConstant;
-import com.github.wxiaoqi.security.admin.entity.Element;
-import com.github.wxiaoqi.security.admin.entity.GateClient;
-import com.github.wxiaoqi.security.admin.mapper.ElementMapper;
-import com.github.wxiaoqi.security.admin.mapper.GateClientMapper;
+
+import com.github.wxiaoqi.security.api.gate.constant.CommonConstant;
+import com.github.wxiaoqi.security.api.gate.entity.Element;
+import com.github.wxiaoqi.security.api.gate.entity.GateClient;
+import com.github.wxiaoqi.security.api.gate.mapper.ElementMapper;
+import com.github.wxiaoqi.security.api.gate.mapper.GateClientMapper;
 import com.github.wxiaoqi.security.common.biz.BaseBiz;
 import com.github.wxiaoqi.security.common.constant.UserConstant;
 import org.springframework.beans.factory.annotation.Autowired;

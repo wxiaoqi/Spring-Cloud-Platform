@@ -5,7 +5,6 @@ import com.github.wxiaoqi.security.api.gate.secruity.JwtAuthenticationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,18 +21,18 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
+    @RequestMapping(value = "auth", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(
-            @RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException{
+            @RequestBody JwtAuthenticationRequest authenticationRequest) {
         final String token = authService.login(authenticationRequest.getClientId(), authenticationRequest.getSecret());
 
         // Return the token
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
 
-    @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
+    @RequestMapping(value = "refresh", method = RequestMethod.GET)
     public ResponseEntity<?> refreshAndGetAuthenticationToken(
-            HttpServletRequest request) throws AuthenticationException{
+            HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
         String refreshedToken = authService.refresh(token);
         if(refreshedToken == null) {
@@ -43,10 +42,12 @@ public class AuthController {
         }
     }
 
-//    @RequestMapping(value = "${jwt.route.authentication.token}", method = RequestMethod.GET)
-//    public ResponseEntity<?> getAuthenticationToken(String username,String password) throws AuthenticationException{
-//        String token = authService.login(username, password);
-//        return ResponseEntity.ok(new JwtAuthenticationResponse(token));
-//    }
+    @RequestMapping(value = "verify", method = RequestMethod.GET)
+    public ResponseEntity<?> verify(String token,String resource){
+        if(authService.validate(token,resource))
+            return ResponseEntity.ok(true);
+        else
+            return ResponseEntity.status(401).body(false);
+    }
 
 }

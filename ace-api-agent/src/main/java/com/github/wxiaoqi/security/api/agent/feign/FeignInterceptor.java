@@ -2,11 +2,12 @@ package com.github.wxiaoqi.security.api.agent.feign;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.github.wxiaoqi.security.api.agent.exception.AuthenticationServerErrorException;
+import com.github.wxiaoqi.security.api.agent.exception.AuthenticationVerifyFailException;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import jodd.http.HttpRequest;
 import jodd.http.HttpResponse;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -16,7 +17,7 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * Created by ace on 2017/7/5.
  */
-public class AuthenticationInterceptor implements RequestInterceptor {
+public class FeignInterceptor implements RequestInterceptor {
 
     private String clientId;
     private String secret;
@@ -24,7 +25,7 @@ public class AuthenticationInterceptor implements RequestInterceptor {
     private static String authHost;
     private String tokenHead;
 
-    public AuthenticationInterceptor(String clientId, String secret, String header, String authHost, String tokenHead) {
+    public FeignInterceptor(String clientId, String secret, String header, String authHost, String tokenHead) {
         this.clientId = clientId;
         this.secret = secret;
         this.authHeader = header;

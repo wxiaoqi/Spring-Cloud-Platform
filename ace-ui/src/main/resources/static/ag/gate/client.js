@@ -1,5 +1,5 @@
 var gateClient = {
-    baseUrl: "/back/gateClient",
+    baseUrl: "/gate/client",
     entity: "gateClient",
     tableId: "gateClientTable",
     toolbarId: "toolbar",
@@ -157,6 +157,7 @@ layui.use(['form', 'layedit', 'laydate'], function () {
                     addBoxIndex = -1;
                 }
             });
+            layer.full(addBoxIndex);
         });
     });
     $('#btn_edit').on('click', function () {
@@ -165,7 +166,7 @@ layui.use(['form', 'layedit', 'laydate'], function () {
             $.get(gateClient.baseUrl + '/' + id, null, function (data) {
                 var result = data.result;
                 $.get(gateClient.entity+'/edit', null, function (form) {
-                    layer.open({
+                    var index = layer.open({
                         type: 1,
                         title: '编辑用户',
                         content: form,
@@ -216,6 +217,7 @@ layui.use(['form', 'layedit', 'laydate'], function () {
                             });
                         }
                     });
+                    layer.full(index);
                 });
             });
         }

@@ -1,10 +1,9 @@
-package com.github.wxiaoqi.security.admin.rest;
+package com.github.wxiaoqi.security.api.gate.rest;
 
 import com.github.pagehelper.PageHelper;
-import com.github.wxiaoqi.security.admin.biz.GateClientBiz;
-import com.github.wxiaoqi.security.admin.entity.GateClient;
-import com.github.wxiaoqi.security.admin.entity.User;
-import com.github.wxiaoqi.security.admin.vo.GroupUsers;
+import com.github.wxiaoqi.security.api.gate.biz.GateClientBiz;
+import com.github.wxiaoqi.security.api.gate.entity.Element;
+import com.github.wxiaoqi.security.api.gate.entity.GateClient;
 import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import com.github.wxiaoqi.security.common.msg.TableResultResponse;
 import com.github.wxiaoqi.security.common.rest.BaseController;
@@ -13,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.List;
+
 /**
  * ${DESCRIPTION}
  *
@@ -20,7 +21,7 @@ import tk.mybatis.mapper.entity.Example;
  * @create 2017-06-29 15:58
  */
 @Controller
-@RequestMapping("gateClient")
+@RequestMapping("client")
 public class GateClientController extends BaseController<GateClientBiz,GateClient> {
     @RequestMapping(value = "/page",method = RequestMethod.GET)
     @ResponseBody
@@ -51,8 +52,8 @@ public class GateClientController extends BaseController<GateClientBiz,GateClien
 
     @RequestMapping(value = "/{id}/service", method = RequestMethod.GET)
     @ResponseBody
-    public ObjectRestResponse<GroupUsers> getServices(@PathVariable int id){
-        return new ObjectRestResponse<GroupUsers>().rel(true).result(baseBiz.getClientServices(id));
+    public ObjectRestResponse<List<Element>> getServices(@PathVariable int id){
+        return new ObjectRestResponse<List<Element>>().rel(true).result(baseBiz.getClientServices(id));
     }
 
 

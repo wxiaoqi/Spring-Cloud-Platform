@@ -1,4 +1,4 @@
-package com.github.wxiaoqi.security.api.agent.feign;
+package com.github.wxiaoqi.security.api.agent.exception;
 
 /**
  * Created by ace on 2017/7/5.

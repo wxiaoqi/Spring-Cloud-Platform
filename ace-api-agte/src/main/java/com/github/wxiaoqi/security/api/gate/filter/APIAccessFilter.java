@@ -1,6 +1,6 @@
 package com.github.wxiaoqi.security.api.gate.filter;
 
-import com.github.wxiaoqi.security.api.gate.rpc.IGateService;
+import com.github.wxiaoqi.security.api.gate.rpc.GateService;
 import com.github.wxiaoqi.security.api.gate.secruity.JwtTokenUtil;
 import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
 import com.google.common.base.Predicate;
@@ -11,17 +11,13 @@ import com.netflix.zuul.context.RequestContext;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 /**
  * ${DESCRIPTION}
@@ -29,11 +25,11 @@ import org.springframework.stereotype.Component;
  * @author wanghaobin
  * @create 2017-06-29 8:44
  */
-@Component
+//@Component
 @Slf4j
 public class APIAccessFilter extends ZuulFilter {
 	@Autowired
-	private IGateService gateService;
+	private GateService gateService;
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 	@Value("${jwt.header}")
@@ -79,7 +75,7 @@ public class APIAccessFilter extends ZuulFilter {
 			String authHeader = request.getHeader(this.tokenHeader);
 			if (authHeader != null && authHeader.startsWith(tokenHead)) {
 				final String authToken = authHeader.substring(tokenHead.length()); // The part after "Bearer "
-				String clientId = jwtTokenUtil.getUsernameFromToken(authToken);
+				String clientId = jwtTokenUtil.getClientIdFromToken(authToken);
 				List<PermissionInfo> clientPermissionInfo = gateService.getGateServiceInfo(clientId);
 				result = Collections2.filter(clientPermissionInfo, new Predicate<PermissionInfo>() {
 					@Override

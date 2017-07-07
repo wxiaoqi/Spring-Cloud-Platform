@@ -1,8 +1,6 @@
 package com.github.wxiaoqi.security.ui.config;
 
-import com.github.wxiaoqi.security.api.agent.feign.AuthenticationInterceptor;
-import feign.RequestInterceptor;
-import feign.RequestTemplate;
+import com.github.wxiaoqi.security.api.agent.feign.FeignInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,8 +22,8 @@ public class FeignApiConfig {
     private String tokenHead;
 
     @Bean
-    public AuthenticationInterceptor authenticationInterceptor() {
-        return new AuthenticationInterceptor(clientId, secret, authHeader, authHost, tokenHead);
+    public FeignInterceptor authenticationInterceptor() {
+        return new FeignInterceptor(clientId, secret, authHeader, authHost, tokenHead);
     }
 
 }

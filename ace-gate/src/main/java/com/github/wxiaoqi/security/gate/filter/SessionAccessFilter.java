@@ -50,6 +50,10 @@ public class SessionAccessFilter extends ZuulFilter {
     @Value("${gate.oauth.prefix}")
     private String oauthPrefix;
 
+    public SessionAccessFilter() {
+        super();
+    }
+
     @Override
     public String filterType() {
         return "pre";
@@ -91,13 +95,6 @@ public class SessionAccessFilter extends ZuulFilter {
         ctx.addZuulRequestHeader("userId", info.getId());
         ctx.addZuulRequestHeader("userName", URLEncoder.encode(info.getName()));
         ctx.addZuulRequestHeader("userHost", ClientUtil.getClientIp(ctx.getRequest()));
-//        String params = null;
-//        ParameterRequestWrapper requestWrapper = new ParameterRequestWrapper(ctx.getRequest(),new HashMap<String,String>());
-//        params = JSONObject.toJSONString(ctx.getRequest().getParameterMap());
-//        ctx.setRequest(requestWrapper);
-//        ctx.setRequestQueryParams(requestWrapper.getParameterMap());
-//        System.out.println(params);
-
         LogInfo logInfo = new LogInfo(pm.getMenu(),pm.getName(),pm.getUri(),new Date(),info.getId(),info.getName(),host);
         DBLog.getInstance().setLogService(logService).offerQueue(logInfo);
     }
