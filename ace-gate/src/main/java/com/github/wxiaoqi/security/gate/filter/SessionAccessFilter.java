@@ -23,6 +23,7 @@ import org.springframework.util.Base64Utils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.net.URLEncoder;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -48,6 +49,10 @@ public class SessionAccessFilter extends ZuulFilter {
     private String contain;
     @Value("${gate.oauth.prefix}")
     private String oauthPrefix;
+
+    public SessionAccessFilter() {
+        super();
+    }
 
     @Override
     public String filterType() {
@@ -88,15 +93,8 @@ public class SessionAccessFilter extends ZuulFilter {
         UserInfo info = userService.getUserByUsername(username);
         String host =  ClientUtil.getClientIp(ctx.getRequest());
         ctx.addZuulRequestHeader("userId", info.getId());
-        ctx.addZuulRequestHeader("userName", info.getName());
+        ctx.addZuulRequestHeader("userName", URLEncoder.encode(info.getName()));
         ctx.addZuulRequestHeader("userHost", ClientUtil.getClientIp(ctx.getRequest()));
-//        String params = null;
-//        ParameterRequestWrapper requestWrapper = new ParameterRequestWrapper(ctx.getRequest(),new HashMap<String,String>());
-//        params = JSONObject.toJSONString(ctx.getRequest().getParameterMap());
-//        ctx.setRequest(requestWrapper);
-//        ctx.setRequestQueryParams(requestWrapper.getParameterMap());
-//        System.out.println(params);
-
         LogInfo logInfo = new LogInfo(pm.getMenu(),pm.getName(),pm.getUri(),new Date(),info.getId(),info.getName(),host);
         DBLog.getInstance().setLogService(logService).offerQueue(logInfo);
     }

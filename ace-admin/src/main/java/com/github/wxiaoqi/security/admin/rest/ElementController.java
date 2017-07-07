@@ -35,10 +35,14 @@ public class ElementController extends BaseController<ElementBiz, Element> {
   @RequestMapping(value = "/page", method = RequestMethod.GET)
   @ResponseBody
   public TableResultResponse<Element> page(@RequestParam(defaultValue = "10") int limit,
-      @RequestParam(defaultValue = "1") int offset, @RequestParam(defaultValue = "0") int menuId) {
-    Element element = new Element();
-    element.setMenuId(menuId + "");
-    List<Element> elements = baseBiz.selectList(element);
+      @RequestParam(defaultValue = "1") int offset,String name, @RequestParam(defaultValue = "0") int menuId) {
+    Example example = new Example(Element.class);
+    Example.Criteria criteria = example.createCriteria();
+    criteria.andEqualTo("menuId", menuId);
+    if(StringUtils.isNotBlank(name)){
+      criteria.andLike("name", "%" + name + "%");
+    }
+    List<Element> elements = baseBiz.selectByExample(example);
     return new TableResultResponse<Element>(elements.size(), elements);
   }
 

@@ -30,6 +30,7 @@
         <module>ace-ui</module>
         <module>ace-common</module>
         <module>ace-api-agte</module>
+        <module>ace-api-agent</module>
     </modules>
     <packaging>pom</packaging>
     <developers>

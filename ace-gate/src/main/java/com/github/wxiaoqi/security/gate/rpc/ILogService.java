@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author wanghaobin
  * @create 2017-07-01 15:16
  */
-@RequestMapping("api")
 @FeignClient("admin-back")
+@RequestMapping("api")
 public interface ILogService {
   @RequestMapping(value="/log/save",method = RequestMethod.POST)
   public void saveLog(LogInfo info);

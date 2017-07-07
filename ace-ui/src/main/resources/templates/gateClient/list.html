@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Table</title>
+    <link rel="stylesheet" href="css/ag.css"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="plugins/bootstrap-table/css/bootstrap-table.min.css"/>
     <link rel="stylesheet" href="css/layui.css" media="all"/>
     <link rel="stylesheet" href="css/global.css" media="all">
+    <link rel="stylesheet" href="plugins/select2/css/select2.css" media="all">
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
 </head>
 
@@ -15,7 +17,7 @@
 <div class="admin-main">
     <form  class="layui-form layui-form-pane" onsubmit="javascript:return false;">
         <div class="layui-form-item" style="margin-bottom:0px;">
-            <label class="layui-form-label">姓名</label>
+            <label class="layui-form-label">客户端</label>
             <div class="layui-input-inline">
                 <input type="text" onchange="javascript:$('#btn_query').click();" class="layui-input" id="name">
             </div>
@@ -40,6 +42,9 @@
         <button class="layui-btn layui-btn-small" id="btn_unlock">
             <i class="fa fa-unlock"></i>
         </button>
+        <button class="layui-btn layui-btn-small" id="btn_authority">
+            <i class="fa fa-key"></i>
+        </button>
     </div>
     <table id="gateClientTable">
 
@@ -51,6 +56,7 @@
 <script type="text/javascript" src="bootstrap.min.js"></script>
 <script type="text/javascript" src="plugins/bootstrap-table/bootstrap-table.min.js"></script>
 <script type="text/javascript" src="layui.js"></script>
+<script type="text/javascript" src="plugins/select2/js/select2.min.js"></script>
 <script type="text/javascript" src="ag/common/util.js"></script>
 <script type="text/javascript" src="ag/gate/client.js"></script>
 </body>

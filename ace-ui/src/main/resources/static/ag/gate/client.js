@@ -1,5 +1,5 @@
 var gateClient = {
-    baseUrl: "/back/gateClient",
+    baseUrl: "/gate/client",
     entity: "gateClient",
     tableId: "gateClientTable",
     toolbarId: "toolbar",
@@ -16,10 +16,10 @@ gateClient.columns = function () {
     }, {
         field: 'code',
         title: 'clientId'
-    },{
+    }, {
         field: 'secret',
         title: '密钥'
-    }, {
+    },{
         field: 'locked',
         title: '状态',
         formatter: gateClient.lockFormatter
@@ -68,7 +68,8 @@ gateClient.init = function () {
         minimumCountColumns: 2, //最少允许的列数
         clickToSelect: true, //是否启用点击选中行
         uniqueId: gateClient.unique, //每一行的唯一标识，一般为主键列
-        showToggle: true, //是否显示详细视图和列表视图的切换按钮
+        showToggle: false, //是否显示详细视图和列表视图的切换按钮
+        singleSelect: true,
         cardView: false, //是否显示详细视图
         detailView: false, //是否显示父子表
         columns: gateClient.columns()
@@ -156,6 +157,7 @@ layui.use(['form', 'layedit', 'laydate'], function () {
                     addBoxIndex = -1;
                 }
             });
+            layer.full(addBoxIndex);
         });
     });
     $('#btn_edit').on('click', function () {
@@ -164,7 +166,7 @@ layui.use(['form', 'layedit', 'laydate'], function () {
             $.get(gateClient.baseUrl + '/' + id, null, function (data) {
                 var result = data.result;
                 $.get(gateClient.entity+'/edit', null, function (form) {
-                    layer.open({
+                    var index = layer.open({
                         type: 1,
                         title: '编辑用户',
                         content: form,
@@ -196,7 +198,7 @@ layui.use(['form', 'layedit', 'laydate'], function () {
                             editIndex = layedit.build('description_editor');
                             form.render();
                             layero.find(":input[name='code']").attr("disabled", "");
-                            layero.find(":input[name='secret']").attr("disabled", "");
+                            //layero.find(":input[name='secret']").attr("disabled", "");
                             form.on('submit(edit)', function (data) {
                                 $.ajax({
                                     url: gateClient.baseUrl + "/" + result.id,
@@ -215,6 +217,7 @@ layui.use(['form', 'layedit', 'laydate'], function () {
                             });
                         }
                     });
+                    layer.full(index);
                 });
             });
         }
@@ -237,6 +240,111 @@ layui.use(['form', 'layedit', 'laydate'], function () {
                     }
                 });
                 layer.close(index);
+            });
+        }
+    });
+    $('#btn_lock').on('click', function () {
+        if (gateClient.select(layerTips)) {
+            var id = gateClient.currentItem.id;
+            var result = gateClient.currentItem;
+            result.locked = 1;
+            $.ajax({
+                url: gateClient.baseUrl + "/" + id+"/lock",
+                type: 'put',
+                data: result,
+                dataType: "json",
+                success: function () {
+                    layerTips.msg('锁定成功');
+                    location.reload();
+                }
+            });
+        }
+    });
+    $('#btn_unlock').on('click', function () {
+        if (gateClient.select(layerTips)) {
+            var id = gateClient.currentItem.id;
+            var result = gateClient.currentItem;
+            result.locked = 0;
+            $.ajax({
+                url: gateClient.baseUrl + "/" + id+"/lock",
+                type: 'put',
+                data: result,
+                dataType: "json",
+                success: function () {
+                    layerTips.msg('解锁成功');
+                    location.reload();
+                }
+            });
+        }
+    });
+    $('#btn_authority').on("click", function () {
+        if (gateClient.select(layerTips)) {
+            var id = gateClient.currentItem.id;
+            $.get(gateClient.entity + '/authority', null, function (form) {
+                var index = layer.open({
+                    type: 1,
+                    title: '添加用户',
+                    content: form,
+                    btn: ['保存', '取消'],
+                    shade: false,
+                    offset: ['20px', '20%'],
+                    area: ['600px', '400px'],
+                    maxmin: true,
+                    yes: function (index) {
+                        //触发表单的提交事件
+                        $('form.layui-form').find('button[lay-filter=edit]').click();
+                    },
+                    full: function (elem) {
+                        var win = window.top === window.self ? window : parent.window;
+                        $(win).on('resize', function () {
+                            debugger;
+                            var $this = $(this);
+                            elem.width($this.width()).height($this.height()).css({
+                                top: 0,
+                                left: 0
+                            });
+                            elem.children('div.layui-layer-content').height($this.height() - 95);
+                        });
+                    },
+                    success: function (layero, index) {
+                        var form = layui.form();
+                        // 获取人员
+                        $.get(gateClient.baseUrl + '/' + id + "/service", null, function (data) {
+                            if (!data.rel) {
+                                layerTips.msg('获取数据异常！');
+                                return;
+                            }
+                          var services = data.result;
+                            var serviceOpt = "";
+                            for (var i = 0; i < services.length; i++) {
+                                // layero.find("#groupMember").append();
+                                serviceOpt += '<option  value="' + services[i].id + '" selected>' + services[i].name + '</option>';
+                            }
+                            // 加载人员
+                            layero.find("#service").append(serviceOpt).trigger('change');
+                        });
+
+                        form.on('submit(edit)', function (data) {
+                            var vals = {};
+                            var leas = layero.find("#service").val()
+                            if (leas)
+                                vals.services = leas.join();
+                            $.ajax({
+                                url: gateClient.baseUrl + '/' + id + "/service",
+                                type: 'put',
+                                data: vals,
+                                dataType: "json",
+                                success: function () {
+                                    layerTips.msg('更新成功');
+                                    layer.close(index);
+                                }
+
+                            });
+                            //这里可以写ajax方法提交表单
+                            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+                        });
+                    }
+                });
             });
         }
     });

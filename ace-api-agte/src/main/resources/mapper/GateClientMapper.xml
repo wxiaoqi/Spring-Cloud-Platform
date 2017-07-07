@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.github.wxiaoqi.security.admin.mapper.GateClientMapper" >
-  <resultMap id="BaseResultMap" type="com.github.wxiaoqi.security.admin.entity.GateClient" >
+<mapper namespace="com.github.wxiaoqi.security.api.gate.mapper.GateClientMapper" >
+  <resultMap id="BaseResultMap" type="com.github.wxiaoqi.security.api.gate.entity.GateClient" >
     <!--
       WARNING - @mbggenerated
     -->
@@ -28,4 +28,15 @@
     <result column="attr7" property="attr7" jdbcType="VARCHAR" />
     <result column="attr8" property="attr8" jdbcType="VARCHAR" />
   </resultMap>
+  <insert id="insertClientServiceById">
+    insert into gate_client_service (
+    client_id,service_id
+    )
+    values(
+    #{clientId},#{serviceId}
+    )
+  </insert>
+  <delete id="deleteClientServiceById">
+    delete from gate_client_service where client_id = #{clientId}
+  </delete>
 </mapper>

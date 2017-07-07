@@ -3,13 +3,14 @@ logging:
         tk.mybatis: DEBUG
         com.github.wxiaoqi.security.admin: DEBUG
   #  config: classpath:logback.xml
-    path: /ag/admin
+    # path: /ag/admin
 spring:
     application:
         name: admin-back
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
         time-zone: GMT+8
+        default-property-inclusion: non_null
     boot:
         admin:
              url: http://localhost:8764
@@ -17,7 +18,7 @@ spring:
         name: test
         url: jdbc:mysql://localhost:3306/ag_admin?useUnicode=true&characterEncoding=UTF8
         username: root
-        password:
+        password: 123456
         # 使用druid数据源
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
@@ -54,3 +55,7 @@ swagger:
         name: Admin Back
         description: Admin Back后端服务
         developer: 老A
+
+gate:
+  client:
+    authHost: http://localhost:8765/api

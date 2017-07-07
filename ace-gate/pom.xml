@@ -34,7 +34,6 @@
         <dependency>
             <groupId>net.sourceforge.nekohtml</groupId>
             <artifactId>nekohtml</artifactId>
-            <version>1.9.22</version>
         </dependency>
         <dependency>
             <groupId>com.github.wxiaoqi</groupId>
@@ -57,7 +56,6 @@
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session</artifactId>
-            <version>1.2.2.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

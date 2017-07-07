@@ -9,6 +9,7 @@ import com.github.wxiaoqi.security.admin.entity.Element;
 import com.github.wxiaoqi.security.admin.entity.Menu;
 import com.github.wxiaoqi.security.admin.entity.User;
 import com.github.wxiaoqi.security.admin.vo.MenuTree;
+import com.github.wxiaoqi.security.api.agent.rest.ApiGateSecurity;
 import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
 import com.github.wxiaoqi.security.api.vo.user.UserInfo;
 import com.github.wxiaoqi.security.common.util.TreeUtil;
@@ -84,6 +85,7 @@ public class UserService {
         }
         return result;
     }
+    @ApiGateSecurity
     @RequestMapping(value = "/user/un/{username}/system", method = RequestMethod.GET)
     @ResponseBody
     public String getSystemsByUsername(@PathVariable("username") String username){

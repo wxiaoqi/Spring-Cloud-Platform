@@ -27,3 +27,11 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 5000
+
+gate:
+  client:
+    clientId: admin-ui
+    secret: test
+    authHeader: access-token
+    authHost: http://localhost:8765/api
+    tokenHead: ApiGateToken

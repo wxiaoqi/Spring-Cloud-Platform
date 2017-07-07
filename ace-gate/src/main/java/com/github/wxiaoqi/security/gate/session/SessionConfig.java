@@ -14,10 +14,6 @@ import org.springframework.session.data.redis.config.ConfigureRedisAction;
 @Configuration
 public class SessionConfig {
     @Bean
-    public JedisConnectionFactory connectionFactory() {
-        return new JedisConnectionFactory();
-    }
-    @Bean
     public static ConfigureRedisAction configureRedisAction() {
         return ConfigureRedisAction.NO_OP;
     }
