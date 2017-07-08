@@ -6,7 +6,7 @@ QQ群号：169824183
 
 访问地址: http://120.77.133.155/admin/index 
 
-账号/密码：test/test
+账号/密码：admin/admin
 
 ![Markdown](http://i1.buimg.com/1949/39fbe8cbf5fd961f.png)
 
@@ -30,19 +30,19 @@ QQ群号：169824183
 # 项目结构
 ```
 ├─ace-security
-│  │  
+│  │
 │  ├─ace-admin----------------管理端服务层
-│  │  
+│  │
 │  ├─ace-gate-----------------网关负载中心
-│  │ 
+│  │
 │  ├─ace-ui-------------------前端UI层面
-│  │    
+│  │
 │  ├─ace-center---------------服务注册中心
-│  │   
+│  │
 │  ├─ace-monitor--------------监控中心
-│  │     
+│  │
 │  └─ace-api------------------公共服务接口包
-│  
+│
 ```
 
 ------------
@@ -52,8 +52,7 @@ QQ群号：169824183
 3. 部门管理（待完善）
 4. 菜单管理
 5. 字典管理
-6. 业务日志（待完善）
-7. 登录日志（待完善）
+6. 操作日志
 8. 监控管理
 9. 消息管理（待完善）
 10. 代码生成（待完善）
@@ -61,57 +60,26 @@ QQ群号：169824183
 -----
 
 # 启动指南
-
-- 运行数据库脚本，创建库：ag_admin，脚本：ace-admin/db/init.sql
-- 依次运行main类：CenterBootstrap（ace-center）、GateBootstrap（ace-gate）、AdminBootstrap（ace-admin）、UIBootstrap（ace-ui）、MonitorBootstrap（ace-monitor）
+## 部署须知
+- mysql数据库一个，redis数据库一个
+- jdk1.8
+- IDE插件一个，lombok插件，具体百度即可
+## 运行步骤
+- 运行数据库脚本：依次运行数据库：ace-admin/db/init.sql,ace-api-gate/db/init.sql
+- 修改配置数据库配置：ace-admin/src/main/resources/application.yml、ace-api-gat/src/main/resources/application.yml、ace-gate/src/main/resources/application.yml
+- 依次运行main类：CenterBootstrap（ace-center）、GateBootstrap（ace-gate）、AdminBootstrap（ace-admin）、UIBootstrap（ace-ui）、ApiGateBootstrap（ace-api-gate）、MonitorBootstrap（ace-monitor）
 - 访问地址: http://localhost:8765/admin/index  账号/密码：admin/admin
-- 启动一个redis，用于ace-gate的session管理
+
 ---------
 
-# 版本日志
-### 2017年6月6日 初步架构搭建
-- 完成spring cloud相关核心组件整合和搭建
-- 完成Hello World服务的调用和负载
-- 完成网关的初步代理
-- 完成监控中心的搭建
 
-
-### 2017年6月10日 用户管理增删改查
-![Markdown](http://i1.buimg.com/1949/39fbe8cbf5fd961f.png)
-- 完成后端的UI的选型
-- 完成首页改进
-- 完成用户模块的增删该查
-- 完成前后端分离的模块联通
-- 完成监控模块
-
-
-### 2017年6月13日 完成登录统一拦截
-![img](http://ofsc32t59.bkt.clouddn.com/17-06-15/1497541226023.jpg?imageView2/2/w/800)
-- spring security进行统一登录拦截
-
-
-### 2017年6月17日 完成菜单管理模块
-![img](http://ofsc32t59.bkt.clouddn.com/17-06-15/1497540870148.jpg)
-- 引入boostrap table
-- 抽象基础Controller类
-- 完成菜单的增删改查和树状
-- 多系统菜单切换
-
-
-### 2017年6月20日 完成角色和部门模块
-![img](http://ofsc32t59.bkt.clouddn.com/17-06-17/1497698348097.jpg)
-- 完成动态用户组设计
-- 完成动态角色、部门组功能
-- 完成角色与用户的关联
-- 完成角色与菜单的关联
-
-### 2017年6月24日 完善监控模块
-![img](http://ofsc32t59.bkt.clouddn.com/17-06-24/1498313933332.jpg)
-![img](http://ofsc32t59.bkt.clouddn.com/17-06-24/1498314057039.jpg)
-![img](http://ofsc32t59.bkt.clouddn.com/17-06-24/1498314097360.jpg)
-- druid监控集成
-- spring boot监控集成
-- hystrix监控集成
+### 2017年7月7日 服务鉴权v1.0
+![img](http://ofsc32t59.bkt.clouddn.com/17-07-08/1499473823364.jpg)
+![img](http://ofsc32t59.bkt.clouddn.com/17-07-08/1499473864458.jpg)
+- api鉴权中心落地
+- 客户端和服务端授权管理
+- 客户端和服务端鉴权开发
+- 详情见wiki：服务鉴权文档
 
 ### 2017年6月25日 完成资源权限管控
 ![img](http://ofsc32t59.bkt.clouddn.com/17-06-24/1498313864701.jpg)
@@ -121,11 +89,48 @@ QQ群号：169824183
 - 完成前端和后端权限拦截
 - 页面按钮权限显示和隐藏（待完成）
 
-### 2017年6月28日 完成初级网关
-- 用户合法性拦截
-- 用户资源权限拦截
-- 访问日志流水（待完成）
-- oauth2.0集成（待完成）
+### 2017年6月24日 完善监控模块
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-24/1498313933332.jpg)
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-24/1498314057039.jpg)
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-24/1498314097360.jpg)
+- druid监控集成
+- spring boot监控集成
+- hystrix监控集成
+
+### 2017年6月20日 完成角色和部门模块
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-17/1497698348097.jpg)
+- 完成动态用户组设计
+- 完成动态角色、部门组功能
+- 完成角色与用户的关联
+- 完成角色与菜单的关联
+
+### 2017年6月17日 完成菜单管理模块
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-15/1497540870148.jpg)
+- 引入boostrap table
+- 抽象基础Controller类
+- 完成菜单的增删改查和树状
+- 多系统菜单切换
+
+
+### 2017年6月13日 完成登录统一拦截
+![img](http://ofsc32t59.bkt.clouddn.com/17-06-15/1497541226023.jpg?imageView2/2/w/800)
+- spring security进行统一登录拦截
+
+### 2017年6月10日 用户管理增删改查
+![Markdown](http://i1.buimg.com/1949/39fbe8cbf5fd961f.png)
+- 完成后端的UI的选型
+- 完成首页改进
+- 完成用户模块的增删该查
+- 完成前后端分离的模块联通
+- 完成监控模块
+
+# 版本日志
+### 2017年6月6日 初步架构搭建
+- 完成spring cloud相关核心组件整合和搭建
+- 完成Hello World服务的调用和负载
+- 完成网关的初步代理
+- 完成监控中心的搭建
+
 
 # 欢迎交流
 ![img](http://ofsc32t59.bkt.clouddn.com/17-06-16/1497595760484.jpg)
