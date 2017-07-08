@@ -17,9 +17,6 @@ gateClient.columns = function () {
         field: 'code',
         title: 'clientId'
     }, {
-        field: 'secret',
-        title: '密钥'
-    },{
         field: 'locked',
         title: '状态',
         formatter: gateClient.lockFormatter
