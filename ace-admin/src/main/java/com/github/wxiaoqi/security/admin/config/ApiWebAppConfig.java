@@ -13,9 +13,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class ApiWebAppConfig extends WebMvcConfigurerAdapter {
     @Value("${gate.client.authHost}")
     private String authHost;
+    @Value("${gate.client.authHeader}")
+    private String authHeader;
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new ApiInterceptor(authHost)).addPathPatterns("/**");
+        registry.addInterceptor(new ApiInterceptor(authHost,authHeader)).addPathPatterns("/**");
         super.addInterceptors(registry);
     }
 }
