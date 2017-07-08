@@ -59,3 +59,4 @@ swagger:
 gate:
   client:
     authHost: http://localhost:8765/api
+    authHeader: access-token
