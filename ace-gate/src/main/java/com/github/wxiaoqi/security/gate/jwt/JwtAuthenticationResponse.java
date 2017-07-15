@@ -1,4 +1,4 @@
-package com.github.wxiaoqi.security.api.gate.secruity;
+package com.github.wxiaoqi.security.gate.jwt;
 
 import java.io.Serializable;
 

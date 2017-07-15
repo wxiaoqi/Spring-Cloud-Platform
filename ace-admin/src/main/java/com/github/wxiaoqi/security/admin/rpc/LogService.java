@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * ${DESCRIPTION}
@@ -23,7 +24,7 @@ public class LogService {
     @Autowired
     private GateLogBiz gateLogBiz;
     @RequestMapping(value="/log/save",method = RequestMethod.POST)
-    public void saveLog(@RequestBody LogInfo info){
+    public @ResponseBody void saveLog(@RequestBody LogInfo info){
         GateLog log = new GateLog();
         BeanUtils.copyProperties(info,log);
         gateLogBiz.insertSelective(log);

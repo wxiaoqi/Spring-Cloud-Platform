@@ -1,6 +1,7 @@
 package com.github.wxiaoqi.security.api.vo.user;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * ${DESCRIPTION}
@@ -14,6 +15,16 @@ public class UserInfo implements Serializable{
     public String password;
     public String name;
     private String description;
+
+    public Date getUpdTime() {
+        return updTime;
+    }
+
+    public void setUpdTime(Date updTime) {
+        this.updTime = updTime;
+    }
+
+    private Date updTime;
 
     public String getId() {
         return id;

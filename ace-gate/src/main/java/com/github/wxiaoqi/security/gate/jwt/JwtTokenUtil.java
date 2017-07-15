@@ -1,10 +1,12 @@
-package com.github.wxiaoqi.security.api.gate.secruity;
+package com.github.wxiaoqi.security.gate.jwt;
 
 import com.github.wxiaoqi.security.api.vo.gate.ClientInfo;
+import com.github.wxiaoqi.security.api.vo.user.UserInfo;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -20,13 +22,13 @@ public class JwtTokenUtil implements Serializable {
     private static final String CLAIM_KEY_USERNAME = "sub";
     private static final String CLAIM_KEY_CREATED = "created";
 
-    @Value("${jwt.secret}")
+    @Value("${gate.jwt.secret}")
     private String secret;
 
-    @Value("${jwt.expiration}")
+    @Value("${gate.jwt.expiration}")
     private Long expiration;
 
-    public String getClientIdFromToken(String token) {
+    public String getUsernameFromToken(String token) {
         String username;
         try {
             final Claims claims = getClaimsFromToken(token);
@@ -85,9 +87,9 @@ public class JwtTokenUtil implements Serializable {
         return (lastPasswordReset != null && created.before(lastPasswordReset));
     }
 
-    public String generateToken(ClientInfo info) {
+    public String generateToken(UserInfo info) {
         Map<String, Object> claims = new HashMap<String, Object>();
-        claims.put(CLAIM_KEY_USERNAME, info.getCode());
+        claims.put(CLAIM_KEY_USERNAME, info.getUsername());
         claims.put(CLAIM_KEY_CREATED, new Date());
         return generateToken(claims);
     }
@@ -118,11 +120,11 @@ public class JwtTokenUtil implements Serializable {
         return refreshedToken;
     }
 
-    public Boolean validateToken(String token, ClientInfo info) {
-        final String clientId = getClientIdFromToken(token);
+    public Boolean validateToken(String token, UserDetails info) {
+        final String username = getUsernameFromToken(token);
         final Date created = getCreatedDateFromToken(token);
         return (
-                clientId.equals(info.getCode())
+                username.equals(info.getUsername())
                         && !isTokenExpired(token));
     }
 }

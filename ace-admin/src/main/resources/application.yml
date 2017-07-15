@@ -11,9 +11,9 @@ spring:
         date-format: yyyy-MM-dd HH:mm:ss
         time-zone: GMT+8
         default-property-inclusion: non_null
-    boot:
-        admin:
-             url: http://localhost:8764
+#    boot:
+#        admin:
+#             url: http://localhost:8764
     datasource:
         name: test
         url: jdbc:mysql://localhost:3306/ag_admin?useUnicode=true&characterEncoding=UTF8
@@ -44,8 +44,8 @@ server:
 
 eureka:
     instance:
-        statusPageUrlPath: ${management.context-path}/info
-        healthCheckUrlPath: ${management.context-path}/health
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
     client:
         serviceUrl:
             defaultZone: http://localhost:8761/eureka/
@@ -55,8 +55,3 @@ swagger:
         name: Admin Back
         description: Admin Back后端服务
         developer: 老A
-
-gate:
-  client:
-    authHost: http://localhost:8765/api
-    authHeader: access-token

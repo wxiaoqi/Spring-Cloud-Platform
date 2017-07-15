@@ -1,11 +1,10 @@
-package com.github.wxiaoqi.security.api.gate.auth;
+package com.github.wxiaoqi.security.gate.controller;
 
-import com.github.wxiaoqi.security.api.gate.secruity.JwtAuthenticationRequest;
-import com.github.wxiaoqi.security.api.gate.secruity.JwtAuthenticationResponse;
+import com.github.wxiaoqi.security.gate.service.AuthService;
+import com.github.wxiaoqi.security.gate.jwt.JwtAuthenticationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-//@RequestMapping("auth")
+@RequestMapping("/api/jwt")
 public class AuthController {
-    @Value("${jwt.header}")
+    @Value("${gate.jwt.header}")
     private String tokenHeader;
 
     @Autowired
@@ -23,10 +22,8 @@ public class AuthController {
 
     @RequestMapping(value = "auth", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(
-            @RequestBody JwtAuthenticationRequest authenticationRequest) {
-        final String token = authService.login(authenticationRequest.getClientId(), authenticationRequest.getSecret());
-
-        // Return the token
+           String username,String password) {
+        final String token = authService.login(username, password);
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
 

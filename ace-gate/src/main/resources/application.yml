@@ -17,8 +17,6 @@ server:
     port: 8765 #启动端口
 #
 zuul:
-#  prefix: /api #为zuul设置一个公共的前缀
-#  #ignoredServices: '*'
   routes:
     back:
       path: /back/**
@@ -28,26 +26,15 @@ zuul:
       path: /admin/**
       serviceId: admin-ui
 
-    gate:
-      path: /gate/**
-      serviceId: api-gate
-
-    api:
-      path: /api/**
-      serviceId: api-gate
 
 ribbon:
   eureka:
     enabled: true
 
-#ace-monitor:
-#  ribbon:
-#    listOfServers: 127.0.0.1:8764
-
 eureka:
     instance:
-        statusPageUrlPath: ${management.context-path}/info
-        healthCheckUrlPath: ${management.context-path}/health
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
     client:
         serviceUrl:
             defaultZone: http://localhost:8761/eureka/
@@ -81,4 +68,8 @@ gate:
     contain: .
   oauth:
     prefix: /api
-#    authorizationUrl:
+
+  jwt:
+    secret: Xe*g@1jda
+    expiration: 7200
+    header: access-token

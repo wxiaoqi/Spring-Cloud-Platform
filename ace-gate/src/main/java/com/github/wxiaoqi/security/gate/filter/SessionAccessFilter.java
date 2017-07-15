@@ -129,7 +129,7 @@ public class SessionAccessFilter extends ZuulFilter {
     private List<PermissionInfo> getPermissionInfos(HttpServletRequest request, String username) {
         List<PermissionInfo> permissionInfos;
         if (request.getSession().getAttribute("permission") == null) {
-            permissionInfos = userService.getPermissionByUserId(username);
+            permissionInfos = userService.getPermissionByUsername(username);
             request.getSession().setAttribute("permission", permissionInfos);
         } else {
             permissionInfos = (List<PermissionInfo>) request.getSession().getAttribute("permission");

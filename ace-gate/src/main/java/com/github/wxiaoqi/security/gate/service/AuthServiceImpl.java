@@ -1,9 +1,9 @@
-package com.github.wxiaoqi.security.api.gate.auth;
+package com.github.wxiaoqi.security.gate.service;
 
-import com.github.wxiaoqi.security.api.gate.rpc.GateService;
-import com.github.wxiaoqi.security.api.gate.secruity.JwtTokenUtil;
 import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
-import com.github.wxiaoqi.security.api.vo.gate.ClientInfo;
+import com.github.wxiaoqi.security.api.vo.user.UserInfo;
+import com.github.wxiaoqi.security.gate.jwt.JwtTokenUtil;
+import com.github.wxiaoqi.security.gate.rpc.IUserService;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,36 +19,32 @@ import java.util.regex.Pattern;
 public class AuthServiceImpl implements AuthService {
 
     private JwtTokenUtil jwtTokenUtil;
-    private GateService gateService;
+    private IUserService userService;
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
-
-    @Value("${jwt.tokenHead}")
-    private String tokenHead;
 
     @Autowired
     public AuthServiceImpl(
             JwtTokenUtil jwtTokenUtil,
-            GateService gateService) {
+            IUserService userService) {
         this.jwtTokenUtil = jwtTokenUtil;
-        this.gateService = gateService;
+        this.userService = userService;
     }
 
 
     @Override
-    public String login(String clientId, String secret) {
-        ClientInfo info = gateService.getGateClientInfo(clientId);
+    public String login(String username, String password) {
+        UserInfo info = userService.getUserByUsername(username);
         String token = "";
-        if(encoder.matches(secret,info.getSecret())) {
+        if(encoder.matches(password,info.getPassword())) {
            token = jwtTokenUtil.generateToken(info);
         }
         return token;
     }
 
     @Override
-    public String refresh(String oldToken) {
-        final String token = oldToken.substring(tokenHead.length());
-        String clientId = jwtTokenUtil.getClientIdFromToken(token);
-        ClientInfo info = gateService.getGateClientInfo(clientId);
+    public String refresh(String token) {
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        UserInfo info = userService.getUserByUsername(username);
         if (jwtTokenUtil.canTokenBeRefreshed(token,info.getUpdTime())){
             return jwtTokenUtil.refreshToken(token);
         }
@@ -56,18 +52,17 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public Boolean validate(String oldToken,String resource) {
-        final String token = oldToken.substring(tokenHead.length());
-        String clientId = jwtTokenUtil.getClientIdFromToken(token);
-        ClientInfo info = gateService.getGateClientInfo(clientId);
-        return info.getCode().equals(clientId)&&!jwtTokenUtil.isTokenExpired(token)&&validateResource(clientId,resource);
+    public Boolean validate(String token,String resource) {
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        UserInfo info = userService.getUserByUsername(username);
+        return info.getUsername().equals(username)&&!jwtTokenUtil.isTokenExpired(token)&&validateResource(username,resource);
     }
 
-    public Boolean validateResource(String clientId, String resource){
+    public Boolean validateResource(String username, String resource){
         String [] res = resource.split(":");
         final String requestUri = res[0];
         final String method = res[1];
-        List<PermissionInfo> clientPermissionInfo = gateService.getGateServiceInfo(clientId);
+        List<PermissionInfo> clientPermissionInfo = userService.getPermissionByUsername(username);
         Collection<PermissionInfo> result = Collections2.filter(clientPermissionInfo, new Predicate<PermissionInfo>() {
             @Override
             public boolean apply(PermissionInfo permissionInfo) {

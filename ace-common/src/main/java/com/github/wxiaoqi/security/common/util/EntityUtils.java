@@ -25,7 +25,6 @@ public class EntityUtils {
 	 * 快速将bean的crtUser、crtHost、crtTime、updUser、updHost、updTime附上相关值
 	 * 
 	 * @param entity 实体bean 
-	 * 		user类型为com.neusoft.unieap.techcomp.org.entity.User，time类型为Timestamp
 	 * @author 王浩彬
 	 */
 	public static <T> void setCreatAndUpdatInfo(T entity) {
@@ -37,7 +36,6 @@ public class EntityUtils {
 	 * 快速将bean的crtUser、crtHost、crtTime附上相关值
 	 * 
 	 * @param entity 实体bean
-	 * 		user类型为com.neusoft.unieap.techcomp.org.entity.User，time类型为Timestamp
 	 * @author 王浩彬
 	 */
 	public static <T> void setCreateInfo(T entity){
@@ -67,7 +65,6 @@ public class EntityUtils {
 	 * 快速将bean的updUser、updHost、updTime附上相关值
 	 * 
 	 * @param entity 实体bean
-	 * 		user类型为com.neusoft.unieap.techcomp.org.entity.User，time类型为Timestamp
 	 * @author 王浩彬
 	 */
 	public static <T> void setUpdatedInfo(T entity){

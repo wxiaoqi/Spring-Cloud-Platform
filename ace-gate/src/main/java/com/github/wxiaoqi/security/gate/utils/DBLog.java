@@ -25,7 +25,8 @@ public class DBLog extends Thread {
     }
 
     public DBLog setLogService(ILogService logService) {
-        this.logService = logService;
+        if(this.logService==null)
+            this.logService = logService;
         return this;
     }
 
