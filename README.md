@@ -65,21 +65,17 @@ QQ群号：169824183
 - jdk1.8
 - IDE插件一个，lombok插件，具体百度即可
 ## 运行步骤
-- 运行数据库脚本：依次运行数据库：ace-admin/db/init.sql,ace-api-gate/db/init.sql
-- 修改配置数据库配置：ace-admin/src/main/resources/application.yml、ace-api-gat/src/main/resources/application.yml、ace-gate/src/main/resources/application.yml
-- 依次运行main类：CenterBootstrap（ace-center）、GateBootstrap（ace-gate）、AdminBootstrap（ace-admin）、UIBootstrap（ace-ui）、ApiGateBootstrap（ace-api-gate）、MonitorBootstrap（ace-monitor）
+- 运行数据库脚本：依次运行数据库：ace-admin/db/init.sql
+- 修改配置数据库配置：ace-admin/src/main/resources/application.yml、ace-gate/src/main/resources/application.yml
+- 依次运行main类：CenterBootstrap（ace-center）、GateBootstrap（ace-gate）、AdminBootstrap（ace-admin）、UIBootstrap（ace-ui）
 - 访问地址: http://localhost:8765/admin/index  账号/密码：admin/admin
 
 ---------
 
 
-### 2017年7月7日 服务鉴权v1.0
-![img](http://ofsc32t59.bkt.clouddn.com/17-07-08/1499473823364.jpg)
-![img](http://ofsc32t59.bkt.clouddn.com/17-07-08/1499473864458.jpg)
-- api鉴权中心落地
-- 客户端和服务端授权管理
-- 客户端和服务端鉴权开发
-- 详情见wiki：服务鉴权文档
+### 2017年7月7日 用户无状态登陆
+-  完成用户基于token方式登陆
+-  增加用户jwt认证
 
 ### 2017年6月25日 完成资源权限管控
 ![img](http://ofsc32t59.bkt.clouddn.com/17-06-24/1498313864701.jpg)
@@ -130,6 +126,11 @@ QQ群号：169824183
 - 完成Hello World服务的调用和负载
 - 完成网关的初步代理
 - 完成监控中心的搭建
+
+
+
+
+
 
 
 # 欢迎交流
