@@ -26,6 +26,9 @@ zuul:
       path: /admin/**
       serviceId: admin-ui
 
+    blog:
+      path: /blog/**
+      serviceId: blog-admin
 
 ribbon:
   eureka:
@@ -35,9 +38,14 @@ eureka:
     instance:
         statusPageUrlPath: /info
         healthCheckUrlPath: /health
+        # docker 部署开启
+#        prefer-ip-address: true
+#        ip-address: 127.0.0.1
     client:
         serviceUrl:
             defaultZone: http://localhost:8761/eureka/
+                    # docker 部署开启
+#            defaultZone: http://center:8761/eureka/
 security:
     user:
         name: admin
@@ -64,7 +72,7 @@ feign:
 
 gate:
   ignore:
-    startWith: /back/menu/user,/admin/index,/admin/about
+    startWith: /admin,/blog/api
     contain: .
   oauth:
     prefix: /api

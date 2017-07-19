@@ -21,6 +21,10 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.4.2.RELEASE</version>
     </parent>
+    <properties>
+        <docker.image.prefix>ag</docker.image.prefix>
+        <docker.plugin.version>0.4.13</docker.plugin.version>
+    </properties>
     <modules>
         <module>ace-admin</module>
         <module>ace-center</module>
@@ -29,6 +33,7 @@
         <module>ace-gate</module>
         <module>ace-ui</module>
         <module>ace-common</module>
+        <module>ace-blog-parent</module>
     </modules>
     <packaging>pom</packaging>
     <developers>

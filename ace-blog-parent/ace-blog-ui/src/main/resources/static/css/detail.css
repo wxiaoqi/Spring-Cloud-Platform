@@ -1,0 +1,49 @@
+﻿/*
+
+@Name：不落阁整站模板源码 
+@Author：Absolutely 
+@Site：http://www.lyblogs.cn
+
+*/
+
+.article-detail {
+    background: #fff;
+    padding: 15px;
+    box-shadow: 0 1px 8px #a6a6a6;
+    margin-bottom: 15px;
+}
+
+.article-detail-title {
+    text-align: center;
+    margin: 20px 0px;
+    color: #1AA094;
+    font-weight: 700;
+    text-shadow: 0 0 8px white;
+    font-size: 28px;
+}
+
+.article-detail-info {
+    border: 1px dashed #808080;
+    font-size: 13px;
+    color: #808080;
+    padding: 5px 0;
+    font-family: SimSun;
+    text-align: center;
+    margin: 0 0 10px;
+}
+
+.article-detail-info span {
+    margin: 0 5px;
+}
+
+.article-detail-content {
+    padding: 10px 5px;
+}
+
+/*代码区域*/
+pre {
+    background-color: #f5f5f5 !important;
+    border-radius: 0px !important;
+    border: 1px solid #ccc !important;
+    font-size: 13px !important;
+}

@@ -11,6 +11,15 @@ public class ListRestResponse<T> {
     String msg;
     T result;
     int count;
+    String callback;
+
+    public String getCallback() {
+        return callback;
+    }
+
+    public void setCallback(String callback) {
+        this.callback = callback;
+    }
 
     public boolean isRel() {
         return rel;
@@ -49,6 +58,11 @@ public class ListRestResponse<T> {
         return this;
     }
 
+    public ListRestResponse count(Long count) {
+        this.setCount(count.intValue());
+        return this;
+    }
+
     public ListRestResponse rel(boolean rel) {
         this.setRel(rel);
         return this;
@@ -63,4 +77,5 @@ public class ListRestResponse<T> {
         this.setResult(result);
         return this;
     }
+
 }

@@ -1,0 +1,171 @@
+.layui-markdown {
+
+}
+.layui-markdown ul,
+.layui-markdown ol {
+    padding: 0;
+}
+
+.layui-markdown p {
+    line-height: 200%;
+    color: #636363;
+}
+.layui-markdown a {
+    color: #B34E22;
+}
+.layui-markdown a:hover {
+    color: #009688;
+}
+
+.layui-markdown h1,
+.layui-markdown h2,
+.layui-markdown h3,
+.layui-markdown h4,
+.layui-markdown h5,
+.layui-markdown h6 {
+    color: #0B8CD6;
+    font-weight: 500;
+}
+
+.layui-markdown h1 {
+    color: #0B8CD6;
+    margin: 35px 0 15px;
+    font-size: 30px;
+}
+
+.layui-markdown h2 {
+    margin: 30px 0 15px;
+    font-size: 26px;
+}
+
+.layui-markdown h3 {
+    margin-top: 20px;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 1.5;
+}
+
+.layui-markdown h4 {
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+.layui-markdown h5,
+.layui-markdown h6 {
+    font-size: 16px;
+}
+.layui-markdown h5 {
+    margin-top: 10px;
+}
+.layui-markdown h6 {
+    margin-top: 5px;
+}
+
+.layui-markdown ul li {
+    list-style: disc;
+    margin-left: 30px;
+    color: #009688;
+}
+.layui-markdown ol li {
+    list-style: decimal;
+    margin-left: 30px;
+    color: #009688;
+}
+
+.layui-markdown hr {
+    border: 0;
+    border-bottom: 1px dashed #cfcfcf;
+    background: none;
+    margin: 30px 0;
+    clear: none;
+}
+
+.layui-markdown blockquote {
+    padding: 8px 5px 8px 15px;
+    color: #777;
+    background: rgba(102,128,153,.05);
+    border-left: 4px solid #009688;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.layui-markdown pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.5;
+    background-color: #F2F2F2;
+    border: 0;
+    border-radius: 3px;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.layui-markdown p code {
+    padding: 3px 6px 4px;
+    font-size: 90%;
+    background-color: rgb(251, 220, 182);
+    border: 0;
+    border-radius: 3px;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.layui-markdown code {
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+
+.layui-markdown img {
+    max-width: 100%;
+    border: 1px solid #fefefe;
+    box-shadow: rgba(0,0,0,0.35) 0px 0px 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.article-show .layui-markdown img {
+    cursor: url("/public/img/zoom-in.ico"), default;
+}
+img.zoom-out {
+    max-width: 100%;
+}
+.layui-markdown img.face {
+    border: none;
+    box-shadow: none;
+    margin: 0 1px;
+}
+
+.layui-markdown .footnote-ref {
+    vertical-align: baseline;
+    top: -2px;
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+}
+
+/* table */
+.layui-markdown table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: block;
+    width: 100%;
+    overflow: auto;
+    word-break: keep-all;
+    margin-top: 20px;
+}
+.layui-markdown table thead tr{
+    background: #F2F2F2;
+}
+.layui-markdown table th,
+.layui-markdown table td {
+    padding: 5px 15px;
+    border: 1px solid #ddd;
+}
+.layui-markdown table th {
+    font-weight: bold;
+}
+.layui-markdown table > tbody > tr:nth-child(odd) {
+    background: #fff;
+}
+.layui-markdown table > tbody > tr:nth-child(even) {
+    background: #F2F2F2;
+}

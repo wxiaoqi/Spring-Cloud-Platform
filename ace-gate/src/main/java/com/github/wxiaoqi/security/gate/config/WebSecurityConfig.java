@@ -3,6 +3,7 @@ package com.github.wxiaoqi.security.gate.config;
 import com.github.wxiaoqi.security.gate.jwt.JwtAuthenticationTokenFilter;
 import com.github.wxiaoqi.security.gate.service.GateUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -28,12 +29,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   private GateUserDetailsService detailsService;
+  @Value("${gate.ignore.startWith}")
+  private String startWith;
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.formLogin().loginPage("/login").defaultSuccessUrl("/admin/index").permitAll().and()
         .logout().logoutSuccessUrl("/login").invalidateHttpSession(true).and().authorizeRequests()
-        .antMatchers("/**/*.css", "/img/**", "/**/*.js","/api/**") // 放开"/api/**",通过oauth2.0来鉴权
+        .antMatchers("/**/*.css", "/img/**", "/**/*.js","/api/**","/*/api/**") // 放开"/api/**",通过oauth2.0来鉴权
         .permitAll().and().authorizeRequests().antMatchers("/**").authenticated();
     http.csrf().disable();
     http.headers().frameOptions().disable();
@@ -43,6 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     // 禁用缓存
     http.headers().cacheControl();
+    http.headers().contentTypeOptions().disable();
   }
 
   @Override

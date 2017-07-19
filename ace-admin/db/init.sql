@@ -1,5 +1,6 @@
 
 CREATE DATABASE ag_admin DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+Use ag_admin;
 /*
  Navicat Premium Data Transfer
 

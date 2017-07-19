@@ -46,9 +46,14 @@ eureka:
     instance:
         statusPageUrlPath: /info
         healthCheckUrlPath: /health
+        # docker 部署开启
+#        prefer-ip-address: true
+#        ip-address: 127.0.0.1
     client:
         serviceUrl:
             defaultZone: http://localhost:8761/eureka/
+                    # docker 部署开启
+#            defaultZone: http://center:8761/eureka/
 swagger:
     basepackage: com.github.wxiaoqi.security.admin
     service:

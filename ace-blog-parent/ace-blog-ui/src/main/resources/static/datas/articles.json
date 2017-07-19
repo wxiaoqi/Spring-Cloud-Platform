@@ -1,0 +1,28 @@
+{
+  "rel": true,
+  "msg": "获取成功",
+  "count": 10,
+  "list": [
+    {
+      "title": "Hello World",
+      "remark": "该模块主要是针对当前版本laypage没有页容量控制功能而制作，使用该模块后即可实现每页显示多少条数据的控制！本人原创，但是可能有可能只对本人的分页写法有用！",
+      "pageView": 1,
+      "crtTime": "2017-01-10 10:42:36",
+      "cover":"../images/cover/201703181909057125.jpg",
+      "commentCount":12,
+      "crtUser":"Mr.AG",
+      "tag":"Spring Cloud",
+      "url":"http://localhost:8765/blog/api/article/42"
+    }, {
+      "title": "Hello World",
+      "remark": "该模块主要是针对当前版本laypage没有页容量控制功能而制作，使用该模块后即可实现每页显示多少条数据的控制！本人原创，但是可能有可能只对本人的分页写法有用！",
+      "pageView": 1,
+      "crtTime": "2017-01-10 10:42:36",
+      "cover":"../images/cover/201703181909057125.jpg",
+      "commentCount":12,
+      "crtUser":"Mr.AG",
+      "tag":"Spring Cloud",
+      "url":"http://localhost:8765/blog/api/article/42"
+    }
+  ]
+}

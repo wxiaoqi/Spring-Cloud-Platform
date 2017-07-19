@@ -1,0 +1,60 @@
+﻿/*
+
+@Name：不落阁整站模板源码 
+@Author：Absolutely 
+@Site：http://www.lyblogs.cn
+
+*/
+
+/*搜索（移动端不提供此功能）*/
+.search-keywords,
+.search-submit {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .blog-search {
+        margin-bottom: 15px;
+    }
+
+    .search-keywords,
+    .search-submit {
+        display: inline-block;
+    }
+
+    .search-keywords {
+        width: 85%;
+        float: left;
+    }
+
+        .search-keywords > input {
+            border-radius: 0;
+        }
+
+    .search-submit {
+        width: 14%;
+        float: right;
+    }
+
+        .search-submit > .search-btn {
+            display: block;
+            width: 100%;
+            height: 36px;
+            background: #fff;
+            cursor: pointer;
+            float: right;
+            border-radius: 1px;
+            border: 1px solid #e2e2e2;
+        }
+
+            .search-submit > .search-btn:hover {
+                border: 1px solid #d2d2d2;
+            }
+
+            .search-submit > .search-btn i {
+                width: 13px;
+                line-height: 38px;
+                display: block;
+                margin: 0 auto;
+            }
+}

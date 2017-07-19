@@ -76,16 +76,20 @@ public class SessionAccessFilter extends ZuulFilter {
         HttpServletRequest request = ctx.getRequest();
         final String requestUri = request.getRequestURI();
         final String method = request.getMethod();
+        User user = getSessionUser(httpSession);
+        String username = null;
+        if(user!=null) {
+             username = user.getUsername();
+            // 设置头部校验信息
+            ctx.addZuulRequestHeader("Authorization",
+                    Base64Utils.encodeToString(user.getUsername().getBytes()));
+            // 查找合法链接
+        }
         // 不进行拦截的地址
         if (isStartWith(requestUri) || isContains(requestUri)|| isOAuth(requestUri))
             return null;
-        User user = getSessionUser(httpSession);
-        String username = user.getUsername();
-        // 查找合法链接
-        checkAllow(requestUri,method,ctx,username);
-        // 设置头部校验信息
-        ctx.addZuulRequestHeader("Authorization",
-                Base64Utils.encodeToString(user.getUsername().getBytes()));
+        if(username!=null)
+            checkAllow(requestUri, method, ctx, username);
         return null;
     }
 
@@ -115,6 +119,8 @@ public class SessionAccessFilter extends ZuulFilter {
      */
     private User getSessionUser(HttpSession httpSession) {
         Session session = repository.getSession(httpSession.getId());
+        if(httpSession.getAttribute("SPRING_SECURITY_CONTEXT")==null)
+            return null;
         SecurityContextImpl securityContextImpl =
                 (SecurityContextImpl) httpSession.getAttribute("SPRING_SECURITY_CONTEXT");
         return (User) securityContextImpl.getAuthentication().getPrincipal();

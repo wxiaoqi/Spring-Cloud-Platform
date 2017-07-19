@@ -29,7 +29,7 @@ public class GroupTypeController extends BaseController<GroupTypeBiz,GroupType> 
     @RequestMapping(value = "/page",method = RequestMethod.GET)
     @ResponseBody
     public TableResultResponse<GroupType> page(int limit, int offset, String name){
-        Example example = new Example(User.class);
+        Example example = new Example(GroupType.class);
         if(StringUtils.isNotBlank(name))
             example.createCriteria().andLike("name", "%" + name + "%");
         int count = baseBiz.selectCountByExample(example);

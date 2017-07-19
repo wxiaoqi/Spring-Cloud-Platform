@@ -1,0 +1,17 @@
+spring:
+    application:
+        name: blog-ui
+    thymeleaf:
+        mode: LEGACYHTML5
+        cache: false
+
+server:
+    port: 9700
+
+#eureka:
+#    instance:
+#        statusPageUrlPath: /info
+#        healthCheckUrlPath: /health
+#    client:
+#        serviceUrl:
+#            defaultZone: http://localhost:8761/eureka/

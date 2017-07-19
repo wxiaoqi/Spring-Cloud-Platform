@@ -1,0 +1,38 @@
+center:
+  image: ag/ace-center
+  ports:
+   - "8761:8761"
+  hostname: center
+admin:
+  image: ag/ace-admin
+  ports:
+   - "8762:8762"
+  links:
+   - center
+ui:
+  image: ag/ace-ui
+  ports:
+   - "8766:8766"
+  links:
+   - center
+   - admin
+redis:
+  image: redis
+  ports:
+   - "6379:6379"
+gate-way:
+  image: ag/ace-gate
+  ports:
+   - "8765:8765"
+  links:
+   - center
+   - redis
+   - admin
+   - ui
+boot-monitor:
+  image: ag/ace-monitor
+  ports:
+   - "8764:8764"
+  links:
+   - center
+

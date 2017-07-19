@@ -1,0 +1,23 @@
+<div style="margin: 15px;">
+	<form class="layui-form" action="">
+		<div class="layui-form-item">
+			<label class="layui-form-label">标题</label>
+			<div class="layui-input-block">
+				<input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">摘要</label>
+			<div class="layui-input-block">
+				<input type="text" name="remark" lay-verify="required" autocomplete="off" placeholder="请输入摘要" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item layui-form-text">
+			<label class="layui-form-label">内容</label>
+			<div class="layui-input-block">
+				<textarea class="layui-textarea layui-hide" name="content"  id="description_editor"></textarea>
+			</div>
+		</div>
+		<button lay-filter="edit" lay-submit style="display: none;"></button>
+	</form>
+</div>
