@@ -30,19 +30,19 @@ QQ群号：169824183
 # 项目结构
 ```
 ├─ace-security
-│  │
+│  │  
 │  ├─ace-admin----------------管理端服务层
-│  │
+│  │  
 │  ├─ace-gate-----------------网关负载中心
-│  │
+│  │ 
 │  ├─ace-ui-------------------前端UI层面
-│  │
+│  │    
 │  ├─ace-center---------------服务注册中心
-│  │
+│  │   
 │  ├─ace-monitor--------------监控中心
-│  │
+│  │     
 │  └─ace-api------------------公共服务接口包
-│
+│  
 ```
 
 ------------
@@ -74,6 +74,8 @@ QQ群号：169824183
 - 除了上述需要运行的main类外，依次运行BlogUIBootstrap、BlogAdminBootstrap
 - 前端访问地址：http://localhost:9700/home
 - 后端访问地址：http://localhost:8765/admin/index 账号/密码：blog/blog
+# 开发指南
+[AG-Admin开发手手册_v1.1](http://git.oschina.net/geek_qi/ace-security/wikis/AG-Admin%E5%BC%80%E5%8F%91%E6%89%8B%E6%89%8B%E5%86%8C_v1.1)
 
 ---------
 
