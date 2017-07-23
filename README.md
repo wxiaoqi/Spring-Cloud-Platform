@@ -64,11 +64,13 @@ QQ群号：169824183
 - mysql数据库一个，redis数据库一个
 - jdk1.8
 - IDE插件一个，lombok插件，具体百度即可
+
 ## 运行步骤
 - 运行数据库脚本：依次运行数据库：ace-admin/db/init.sql
 - 修改配置数据库配置：ace-admin/src/main/resources/application.yml、ace-gate/src/main/resources/application.yml
 - 依次运行main类：CenterBootstrap（ace-center）、GateBootstrap（ace-gate）、AdminBootstrap（ace-admin）、UIBootstrap（ace-ui）
 - 访问地址: http://localhost:8765/admin/index  账号/密码：admin/admin
+
 ## 运行博客
 - 运行数据脚本：ace-blog-admin/db/init.sql
 - 除了上述需要运行的main类外，依次运行BlogUIBootstrap、BlogAdminBootstrap
