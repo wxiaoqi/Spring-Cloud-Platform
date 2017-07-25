@@ -31,7 +31,7 @@ public class UserBiz extends BaseBiz<UserMapper,User> {
     }
 
     @Override
-    public void updateById(User entity) {
+    public void updateSelectiveById(User entity) {
         String password = new BCryptPasswordEncoder(UserConstant.PW_ENCORDER_SALT).encode(entity.getPassword());
         entity.setPassword(password);
         super.updateById(entity);
