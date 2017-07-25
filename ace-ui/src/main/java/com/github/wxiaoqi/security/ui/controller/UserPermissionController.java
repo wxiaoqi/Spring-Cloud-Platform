@@ -18,11 +18,10 @@ import javax.servlet.http.HttpServletRequest;
  * @create 2017-06-27 12:40
  */
 @Controller
-public class UserPermissionController {
+public class UserPermissionController  extends BaseController{
     @Autowired
     private IUserService userService;
-    @Autowired
-    private HttpServletRequest request;
+
     @RequestMapping(value = "/user/system",method = RequestMethod.GET)
     @ResponseBody
     public String getUserSystem(){
@@ -32,10 +31,5 @@ public class UserPermissionController {
     @ResponseBody
     public String getUserMenu(@RequestParam(defaultValue = "-1") Integer parentId){
         return userService.getMenusByUsername(getCurrentUserName(),parentId);
-    }
-
-    public String getCurrentUserName(){
-        String authorization = request.getHeader("Authorization");
-        return new String(Base64Utils.decodeFromString(authorization));
     }
 }

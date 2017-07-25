@@ -1,8 +1,14 @@
 package com.github.wxiaoqi.security.ui.controller;
 
+import com.github.wxiaoqi.security.ui.rpc.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * ${DESCRIPTION}
@@ -12,9 +18,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping("")
-public class HomeController {
+public class HomeController extends BaseController{
+    @Autowired
+    private IUserService userService;
+
+
     @RequestMapping(value = "index",method = RequestMethod.GET)
-    public String index(){
+    public String index(Map<String,Object> map){
+        map.put("user",userService.getUserByUsername(getCurrentUserName()));
         return "index";
     }
     @RequestMapping(value = "about",method = RequestMethod.GET)

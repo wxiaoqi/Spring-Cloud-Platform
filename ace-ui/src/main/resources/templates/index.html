@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html>
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 	<head>
 		<meta charset="utf-8">
@@ -46,7 +46,7 @@
 						<li class="layui-nav-item">
 							<a href="javascript:;" class="admin-header-user">
 								<img src="images/0.jpg" />
-								<span>Mr.AG</span>
+								<span th:text="${user.name}"></span>
 							</a>
 							<dl class="layui-nav-child">
 								<dd>
