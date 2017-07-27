@@ -88,9 +88,34 @@ public class SessionAccessFilter extends ZuulFilter {
         // 不进行拦截的地址
         if (isStartWith(requestUri) || isContains(requestUri)|| isOAuth(requestUri))
             return null;
-        if(username!=null)
-            checkAllow(requestUri, method, ctx, username);
+        List<PermissionInfo> permissionInfos = userService.getAllPermissionInfo();
+        // 判断资源是否启用权限约束
+        Collection<PermissionInfo> result = getPermissionInfos(requestUri, method, permissionInfos);
+        if(result.size()>0){
+            if(username!=null)
+                checkAllow(requestUri, method, ctx, username);
+        }
         return null;
+    }
+
+    /**
+     * 获取目标权限资源
+     * @param requestUri
+     * @param method
+     * @param serviceInfo
+     * @return
+     */
+    private Collection<PermissionInfo> getPermissionInfos(final String requestUri, final String method, List<PermissionInfo> serviceInfo) {
+        return Collections2.filter(serviceInfo, new Predicate<PermissionInfo>() {
+                @Override
+                public boolean apply(PermissionInfo permissionInfo) {
+                    String url = permissionInfo.getUri();
+                    String uri = url.replaceAll("\\{\\*\\}", "[a-zA-Z\\\\d]+");
+                    String regEx = "^" + uri + "$";
+                    return (Pattern.compile(regEx).matcher(requestUri).find() || requestUri.startsWith(url + "/"))
+                            && method.equals(permissionInfo.getMethod());
+                }
+            });
     }
 
     private void setCurrentUserInfoAndLog(RequestContext ctx, String username, PermissionInfo pm) {
@@ -151,17 +176,7 @@ public class SessionAccessFilter extends ZuulFilter {
     private void checkAllow(final String requestUri, final String method ,RequestContext ctx,String username) {
         log.debug("uri：" + requestUri + "----method：" + method);
         List<PermissionInfo> permissionInfos = getPermissionInfos(ctx.getRequest(), username) ;
-        Collection<PermissionInfo> result =
-                Collections2.filter(permissionInfos, new Predicate<PermissionInfo>() {
-                    @Override
-                    public boolean apply(PermissionInfo permissionInfo) {
-                        String url = permissionInfo.getUri();
-                        String uri = url.replaceAll("\\{\\*\\}", "[a-zA-Z\\\\d]+");
-                        String regEx = "^" + uri + "$";
-                        return (Pattern.compile(regEx).matcher(requestUri).find() || requestUri.startsWith(url + "/"))
-                                && method.equals(permissionInfo.getMethod());
-                    }
-                });
+        Collection<PermissionInfo> result = getPermissionInfos(requestUri, method, permissionInfos);
         if (result.size() <= 0) {
             setFailedRequest("403 Forbidden!", 403);
         } else{

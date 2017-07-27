@@ -72,7 +72,7 @@ feign:
 
 gate:
   ignore:
-    startWith: /admin,/blog/api
+    startWith: /static
     contain: .
   oauth:
     prefix: /api

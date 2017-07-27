@@ -23,4 +23,6 @@ public interface IUserService {
   public UserInfo getUserByUsername(@PathVariable("username") String username);
   @RequestMapping(value = "/user/un/{username}/permissions", method = RequestMethod.GET)
   public List<PermissionInfo> getPermissionByUsername(@PathVariable("username") String username);
+  @RequestMapping(value = "/permissions", method = RequestMethod.GET)
+  List<PermissionInfo> getAllPermissionInfo();
 }

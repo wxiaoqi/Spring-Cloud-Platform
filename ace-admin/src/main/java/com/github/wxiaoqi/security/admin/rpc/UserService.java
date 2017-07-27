@@ -49,12 +49,19 @@ public class UserService {
         return info;
     }
 
-    @RequestMapping(value = "/user/un/{username}/permissions", method = RequestMethod.GET)
-    public @ResponseBody List<PermissionInfo> getPermissionByUsername(@PathVariable("username") String username){
-        User user = userBiz.getUserByUsername(username);
-        List<Menu> menus = menuBiz.getUserAuthorityMenuByUserId(user.getId());
+    @RequestMapping(value = "/permissions", method = RequestMethod.GET)
+    public @ResponseBody List<PermissionInfo> getAllPermission(){
+        List<Menu> menus = menuBiz.selectListAll();
         List<PermissionInfo> result = new ArrayList<PermissionInfo>();
         PermissionInfo info = null;
+        menu2permission(menus, result);
+        List<Element> elements = elementBiz.selectListAll();
+        element2permission(result, elements);
+        return result;
+    }
+
+    private void menu2permission(List<Menu> menus, List<PermissionInfo> result) {
+        PermissionInfo info;
         for(Menu menu:menus){
             if(StringUtils.isBlank(menu.getHref()))
                 continue;
@@ -71,7 +78,22 @@ public class UserService {
             );
             info.setMenu(menu.getTitle());
         }
+    }
+
+    @RequestMapping(value = "/user/un/{username}/permissions", method = RequestMethod.GET)
+    public @ResponseBody List<PermissionInfo> getPermissionByUsername(@PathVariable("username") String username){
+        User user = userBiz.getUserByUsername(username);
+        List<Menu> menus = menuBiz.getUserAuthorityMenuByUserId(user.getId());
+        List<PermissionInfo> result = new ArrayList<PermissionInfo>();
+        PermissionInfo info = null;
+        menu2permission(menus,result);
         List<Element> elements = elementBiz.getAuthorityElementByUserId(user.getId()+"");
+        element2permission(result, elements);
+        return result;
+    }
+
+    private void element2permission(List<PermissionInfo> result, List<Element> elements) {
+        PermissionInfo info;
         for(Element element:elements){
             info = new PermissionInfo();
             info.setCode(element.getCode());
@@ -82,8 +104,8 @@ public class UserService {
             info.setMenu(element.getMenuId());
             result.add(info);
         }
-        return result;
     }
+
     @RequestMapping(value = "/user/un/{username}/system", method = RequestMethod.GET)
     @ResponseBody
     public String getSystemsByUsername(@PathVariable("username") String username){
