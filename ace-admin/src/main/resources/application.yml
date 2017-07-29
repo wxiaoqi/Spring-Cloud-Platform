@@ -2,8 +2,6 @@ logging:
     level:
         tk.mybatis: DEBUG
         com.github.wxiaoqi.security.admin: DEBUG
-  #  config: classpath:logback.xml
-    # path: /ag/admin
 spring:
     application:
         name: admin-back
@@ -11,9 +9,6 @@ spring:
         date-format: yyyy-MM-dd HH:mm:ss
         time-zone: GMT+8
         default-property-inclusion: non_null
-#    boot:
-#        admin:
-#             url: http://localhost:8764
     datasource:
         name: test
         url: jdbc:mysql://localhost:3306/ag_admin?useUnicode=true&characterEncoding=UTF8
@@ -50,6 +45,8 @@ eureka:
 #        prefer-ip-address: true
 #        ip-address: 127.0.0.1
     client:
+        registerWithEureka: true
+        fetchRegistry: true
         serviceUrl:
             defaultZone: http://localhost:8761/eureka/
                     # docker 部署开启

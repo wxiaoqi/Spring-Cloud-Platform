@@ -52,32 +52,14 @@ security:
         password: admin
         role: USER
 
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 5000
-
-#请求和响应GZIP压缩支持
-feign:
-  compression:
-    request:
-      enabled: true
-      mime-types: text/xml,application/xml,application/json
-      min-request-size: 2048
-    response:
-      enabled: true
-
-gate:
-  ignore:
-    startWith: /static
-    contain: .
-  oauth:
-    prefix: /api
-
-  jwt:
-    secret: Xe*g@1jda
-    expiration: 7200
-    header: access-token
+#gate:
+#  ignore:
+#    startWith: /static
+#    contain: .
+#  oauth:
+#    prefix: /api
+#
+#  jwt:
+#    secret: Xe*g@1jda
+#    expiration: 7200
+#    header: access-token
