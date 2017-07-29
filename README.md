@@ -87,7 +87,7 @@ QQ群号：169824183
 - 增加`Spring cloud config`，默认配置地址：http://git.oschina.net/geek_qi/AG-Config
 - ace-gate中关于网关配置抽离至config git服务器
 - 修改spring cloud config 服务地址：ace-config/src/main/resources/application.yml中git地址
-
+- 相对于携程的apollo的配置中心，spring cloud config不是很好用
 
 ### 2017年7月19日 后端内容管理和前端博客demo
 ![img](http://ofsc32t59.bkt.clouddn.com/17-07-19/1500425312816.jpg)
