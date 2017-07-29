@@ -40,9 +40,11 @@ QQ群号：169824183
 │  ├─ace-center---------------服务注册中心
 │  │   
 │  ├─ace-monitor--------------监控中心
-│  │     
+│  │
+│  ├─ace-config---------------配置中心
+│  │
 │  └─ace-api------------------公共服务接口包
-│  
+│
 ```
 
 ------------
@@ -68,7 +70,7 @@ QQ群号：169824183
 ## 运行步骤
 - 运行数据库脚本：依次运行数据库：ace-admin/db/init.sql
 - 修改配置数据库配置：ace-admin/src/main/resources/application.yml、ace-gate/src/main/resources/application.yml
-- 依次运行main类：CenterBootstrap（ace-center）、GateBootstrap（ace-gate）、AdminBootstrap（ace-admin）、UIBootstrap（ace-ui）
+- 依次运行main类：CenterBootstrap（ace-center）、ConfigServerBootstrap（ace-config）、GateBootstrap（ace-gate）、AdminBootstrap（ace-admin）、UIBootstrap（ace-ui）
 - 访问地址: http://localhost:8765/admin/index  账号/密码：admin/admin
 
 ## 运行博客
@@ -80,6 +82,12 @@ QQ群号：169824183
 [AG-Admin开发手手册_v1.1](https://github.com/wxiaoqi/ace-admin/wiki/AG-Admin%E5%BC%80%E5%8F%91%E6%89%8B%E6%89%8B%E5%86%8C_v1.1)
 
 ---------
+### 2017年7月29日 Config-Server引入
+![img](http://ofsc32t59.bkt.clouddn.com/17-07-29/1501301221475.jpg)
+- 增加`Spring cloud config`，默认配置地址：http://git.oschina.net/geek_qi/AG-Config
+- ace-gate中关于网关配置抽离至config git服务器
+- 修改spring cloud config 服务地址：ace-config/src/main/resources/application.yml中git地址
+
 
 ### 2017年7月19日 后端内容管理和前端博客demo
 ![img](http://ofsc32t59.bkt.clouddn.com/17-07-19/1500425312816.jpg)
