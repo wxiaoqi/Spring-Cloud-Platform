@@ -48,6 +48,10 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                             request));
                     logger.info("authenticated user " + username + ", setting security context");
                     SecurityContextHolder.getContext().setAuthentication(authentication);
+                }else{
+                    response.setStatus(401);
+                    response.getWriter().print("Toekn error!");
+                    return ;
                 }
             }
         }

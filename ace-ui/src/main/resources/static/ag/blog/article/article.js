@@ -27,8 +27,8 @@ article.queryParams = function (params) {
             title: $("#name").val()
         };
     var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-        limit: params.limit, //页面大小
-        offset: params.offset/params.limit, //页码
+        limit: params.limit+1, //页面大小
+        offset: (params.offset / params.limit)+1, //页码
         title: $("#name").val()
     };
     return temp;
