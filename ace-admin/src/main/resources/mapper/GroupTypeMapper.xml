@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.wxiaoqi.security.admin.mapper.GroupTypeMapper">
+  <resultMap id="BaseResultMap" type="com.github.wxiaoqi.security.admin.entity.GroupType">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="crt_time" jdbcType="DATE" property="crtTime" />
+    <result column="crt_user" jdbcType="VARCHAR" property="crtUser" />
+    <result column="crt_name" jdbcType="VARCHAR" property="crtName" />
+    <result column="crt_host" jdbcType="VARCHAR" property="crtHost" />
+    <result column="upd_time" jdbcType="DATE" property="updTime" />
+    <result column="upd_user" jdbcType="VARCHAR" property="updUser" />
+    <result column="upd_name" jdbcType="VARCHAR" property="updName" />
+    <result column="upd_host" jdbcType="VARCHAR" property="updHost" />
+    <result column="attr1" jdbcType="VARCHAR" property="attr1" />
+    <result column="attr2" jdbcType="VARCHAR" property="attr2" />
+    <result column="attr3" jdbcType="VARCHAR" property="attr3" />
+    <result column="attr4" jdbcType="VARCHAR" property="attr4" />
+    <result column="attr5" jdbcType="VARCHAR" property="attr5" />
+    <result column="attr6" jdbcType="VARCHAR" property="attr6" />
+    <result column="attr7" jdbcType="VARCHAR" property="attr7" />
+    <result column="attr8" jdbcType="VARCHAR" property="attr8" />
+  </resultMap>
+</mapper>

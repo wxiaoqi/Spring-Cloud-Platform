@@ -1,0 +1,57 @@
+logging:
+    level:
+        tk.mybatis: DEBUG
+        com.github.wxiaoqi.blog.admin: DEBUG
+  #  config: classpath:logback.xml
+    # path: /ag/admin
+spring:
+    application:
+        name: blog-admin
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        default-property-inclusion: non_null
+#    boot:
+#        admin:
+#             url: http://localhost:8764
+    datasource:
+        name: test
+        url: jdbc:mysql://localhost:3306/ag_blog?useUnicode=true&characterEncoding=UTF8
+        username: root
+        password: 123456
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+mybatis:
+    basepackage: com.github.wxiaoqi.blog.admin.mapper
+    xmlLocation: classpath:mapper/**/*.xml
+
+server:
+    port: 9701
+
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+swagger:
+    basepackage: com.github.wxiaoqi.blog.admin
+    service:
+        name: Blog Admin
+        description: Blog Admin后端服务
+        developer: 老A

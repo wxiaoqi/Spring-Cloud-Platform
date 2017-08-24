@@ -1,0 +1,220 @@
+﻿/*
+
+@Name：不落阁整站模板源码 
+@Author：Absolutely 
+@Site：http://www.lyblogs.cn
+
+*/
+
+.timeline-box {
+    background: #fff;
+    padding: 8px;
+    position: relative;
+    min-height: 90vh;
+}
+
+.timeline-main {
+    position: relative;
+    min-height: 85vh;
+}
+
+    .timeline-main > h1 {
+        font-size: 18px;
+        background: #fff;
+        z-index: 1;
+        position: relative;
+        color: #009688;
+        margin-left: 33%; /*写给不支持calc()的浏览器*/
+        margin-left: -moz-calc(35% - 7px);
+        margin-left: -webkit-calc(35% - 7px);
+        margin-left: calc(35% - 7px);
+    }
+
+        .timeline-main > h1 > i {
+            padding-right: 10px;
+            font-size: 20px;
+        }
+
+        .timeline-main > h1 > span {
+            display: none;
+        }
+
+    .timeline-main h2,
+    .timeline-main h3 {
+        width: 31%;
+        text-align: right;
+    }
+
+        .timeline-main h2,
+        .timeline-main h2 > a {
+            font-size: 16px;
+            margin: 5px 0;
+            color: #1E9FFF;
+        }
+
+        .timeline-main h3,
+        .timeline-main h3 > a {
+            font-size: 14px;
+            margin: 2px 0;
+            color: #FF5722;
+        }
+
+.timeline-month > ul > li {
+    padding: 10px 0;
+}
+
+    .timeline-month > ul > li .h4 {
+        display: inline-block;
+        width: 31%;
+        text-align: right;
+        float: left;
+    }
+
+.date {
+    display: inline-block;
+    padding: 2px 5px;
+    color: #009688;
+}
+
+.dot-circle {
+    color: #009688;
+    width: 8%;
+    text-align: center;
+    font-size: 22px;
+    z-index: 1;
+    position: relative;
+    background: #fff;
+    float: left;
+}
+
+.content {
+    max-width: 50%;
+    float: left;
+    padding: 10px;
+    margin-left: 10px;
+    position: relative;
+    z-index: 1;
+    background: #009688;
+    color: #fff;
+}
+
+    .content::before {
+        position: absolute;
+        left: -20px;
+        top: 6px;
+        height: 0;
+        width: 0;
+        content: '';
+        border: 10px solid rgba(255, 255, 255, 0.00);
+        border-top: 6px solid rgba(255, 255, 255, 0.00);
+        border-bottom: 6px solid rgba(255, 255, 255, 0.00);
+        border-right-color: #009688;
+    }
+
+.timeline-line {
+    position: absolute;
+    left: 35%;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: #009688;
+    z-index: 0;
+}
+
+.timeline-year {
+    margin: 10px 0;
+}
+
+
+
+/* 小屏幕（平板，大于等于 768px） */
+@media (min-width: 768px) {
+    .timeline-box {
+        background: #fff;
+        padding: 15px;
+        position: relative;
+        min-height: 90vh;
+    }
+
+    .timeline-main > h1 {
+        font-size: 26px;
+        margin-left: 16%; /*写给不支持calc()的浏览器*/
+        margin-left: -moz-calc(18% - 13px);
+        margin-left: -webkit-calc(18% - 13px);
+        margin-left: calc(18% -13px);
+    }
+
+        .timeline-main > h1 > i {
+            font-size: 30px;
+        }
+
+        .timeline-main > h1 > span {
+            display: inline;
+        }
+
+    .timeline-main h2,
+    .timeline-main h3 {
+        width: 16%;
+    }
+
+        .timeline-main h2,
+        .timeline-main h2 > a {
+            font-size: 24px;
+        }
+
+        .timeline-main h3,
+        .timeline-main h3 > a {
+            font-size: 20px;
+        }
+
+    .timeline-month > ul > li .h4 {
+        width: 16%;
+    }
+
+    .dot-circle {
+        width: 4%;
+        font-size: 22px;
+    }
+
+    .content {
+        max-width: 70%;
+    }
+
+    .timeline-line {
+        left: 18%;
+    }
+}
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: 992px) {
+    .blog-container {
+        /*width: 962px;*/
+        /*width:1050px;*/
+    }
+
+    .timeline-main > h1 {
+        font-size: 34px;
+        background: #fff;
+        z-index: 1;
+        position: relative;
+        color: #009688;
+        margin-left: 17%; /*写给不支持calc()的浏览器*/
+        margin-left: -moz-calc(18% - 16px);
+        margin-left: -webkit-calc(18% - 16px);
+        margin-left: calc(18% - 16px);
+    }
+
+        .timeline-main > h1 > i {
+            font-size: 36px;
+        }
+
+    .timeline-main h2,
+    .timeline-main h2 > a {
+        font-size: 30px;
+    }
+
+    .timeline-main h3,
+    .timeline-main h3 > a {
+        font-size: 24px;
+    }
+}

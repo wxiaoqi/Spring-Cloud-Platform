@@ -1,0 +1,20 @@
+spring:
+    application:
+        name: ace-monitor
+
+server:
+    port: 8764 #启动端口
+
+security:
+    user:
+        name: whb
+        password: 123456
+        role: USER
+eureka:
+     instance:
+        preferIpAddress: true
+     client:
+        registerWithEureka: true
+        fetchRegistry: true
+        serviceUrl:
+          defaultZone: http://localhost:8761/eureka/

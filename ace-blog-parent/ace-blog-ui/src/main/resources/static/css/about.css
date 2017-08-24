@@ -1,0 +1,163 @@
+﻿/*
+
+@Name：不落阁整站模板源码 
+@Author：Absolutely 
+@Site：http://www.lyblogs.cn
+
+*/
+.layui-tab-brief {
+    background: #fff;
+    min-height: 100vh;
+}
+
+    .layui-tab-brief .layui-tab-title {
+        text-align: center;
+        border-bottom: 1px solid #5FB878;
+    }
+
+        .layui-tab-brief .layui-tab-title li {
+            font-size: 12px;
+        }
+
+    .layui-tab-brief .layui-tab-content {
+        padding: 0;
+    }
+
+.aboutinfo {
+    text-align: center;
+    padding: 0 15px;
+}
+
+.aboutinfo-figure {
+    display: inline-block;
+    margin: 20px auto;
+}
+
+    .aboutinfo-figure img {
+        border-radius: 50px;
+    }
+
+.aboutinfo-nickname {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+}
+
+.aboutinfo-introduce {
+    margin: 20px auto;
+    font-size: 18px;
+    width: 90%;
+}
+
+.aboutinfo-location {
+    color: #808080;
+    margin: 15px;
+}
+
+.aboutinfo-contact {
+    margin: 15px;
+}
+
+    .aboutinfo-contact > a {
+        padding: 0 10px;
+    }
+
+.aboutinfo-abstract {
+    width: 90%;
+    margin: 0 auto;
+}
+
+    .aboutinfo-abstract > h1 {
+        font-weight: bold;
+        font-size: 16px;
+        text-align: left;
+        margin-top: 25px;
+    }
+
+    .aboutinfo-abstract > p {
+        margin: 5px 0;
+        font-size: 14px;
+        text-align: left;
+        text-indent: 2em;
+    }
+
+#frinedlink {
+    display: none; /*手机端不显示友情链接，样式没写好，会乱*/
+}
+
+.friendlink {
+    padding: 0 15px;
+}
+
+    .friendlink li {
+        width: 30%;
+        margin: 0 1%;
+        margin-top: 10px;
+        float: left;
+    }
+
+.friendlink-item {
+    box-shadow: inset 0 0 2px #5FB878;
+    width: 100%;
+    display: block;
+    padding: 10px 0;
+    text-align: left;
+    min-height: 45px;
+    position: relative;
+}
+
+    .friendlink-item:hover {
+        box-shadow: 0 0 2px #5FB878;
+    }
+
+.friendlink-item-pic {
+    display: inline-block;
+    position: absolute;
+    left: 10%;
+    margin: 0 10px;
+}
+
+    .friendlink-item-pic img {
+        width: 45px;
+        height: 45px;
+        position: relative;
+        left: 0px;
+        border-radius: 50px;
+    }
+
+.friendlink-item-title {
+    font-size: 17px;
+    margin-left: 65px;
+    text-align: center;
+    line-height: 20px;
+}
+
+.friendlink-item-domain {
+    font-size: 13px;
+    margin-left: 65px;
+    text-align: center;
+    line-height: 20px;
+    margin-top: 5px;
+}
+
+.leavemessage .blog-comment li:first-child {
+    border-top: 1px dotted #01AAED;
+}
+
+/* 小屏幕（平板，大于等于 768px） */
+@media (min-width: 768px) {
+    .layui-tab-brief .layui-tab-title li {
+        font-size: 14px;
+    }
+
+    #frinedlink {
+        display: inline-block;
+    }
+}
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: 992px) {
+    .blog-container {
+        width: 962px;
+    }
+}

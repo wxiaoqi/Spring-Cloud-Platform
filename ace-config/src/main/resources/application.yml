@@ -1,0 +1,11 @@
+spring:
+    application:
+        name: ace-config
+    cloud:
+        config:
+            server:
+                git:
+                    uri: https://git.oschina.net/geek_qi/AG-Config.git
+
+server:
+    port: 8750 #启动端口
