@@ -1,0 +1,26 @@
+# Tomcat
+server:
+    tomcat:
+        max-threads: 10
+        min-spare-threads: 10
+    port: 7777
+
+# mysql
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/ag_admin?useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: 123456
+    jackson:
+        time-zone: GMT+8
+        date-format: yyyy-MM-dd HH:mm:ss
+    thymeleaf:
+        mode: LEGACYHTML5
+        cache: false
+
+# Mybatis配置
+mybatis:
+    mapperLocations: classpath:mapper/**/*.xml
+

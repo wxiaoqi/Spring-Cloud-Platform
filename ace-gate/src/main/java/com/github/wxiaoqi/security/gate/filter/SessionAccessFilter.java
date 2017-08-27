@@ -47,10 +47,10 @@ public class SessionAccessFilter extends ZuulFilter {
     private String contain;
     @Value("${gate.oauth.prefix}")
     private String oauthPrefix;
-
     @Value("${gate.jwt.header}")
     private String tokenHeader;
-
+    @Value("${zuul.prefix}")
+    private String zuulPrefix;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
@@ -78,7 +78,7 @@ public class SessionAccessFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpSession httpSession = ctx.getRequest().getSession();
         HttpServletRequest request = ctx.getRequest();
-        final String requestUri = request.getRequestURI();
+        final String requestUri = request.getRequestURI().substring(zuulPrefix.length());
         final String method = request.getMethod();
         UserInfo user = getJWTUser(request);
         String username = null;
@@ -157,7 +157,7 @@ public class SessionAccessFilter extends ZuulFilter {
                     return userDetails;
                 }
             }
-            setFailedRequest("Toekn error!",401);
+            setFailedRequest(JSON.toJSONString(new TokenErrorResponse("Token Error or Token Expired!")),200);
             return null;
         }else{
             return null;
@@ -191,7 +191,7 @@ public class SessionAccessFilter extends ZuulFilter {
         List<PermissionInfo> permissionInfos = getPermissionInfos(ctx.getRequest(), username) ;
         Collection<PermissionInfo> result = getPermissionInfos(requestUri, method, permissionInfos);
         if (result.size() <= 0) {
-            setFailedRequest("403 Forbidden!", 403);
+            setFailedRequest(JSON.toJSONString(new TokenErrorResponse("Token Forbidden!")), 200);
         } else{
             PermissionInfo[] pms =  result.toArray(new PermissionInfo[]{});
             PermissionInfo pm = pms[0];
@@ -240,7 +240,7 @@ public class SessionAccessFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         ctx.setResponseStatusCode(code);
         if (ctx.getResponseBody() == null) {
-            ctx.setResponseBody(JSON.toJSONString(new TokenErrorResponse("Token Error or Token Expired!")));
+            ctx.setResponseBody(body);
             ctx.setSendZuulResponse(false);
             throw new RuntimeException("Code: " + code + ", " + body); //optional
         }

@@ -15,6 +15,16 @@ public class MenuTree extends TreeNode {
     String href;
     boolean spread = false;
 
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    String label;
+
     public MenuTree() {
     }
 
@@ -22,11 +32,13 @@ public class MenuTree extends TreeNode {
         this.id = id;
         this.parentId = parentId;
         this.title = name;
+        this.label = name;
     }
     public MenuTree(int id, String name, MenuTree parent) {
         this.id = id;
         this.parentId = parent.getId();
         this.title = name;
+        this.label = name;
     }
     public String getIcon() {
         return icon;

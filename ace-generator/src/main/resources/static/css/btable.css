@@ -1,0 +1,84 @@
+﻿.btable {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.btable .layui-form-checkbox {
+    margin-top: 0;
+    height: 20px;
+    line-height: 20px;
+}
+
+.btable .layui-table {
+    /*margin: 5px;*/
+    margin-bottom: 38px;
+}
+
+.btable .layui-table td {
+    padding: 6px 15px;
+}
+
+.btable .layui-laypage {
+    margin: 5px;
+}
+
+.btable .layui-laypage a, .btable .layui-laypage span {
+    border: 0;
+    margin: 0;
+}
+
+.btable .layui-laypage button, .btable .layui-laypage input, .btable .layui-laypage .layui-laypage-total {
+    height: 28px;
+    line-height: 28px;
+}
+
+.btable .layui-laypage button, .btable .layui-laypage input {
+    border: 0;
+}
+
+.btable .btable-paged {
+    width: 100%;
+    background-color: #f2f2f2;
+    position: fixed;
+    bottom: 0;
+}
+
+
+.btable thead tr th {
+    position: relative;
+}
+
+.btable-order {
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
+.btable-order .up, .down {
+    width: 30px;
+    height: 10px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+.btable-order .down {
+    top: 10px;
+}
+
+.btable-order .up .fa {
+    width: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.btable-order .down .fa {
+    height: 8px;
+    position: absolute;
+    top: -5px;
+    right: 11px;
+}

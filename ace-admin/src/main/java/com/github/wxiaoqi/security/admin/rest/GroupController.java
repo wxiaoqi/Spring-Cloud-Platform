@@ -55,6 +55,8 @@ public class GroupController extends BaseController<GroupBiz, Group> {
         return baseBiz.selectByExample(example);
     }
 
+
+
     @RequestMapping(value = "/{id}/user", method = RequestMethod.PUT)
     @ResponseBody
     public ObjectRestResponse modifiyUsers(@PathVariable int id,String members,String leaders){
@@ -102,4 +104,30 @@ public class GroupController extends BaseController<GroupBiz, Group> {
         return new ObjectRestResponse().result(baseBiz.getAuthorityElement(id)).rel(true);
     }
 
+
+    @RequestMapping(value = "/tree", method = RequestMethod.GET)
+    @ResponseBody
+    public List<GroupTree> tree(String name,String groupType) {
+        if(StringUtils.isBlank(name)&&StringUtils.isBlank(groupType))
+            return new ArrayList<GroupTree>();
+        Example example = new Example(Group.class);
+        if (StringUtils.isNotBlank(name))
+            example.createCriteria().andLike("name", "%" + name + "%");
+        if (StringUtils.isNotBlank(groupType))
+            example.createCriteria().andEqualTo("groupType", groupType);
+        return  getTree(baseBiz.selectByExample(example),CommonConstant.ROOT);
+    }
+
+
+    private List<GroupTree> getTree(List<Group> groups,int root) {
+        List<GroupTree> trees = new ArrayList<GroupTree>();
+        GroupTree node = null;
+        for (Group group : groups) {
+            node = new GroupTree();
+            node.setLabel(group.getName());
+            BeanUtils.copyProperties(group, node);
+            trees.add(node);
+        }
+        return TreeUtil.bulid(trees,root) ;
+    }
 }

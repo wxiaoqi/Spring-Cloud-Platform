@@ -24,18 +24,18 @@ import java.util.List;
 @RequestMapping("user")
 public class UserController extends BaseController<UserBiz,User> {
 
-    @RequestMapping(value = "/page",method = RequestMethod.GET)
-    @ResponseBody
-    public TableResultResponse<Object> page(@RequestParam(defaultValue = "10") int limit, @RequestParam(defaultValue = "1")int page, String name){
-        Example example = new Example(User.class);
-        if(StringUtils.isNotBlank(name)) {
-            example.createCriteria().andLike("name", "%" + name + "%");
-            example.or().andLike("username", "%" + name + "%");
-        }
-        Page<Object> result = PageHelper.startPage(page, limit);
-        baseBiz.selectByExample(example);
-        return new TableResultResponse<Object>(result.getTotal(),result.getResult());
-    }
+//    @RequestMapping(value = "/page",method = RequestMethod.GET)
+//    @ResponseBody
+//    public TableResultResponse<Object> page(@RequestParam(defaultValue = "10") int limit, @RequestParam(defaultValue = "1")int page, String name){
+//        Example example = new Example(User.class);
+//        if(StringUtils.isNotBlank(name)) {
+//            example.createCriteria().andLike("name", "%" + name + "%");
+//            example.or().andLike("username", "%" + name + "%");
+//        }
+//        Page<Object> result = PageHelper.startPage(page, limit);
+//        baseBiz.selectByExample(example);
+//        return new TableResultResponse<Object>(result.getTotal(),result.getResult());
+//    }
 
 
 }
