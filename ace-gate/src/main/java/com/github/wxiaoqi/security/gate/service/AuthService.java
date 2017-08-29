@@ -8,4 +8,5 @@ public interface AuthService {
     String refresh(String oldToken);
     Boolean validate(String token, String resource);
     FrontUser getUserInfo(String token);
+    Boolean invalid(String token);
 }

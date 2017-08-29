@@ -63,8 +63,9 @@ public class UserService {
     private void menu2permission(List<Menu> menus, List<PermissionInfo> result) {
         PermissionInfo info;
         for(Menu menu:menus){
-            if(StringUtils.isBlank(menu.getHref()))
-                continue;
+            if(StringUtils.isBlank(menu.getHref())){
+                menu.setHref("/"+menu.getCode());
+            }
             info = new PermissionInfo();
             info.setCode(menu.getCode());
             info.setType(CommonConstant.RESOURCE_TYPE_MENU);

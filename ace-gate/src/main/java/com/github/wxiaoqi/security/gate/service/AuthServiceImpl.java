@@ -2,6 +2,7 @@ package com.github.wxiaoqi.security.gate.service;
 
 import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
 import com.github.wxiaoqi.security.api.vo.user.UserInfo;
+import com.github.wxiaoqi.security.common.constant.BaseConstants;
 import com.github.wxiaoqi.security.gate.jwt.JwtTokenUtil;
 import com.github.wxiaoqi.security.gate.rpc.IUserService;
 import com.github.wxiaoqi.security.gate.vo.FrontUser;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -68,7 +71,21 @@ public class AuthServiceImpl implements AuthService {
         UserInfo user = userService.getUserByUsername(username);
         FrontUser frontUser  = new FrontUser();
         BeanUtils.copyProperties(user,frontUser);
+        List<PermissionInfo> permissionInfos = userService.getPermissionByUsername(username);
+        Stream<PermissionInfo> menus = permissionInfos.parallelStream().filter((permission) -> {
+            return permission.getType().equals(BaseConstants.RESOURCE_TYPE_MENU);
+        });
+        frontUser.setMenus(menus.collect(Collectors.toList()));
+        Stream<PermissionInfo> elements = permissionInfos.parallelStream().filter((permission) -> {
+            return !permission.getType().equals(BaseConstants.RESOURCE_TYPE_MENU);
+        });
+        frontUser.setElements(elements.collect(Collectors.toList()));
         return frontUser;
+    }
+
+    @Override
+    public Boolean invalid(String token) {
+        return jwtTokenUtil.invalid(token);
     }
 
     public Boolean validateResource(String username, String resource){

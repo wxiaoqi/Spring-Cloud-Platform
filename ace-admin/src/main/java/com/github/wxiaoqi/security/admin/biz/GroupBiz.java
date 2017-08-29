@@ -17,8 +17,7 @@ import com.github.wxiaoqi.security.common.biz.BaseBiz;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * ${DESCRIPTION}
@@ -91,18 +90,37 @@ public class GroupBiz extends BaseBiz<GroupMapper,Group>{
     /**
      * 变更群组关联的菜单
      * @param groupId
-     * @param menuTrees
+     * @param menus
      */
-    public void modifyAuthorityMenu(int groupId, List<AuthorityMenuTree> menuTrees){
+    public void modifyAuthorityMenu(int groupId, String[] menus){
         resourceAuthorityMapper.deleteByAuthorityIdAndResourceType(groupId+"",CommonConstant.RESOURCE_TYPE_MENU);
+        List<Menu> menuList = menuMapper.selectAll();
+        Map<String,String> map = new HashMap<String, String>();
+        for(Menu menu:menuList){
+            map.put(menu.getId().toString(),menu.getParentId().toString());
+        }
+        Set<String> relationMenus = new HashSet<String>();
+        relationMenus.addAll(Arrays.asList(menus));
         ResourceAuthority authority = null;
-        for(AuthorityMenuTree menuTree:menuTrees){
+        for(String menuId:menus){
+            findParentID(map,relationMenus,menuId);
+        }
+        for(String menuId:relationMenus){
             authority = new ResourceAuthority(CommonConstant.AUTHORITY_TYPE_GROUP,CommonConstant.RESOURCE_TYPE_MENU);
             authority.setAuthorityId(groupId+"");
-            authority.setResourceId(menuTree.getId()+"");
+            authority.setResourceId(menuId);
             authority.setParentId("-1");
             resourceAuthorityMapper.insertSelective(authority);
         }
+    }
+
+    private void findParentID(Map<String,String> map,Set<String> relationMenus,String id){
+        String parentId = map.get(id);
+        if(String.valueOf(CommonConstant.ROOT).equals(id)){
+            return ;
+        }
+        relationMenus.add(parentId);
+        findParentID(map,relationMenus,parentId);
     }
 
     /**

@@ -7,10 +7,7 @@ import com.github.wxiaoqi.security.gate.vo.FrontUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -49,6 +46,13 @@ public class AuthController {
         else
             return ResponseEntity.status(401).body(false);
     }
+
+    @RequestMapping(value = "invalid", method = RequestMethod.POST)
+    public ResponseEntity<?> invalid(@RequestHeader("access-token") String token){
+        authService.invalid(token);
+        return ResponseEntity.ok(true);
+    }
+
     @RequestMapping(value = "user", method = RequestMethod.GET)
     public ResponseEntity<?> getUserInfo(String token){
         FrontUser userInfo = authService.getUserInfo(token);

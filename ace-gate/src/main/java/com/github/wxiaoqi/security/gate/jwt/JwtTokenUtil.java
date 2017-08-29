@@ -6,13 +6,16 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class JwtTokenUtil implements Serializable {
@@ -27,6 +30,9 @@ public class JwtTokenUtil implements Serializable {
 
     @Value("${gate.jwt.expiration}")
     private Long expiration;
+
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
 //
 //    @Value("${gate.jwt.prefix}")
 //    private String prefix;
@@ -64,6 +70,11 @@ public class JwtTokenUtil implements Serializable {
         return expiration;
     }
 
+    public Boolean invalid(String token){
+        String username = this.getUsernameFromToken(token);
+        return redisTemplate.opsForValue().setIfAbsent(username,null);
+    }
+
     private Claims getClaimsFromToken(String token) {
         Claims claims;
         try {
@@ -91,10 +102,18 @@ public class JwtTokenUtil implements Serializable {
     }
 
     public String generateToken(UserInfo info) {
-        Map<String, Object> claims = new HashMap<String, Object>();
-        claims.put(CLAIM_KEY_USERNAME, info.getUsername());
-        claims.put(CLAIM_KEY_CREATED, new Date());
-        return generateToken(claims);
+        Object old = redisTemplate.opsForValue().get(info.getUsername());
+        String token = "";
+        if(old==null) {
+            Map<String, Object> claims = new HashMap<String, Object>();
+            claims.put(CLAIM_KEY_USERNAME, info.getUsername());
+            claims.put(CLAIM_KEY_CREATED, new Date());
+            token = generateToken(claims);
+            redisTemplate.opsForValue().set(info.username, token, expiration, TimeUnit.SECONDS);
+        }else {
+            token = old.toString();
+        }
+        return token;
     }
 
     String generateToken(Map<String, Object> claims) {
@@ -127,16 +146,21 @@ public class JwtTokenUtil implements Serializable {
         if(StringUtils.isBlank(token)){
             return false;
         }
+        Object existToken = redisTemplate.opsForValue().get(info.getUsername());
+        if(token.equals(existToken)){
+            final String username = getUsernameFromToken(token);
+            final Date created = getCreatedDateFromToken(token);
+            return (
+                    username.equals(info.getUsername())
+                            && !isTokenExpired(token));
+        }else{
+            return false;
+        }
 //        if(!token.startsWith(prefix)){
 //            return false;
 //        }else {
 //            token = token.substring(prefix.length() + 1);
 //        }
-        final String username = getUsernameFromToken(token);
-        final Date created = getCreatedDateFromToken(token);
-        return (
-                username.equals(info.getUsername())
-                        && !isTokenExpired(token));
     }
 }
 

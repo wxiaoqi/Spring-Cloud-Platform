@@ -72,8 +72,8 @@ public class GroupController extends BaseController<GroupBiz, Group> {
 
     @RequestMapping(value = "/{id}/authority/menu", method = RequestMethod.POST)
     @ResponseBody
-    public ObjectRestResponse modifiyMenuAuthority(@PathVariable  int id, String menuTrees){
-        List<AuthorityMenuTree> menus =  JSONObject.parseArray(menuTrees,AuthorityMenuTree.class);
+    public ObjectRestResponse modifyMenuAuthority(@PathVariable  int id, String menuTrees){
+        String [] menus = menuTrees.split(",");
         baseBiz.modifyAuthorityMenu(id, menus);
         return new ObjectRestResponse().rel(true);
     }
@@ -100,7 +100,7 @@ public class GroupController extends BaseController<GroupBiz, Group> {
 
     @RequestMapping(value = "/{id}/authority/element", method = RequestMethod.GET)
     @ResponseBody
-    public ObjectRestResponse<List<Integer>> addElementAuthority(@PathVariable  int id){
+    public ObjectRestResponse<List<Integer>> getElementAuthority(@PathVariable  int id){
         return new ObjectRestResponse().result(baseBiz.getAuthorityElement(id)).rel(true);
     }
 

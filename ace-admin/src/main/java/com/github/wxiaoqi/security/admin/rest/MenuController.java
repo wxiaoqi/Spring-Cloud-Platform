@@ -42,6 +42,17 @@ public class MenuController extends BaseController<MenuBiz, Menu> {
         return baseBiz.selectByExample(example);
     }
 
+    @RequestMapping(value = "/tree", method = RequestMethod.GET)
+    @ResponseBody
+    public List<MenuTree> getTree(String title) {
+        Example example = new Example(Menu.class);
+        if (StringUtils.isNotBlank(title))
+            example.createCriteria().andLike("title", "%" + title + "%");
+        return getMenuTree(baseBiz.selectByExample(example), CommonConstant.ROOT);
+    }
+
+
+
     @RequestMapping(value = "/system", method = RequestMethod.GET)
     @ResponseBody
     public List<Menu> getSystem() {
@@ -109,6 +120,7 @@ public class MenuController extends BaseController<MenuBiz, Menu> {
         for (Menu menu : menus) {
             node = new MenuTree();
             BeanUtils.copyProperties(menu, node);
+            node.setLabel(menu.getTitle());
             trees.add(node);
         }
         return TreeUtil.bulid(trees,root) ;
