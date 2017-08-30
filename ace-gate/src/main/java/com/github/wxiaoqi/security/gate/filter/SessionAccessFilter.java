@@ -80,6 +80,9 @@ public class SessionAccessFilter extends ZuulFilter {
         HttpServletRequest request = ctx.getRequest();
         final String requestUri = request.getRequestURI().substring(zuulPrefix.length());
         final String method = request.getMethod();
+        // 不进行拦截的地址
+        if (isStartWith(requestUri) || isContains(requestUri)|| isOAuth(requestUri))
+            return null;
         UserInfo user = getJWTUser(request);
         String username = null;
         if(user!=null) {
@@ -88,16 +91,15 @@ public class SessionAccessFilter extends ZuulFilter {
             ctx.addZuulRequestHeader("Authorization",
                     Base64Utils.encodeToString(user.getUsername().getBytes()));
             // 查找合法链接
-        }
-        // 不进行拦截的地址
-        if (isStartWith(requestUri) || isContains(requestUri)|| isOAuth(requestUri))
-            return null;
+        } else
+            setFailedRequest(JSON.toJSONString(new TokenErrorResponse("Token Forbidden!")), 200);
         List<PermissionInfo> permissionInfos = userService.getAllPermissionInfo();
         // 判断资源是否启用权限约束
         Collection<PermissionInfo> result = getPermissionInfos(requestUri, method, permissionInfos);
         if(result.size()>0){
             if(username!=null)
                 checkAllow(requestUri, method, ctx, username);
+
         }
         return null;
     }
