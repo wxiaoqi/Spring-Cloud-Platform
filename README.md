@@ -87,39 +87,15 @@ QQ群号：169824183
 - 前端登录交互
 - 登录token统一加入
 
-##### 第十一天 用户权限拦截
+##### 第十一节 用户权限拦截
 - 权限模块设计与开发
 - 网关权限拦截过滤器改造
 - 前端按钮权限管控（vue示例）
 
 ----
 
-## 课程形式
-
-直播和录播回看
-
-## 上车票价
-
-```
-int students = 0; // 人数
-int tuition = 188; // 学费
-
-if(students < 30) 
-    tuition = 188; 
-    
-if(30 < students < 60)
-    tuition = 168;
-    
-if(60 < students < 100) 
-    tuition = 138;
-    
-else
-    tuition = 108;
-
-```
-
-## 上车方式
-![img](http://ofsc32t59.bkt.clouddn.com/17-08-30/1504068102231.jpg)
+## 课程地址
+http://edu.csdn.net/course/detail/5840
 
 
 ---------
