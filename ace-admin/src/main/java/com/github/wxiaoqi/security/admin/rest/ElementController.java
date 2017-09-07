@@ -51,7 +51,7 @@ public class ElementController extends BaseController<ElementBiz, Element> {
   public ObjectRestResponse<Element> getAuthorityElement(String menuId) {
     int userId = userBiz.getUserByUsername(getCurrentUserName()).getId();
     List<Element> elements = baseBiz.getAuthorityElementByUserId(userId + "",menuId);
-    return new ObjectRestResponse<List<Element>>().rel(true).result(elements);
+    return new ObjectRestResponse<List<Element>>().rel(true).data(elements);
   }
 
   @RequestMapping(value = "/user/menu", method = RequestMethod.GET)
@@ -59,6 +59,6 @@ public class ElementController extends BaseController<ElementBiz, Element> {
   public ObjectRestResponse<Element> getAuthorityElement() {
     int userId = userBiz.getUserByUsername(getCurrentUserName()).getId();
     List<Element> elements = baseBiz.getAuthorityElementByUserId(userId + "");
-    return new ObjectRestResponse<List<Element>>().rel(true).result(elements);
+    return new ObjectRestResponse<List<Element>>().rel(true).data(elements);
   }
 }

@@ -67,7 +67,7 @@ public class GroupController extends BaseController<GroupBiz, Group> {
     @RequestMapping(value = "/{id}/user", method = RequestMethod.GET)
     @ResponseBody
     public ObjectRestResponse<GroupUsers> getUsers(@PathVariable int id){
-        return new ObjectRestResponse<GroupUsers>().rel(true).result(baseBiz.getGroupUsers(id));
+        return new ObjectRestResponse<GroupUsers>().rel(true).data(baseBiz.getGroupUsers(id));
     }
 
     @RequestMapping(value = "/{id}/authority/menu", method = RequestMethod.POST)
@@ -81,7 +81,7 @@ public class GroupController extends BaseController<GroupBiz, Group> {
     @RequestMapping(value = "/{id}/authority/menu", method = RequestMethod.GET)
     @ResponseBody
     public ObjectRestResponse<List<AuthorityMenuTree>> getMenuAuthority(@PathVariable  int id){
-        return new ObjectRestResponse().result(baseBiz.getAuthorityMenu(id)).rel(true);
+        return new ObjectRestResponse().data(baseBiz.getAuthorityMenu(id)).rel(true);
     }
 
     @RequestMapping(value = "/{id}/authority/element/add", method = RequestMethod.POST)
@@ -101,7 +101,7 @@ public class GroupController extends BaseController<GroupBiz, Group> {
     @RequestMapping(value = "/{id}/authority/element", method = RequestMethod.GET)
     @ResponseBody
     public ObjectRestResponse<List<Integer>> getElementAuthority(@PathVariable  int id){
-        return new ObjectRestResponse().result(baseBiz.getAuthorityElement(id)).rel(true);
+        return new ObjectRestResponse().data(baseBiz.getAuthorityElement(id)).rel(true);
     }
 
 

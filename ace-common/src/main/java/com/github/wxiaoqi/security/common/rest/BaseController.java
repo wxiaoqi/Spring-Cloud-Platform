@@ -37,7 +37,7 @@ public class BaseController<Biz extends BaseBiz,Entity> {
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody
     public ObjectRestResponse<Entity> get(@PathVariable int id){
-        return new ObjectRestResponse<Entity>().rel(true).result(baseBiz.selectById(id));
+        return new ObjectRestResponse<Entity>().rel(true).data(baseBiz.selectById(id));
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)

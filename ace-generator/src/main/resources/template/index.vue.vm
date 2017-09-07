@@ -126,8 +126,8 @@ ${column.attrname}: [
         this.listLoading = true;
         page(this.listQuery)
             .then(response => {
-          this.list = response.rows;
-        this.total = response.total;
+          this.list = response.data.rows;
+        this.total = response.data.total;
         this.listLoading = false;
       })
       },
@@ -150,7 +150,7 @@ ${column.attrname}: [
       handleUpdate(row) {
         getObj(row.id)
             .then(response => {
-          this.form = response.result;
+          this.form = response.data;
         this.dialogFormVisible = true;
         this.dialogStatus = 'update';
       });
