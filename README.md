@@ -10,18 +10,13 @@ QQ群号：169824183
 
 ![Markdown](http://i1.buimg.com/1949/39fbe8cbf5fd961f.png)
 
----------
 
-# 课程：从0到1 `实现AG-Admin`
-
-## 课程地址
-http://edu.csdn.net/course/detail/5840
 
 
 ---------
 
 # 模块说明
-![img](http://ofsc32t59.bkt.clouddn.com/17-06-28/1498635351391.jpg)
+![img](http://ofsc32t59.bkt.clouddn.com/17-09-09/1504916314401.jpg)
 
 ### 架构详解
 #### 监控
@@ -164,3 +159,10 @@ http://edu.csdn.net/course/detail/5840
 
 # 欢迎交流
 ![img](http://ofsc32t59.bkt.clouddn.com/17-06-16/1497595760484.jpg)
+
+---------
+
+# 推荐课程：从0到1 `实现AG-Admin`
+
+## 课程地址
+http://edu.csdn.net/course/detail/5840
