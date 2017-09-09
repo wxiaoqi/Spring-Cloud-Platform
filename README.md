@@ -1,5 +1,5 @@
 # AG-Admin
-AG-Admin是基于Spring Cloud实现的`前后端分离`的后台管理信息系统，具备用户管理、部门管理、菜单管理等多个模块，支持多业务系统并行开发，可以作为后台管理系统的脚手架。代码简洁，架构清晰，适合学习和直接项目中使用。核心技术采用Eureka、Fegin、Ribbon、Zuul、Hystrix、Security、OAth、Mybatis、Ace-cache等主要框架和中间件，前端采用Layui组件。
+AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系统，其中包含具备用户管理、资源权限管理、网关API管理等多个模块，支持多业务系统并行开发，可以作为后端服务的开发脚手架。代码简洁，架构清晰，适合学习和直接项目中使用。核心技术采用Eureka、Fegin、Ribbon、Zuul、Hystrix、Security、JWT Token、Mybatis等主要框架和中间件，前端采用Layui组件。 
 
 
 QQ群号：169824183
