@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.2.RELEASE</version>
+        <version>1.5.4.RELEASE</version>
     </parent>
     <properties>
         <docker.image.prefix>ag</docker.image.prefix>
@@ -32,7 +32,6 @@
         <module>ace-monitor</module>
         <module>ace-gate</module>
         <module>ace-common</module>
-        <module>ace-blog-parent</module>
         <module>ace-config</module>
         <module>ace-generator</module>
         <module>ace-auth</module>
@@ -59,7 +58,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Camden.SR3</version>
+                <version>Dalston.SR1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

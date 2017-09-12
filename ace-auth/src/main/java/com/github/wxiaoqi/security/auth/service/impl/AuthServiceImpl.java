@@ -2,7 +2,7 @@ package com.github.wxiaoqi.security.auth.service.impl;
 
 import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
 import com.github.wxiaoqi.security.api.vo.user.UserInfo;
-import com.github.wxiaoqi.security.auth.jwt.JwtTokenUtil;
+import com.github.wxiaoqi.security.auth.util.jwt.JwtTokenUtil;
 import com.github.wxiaoqi.security.auth.rpc.IUserService;
 import com.github.wxiaoqi.security.auth.service.AuthService;
 import com.github.wxiaoqi.security.auth.vo.FrontUser;

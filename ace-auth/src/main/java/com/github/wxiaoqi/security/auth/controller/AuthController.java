@@ -1,7 +1,7 @@
 package com.github.wxiaoqi.security.auth.controller;
 
-import com.github.wxiaoqi.security.auth.jwt.JwtAuthenticationRequest;
-import com.github.wxiaoqi.security.auth.jwt.JwtAuthenticationResponse;
+import com.github.wxiaoqi.security.auth.util.jwt.JwtAuthenticationRequest;
+import com.github.wxiaoqi.security.auth.util.jwt.JwtAuthenticationResponse;
 import com.github.wxiaoqi.security.auth.service.AuthService;
 import com.github.wxiaoqi.security.auth.vo.FrontUser;
 import org.springframework.beans.factory.annotation.Autowired;
