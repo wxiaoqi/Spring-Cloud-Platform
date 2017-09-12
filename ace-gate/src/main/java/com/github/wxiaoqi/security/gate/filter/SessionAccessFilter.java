@@ -4,18 +4,25 @@ import com.alibaba.fastjson.JSON;
 import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
 import com.github.wxiaoqi.security.api.vo.log.LogInfo;
 import com.github.wxiaoqi.security.api.vo.user.UserInfo;
+import com.github.wxiaoqi.security.common.constant.CommonConstants;
+import com.github.wxiaoqi.security.common.context.BaseContextHandler;
+import com.github.wxiaoqi.security.common.msg.BaseResponse;
+import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import com.github.wxiaoqi.security.common.msg.auth.TokenErrorResponse;
 import com.github.wxiaoqi.security.common.util.ClientUtil;
 import com.github.wxiaoqi.security.common.util.jwt.IJWTInfo;
-import com.github.wxiaoqi.security.gate.jwt.JwtTokenUtil;
-import com.github.wxiaoqi.security.gate.rpc.ILogService;
-import com.github.wxiaoqi.security.gate.rpc.IUserService;
+import com.github.wxiaoqi.security.gate.config.ClientConfig;
+import com.github.wxiaoqi.security.gate.feign.ClientAuthFeign;
+import com.github.wxiaoqi.security.gate.utils.JwtTokenUtil;
+import com.github.wxiaoqi.security.gate.feign.ILogService;
+import com.github.wxiaoqi.security.gate.feign.IUserService;
 import com.github.wxiaoqi.security.gate.utils.DBLog;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -50,6 +57,12 @@ public class SessionAccessFilter extends ZuulFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    private ClientConfig clientConfig;
+
+    @Autowired
+    private ClientAuthFeign clientAuthFeign;
+
     public SessionAccessFilter() {
         super();
     }
@@ -76,20 +89,33 @@ public class SessionAccessFilter extends ZuulFilter {
         HttpServletRequest request = ctx.getRequest();
         final String requestUri = request.getRequestURI().substring(zuulPrefix.length());
         final String method = request.getMethod();
+        BaseContextHandler.setToken(null);
         // 不进行拦截的地址
         if (isStartWith(requestUri))
             return null;
         IJWTInfo user = null;
         try {
             user = getJWTUser(request);
+            ctx.addZuulRequestHeader(tokenHeader,BaseContextHandler.getToken());
         } catch (Exception e) {
-            setFailedRequest(JSON.toJSONString(new TokenErrorResponse("Token Error or Token Expired!")),200);
+            setFailedRequest(JSON.toJSONString(new TokenErrorResponse(e.getMessage())),200);
+            return null;
         }
+
         List<PermissionInfo> permissionInfos = userService.getAllPermissionInfo();
         // 判断资源是否启用权限约束
         Collection<PermissionInfo> result = getPermissionInfos(requestUri, method, permissionInfos);
         if(result.size()>0){
             checkAllow(requestUri, method, ctx, user.getUniqueName());
+        }
+
+        // 申请客户端密钥头
+        BaseResponse resp = clientAuthFeign.getAccessToken(clientConfig.getClientId(), clientConfig.getClientSecret());
+        if(resp.getStatus() == 200){
+            ObjectRestResponse<String> clientToken = (ObjectRestResponse<String>) resp;
+            ctx.addZuulRequestHeader(clientConfig.getClientTokenHeader(),clientToken.getData());
+        }else {
+            setFailedRequest(JSON.toJSONString(new BaseResponse(CommonConstants.EX_CLIENT_INVALID_CODE,"Token Error or Token Expired!")),200);
         }
         return null;
     }
@@ -131,6 +157,10 @@ public class SessionAccessFilter extends ZuulFilter {
      */
     private IJWTInfo getJWTUser(HttpServletRequest request) throws Exception {
         String authToken = request.getHeader(this.tokenHeader);
+        if(StringUtils.isBlank(authToken)){
+            authToken = request.getParameter("token");
+        }
+        BaseContextHandler.setToken(authToken);
         return jwtTokenUtil.getInfoFromToken(authToken);
     }
 
@@ -199,7 +229,7 @@ public class SessionAccessFilter extends ZuulFilter {
         if (ctx.getResponseBody() == null) {
             ctx.setResponseBody(body);
             ctx.setSendZuulResponse(false);
-            throw new RuntimeException("Code: " + code + ", " + body); //optional
+//            throw new RuntimeException("Code: " + code + ", " + body); //optional
         }
     }
 }

@@ -24,6 +24,7 @@
     <properties>
         <docker.image.prefix>ag</docker.image.prefix>
         <docker.plugin.version>0.4.13</docker.plugin.version>
+        <mapper.version>3.4.0</mapper.version>
     </properties>
     <modules>
         <module>ace-admin</module>
@@ -62,7 +63,16 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.33</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.0.11</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

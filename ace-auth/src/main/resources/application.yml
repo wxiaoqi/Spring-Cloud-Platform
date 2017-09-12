@@ -84,6 +84,9 @@ jwt:
     path: /Users/ace/git/AG-Admin-v2/ace-auth/src/main/resources/jwt/pub.key
     
 client:
+  id: ace-auth
+  secret: 123456
+  token-header: client-token
   expire: 3600
   pri-key:
     path: /Users/ace/git/AG-Admin-v2/ace-auth/src/main/resources/client/pri.key

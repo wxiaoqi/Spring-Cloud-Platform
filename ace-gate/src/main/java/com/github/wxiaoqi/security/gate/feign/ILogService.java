@@ -1,4 +1,4 @@
-package com.github.wxiaoqi.security.gate.rpc;
+package com.github.wxiaoqi.security.gate.feign;
 
 import com.github.wxiaoqi.security.api.vo.log.LogInfo;
 import org.springframework.cloud.netflix.feign.FeignClient;

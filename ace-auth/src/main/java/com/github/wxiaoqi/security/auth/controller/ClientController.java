@@ -19,17 +19,15 @@ import java.util.List;
 public class ClientController {
     @Autowired
     private ClientService clientService;
-    @Autowired
-    private ClientTokenUtil clientTokenUtil;
+
     @RequestMapping(value = "/token", method = RequestMethod.POST)
     public ObjectRestResponse getAccessToken(String clientId, String secret) throws Exception {
-        ClientInfo apply = clientService.apply(clientId, secret);
-        return new ObjectRestResponse<String>().data(clientTokenUtil.generateToken(apply));
+        return new ObjectRestResponse<String>().data(clientService.apply(clientId, secret));
     }
 
     @RequestMapping(value = "/myClient")
     public ObjectRestResponse getAllowedClient(String serviceId, String secret) {
-        return new ObjectRestResponse<List<String>>().data(clientService.getAllowedClient(serviceId,secret));
+        return new ObjectRestResponse<List<String>>().data(clientService.getAllowedClient(serviceId, secret));
     }
 
 }

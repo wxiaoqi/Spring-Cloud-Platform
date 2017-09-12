@@ -9,7 +9,7 @@ import java.util.List;
  * Created by ace on 2017/9/10.
  */
 public interface ClientService {
-    public ClientInfo apply(String clientId, String secret);
+    public String apply(String clientId, String secret) throws Exception;
 
     /**
      * 获取授权的客户端列表

@@ -52,6 +52,13 @@ public class BaseContextHandler {
         Object value = get(CommonConstants.CONTEXT_KEY_USER_NAME);
         return StringHelper.getObjectValue(value);
     }
+
+    public static String getToken(){
+        Object value = get(CommonConstants.CONTEXT_KEY_USER_TOKEN);
+        return StringHelper.getObjectValue(value);
+    }
+    public static void setToken(String token){set(CommonConstants.CONTEXT_KEY_USER_TOKEN,token);}
+
     public static void setName(String name){set(CommonConstants.CONTEXT_KEY_USER_NAME,name);}
 
     public static void setUserID(String userID){

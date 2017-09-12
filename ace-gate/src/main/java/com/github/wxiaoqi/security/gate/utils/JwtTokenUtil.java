@@ -1,4 +1,4 @@
-package com.github.wxiaoqi.security.gate.jwt;
+package com.github.wxiaoqi.security.gate.utils;
 
 import com.github.wxiaoqi.security.common.util.jwt.IJWTInfo;
 import com.github.wxiaoqi.security.common.util.jwt.JWTHelper;

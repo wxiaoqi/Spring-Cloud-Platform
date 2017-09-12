@@ -1,7 +1,7 @@
 package com.github.wxiaoqi.security.gate.utils;
 
 import com.github.wxiaoqi.security.api.vo.log.LogInfo;
-import com.github.wxiaoqi.security.gate.rpc.ILogService;
+import com.github.wxiaoqi.security.gate.feign.ILogService;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
