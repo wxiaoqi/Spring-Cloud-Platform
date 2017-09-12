@@ -1,11 +1,9 @@
-package com.github.wxiaoqi.security.gate;
+package com.github.wxiaoqi.security.auth;
 
 
-import com.github.wxiaoqi.security.gate.utils.DBLog;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
@@ -14,11 +12,9 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients
-@EnableZuulProxy
-public class GateBootstrap {
+@EnableFeignClients("com.github.wxiaoqi.security.auth.rpc")
+public class AuthBootstrap {
     public static void main(String[] args) {
-        DBLog.getInstance().start();
-        SpringApplication.run(GateBootstrap.class, args);
+        SpringApplication.run(AuthBootstrap.class, args);
     }
 }

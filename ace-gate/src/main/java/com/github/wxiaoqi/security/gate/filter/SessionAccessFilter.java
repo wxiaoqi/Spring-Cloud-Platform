@@ -6,6 +6,7 @@ import com.github.wxiaoqi.security.api.vo.log.LogInfo;
 import com.github.wxiaoqi.security.api.vo.user.UserInfo;
 import com.github.wxiaoqi.security.common.msg.auth.TokenErrorResponse;
 import com.github.wxiaoqi.security.common.util.ClientUtil;
+import com.github.wxiaoqi.security.common.util.jwt.IJWTInfo;
 import com.github.wxiaoqi.security.gate.jwt.JwtTokenUtil;
 import com.github.wxiaoqi.security.gate.rpc.ILogService;
 import com.github.wxiaoqi.security.gate.rpc.IUserService;
@@ -18,7 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Base64Utils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -43,11 +43,7 @@ public class SessionAccessFilter extends ZuulFilter {
 
     @Value("${gate.ignore.startWith}")
     private String startWith;
-    @Value("${gate.ignore.contain}")
-    private String contain;
-    @Value("${gate.oauth.prefix}")
-    private String oauthPrefix;
-    @Value("${gate.jwt.header}")
+    @Value("${jwt.token-header}")
     private String tokenHeader;
     @Value("${zuul.prefix}")
     private String zuulPrefix;
@@ -81,25 +77,19 @@ public class SessionAccessFilter extends ZuulFilter {
         final String requestUri = request.getRequestURI().substring(zuulPrefix.length());
         final String method = request.getMethod();
         // 不进行拦截的地址
-        if (isStartWith(requestUri) || isContains(requestUri)|| isOAuth(requestUri))
+        if (isStartWith(requestUri))
             return null;
-        UserInfo user = getJWTUser(request);
-        String username = null;
-        if(user!=null) {
-             username = user.getUsername();
-            // 设置头部校验信息
-            ctx.addZuulRequestHeader("Authorization",
-                    Base64Utils.encodeToString(user.getUsername().getBytes()));
-            // 查找合法链接
-        } else
-            setFailedRequest(JSON.toJSONString(new TokenErrorResponse("Token Forbidden!")), 200);
+        IJWTInfo user = null;
+        try {
+            user = getJWTUser(request);
+        } catch (Exception e) {
+            setFailedRequest(JSON.toJSONString(new TokenErrorResponse("Token Error or Token Expired!")),200);
+        }
         List<PermissionInfo> permissionInfos = userService.getAllPermissionInfo();
         // 判断资源是否启用权限约束
         Collection<PermissionInfo> result = getPermissionInfos(requestUri, method, permissionInfos);
         if(result.size()>0){
-            if(username!=null)
-                checkAllow(requestUri, method, ctx, username);
-
+            checkAllow(requestUri, method, ctx, user.getUniqueName());
         }
         return null;
     }
@@ -135,35 +125,13 @@ public class SessionAccessFilter extends ZuulFilter {
     }
 
     /**
-     * 判定是否oauth资源
-     * @param requestUri
-     * @return
-     */
-    private boolean isOAuth(String requestUri) {
-        return requestUri.startsWith(oauthPrefix);
-    }
-
-    /**
      * 返回session中的用户信息
      * @param request
      * @return
      */
-    private UserInfo getJWTUser(HttpServletRequest request) {
+    private IJWTInfo getJWTUser(HttpServletRequest request) throws Exception {
         String authToken = request.getHeader(this.tokenHeader);
-        if (authToken != null) {
-            String username = jwtTokenUtil.getUsernameFromToken(authToken);
-            log.info("checking authentication " + username);
-            if (username != null ) {
-                UserInfo userDetails = userService.getUserByUsername(username);
-                if (jwtTokenUtil.validateToken(authToken, userDetails)) {
-                    return userDetails;
-                }
-            }
-            setFailedRequest(JSON.toJSONString(new TokenErrorResponse("Token Error or Token Expired!")),200);
-            return null;
-        }else{
-            return null;
-        }
+        return jwtTokenUtil.getInfoFromToken(authToken);
     }
 
     /**
@@ -203,19 +171,6 @@ public class SessionAccessFilter extends ZuulFilter {
         }
     }
 
-    /**
-     * 是否包含某种特征
-     * @param requestUri
-     * @return
-     */
-    private boolean isContains(String requestUri) {
-        boolean flag = false;
-        for (String s : contain.split(",")) {
-            if (requestUri.contains(s))
-                return true;
-        }
-        return flag;
-    }
 
     /**
      * URI是否以什么打头

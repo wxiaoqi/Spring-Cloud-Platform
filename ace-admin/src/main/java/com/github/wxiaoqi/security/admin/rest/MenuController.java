@@ -7,7 +7,7 @@ import com.github.wxiaoqi.security.admin.vo.AuthorityMenuTree;
 import com.github.wxiaoqi.security.admin.vo.MenuTree;
 import com.github.wxiaoqi.security.common.rest.BaseController;
 import com.github.wxiaoqi.security.common.util.TreeUtil;
-import com.github.wxiaoqi.security.admin.constant.CommonConstant;
+import com.github.wxiaoqi.security.admin.constant.AdminCommonConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import tk.mybatis.mapper.entity.Example;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +47,7 @@ public class MenuController extends BaseController<MenuBiz, Menu> {
         Example example = new Example(Menu.class);
         if (StringUtils.isNotBlank(title))
             example.createCriteria().andLike("title", "%" + title + "%");
-        return getMenuTree(baseBiz.selectByExample(example), CommonConstant.ROOT);
+        return getMenuTree(baseBiz.selectByExample(example), AdminCommonConstant.ROOT);
     }
 
 
@@ -57,7 +56,7 @@ public class MenuController extends BaseController<MenuBiz, Menu> {
     @ResponseBody
     public List<Menu> getSystem() {
         Menu menu = new Menu();
-        menu.setParentId(CommonConstant.ROOT);
+        menu.setParentId(AdminCommonConstant.ROOT);
         return baseBiz.selectList(menu);
     }
 
@@ -90,7 +89,7 @@ public class MenuController extends BaseController<MenuBiz, Menu> {
             BeanUtils.copyProperties(menu, node);
             trees.add(node);
         }
-        return TreeUtil.bulid(trees,CommonConstant.ROOT);
+        return TreeUtil.bulid(trees, AdminCommonConstant.ROOT);
     }
 
     @RequestMapping(value = "/user/authorityTree", method = RequestMethod.GET)

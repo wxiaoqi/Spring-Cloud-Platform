@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.wxiaoqi.security.admin.biz.ElementBiz;
 import com.github.wxiaoqi.security.admin.biz.MenuBiz;
 import com.github.wxiaoqi.security.admin.biz.UserBiz;
-import com.github.wxiaoqi.security.admin.constant.CommonConstant;
+import com.github.wxiaoqi.security.admin.constant.AdminCommonConstant;
 import com.github.wxiaoqi.security.admin.entity.Element;
 import com.github.wxiaoqi.security.admin.entity.Menu;
 import com.github.wxiaoqi.security.admin.entity.User;
@@ -68,13 +68,13 @@ public class UserService {
             }
             info = new PermissionInfo();
             info.setCode(menu.getCode());
-            info.setType(CommonConstant.RESOURCE_TYPE_MENU);
-            info.setName(CommonConstant.RESOURCE_ACTION_VISIT);
+            info.setType(AdminCommonConstant.RESOURCE_TYPE_MENU);
+            info.setName(AdminCommonConstant.RESOURCE_ACTION_VISIT);
             String uri = menu.getHref();
             if(!uri.startsWith("/"))
                 uri = "/"+uri;
             info.setUri(uri);
-            info.setMethod(CommonConstant.RESOURCE_REQUEST_METHOD_GET);
+            info.setMethod(AdminCommonConstant.RESOURCE_REQUEST_METHOD_GET);
             result.add(info
             );
             info.setMenu(menu.getTitle());

@@ -35,6 +35,7 @@
         <module>ace-blog-parent</module>
         <module>ace-config</module>
         <module>ace-generator</module>
+        <module>ace-auth</module>
     </modules>
     <packaging>pom</packaging>
     <developers>

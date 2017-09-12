@@ -1,9 +1,6 @@
 spring:
     application:
-        name: admin-gate
-    thymeleaf:
-        mode: LEGACYHTML5
-        cache: false
+        name: ace-auth
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
         time-zone: GMT+8
@@ -14,22 +11,7 @@ spring:
         pool:
             max-active: 20
 server:
-    port: 8765 #启动端口
-#
-zuul:
-  prefix: /api #为zuul设置一个公共的前缀
-  routes:
-    back:
-      path: /admin/**
-      serviceId: admin-back
-
-    blog:
-      path: /blog/**
-      serviceId: blog-admin
-
-    auth:
-      path: /auth/**
-      serviceId: ace-auth
+    port: 8777 #启动端口
 
 ribbon:
   eureka:
@@ -66,21 +48,11 @@ eureka:
                     # docker 部署开启
 #            defaultZone: http://center:8761/eureka/
 
-gate:
-  ignore:
-    startWith: /static,/auth/jwt
-#    contain: .
-#  oauth:
-#    prefix: /api
-#
-#  jwt:
-#    secret: Xe*g@1jda
-#    expiration: 7200
-#    header: Authorization
-#    prefix: bearer
-
 
 jwt:
   token-header: Authorization
+  expire: 3600
+  pri-key:
+    path: /Users/ace/git/AG-Admin-v2/ace-auth/src/main/resources/jwt/pri.key
   pub-key:
-    path: /Users/ace/git/AG-Admin-v2/ace-gate/src/main/resources/jwt/pub.key
+    path: /Users/ace/git/AG-Admin-v2/ace-auth/src/main/resources/jwt/pub.key

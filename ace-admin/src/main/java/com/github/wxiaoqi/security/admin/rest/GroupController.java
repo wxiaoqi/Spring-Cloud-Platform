@@ -3,10 +3,8 @@ package com.github.wxiaoqi.security.admin.rest;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.wxiaoqi.security.admin.biz.ResourceAuthorityBiz;
-import com.github.wxiaoqi.security.admin.constant.CommonConstant;
-import com.github.wxiaoqi.security.admin.entity.Element;
+import com.github.wxiaoqi.security.admin.constant.AdminCommonConstant;
 import com.github.wxiaoqi.security.admin.vo.AuthorityMenuTree;
 import com.github.wxiaoqi.security.admin.vo.GroupUsers;
 import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
@@ -115,7 +113,7 @@ public class GroupController extends BaseController<GroupBiz, Group> {
             example.createCriteria().andLike("name", "%" + name + "%");
         if (StringUtils.isNotBlank(groupType))
             example.createCriteria().andEqualTo("groupType", groupType);
-        return  getTree(baseBiz.selectByExample(example),CommonConstant.ROOT);
+        return  getTree(baseBiz.selectByExample(example), AdminCommonConstant.ROOT);
     }
 
 

@@ -1,6 +1,6 @@
 package com.github.wxiaoqi.security.admin.biz;
 
-import com.github.wxiaoqi.security.admin.constant.CommonConstant;
+import com.github.wxiaoqi.security.admin.constant.AdminCommonConstant;
 import com.github.wxiaoqi.security.admin.entity.*;
 import com.github.wxiaoqi.security.admin.entity.Group;
 import com.github.wxiaoqi.security.admin.mapper.GroupMapper;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import com.github.wxiaoqi.security.common.biz.BaseBiz;
 import org.springframework.util.StringUtils;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.*;
 
@@ -35,7 +34,7 @@ public class GroupBiz extends BaseBiz<GroupMapper,Group>{
     private MenuMapper menuMapper;
     @Override
     public void insertSelective(Group entity) {
-        if(CommonConstant.ROOT == entity.getParentId()){
+        if(AdminCommonConstant.ROOT == entity.getParentId()){
             entity.setPath("/"+entity.getCode());
         }else{
             Group parent = this.selectById(entity.getParentId());
@@ -46,7 +45,7 @@ public class GroupBiz extends BaseBiz<GroupMapper,Group>{
 
     @Override
     public void updateById(Group entity) {
-        if(CommonConstant.ROOT == entity.getParentId()){
+        if(AdminCommonConstant.ROOT == entity.getParentId()){
             entity.setPath("/"+entity.getCode());
         }else{
             Group parent = this.selectById(entity.getParentId());
@@ -93,7 +92,7 @@ public class GroupBiz extends BaseBiz<GroupMapper,Group>{
      * @param menus
      */
     public void modifyAuthorityMenu(int groupId, String[] menus){
-        resourceAuthorityMapper.deleteByAuthorityIdAndResourceType(groupId+"",CommonConstant.RESOURCE_TYPE_MENU);
+        resourceAuthorityMapper.deleteByAuthorityIdAndResourceType(groupId+"", AdminCommonConstant.RESOURCE_TYPE_MENU);
         List<Menu> menuList = menuMapper.selectAll();
         Map<String,String> map = new HashMap<String, String>();
         for(Menu menu:menuList){
@@ -106,7 +105,7 @@ public class GroupBiz extends BaseBiz<GroupMapper,Group>{
             findParentID(map,relationMenus,menuId);
         }
         for(String menuId:relationMenus){
-            authority = new ResourceAuthority(CommonConstant.AUTHORITY_TYPE_GROUP,CommonConstant.RESOURCE_TYPE_MENU);
+            authority = new ResourceAuthority(AdminCommonConstant.AUTHORITY_TYPE_GROUP, AdminCommonConstant.RESOURCE_TYPE_MENU);
             authority.setAuthorityId(groupId+"");
             authority.setResourceId(menuId);
             authority.setParentId("-1");
@@ -116,7 +115,7 @@ public class GroupBiz extends BaseBiz<GroupMapper,Group>{
 
     private void findParentID(Map<String,String> map,Set<String> relationMenus,String id){
         String parentId = map.get(id);
-        if(String.valueOf(CommonConstant.ROOT).equals(id)){
+        if(String.valueOf(AdminCommonConstant.ROOT).equals(id)){
             return ;
         }
         relationMenus.add(parentId);
@@ -130,7 +129,7 @@ public class GroupBiz extends BaseBiz<GroupMapper,Group>{
      * @param elementId
      */
     public void modifyAuthorityElement(int groupId,int menuId,int elementId){
-        ResourceAuthority authority = new ResourceAuthority(CommonConstant.AUTHORITY_TYPE_GROUP,CommonConstant.RESOURCE_TYPE_BTN);
+        ResourceAuthority authority = new ResourceAuthority(AdminCommonConstant.AUTHORITY_TYPE_GROUP, AdminCommonConstant.RESOURCE_TYPE_BTN);
         authority.setAuthorityId(groupId + "");
         authority.setResourceId(elementId + "");
         authority.setParentId("-1");
@@ -158,7 +157,7 @@ public class GroupBiz extends BaseBiz<GroupMapper,Group>{
      * @return
      */
     public List<AuthorityMenuTree> getAuthorityMenu(int groupId){
-        List<Menu> menus = menuMapper.selectMenuByAuthorityId(String.valueOf(groupId), CommonConstant.AUTHORITY_TYPE_GROUP);
+        List<Menu> menus = menuMapper.selectMenuByAuthorityId(String.valueOf(groupId), AdminCommonConstant.AUTHORITY_TYPE_GROUP);
         List<AuthorityMenuTree> trees = new ArrayList<AuthorityMenuTree>();
         AuthorityMenuTree node = null;
         for (Menu menu : menus) {
@@ -172,7 +171,7 @@ public class GroupBiz extends BaseBiz<GroupMapper,Group>{
 
 
     public List<Integer> getAuthorityElement(int groupId) {
-        ResourceAuthority authority = new ResourceAuthority(CommonConstant.AUTHORITY_TYPE_GROUP,CommonConstant.RESOURCE_TYPE_BTN);
+        ResourceAuthority authority = new ResourceAuthority(AdminCommonConstant.AUTHORITY_TYPE_GROUP, AdminCommonConstant.RESOURCE_TYPE_BTN);
         authority.setAuthorityId(groupId+"");
         List<ResourceAuthority> authorities = resourceAuthorityMapper.select(authority);
         List<Integer> ids = new ArrayList<Integer>();
