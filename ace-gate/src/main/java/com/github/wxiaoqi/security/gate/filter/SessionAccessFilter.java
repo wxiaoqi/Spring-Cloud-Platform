@@ -4,6 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
 import com.github.wxiaoqi.security.api.vo.log.LogInfo;
 import com.github.wxiaoqi.security.api.vo.user.UserInfo;
+import com.github.wxiaoqi.security.auth.client.config.ServiceAuthConfig;
+import com.github.wxiaoqi.security.auth.client.config.UserAuthConfig;
+import com.github.wxiaoqi.security.auth.client.feign.ServiceAuthFeign;
+import com.github.wxiaoqi.security.auth.client.jwt.UserAuthUtil;
 import com.github.wxiaoqi.security.common.constant.CommonConstants;
 import com.github.wxiaoqi.security.common.context.BaseContextHandler;
 import com.github.wxiaoqi.security.common.msg.BaseResponse;
@@ -11,9 +15,6 @@ import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import com.github.wxiaoqi.security.common.msg.auth.TokenErrorResponse;
 import com.github.wxiaoqi.security.common.util.ClientUtil;
 import com.github.wxiaoqi.security.common.util.jwt.IJWTInfo;
-import com.github.wxiaoqi.security.gate.config.ClientConfig;
-import com.github.wxiaoqi.security.gate.feign.ClientAuthFeign;
-import com.github.wxiaoqi.security.gate.utils.JwtTokenUtil;
 import com.github.wxiaoqi.security.gate.feign.ILogService;
 import com.github.wxiaoqi.security.gate.feign.IUserService;
 import com.github.wxiaoqi.security.gate.utils.DBLog;
@@ -30,7 +31,9 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
-import java.util.*;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -50,18 +53,20 @@ public class SessionAccessFilter extends ZuulFilter {
 
     @Value("${gate.ignore.startWith}")
     private String startWith;
-    @Value("${jwt.token-header}")
-    private String tokenHeader;
+
     @Value("${zuul.prefix}")
     private String zuulPrefix;
     @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+    private UserAuthUtil userAuthUtil;
 
     @Autowired
-    private ClientConfig clientConfig;
+    private ServiceAuthConfig serviceAuthConfig;
 
     @Autowired
-    private ClientAuthFeign clientAuthFeign;
+    private UserAuthConfig userAuthConfig;
+
+    @Autowired
+    private ServiceAuthFeign serviceAuthFeign;
 
     public SessionAccessFilter() {
         super();
@@ -96,7 +101,7 @@ public class SessionAccessFilter extends ZuulFilter {
         IJWTInfo user = null;
         try {
             user = getJWTUser(request);
-            ctx.addZuulRequestHeader(tokenHeader,BaseContextHandler.getToken());
+            ctx.addZuulRequestHeader(userAuthConfig.getTokenHeader(),BaseContextHandler.getToken());
         } catch (Exception e) {
             setFailedRequest(JSON.toJSONString(new TokenErrorResponse(e.getMessage())),200);
             return null;
@@ -110,13 +115,14 @@ public class SessionAccessFilter extends ZuulFilter {
         }
 
         // 申请客户端密钥头
-        BaseResponse resp = clientAuthFeign.getAccessToken(clientConfig.getClientId(), clientConfig.getClientSecret());
+        BaseResponse resp = serviceAuthFeign.getAccessToken(serviceAuthConfig.getClientId(), serviceAuthConfig.getClientSecret());
         if(resp.getStatus() == 200){
             ObjectRestResponse<String> clientToken = (ObjectRestResponse<String>) resp;
-            ctx.addZuulRequestHeader(clientConfig.getClientTokenHeader(),clientToken.getData());
+            ctx.addZuulRequestHeader(serviceAuthConfig.getTokenHeader(),clientToken.getData());
         }else {
             setFailedRequest(JSON.toJSONString(new BaseResponse(CommonConstants.EX_CLIENT_INVALID_CODE,"Token Error or Token Expired!")),200);
         }
+
         return null;
     }
 
@@ -156,12 +162,12 @@ public class SessionAccessFilter extends ZuulFilter {
      * @return
      */
     private IJWTInfo getJWTUser(HttpServletRequest request) throws Exception {
-        String authToken = request.getHeader(this.tokenHeader);
+        String authToken = request.getHeader(userAuthConfig.getTokenHeader());
         if(StringUtils.isBlank(authToken)){
             authToken = request.getParameter("token");
         }
         BaseContextHandler.setToken(authToken);
-        return jwtTokenUtil.getInfoFromToken(authToken);
+        return userAuthUtil.getInfoFromToken(authToken);
     }
 
     /**

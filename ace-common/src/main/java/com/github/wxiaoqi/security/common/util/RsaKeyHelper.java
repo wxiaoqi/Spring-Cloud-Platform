@@ -15,8 +15,8 @@ public class RsaKeyHelper {
      * @return
      * @throws Exception
      */
-    public static PublicKey getPublicKey(String filename) throws Exception {
-        File f = new File(filename);
+    public PublicKey getPublicKey(String filename) throws Exception {
+        File f = new File(this.getClass().getClassLoader().getResource(filename).getPath());
         FileInputStream fis = new FileInputStream(f);
         DataInputStream dis = new DataInputStream(fis);
         byte[] keyBytes = new byte[(int) f.length()];
@@ -33,8 +33,8 @@ public class RsaKeyHelper {
      * @return
      * @throws Exception
      */
-    public static PrivateKey getPrivateKey(String filename) throws Exception {
-        File f = new File(filename);
+    public PrivateKey getPrivateKey(String filename) throws Exception {
+        File f = new File(this.getClass().getClassLoader().getResource(filename).getPath());
         FileInputStream fis = new FileInputStream(f);
         DataInputStream dis = new DataInputStream(fis);
         byte[] keyBytes = new byte[(int) f.length()];
@@ -53,7 +53,7 @@ public class RsaKeyHelper {
      * @throws IOException
      * @throws NoSuchAlgorithmException
      */
-    public static void generateKey(String publicKeyFilename,String privateKeyFilename,String password) throws IOException, NoSuchAlgorithmException {
+    public void generateKey(String publicKeyFilename,String privateKeyFilename,String password) throws IOException, NoSuchAlgorithmException {
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         SecureRandom secureRandom = new SecureRandom(password.getBytes());
         keyPairGenerator.initialize(1024, secureRandom);
@@ -68,8 +68,6 @@ public class RsaKeyHelper {
         fos.close();
     }
 
-    public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
-        generateKey("/Users/ace/git/ag-parent/ag-auth/src/main/resources/client/pub.key","/Users/ace/git/ag-parent/ag-auth/src/main/resources/client/pri.key","1*&623!f");
-    }
+
 }
 

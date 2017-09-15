@@ -13,6 +13,7 @@ import org.joda.time.DateTime;
  * Created by ace on 2017/9/10.
  */
 public class JWTHelper {
+    private static RsaKeyHelper rsaKeyHelper = new RsaKeyHelper();
     /**
      * 密钥加密token
      *
@@ -28,7 +29,7 @@ public class JWTHelper {
                 .claim(CommonConstants.JWT_KEY_USER_ID, jwtInfo.getId())
                 .claim(CommonConstants.JWT_KEY_NAME, jwtInfo.getName())
                 .setExpiration(DateTime.now().plusSeconds(expire).toDate())
-                .signWith(SignatureAlgorithm.RS256, RsaKeyHelper.getPrivateKey(priKeyPath))
+                .signWith(SignatureAlgorithm.RS256, rsaKeyHelper.getPrivateKey(priKeyPath))
                 .compact();
         return compactJws;
     }
@@ -41,7 +42,7 @@ public class JWTHelper {
      * @throws Exception
      */
     public static Jws<Claims> parserToken(String token, String pubKeyPath) throws Exception {
-        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(RsaKeyHelper.getPublicKey(pubKeyPath)).parseClaimsJws(token);
+        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(rsaKeyHelper.getPublicKey(pubKeyPath)).parseClaimsJws(token);
         return claimsJws;
     }
 

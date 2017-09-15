@@ -2,13 +2,13 @@ package com.github.wxiaoqi.security.admin.biz;
 
 import com.github.wxiaoqi.security.admin.entity.User;
 import com.github.wxiaoqi.security.admin.mapper.MenuMapper;
-import com.github.wxiaoqi.security.admin.util.JwtTokenUtil;
+import com.github.wxiaoqi.security.admin.mapper.UserMapper;
+import com.github.wxiaoqi.security.auth.client.jwt.UserAuthUtil;
 import com.github.wxiaoqi.security.common.biz.BaseBiz;
 import com.github.wxiaoqi.security.common.constant.UserConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.github.wxiaoqi.security.admin.mapper.UserMapper;
 
 /**
  * ${DESCRIPTION}
@@ -22,7 +22,7 @@ public class UserBiz extends BaseBiz<UserMapper,User> {
     @Autowired
     private MenuMapper menuMapper;
     @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+    private UserAuthUtil userAuthUtil;
     @Override
     public void insertSelective(User entity) {
         String password = new BCryptPasswordEncoder(UserConstant.PW_ENCORDER_SALT).encode(entity.getPassword());

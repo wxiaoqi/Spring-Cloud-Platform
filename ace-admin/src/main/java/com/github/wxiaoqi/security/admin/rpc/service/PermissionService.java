@@ -1,6 +1,5 @@
 package com.github.wxiaoqi.security.admin.rpc.service;
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.wxiaoqi.security.admin.biz.ElementBiz;
 import com.github.wxiaoqi.security.admin.biz.MenuBiz;
 import com.github.wxiaoqi.security.admin.biz.UserBiz;
@@ -8,21 +7,17 @@ import com.github.wxiaoqi.security.admin.constant.AdminCommonConstant;
 import com.github.wxiaoqi.security.admin.entity.Element;
 import com.github.wxiaoqi.security.admin.entity.Menu;
 import com.github.wxiaoqi.security.admin.entity.User;
-import com.github.wxiaoqi.security.admin.util.JwtTokenUtil;
 import com.github.wxiaoqi.security.admin.vo.FrontUser;
 import com.github.wxiaoqi.security.admin.vo.MenuTree;
 import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
 import com.github.wxiaoqi.security.api.vo.user.UserInfo;
+import com.github.wxiaoqi.security.auth.client.jwt.UserAuthUtil;
 import com.github.wxiaoqi.security.common.constant.CommonConstants;
 import com.github.wxiaoqi.security.common.util.TreeUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +36,7 @@ public class PermissionService {
     @Autowired
     private ElementBiz elementBiz;
     @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+    private UserAuthUtil userAuthUtil;
 
     public UserInfo getUserByUsername(String username) {
         UserInfo info = new UserInfo();
@@ -120,7 +115,7 @@ public class PermissionService {
     }
 
     public FrontUser getUserInfo(String token) throws Exception {
-        String username = jwtTokenUtil.getInfoFromToken(token).getUniqueName();
+        String username = userAuthUtil.getInfoFromToken(token).getUniqueName();
         if (username == null)
             return null;
         UserInfo user = this.getUserByUsername(username);

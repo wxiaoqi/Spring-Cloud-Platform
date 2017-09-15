@@ -1,7 +1,7 @@
 package com.github.wxiaoqi.security.admin.config;
 
-import com.github.wxiaoqi.security.admin.interceptor.ClientInterceptor;
-import com.github.wxiaoqi.security.admin.interceptor.JWTInterceptor;
+import com.github.wxiaoqi.security.auth.client.interceptor.ServiceAuthRestInterceptor;
+import com.github.wxiaoqi.security.auth.client.interceptor.UserAuthRestInterceptor;
 import com.github.wxiaoqi.security.common.handler.GlobalExceptionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,18 +20,18 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(getClientInterceptor()).addPathPatterns("/**");
-        registry.addInterceptor(getJWTInterceptor()).addPathPatterns("/**").excludePathPatterns("/api/user/username/**");
+        registry.addInterceptor(getServiceAuthRestInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(getUserAuthRestInterceptor()).addPathPatterns("/**").excludePathPatterns("/api/user/username/**");
         super.addInterceptors(registry);
     }
 
     @Bean
-    JWTInterceptor getJWTInterceptor(){
-        return new JWTInterceptor();
+    ServiceAuthRestInterceptor getServiceAuthRestInterceptor(){
+        return new ServiceAuthRestInterceptor();
     }
 
     @Bean
-    ClientInterceptor getClientInterceptor(){
-        return new ClientInterceptor();
+    UserAuthRestInterceptor getUserAuthRestInterceptor(){
+        return new UserAuthRestInterceptor();
     }
 }

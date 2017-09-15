@@ -59,15 +59,15 @@ swagger:
         developer: 老A
 
 
-
-jwt:
-  token-header: Authorization
-  pub-key:
-    path: /Users/ace/git/AG-Admin-v2/ace-admin/src/main/resources/jwt/pub.key
-
-client:
-  id: ace-admin
-  secret: 123456
-  token-header: client-token
-  pub-key:
-    path: /Users/ace/git/AG-Admin-v2/ace-admin/src/main/resources/client/pub.key
+auth:
+  serviceId: ace-auth
+  user:
+    token-header: Authorization
+    pub-key:
+      path: jwt/pub.key
+  client:
+    id: ace-admin
+    secret: 123456
+    token-header: client-token
+    pub-key:
+      path: client/pub.key
