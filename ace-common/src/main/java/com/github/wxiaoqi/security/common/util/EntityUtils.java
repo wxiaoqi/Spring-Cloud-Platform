@@ -71,19 +71,19 @@ public class EntityUtils {
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 		String hostIp = "";
 		String name = "";
-		String id = "";
+		String userId = "";
 		if(request!=null) {
 			hostIp = String.valueOf(request.getHeader("userHost"));
 			name = String.valueOf(request.getHeader("userName"));
 			name = URLDecoder.decode(name);
-			id = String.valueOf(request.getHeader("userId"));
+			userId = String.valueOf(request.getHeader("userId"));
 		}
 		// 默认属性
 		String[] fields = {"updName","updUser","updHost","updTime"};
 		Field field = ReflectionUtils.getAccessibleField(entity, "updTime");
 		Object [] value = null;
-		if(field!=null&&field.getType().equals(Date.class)){
-			value = new Object []{name,id,hostIp,new Date()};
+		if(field!=null && field.getType().equals(Date.class)){
+			value = new Object []{name,userId,hostIp,new Date()};
 		}
 		// 填充默认属性值
 		setDefaultValues(entity, fields, value);
@@ -97,7 +97,7 @@ public class EntityUtils {
 	 * @author 王浩彬
 	 */
 	private static <T> void setDefaultValues(T entity, String[] fields, Object[] value) {
-		for(int i=0;i<fields.length;i++){
+		for(int i=0;i < fields.length;i ++){
 			String field = fields[i];
 			if(ReflectionUtils.hasField(entity, field)){
 				ReflectionUtils.invokeSetter(entity, field, value[i]);

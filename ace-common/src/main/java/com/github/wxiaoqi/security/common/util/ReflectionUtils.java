@@ -171,6 +171,8 @@ public class ReflectionUtils {
 	public static Field getAccessibleField(final Object obj, final String fieldName) {
 		Validate.notNull(obj, "object can't be null");
 		Validate.notBlank(fieldName, "fieldName can't be blank");
+//		Assert.notNull(obj,"object can't be null");
+//		Assert.hasLength(fieldName,"fieldNme cant't be blank");
 		for (Class<?> superClass = obj.getClass(); superClass != Object.class; superClass = superClass.getSuperclass()) {
 			try {
 				Field field = superClass.getDeclaredField(fieldName);
