@@ -1,6 +1,5 @@
 package com.github.wxiaoqi.security.admin.rpc;
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.wxiaoqi.security.admin.biz.GateLogBiz;
 import com.github.wxiaoqi.security.admin.entity.GateLog;
 import com.github.wxiaoqi.security.api.vo.log.LogInfo;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * ${DESCRIPTION}
- *
+ * 保存日志
  * @author wanghaobin
  * @create 2017-07-01 14:39
  */
