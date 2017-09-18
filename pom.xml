@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.2.RELEASE</version>
+        <version>1.5.4.RELEASE</version>
     </parent>
     <properties>
         <docker.image.prefix>ag</docker.image.prefix>
@@ -52,13 +52,13 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-    <!--依赖管理，用于管理spring-cloud的依赖，其中Camden.SR3是版本号-->
+    <!--依赖管理，用于管理spring-cloud的依赖，其中Dalston.SR1是版本号-->
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Camden.SR3</version>
+                <version>Dalston.SR1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -4,7 +4,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 
 /**
  * ${DESCRIPTION}
@@ -14,7 +14,7 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
  */
 //@EnableDiscoveryClient  //激活eureka中的DiscoveryClient实现
 @EnableEurekaClient
-@EnableHystrix
+@EnableCircuitBreaker
 @SpringBootApplication
 @ServletComponentScan("com.github.wxiaoqi.security.admin.config.druid")
 //@EnableRedisHttpSession
