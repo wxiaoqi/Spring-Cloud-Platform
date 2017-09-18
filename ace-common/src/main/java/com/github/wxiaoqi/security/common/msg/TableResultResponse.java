@@ -17,6 +17,11 @@ public class TableResultResponse<T> {
         this.rows = rows;
     }
 
+    public TableResultResponse(Long total, List<T> rows) {
+        this.total = total.intValue();
+        this.rows = rows;
+    }
+
     public TableResultResponse() {
     }
 
