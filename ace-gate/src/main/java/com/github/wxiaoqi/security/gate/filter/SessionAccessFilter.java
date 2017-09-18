@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
 
 /**
  * ${DESCRIPTION}
- *
+ * 权限过滤器。
  * @author wanghaobin
  * @create 2017-06-23 8:25
  */
