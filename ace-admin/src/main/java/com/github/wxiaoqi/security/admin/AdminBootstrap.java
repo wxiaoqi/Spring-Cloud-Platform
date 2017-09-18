@@ -14,7 +14,7 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
  */
 //@EnableDiscoveryClient  //激活eureka中的DiscoveryClient实现
 @EnableEurekaClient
-@EnableHystrix
+@EnableCircuitBreaker
 @SpringBootApplication
 @ServletComponentScan("com.github.wxiaoqi.security.admin.config.druid")
 //@EnableRedisHttpSession
