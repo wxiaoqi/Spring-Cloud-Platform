@@ -59,6 +59,7 @@ public class RsaKeyHelper {
         keyPairGenerator.initialize(1024, secureRandom);
         KeyPair keyPair = keyPairGenerator.genKeyPair();
         byte[] publicKeyBytes = keyPair.getPublic().getEncoded();
+//        System.out.println(Base64.encode(publicKeyBytes));
         FileOutputStream fos = new FileOutputStream(publicKeyFilename);
         fos.write(publicKeyBytes);
         fos.close();
@@ -67,7 +68,6 @@ public class RsaKeyHelper {
         fos.write(privateKeyBytes);
         fos.close();
     }
-
 
 }
 
