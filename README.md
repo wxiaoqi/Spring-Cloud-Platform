@@ -19,14 +19,10 @@ QQ群号：169824183（已满）、661605461（2）
 ![Markdown](http://i1.buimg.com/1949/39fbe8cbf5fd961f.png)
 
 
-
-# AG-Admin-v2
-相对于1.0的layui，2.0采用了前后端分离的部署方式，前端采用vue-element-admin。[AG-Admin-v2](http://git.oschina.net/geek_qi/AG-Admin-v2.0)
-
 ---------
 
 # 模块说明
-![img](http://ofsc32t59.bkt.clouddn.com/17-09-10/1504972862852.jpg)
+![img](http://ofsc32t59.bkt.clouddn.com/17-09-21/1505981594548.jpg)
 
 ### 架构详解
 #### 监控
@@ -166,7 +162,5 @@ QQ群号：169824183（已满）、661605461（2）
 
 
 
-
-# 欢迎交流
-![img](http://ofsc32t59.bkt.clouddn.com/17-06-16/1497595760484.jpg)
-
+# AG-Admin-v2
+相对于1.0的layui，2.0采用了前后端分离的部署方式，前端采用vue-element-admin。[AG-Admin-v2](http://git.oschina.net/geek_qi/AG-Admin-v2.0)
