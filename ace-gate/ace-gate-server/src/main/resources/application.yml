@@ -20,6 +20,18 @@ zuul:
   ignored-services: "*"
   sensitive-headers:
   prefix: /api #为zuul设置一个公共的前缀
+  ratelimit:
+    key-prefix: gate_rate
+    enabled: true
+    repository: REDIS #REDIS, JPA, IN_MEMORY
+    behind-proxy: true
+    default-policy: #optional - will apply unless specific policy exists
+      limit: 10
+      refresh-interval: 60 #default value (in seconds)
+      type: #optional
+        - user
+        - origin
+        - url
   routes:
     back:
       path: /admin/**

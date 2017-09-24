@@ -15,21 +15,25 @@
             <groupId>com.github.wxiaoqi</groupId>
             <artifactId>ace-common</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>4.3.9.RELEASE</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-netflix-core</artifactId>
             <version>1.3.1.RELEASE</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-core</artifactId>
             <version>9.5.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

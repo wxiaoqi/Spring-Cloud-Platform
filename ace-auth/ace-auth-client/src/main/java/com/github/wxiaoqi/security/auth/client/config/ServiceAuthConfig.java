@@ -2,6 +2,8 @@ package com.github.wxiaoqi.security.auth.client.config;
 
 import org.springframework.beans.factory.annotation.Value;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by ace on 2017/9/15.
  */
@@ -49,5 +51,8 @@ public class ServiceAuthConfig {
         this.clientSecret = clientSecret;
     }
 
+    public String getToken(HttpServletRequest request){
+        return request.getHeader(this.getTokenHeader());
+    }
 
 }

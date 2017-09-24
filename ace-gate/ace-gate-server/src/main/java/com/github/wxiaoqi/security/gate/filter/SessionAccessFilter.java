@@ -68,10 +68,6 @@ public class SessionAccessFilter extends ZuulFilter {
     @Autowired
     private ServiceAuthFeign serviceAuthFeign;
 
-    public SessionAccessFilter() {
-        super();
-    }
-
     @Override
     public String filterType() {
         return "pre";
