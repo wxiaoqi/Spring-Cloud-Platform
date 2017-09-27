@@ -158,9 +158,12 @@ QQ群号：169824183（已满）、661605461（2）
 - 完成监控中心的搭建
 
 
-
-
-
-
 # AG-Admin-v2
 相对于1.0的layui，2.0采用了前后端分离的部署方式，前端采用vue-element-admin。[AG-Admin-v2](http://git.oschina.net/geek_qi/AG-Admin-v2.0)
+
+# 郑重声明
+虽然本产品是开源产品，但未经本人允许擅自申请专利，将公开追究法律责任。
+
+# 我们的用户
+
+![img](http://ofsc32t59.bkt.clouddn.com/17-09-20/1505894037577.jpg?imageView2/2/w/200/h/200/format/jpg)
