@@ -16,8 +16,8 @@ spring:
 #             url: http://localhost:8764
     datasource:
         name: test
-        url: jdbc:mysql://localhost:3306/ag_blog?useUnicode=true&characterEncoding=UTF8
-        username: root
+        url: jdbc:mysql://127.0.0.1:3306/ag_blog?useUnicode=true&characterEncoding=UTF8
+        username: admin
         password: 123456
         # 使用druid数据源
         type: com.alibaba.druid.pool.DruidDataSource
