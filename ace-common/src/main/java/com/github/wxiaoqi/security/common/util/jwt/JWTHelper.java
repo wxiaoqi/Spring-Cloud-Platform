@@ -1,8 +1,7 @@
 package com.github.wxiaoqi.security.common.util.jwt;
 
-
 import com.github.wxiaoqi.security.common.constant.CommonConstants;
-import com.github.wxiaoqi.security.common.util.KeyHelper;
+import com.github.wxiaoqi.security.common.util.RsaKeyHelper;
 import com.github.wxiaoqi.security.common.util.StringHelper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -14,6 +13,7 @@ import org.joda.time.DateTime;
  * Created by ace on 2017/9/10.
  */
 public class JWTHelper {
+    private static RsaKeyHelper rsaKeyHelper = new RsaKeyHelper();
     /**
      * 密钥加密token
      *
@@ -29,7 +29,7 @@ public class JWTHelper {
                 .claim(CommonConstants.JWT_KEY_USER_ID, jwtInfo.getId())
                 .claim(CommonConstants.JWT_KEY_NAME, jwtInfo.getName())
                 .setExpiration(DateTime.now().plusSeconds(expire).toDate())
-                .signWith(SignatureAlgorithm.RS256, KeyHelper.getPrivateKey(priKeyPath))
+                .signWith(SignatureAlgorithm.RS256, rsaKeyHelper.getPrivateKey(priKeyPath))
                 .compact();
         return compactJws;
     }
@@ -42,7 +42,7 @@ public class JWTHelper {
      * @throws Exception
      */
     public static Jws<Claims> parserToken(String token, String pubKeyPath) throws Exception {
-        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(KeyHelper.getPublicKey(pubKeyPath)).parseClaimsJws(token);
+        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(rsaKeyHelper.getPublicKey(pubKeyPath)).parseClaimsJws(token);
         return claimsJws;
     }
 

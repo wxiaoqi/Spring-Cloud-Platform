@@ -1,0 +1,94 @@
+spring:
+    application:
+        name: ace-auth
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        default-property-inclusion: non_null
+    redis:
+        database: 1
+        host: 127.0.0.1
+        pool:
+            max-active: 20
+    datasource:
+      name: test
+      url: jdbc:mysql://localhost:3306/ag_gate?useUnicode=true&characterEncoding=UTF8
+      username: root
+      password: 123456
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+
+mybatis:
+    basepackage: com.github.wxiaoqi.security.auth.mapper
+    xmlLocation: classpath:mapper/**/*.xml
+
+server:
+    port: 8777 #启动端口
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1000 ##并发执行的最大线程数，默认10
+      maxQueueSize: 1000 ##BlockingQueue的最大队列数
+      queueSizeRejectionThreshold: 500 ##即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+        # docker 部署开启
+#        prefer-ip-address: true
+#        ip-address: 127.0.0.1
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+                    # docker 部署开启
+#            defaultZone: http://center:8761/eureka/
+
+
+jwt:
+  token-header: Authorization
+  expire: 3600
+  pri-key:
+    path: jwt/pri.key
+  pub-key:
+    path: jwt/pub.key
+    
+client:
+  id: ace-auth
+  secret: 123456
+  token-header: client-token
+  expire: 3600
+  pri-key:
+    path: client/pri.key
+  pub-key:
+    path: client/pub.key

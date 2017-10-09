@@ -1,15 +1,14 @@
 package com.github.wxiaoqi.security.admin.rest;
 
-import com.github.pagehelper.PageHelper;
 import com.github.wxiaoqi.security.admin.biz.UserBiz;
 import com.github.wxiaoqi.security.admin.entity.User;
-import com.github.wxiaoqi.security.common.msg.TableResultResponse;
+import com.github.wxiaoqi.security.admin.rpc.service.PermissionService;
+import com.github.wxiaoqi.security.admin.vo.FrontUser;
+import com.github.wxiaoqi.security.admin.vo.MenuTree;
 import com.github.wxiaoqi.security.common.rest.BaseController;
-import com.github.wxiaoqi.security.common.msg.ListRestResponse;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -19,22 +18,24 @@ import java.util.List;
  * @author wanghaobin
  * @create 2017-06-08 11:51
  */
-@Controller
+@RestController
 @RequestMapping("user")
 public class UserController extends BaseController<UserBiz,User> {
-
-    @RequestMapping(value = "/page",method = RequestMethod.GET)
+    @Autowired
+    private PermissionService permissionService;
+    @RequestMapping(value = "/front/info", method = RequestMethod.GET)
     @ResponseBody
-    public TableResultResponse<User> page(@RequestParam(defaultValue = "10") int limit, @RequestParam(defaultValue = "1")int offset, String name){
-        Example example = new Example(User.class);
-        if(StringUtils.isNotBlank(name)) {
-            example.createCriteria().andLike("name", "%" + name + "%");
-            example.createCriteria().andLike("username", "%" + name + "%");
-        }
-        int count = baseBiz.selectCountByExample(example);
-        PageHelper.startPage(offset, limit);
-        return new TableResultResponse<User>(count,baseBiz.selectByExample(example));
+    public ResponseEntity<?> getUserInfo(String token) throws Exception {
+        FrontUser userInfo = permissionService.getUserInfo(token);
+        if(userInfo==null)
+            return ResponseEntity.status(401).body(false);
+        else
+            return ResponseEntity.ok(userInfo);
     }
 
-
+    @RequestMapping(value = "/front/menus", method = RequestMethod.GET)
+    public @ResponseBody
+    List<MenuTree> getMenusByUsername(String token) throws Exception {
+        return permissionService.getMenusByUsername(token);
+    }
 }
