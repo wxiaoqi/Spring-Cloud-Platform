@@ -132,4 +132,13 @@ public class PermissionService {
         frontUser.setElements(elements.collect(Collectors.toList()));
         return frontUser;
     }
+
+    public List<MenuTree> getMenusByUsername(String token) throws Exception {
+        String username = userAuthUtil.getInfoFromToken(token).getUniqueName();
+        if (username == null)
+            return null;
+        User user = userBiz.getUserByUsername(username);
+        List<Menu> menus = menuBiz.getUserAuthorityMenuByUserId(user.getId());
+        return getMenuTree(menus,AdminCommonConstant.ROOT);
+    }
 }

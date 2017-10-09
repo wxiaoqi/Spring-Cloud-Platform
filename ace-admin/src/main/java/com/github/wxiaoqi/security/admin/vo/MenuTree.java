@@ -1,10 +1,6 @@
 package com.github.wxiaoqi.security.admin.vo;
 
-import com.github.wxiaoqi.security.common.util.TreeUtil;
 import com.github.wxiaoqi.security.common.vo.TreeNode;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Ace on 2017/6/12.
@@ -18,6 +14,15 @@ public class MenuTree extends TreeNode {
     String component;
     String authority;
     String redirect;
+    String code;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public String getPath() {
         return path;

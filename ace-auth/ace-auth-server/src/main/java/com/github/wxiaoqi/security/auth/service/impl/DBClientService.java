@@ -6,7 +6,10 @@ import com.github.wxiaoqi.security.auth.mapper.ClientMapper;
 import com.github.wxiaoqi.security.auth.service.ClientService;
 import com.github.wxiaoqi.security.auth.util.client.ClientTokenUtil;
 import com.github.wxiaoqi.security.common.exception.auth.ClientInvalidException;
+import com.github.wxiaoqi.security.common.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +23,8 @@ public class DBClientService implements ClientService {
     private ClientMapper clientMapper;
     @Autowired
     private ClientTokenUtil clientTokenUtil;
+    @Autowired
+    private DiscoveryClient discovery;
     @Override
     public String apply(String clientId, String secret) throws Exception {
         Client client = getClient(clientId, secret);
@@ -40,5 +45,20 @@ public class DBClientService implements ClientService {
     public List<String> getAllowedClient(String clientId, String secret) {
         Client info = this.getClient(clientId, secret);
         return clientMapper.selectAllowedClient(info.getId()+"");
+    }
+
+    @Override
+    @Scheduled(cron = "0 0/1 * * * ?")
+    public void registryClient() {
+        // 自动注册节点
+        discovery.getServices().forEach((name) ->{
+            Client client = new Client();
+            client.setName(name);
+            client.setCode(name);
+            if(clientMapper.selectCount(client)== 0) {
+                client.setSecret(UUIDUtils.generateShortUuid());
+                clientMapper.insert(client);
+            }
+        });
     }
 }

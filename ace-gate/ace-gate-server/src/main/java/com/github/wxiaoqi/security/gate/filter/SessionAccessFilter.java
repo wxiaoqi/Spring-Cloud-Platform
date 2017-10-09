@@ -29,7 +29,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
 import java.util.Collection;
 import java.util.Date;
@@ -86,7 +85,6 @@ public class SessionAccessFilter extends ZuulFilter {
     @Override
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
-        HttpSession httpSession = ctx.getRequest().getSession();
         HttpServletRequest request = ctx.getRequest();
         final String requestUri = request.getRequestURI().substring(zuulPrefix.length());
         final String method = request.getMethod();

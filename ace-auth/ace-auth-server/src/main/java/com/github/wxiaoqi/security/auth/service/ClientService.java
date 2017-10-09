@@ -1,8 +1,6 @@
 package com.github.wxiaoqi.security.auth.service;
 
 
-import com.github.wxiaoqi.security.auth.bean.ClientInfo;
-
 import java.util.List;
 
 /**
@@ -18,4 +16,6 @@ public interface ClientService {
      * @return
      */
     public List<String> getAllowedClient(String serviceId, String secret);
+
+    public void registryClient();
 }

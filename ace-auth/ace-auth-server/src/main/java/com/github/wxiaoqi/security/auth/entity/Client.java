@@ -16,7 +16,7 @@ public class Client {
 
     private String name;
 
-    private String locked;
+    private String locked = "0";
 
     private String description;
 

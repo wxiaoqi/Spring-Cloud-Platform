@@ -48,11 +48,6 @@ import static com.github.wxiaoqi.gate.ratelimit.config.properties.RateLimitPrope
 @ConditionalOnProperty(prefix = PREFIX, name = "enabled", havingValue = "true")
 public class RateLimitAutoConfiguration {
 
-//    @Bean
-//    public IUserPrincipal userPrincipal(){
-//        return new DefaultUserPrincipal();
-//    }
-
     @Bean
     public RateLimitFilter rateLimiterFilter(final RateLimiter rateLimiter,
                                              final RateLimitProperties rateLimitProperties,

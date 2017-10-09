@@ -1,5 +1,6 @@
 package com.github.wxiaoqi.security.auth.client.interceptor;
 
+import com.github.wxiaoqi.security.auth.client.annotation.IgnoreClientToken;
 import com.github.wxiaoqi.security.auth.client.config.ServiceAuthConfig;
 import com.github.wxiaoqi.security.auth.client.feign.ServiceAuthFeign;
 import com.github.wxiaoqi.security.auth.client.jwt.ServiceAuthUtil;
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +39,14 @@ public class ServiceAuthRestInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        // 配置该注解，说明不进行服务拦截
+        IgnoreClientToken annotation = handlerMethod.getBeanType().getAnnotation(IgnoreClientToken.class);
+        if (annotation == null)
+            annotation = handlerMethod.getMethodAnnotation(IgnoreClientToken.class);
+        if(annotation!=null)
+            return super.preHandle(request, response, handler);
+
         if(this.allowedClient==null)
             refresh();
         String token = request.getHeader(serviceAuthConfig.getTokenHeader());

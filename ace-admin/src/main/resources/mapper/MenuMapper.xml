@@ -49,6 +49,7 @@
     )
     and ra.authority_type = 'group'
     and ra.resource_type = 'menu'
+    order by t.id
   </select>
     <select id="selectAuthoritySystemByUserId" resultMap="BaseResultMap">
         select distinct t.* from base_resource_authority ra

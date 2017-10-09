@@ -1,21 +1,14 @@
 package com.github.wxiaoqi.security.admin.rest;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.github.wxiaoqi.security.admin.biz.UserBiz;
 import com.github.wxiaoqi.security.admin.entity.User;
 import com.github.wxiaoqi.security.admin.rpc.service.PermissionService;
 import com.github.wxiaoqi.security.admin.vo.FrontUser;
-import com.github.wxiaoqi.security.common.msg.TableResultResponse;
+import com.github.wxiaoqi.security.admin.vo.MenuTree;
 import com.github.wxiaoqi.security.common.rest.BaseController;
-import com.github.wxiaoqi.security.common.msg.ListRestResponse;
-import com.netflix.discovery.converters.Auto;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -38,5 +31,11 @@ public class UserController extends BaseController<UserBiz,User> {
             return ResponseEntity.status(401).body(false);
         else
             return ResponseEntity.ok(userInfo);
+    }
+
+    @RequestMapping(value = "/front/menus", method = RequestMethod.GET)
+    public @ResponseBody
+    List<MenuTree> getMenusByUsername(String token) throws Exception {
+        return permissionService.getMenusByUsername(token);
     }
 }

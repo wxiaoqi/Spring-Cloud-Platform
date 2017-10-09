@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 public class ServiceAuthConfig {
     @Value("${auth.client.pub-key.path}")
     private String pubKeyPath;
-    @Value("${auth.client.id}")
+    @Value("${auth.client.id:null}")
     private String clientId;
     @Value("${auth.client.secret}")
     private String clientSecret;
     @Value("${auth.client.token-header}")
     private String tokenHeader;
+    @Value("${spring.application.name}")
+    private String applicationName;
 
     public String getTokenHeader() {
         return tokenHeader;
@@ -36,7 +38,7 @@ public class ServiceAuthConfig {
 
 
     public String getClientId() {
-        return clientId;
+        return "null".equals(clientId)?applicationName:clientId;
     }
 
     public void setClientId(String clientId) {
