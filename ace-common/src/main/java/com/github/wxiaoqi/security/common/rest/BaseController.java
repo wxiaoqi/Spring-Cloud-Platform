@@ -3,18 +3,17 @@ package com.github.wxiaoqi.security.common.rest;
 import com.github.wxiaoqi.security.common.biz.BaseBiz;
 import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import com.github.wxiaoqi.security.common.msg.TableResultResponse;
+import com.github.wxiaoqi.security.common.util.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.util.Base64Utils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 /**
  * ${DESCRIPTION}
@@ -30,7 +29,7 @@ public class BaseController<Biz extends BaseBiz,Entity> {
 
     @RequestMapping(value = "",method = RequestMethod.POST)
     @ResponseBody
-    public ObjectRestResponse<Entity> add(Entity entity){
+    public ObjectRestResponse<Entity> add(@RequestBody Entity entity){
         baseBiz.insertSelective(entity);
         return new ObjectRestResponse<Entity>().rel(true);
     }
@@ -38,12 +37,12 @@ public class BaseController<Biz extends BaseBiz,Entity> {
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody
     public ObjectRestResponse<Entity> get(@PathVariable int id){
-        return new ObjectRestResponse<Entity>().rel(true).result(baseBiz.selectById(id));
+        return new ObjectRestResponse<Entity>().rel(true).data(baseBiz.selectById(id));
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
     @ResponseBody
-    public ObjectRestResponse<Entity> update(Entity entity){
+    public ObjectRestResponse<Entity> update(@RequestBody Entity entity){
         baseBiz.updateSelectiveById(entity);
         return new ObjectRestResponse<Entity>().rel(true);
     }
@@ -56,10 +55,16 @@ public class BaseController<Biz extends BaseBiz,Entity> {
 
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     @ResponseBody
-    public List<Entity> list(){
+    public List<Entity> all(){
         return baseBiz.selectListAll();
     }
-
+    @RequestMapping(value = "/page",method = RequestMethod.GET)
+    @ResponseBody
+    public TableResultResponse<Entity> list(@RequestParam Map<String, Object> params){
+        //查询列表数据
+        Query query = new Query(params);
+        return baseBiz.selectByQuery(query);
+    }
     public String getCurrentUserName(){
         String authorization = request.getHeader("Authorization");
         return new String(Base64Utils.decodeFromString(authorization));

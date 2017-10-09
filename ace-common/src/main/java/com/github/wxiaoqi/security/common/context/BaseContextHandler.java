@@ -1,13 +1,17 @@
 package com.github.wxiaoqi.security.common.context;
 
-
 import com.github.wxiaoqi.security.common.constant.CommonConstants;
 import com.github.wxiaoqi.security.common.util.StringHelper;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 
-
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by ace on 2017/9/8.
@@ -35,18 +39,27 @@ public class BaseContextHandler {
 
     public static String getUserID(){
         Object value = get(CommonConstants.CONTEXT_KEY_USER_ID);
-        return StringHelper.getObjectValue(value);
+        return returnObjectValue(value);
     }
 
     public static String getUsername(){
         Object value = get(CommonConstants.CONTEXT_KEY_USERNAME);
-        return StringHelper.getObjectValue(value);
+        return returnObjectValue(value);
     }
+
 
     public static String getName(){
         Object value = get(CommonConstants.CONTEXT_KEY_USER_NAME);
         return StringHelper.getObjectValue(value);
     }
+
+    public static String getToken(){
+        Object value = get(CommonConstants.CONTEXT_KEY_USER_TOKEN);
+        return StringHelper.getObjectValue(value);
+    }
+    public static void setToken(String token){set(CommonConstants.CONTEXT_KEY_USER_TOKEN,token);}
+
+    public static void setName(String name){set(CommonConstants.CONTEXT_KEY_USER_NAME,name);}
 
     public static void setUserID(String userID){
         set(CommonConstants.CONTEXT_KEY_USER_ID,userID);
@@ -56,10 +69,49 @@ public class BaseContextHandler {
         set(CommonConstants.CONTEXT_KEY_USERNAME,username);
     }
 
-    public static void setName(String name){set(CommonConstants.CONTEXT_KEY_USER_NAME,name);}
+    private static String returnObjectValue(Object value) {
+        return value==null?null:value.toString();
+    }
 
     public static void remove(){
         threadLocal.remove();
     }
 
+    @RunWith(MockitoJUnitRunner.class)
+    public static class UnitTest {
+        private Logger logger = LoggerFactory.getLogger(UnitTest.class);
+
+        @Test
+        public void testSetContextVariable() throws InterruptedException {
+            BaseContextHandler.set("test", "main");
+            new Thread(()->{
+                BaseContextHandler.set("test", "moo");
+
+                try {
+                    Thread.currentThread().sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                assertEquals(BaseContextHandler.get("test"), "moo");
+                logger.info("thread one done!");
+            }).start();
+            new Thread(()->{
+                BaseContextHandler.set("test", "moo2");
+                assertEquals(BaseContextHandler.get("test"), "moo2");
+                logger.info("thread two done!");
+            }).start();
+
+            Thread.currentThread().sleep(5000);
+            assertEquals(BaseContextHandler.get("test"), "main");
+            logger.info("main one done!");
+        }
+
+        @Test
+        public void testSetUserInfo(){
+            BaseContextHandler.setUserID("test");
+            assertEquals(BaseContextHandler.getUserID(), "test");
+            BaseContextHandler.setUsername("test2");
+            assertEquals(BaseContextHandler.getUsername(), "test2");
+        }
+    }
 }

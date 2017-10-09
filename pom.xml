@@ -24,6 +24,7 @@
     <properties>
         <docker.image.prefix>ag</docker.image.prefix>
         <docker.plugin.version>0.4.13</docker.plugin.version>
+        <mapper.version>3.4.0</mapper.version>
     </properties>
     <modules>
         <module>ace-admin</module>
@@ -31,10 +32,10 @@
         <module>ace-api</module>
         <module>ace-monitor</module>
         <module>ace-gate</module>
-        <module>ace-ui</module>
         <module>ace-common</module>
-        <module>ace-blog-parent</module>
         <module>ace-config</module>
+        <module>ace-generator</module>
+        <module>ace-auth</module>
     </modules>
     <packaging>pom</packaging>
     <developers>
@@ -52,7 +53,7 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-    <!--依赖管理，用于管理spring-cloud的依赖，其中Dalston.SR1是版本号-->
+    <!--依赖管理，用于管理spring-cloud的依赖，其中Camden.SR3是版本号-->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -61,6 +62,16 @@
                 <version>Dalston.SR1</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.33</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.0.11</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

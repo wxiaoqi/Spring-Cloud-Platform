@@ -1,6 +1,6 @@
 package com.github.wxiaoqi.security.admin.entity;
 
-import com.github.wxiaoqi.security.admin.constant.CommonConstant;
+import com.github.wxiaoqi.security.admin.constant.AdminCommonConstant;
 
 import java.util.Date;
 import javax.persistence.*;
@@ -15,7 +15,7 @@ public class Menu {
     private String title;
 
     @Column(name = "parent_id")
-    private Integer parentId = CommonConstant.ROOT;
+    private Integer parentId = AdminCommonConstant.ROOT;
 
     private String href;
 

@@ -1,0 +1,108 @@
+spring:
+    application:
+        name: admin-gate
+    thymeleaf:
+        mode: LEGACYHTML5
+        cache: false
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        default-property-inclusion: non_null
+    redis:
+        database: 1
+        host: 127.0.0.1
+        pool:
+            max-active: 20
+server:
+    port: 8765 #启动端口
+#
+zuul:
+  ignored-services: "*"
+  sensitive-headers:
+  prefix: /api #为zuul设置一个公共的前缀
+  ratelimit:
+    key-prefix: gate_rate
+    enabled: true
+    repository: REDIS #REDIS, JPA, IN_MEMORY
+    behind-proxy: true
+    default-policy: #optional - will apply unless specific policy exists
+      limit: 10
+      refresh-interval: 60 #default value (in seconds)
+      type: #optional
+        - user
+        - origin
+        - url
+  routes:
+    back:
+      path: /admin/**
+      serviceId: admin-back
+
+    blog:
+      path: /blog/**
+      serviceId: blog-admin
+
+    auth:
+      path: /auth/**
+      serviceId: ace-auth
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1000 ##并发执行的最大线程数，默认10
+      maxQueueSize: 1000 ##BlockingQueue的最大队列数
+      queueSizeRejectionThreshold: 500 ##即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 50000
+
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+        # docker 部署开启
+#        prefer-ip-address: true
+#        ip-address: 127.0.0.1
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+                    # docker 部署开启
+#            defaultZone: http://center:8761/eureka/
+
+gate:
+  ignore:
+    startWith: /static,/auth/jwt
+#    contain: .
+#  oauth:
+#    prefix: /api
+#
+#  jwt:
+#    secret: Xe*g@1jda
+#    expiration: 7200
+#    header: Authorization
+#    prefix: bearer
+
+auth:
+  serviceId: ace-auth
+  user:
+    token-header: Authorization
+    pub-key:
+      path: jwt/pub.key
+  client:
+    token-header: client-token
+    id: ace-gate  #不填则默认读取spring.application.name
+    secret: 123456
+    pub-key:
+      path: client/pub.key

@@ -9,6 +9,16 @@ import com.github.wxiaoqi.security.common.vo.TreeNode;
  * @create 2017-06-17 15:21
  */
 public class GroupTree extends TreeNode {
+    String label;
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
     String name;
 
     public String getName() {

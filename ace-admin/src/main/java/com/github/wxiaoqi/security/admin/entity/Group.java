@@ -1,6 +1,6 @@
 package com.github.wxiaoqi.security.admin.entity;
 
-import com.github.wxiaoqi.security.admin.constant.CommonConstant;
+import com.github.wxiaoqi.security.admin.constant.AdminCommonConstant;
 
 import java.util.Date;
 import javax.persistence.*;
@@ -22,7 +22,7 @@ public class Group {
     private String type;
 
     @Column(name = "group_type")
-    private Integer groupType = CommonConstant.DEFAULT_GROUP_TYPE;
+    private Integer groupType = AdminCommonConstant.DEFAULT_GROUP_TYPE;
 
     private String description;
 
