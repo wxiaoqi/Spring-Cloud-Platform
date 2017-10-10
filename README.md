@@ -1,21 +1,3 @@
-回首页
- 新建文集
-Ag-Admin
-转载技术
-Spring Boot
-java基础
-Spring Cloud实战
-技术心得
-随笔
-回收站
- 新建文章
-# 课程：从0到1 `实现AG-Admin` ### 口号 # 实操到底！ ### 简介 1、了解Spring Cl无标题文章
-# AG-Admin AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有统一授权、认字数: 1240AG-Admin
- 在下方新建文章
-
-AG-Admin
-    发布文章 已保存
-
 # AG-Admin
 AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系统，其中包含具备用户管理、资源权限管理、网关API管理等多个模块，支持多业务系统并行开发，可以作为后端服务的开发脚手架。代码简洁，架构清晰，适合学习和直接项目中使用。核心技术采用Eureka、Fegin、Ribbon、Zuul、Hystrix、`JWT Token`、Mybatis等主要框架和中间件，前端采用`vue-element-admin`组件。 
 
@@ -96,7 +78,7 @@ QQ群号：169824183（满）、661605461（2）
     
     # 安装依赖
     npm install
-    //or # 建议不要用cnpm  安装有各种诡异的bug 可以通过如下操作解决npm速度慢的问题
+    //or # 建议不要用cnpm  安装有各种诡异的bug 可以通过如下操作解决npm速度慢的问题
     npm install --registry=https://registry.npm.taobao.org
 
     # 本地开发 开启服务
@@ -115,24 +97,24 @@ QQ群号：169824183（满）、661605461（2）
 
 ### 目录结构
 ```shell
-├── build                      // 构建相关  
+├── build                      // 构建相关  
 ├── config                     // 配置相关
 ├── src                        // 源代码
-│   ├── api                    // 所有请求
-│   ├── assets                 // 主题 字体等静态资源
-│   ├── components             // 全局公用组件
-│   ├── directive              // 全局指令
-│   ├── filtres                // 全局filter
-│   ├── mock                   // mock数据
-│   ├── router                 // 路由
-│   ├── store                  // 全局store管理
-│   ├── styles                 // 全局样式
-│   ├── utils                  // 全局公用方法
-│   ├── view                   // view
-│   ├── App.vue                // 入口页面
-│   └── main.js                // 入口 加载组件 初始化等
+│   ├── api                    // 所有请求
+│   ├── assets                 // 主题 字体等静态资源
+│   ├── components             // 全局公用组件
+│   ├── directive              // 全局指令
+│   ├── filtres                // 全局filter
+│   ├── mock                   // mock数据
+│   ├── router                 // 路由
+│   ├── store                  // 全局store管理
+│   ├── styles                 // 全局样式
+│   ├── utils                  // 全局公用方法
+│   ├── view                   // view
+│   ├── App.vue                // 入口页面
+│   └── main.js                // 入口 加载组件 初始化等
 ├── static                     // 第三方不打包资源
-│   └── Tinymce                // 富文本
+│   └── Tinymce                // 富文本
 ├── .babelrc                   // babel-loader 配置
 ├── eslintrc.js                // eslint 配置项
 ├── .gitignore                 // git 忽略项
@@ -180,4 +162,3 @@ Apache License Version 2.0
 
 # 我们的用户
 ![img](http://upload-images.jianshu.io/upload_images/5700335-67814644d39fce24.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
