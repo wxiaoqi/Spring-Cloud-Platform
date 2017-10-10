@@ -1,24 +1,6 @@
 
 CREATE DATABASE ag_gate DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 Use ag_gate;
-/*
- Navicat Premium Data Transfer
-
- Source Server         : ag-admin
- Source Server Type    : MySQL
- Source Server Version : 50718
- Source Host           : localhost
- Source Database       : ag_gate
-
- Target Server Type    : MySQL
- Target Server Version : 50718
- File Encoding         : utf-8
-
- Date: 09/12/2017 19:27:34 PM
-*/
-
-SET NAMES utf8;
-SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 --  Table structure for `base_element`
@@ -85,13 +67,13 @@ CREATE TABLE `gate_client` (
   `attr7` varchar(255) DEFAULT NULL,
   `attr8` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Records of `gate_client`
 -- ----------------------------
 BEGIN;
-INSERT INTO `gate_client` VALUES ('1', 'ace-gate', '123456', 'ace-gate', '0', '', null, '', '', '', '2017-07-07 21:51:32', '1', '管理员', '0:0:0:0:0:0:0:1', '', '', '', '', '', '', '', ''), ('3', 'ace-admin', '123456', 'ace-admin', '0', '', null, null, null, null, '2017-07-06 21:42:17', '1', '管理员', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null), ('4', 'user-center', '123456', 'user-center', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('5', 'ag-gate', '123456', 'ag-gate', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('6', 'ace-auth', '123456', 'ace-auth', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `gate_client` VALUES ('1', 'ace-gate', '123456', 'ace-gate', '0', '', null, '', '', '', '2017-07-07 21:51:32', '1', '管理员', '0:0:0:0:0:0:0:1', '', '', '', '', '', '', '', ''), ('3', 'ace-admin', '123456', 'ace-admin', '0', '', null, null, null, null, '2017-07-06 21:42:17', '1', '管理员', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null), ('4', 'user-center', '123456', 'user-center', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('5', 'ag-gate', '123456', 'ag-gate', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('6', 'ace-auth', '123456', 'ace-auth', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('8', 'admin-back', '2qOT1MH4', 'admin-back', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('10', 'admin-gate', 'J9p7holx', 'admin-gate', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 COMMIT;
 
 -- ----------------------------
