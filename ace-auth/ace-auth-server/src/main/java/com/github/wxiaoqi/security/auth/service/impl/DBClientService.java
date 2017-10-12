@@ -36,7 +36,7 @@ public class DBClientService implements ClientService {
         client.setCode(clientId);
         client = clientMapper.selectOne(client);
         if(client==null||!client.getSecret().equals(secret)){
-            throw new ClientInvalidException("Client not foud or Client secret is error!");
+            throw new ClientInvalidException("Client not found or Client secret is error!");
         }
         return client;
     }
