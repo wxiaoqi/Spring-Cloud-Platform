@@ -16,10 +16,9 @@ public class RsaKeyHelper {
      * @throws Exception
      */
     public PublicKey getPublicKey(String filename) throws Exception {
-        File f = new File(this.getClass().getClassLoader().getResource(filename).getPath());
-        FileInputStream fis = new FileInputStream(f);
-        DataInputStream dis = new DataInputStream(fis);
-        byte[] keyBytes = new byte[(int) f.length()];
+        InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(filename);
+        DataInputStream dis = new DataInputStream(resourceAsStream);
+        byte[] keyBytes = new byte[resourceAsStream.available()];
         dis.readFully(keyBytes);
         dis.close();
         X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
@@ -34,10 +33,9 @@ public class RsaKeyHelper {
      * @throws Exception
      */
     public PrivateKey getPrivateKey(String filename) throws Exception {
-        File f = new File(this.getClass().getClassLoader().getResource(filename).getPath());
-        FileInputStream fis = new FileInputStream(f);
-        DataInputStream dis = new DataInputStream(fis);
-        byte[] keyBytes = new byte[(int) f.length()];
+        InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(filename);
+        DataInputStream dis = new DataInputStream(resourceAsStream);
+        byte[] keyBytes = new byte[resourceAsStream.available()];
         dis.readFully(keyBytes);
         dis.close();
         PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
