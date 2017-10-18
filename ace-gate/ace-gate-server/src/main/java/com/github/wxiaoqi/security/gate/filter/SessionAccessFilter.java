@@ -6,12 +6,9 @@ import com.github.wxiaoqi.security.api.vo.log.LogInfo;
 import com.github.wxiaoqi.security.api.vo.user.UserInfo;
 import com.github.wxiaoqi.security.auth.client.config.ServiceAuthConfig;
 import com.github.wxiaoqi.security.auth.client.config.UserAuthConfig;
-import com.github.wxiaoqi.security.auth.client.feign.ServiceAuthFeign;
+import com.github.wxiaoqi.security.auth.client.jwt.ServiceAuthUtil;
 import com.github.wxiaoqi.security.auth.client.jwt.UserAuthUtil;
-import com.github.wxiaoqi.security.common.constant.CommonConstants;
 import com.github.wxiaoqi.security.common.context.BaseContextHandler;
-import com.github.wxiaoqi.security.common.msg.BaseResponse;
-import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import com.github.wxiaoqi.security.common.msg.auth.TokenErrorResponse;
 import com.github.wxiaoqi.security.common.msg.auth.TokenForbiddenResponse;
 import com.github.wxiaoqi.security.common.util.ClientUtil;
@@ -66,7 +63,7 @@ public class SessionAccessFilter extends ZuulFilter {
     private UserAuthConfig userAuthConfig;
 
     @Autowired
-    private ServiceAuthFeign serviceAuthFeign;
+    private ServiceAuthUtil serviceAuthUtil;
 
     @Override
     public String filterType() {
@@ -91,8 +88,9 @@ public class SessionAccessFilter extends ZuulFilter {
         final String method = request.getMethod();
         BaseContextHandler.setToken(null);
         // 不进行拦截的地址
-        if (isStartWith(requestUri))
+        if (isStartWith(requestUri)) {
             return null;
+        }
         IJWTInfo user = null;
         try {
             user = getJWTUser(request);
@@ -108,16 +106,8 @@ public class SessionAccessFilter extends ZuulFilter {
         if(result.size()>0){
             checkAllow(requestUri, method, ctx, user.getUniqueName());
         }
-
         // 申请客户端密钥头
-        BaseResponse resp = serviceAuthFeign.getAccessToken(serviceAuthConfig.getClientId(), serviceAuthConfig.getClientSecret());
-        if(resp.getStatus() == 200){
-            ObjectRestResponse<String> clientToken = (ObjectRestResponse<String>) resp;
-            ctx.addZuulRequestHeader(serviceAuthConfig.getTokenHeader(),clientToken.getData());
-        }else {
-            setFailedRequest(JSON.toJSONString(new BaseResponse(CommonConstants.EX_CLIENT_INVALID_CODE,"Token Error or Token Expired!")),200);
-        }
-
+        ctx.addZuulRequestHeader(serviceAuthConfig.getTokenHeader(),serviceAuthUtil.getClientToken());
         return null;
     }
 
@@ -196,7 +186,7 @@ public class SessionAccessFilter extends ZuulFilter {
         } else{
             PermissionInfo[] pms =  result.toArray(new PermissionInfo[]{});
             PermissionInfo pm = pms[0];
-            if(!method.equals("GET")){
+            if(!"GET".equals(method)){
                 setCurrentUserInfoAndLog(ctx, username, pm);
             }
         }
@@ -211,8 +201,9 @@ public class SessionAccessFilter extends ZuulFilter {
     private boolean isStartWith(String requestUri) {
         boolean flag = false;
         for (String s : startWith.split(",")) {
-            if (requestUri.startsWith(s))
+            if (requestUri.startsWith(s)) {
                 return true;
+            }
         }
         return flag;
     }

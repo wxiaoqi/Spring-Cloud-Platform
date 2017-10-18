@@ -16,6 +16,7 @@ public class JWTInfo implements Serializable,IJWTInfo {
         this.name = name;
     }
 
+    @Override
     public String getUniqueName() {
         return username;
     }
@@ -24,6 +25,7 @@ public class JWTInfo implements Serializable,IJWTInfo {
         this.username = username;
     }
 
+    @Override
     public String getId() {
         return userId;
     }
@@ -32,6 +34,7 @@ public class JWTInfo implements Serializable,IJWTInfo {
         this.userId = userId;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -42,12 +45,18 @@ public class JWTInfo implements Serializable,IJWTInfo {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         JWTInfo jwtInfo = (JWTInfo) o;
 
-        if (username != null ? !username.equals(jwtInfo.username) : jwtInfo.username != null) return false;
+        if (username != null ? !username.equals(jwtInfo.username) : jwtInfo.username != null) {
+            return false;
+        }
         return userId != null ? userId.equals(jwtInfo.userId) : jwtInfo.userId == null;
 
     }

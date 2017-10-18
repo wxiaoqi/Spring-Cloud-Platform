@@ -54,9 +54,10 @@ public class AuthController {
     @RequestMapping(value = "user", method = RequestMethod.GET)
     public ResponseEntity<?> getUserInfo(String token) throws Exception {
         FrontUser userInfo = authService.getUserInfo(token);
-        if(userInfo==null)
+        if(userInfo==null) {
             return ResponseEntity.status(401).body(false);
-        else
+        } else {
             return ResponseEntity.ok(userInfo);
+        }
     }
 }

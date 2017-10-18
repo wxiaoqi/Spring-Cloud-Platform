@@ -59,7 +59,13 @@ generator.init = function () {
         showToggle: true, //是否显示详细视图和列表视图的切换按钮
         cardView: false, //是否显示详细视图
         detailView: false, //是否显示父子表
-        columns: generator.columns()
+        columns: generator.columns(),
+        responseHandler: function(res) {
+            return {
+                "total": res.data.total,//总页数
+                "rows": res.data.rows   //数据
+            };
+        }
     });
 };
 generator.select = function (layerTips) {

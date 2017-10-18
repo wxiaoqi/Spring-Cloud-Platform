@@ -25,8 +25,9 @@ public class DBLog extends Thread {
     }
 
     public DBLog setLogService(ILogService logService) {
-        if(this.logService==null)
+        if(this.logService==null) {
             this.logService = logService;
+        }
         return this;
     }
 
@@ -50,6 +51,7 @@ public class DBLog extends Thread {
         }
     }
 
+    @Override
     public void run() {
         List<LogInfo> bufferedLogList = new ArrayList<LogInfo>(); // 缓冲队列
         while (true) {

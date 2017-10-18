@@ -67,8 +67,9 @@ public class PermissionService {
             info.setType(AdminCommonConstant.RESOURCE_TYPE_MENU);
             info.setName(AdminCommonConstant.RESOURCE_ACTION_VISIT);
             String uri = menu.getHref();
-            if (!uri.startsWith("/"))
+            if (!uri.startsWith("/")) {
                 uri = "/" + uri;
+            }
             info.setUri(uri);
             info.setMethod(AdminCommonConstant.RESOURCE_REQUEST_METHOD_GET);
             result.add(info
@@ -116,8 +117,9 @@ public class PermissionService {
 
     public FrontUser getUserInfo(String token) throws Exception {
         String username = userAuthUtil.getInfoFromToken(token).getUniqueName();
-        if (username == null)
+        if (username == null) {
             return null;
+        }
         UserInfo user = this.getUserByUsername(username);
         FrontUser frontUser = new FrontUser();
         BeanUtils.copyProperties(user, frontUser);
@@ -135,8 +137,9 @@ public class PermissionService {
 
     public List<MenuTree> getMenusByUsername(String token) throws Exception {
         String username = userAuthUtil.getInfoFromToken(token).getUniqueName();
-        if (username == null)
+        if (username == null) {
             return null;
+        }
         User user = userBiz.getUserByUsername(username);
         List<Menu> menus = menuBiz.getUserAuthorityMenuByUserId(user.getId());
         return getMenuTree(menus,AdminCommonConstant.ROOT);

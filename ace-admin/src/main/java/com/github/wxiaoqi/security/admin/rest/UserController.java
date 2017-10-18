@@ -27,10 +27,11 @@ public class UserController extends BaseController<UserBiz,User> {
     @ResponseBody
     public ResponseEntity<?> getUserInfo(String token) throws Exception {
         FrontUser userInfo = permissionService.getUserInfo(token);
-        if(userInfo==null)
+        if(userInfo==null) {
             return ResponseEntity.status(401).body(false);
-        else
+        } else {
             return ResponseEntity.ok(userInfo);
+        }
     }
 
     @RequestMapping(value = "/front/menus", method = RequestMethod.GET)
