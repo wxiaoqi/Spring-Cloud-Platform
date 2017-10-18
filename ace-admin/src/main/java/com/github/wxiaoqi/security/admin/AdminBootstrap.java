@@ -15,7 +15,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @author wanghaobin
  * @create 2017-05-25 12:44
  */
-//@EnableDiscoveryClient  //激活eureka中的DiscoveryClient实现
 @EnableEurekaClient
 @EnableCircuitBreaker
 @SpringBootApplication

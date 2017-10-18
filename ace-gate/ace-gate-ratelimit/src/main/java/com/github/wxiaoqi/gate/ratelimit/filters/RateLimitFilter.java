@@ -74,6 +74,7 @@ public class RateLimitFilter extends ZuulFilter {
         return properties.isEnabled() && policy().isPresent();
     }
 
+    @Override
     public Object run() {
         final RequestContext ctx = RequestContext.getCurrentContext();
         final HttpServletResponse response = ctx.getResponse();

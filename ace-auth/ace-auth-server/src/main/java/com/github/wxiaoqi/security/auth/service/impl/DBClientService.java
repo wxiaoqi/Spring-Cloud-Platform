@@ -12,6 +12,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,7 +45,11 @@ public class DBClientService implements ClientService {
     @Override
     public List<String> getAllowedClient(String clientId, String secret) {
         Client info = this.getClient(clientId, secret);
-        return clientMapper.selectAllowedClient(info.getId()+"");
+        List<String> clients = clientMapper.selectAllowedClient(info.getId() + "");
+        if(clients==null) {
+            new ArrayList<String>();
+        }
+        return clients;
     }
 
     @Override

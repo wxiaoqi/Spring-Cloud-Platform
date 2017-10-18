@@ -50,8 +50,9 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public FrontUser getUserInfo(String token) throws Exception {
         String username = jwtTokenUtil.getInfoFromToken(token).getUniqueName();
-        if (username == null)
+        if (username == null) {
             return null;
+        }
         UserInfo user = userService.getUserByUsername(username);
         FrontUser frontUser = new FrontUser();
         BeanUtils.copyProperties(user, frontUser);

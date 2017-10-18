@@ -30,10 +30,11 @@ public class UserPrincipal implements IUserPrincipal {
         IJWTInfo infoFromToken = null;
         try {
             String authToken = request.getHeader(userAuthConfig.getTokenHeader());
-            if(StringUtils.isEmpty(authToken))
+            if(StringUtils.isEmpty(authToken)) {
                 infoFromToken = null;
-            else
+            } else {
                 infoFromToken = userAuthUtil.getInfoFromToken(authToken);
+            }
         } catch (Exception e) {
             infoFromToken = null;
         }

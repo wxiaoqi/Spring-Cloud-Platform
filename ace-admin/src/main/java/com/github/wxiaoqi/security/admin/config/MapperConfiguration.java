@@ -34,6 +34,7 @@ public class MapperConfiguration implements EnvironmentAware {
     }
 
 
+    @Override
     public void setEnvironment(Environment environment) {
         this.propertyResolver = new RelaxedPropertyResolver(environment, null);
         this.basePackage = propertyResolver.getProperty("mybatis.basepackage");
