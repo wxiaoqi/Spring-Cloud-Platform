@@ -115,11 +115,10 @@ ${column.attrname}: [
       this.${secondModuleName}Manager_btn_del = this.elements['${secondModuleName}Manager:btn_del'];
       this.${secondModuleName}Manager_btn_add = this.elements['${secondModuleName}Manager:btn_add'];
     },
-    ,
     computed: {
       ...mapGetters([
         'elements'
-      ]);
+      ])
     },
     methods: {
       getList() {
