@@ -20,7 +20,7 @@ zuul:
   ignored-services: "*"
   sensitive-headers:
   prefix: /api #为zuul设置一个公共的前缀
-  ratelimit:
+  ratelimit: # 网关限流
     key-prefix: gate_rate
     enabled: true
     repository: REDIS #REDIS, JPA, IN_MEMORY
@@ -68,31 +68,11 @@ hystrix:
           thread:
             timeoutInMilliseconds: 50000
 
-eureka:
-    instance:
-        statusPageUrlPath: /info
-        healthCheckUrlPath: /health
-        # docker 部署开启
-#        prefer-ip-address: true
-#        ip-address: 127.0.0.1
-    client:
-        serviceUrl:
-            defaultZone: http://localhost:8761/eureka/
-                    # docker 部署开启
-#            defaultZone: http://center:8761/eureka/
 
 gate:
   ignore:
     startWith: /static,/auth/jwt
-#    contain: .
-#  oauth:
-#    prefix: /api
-#
-#  jwt:
-#    secret: Xe*g@1jda
-#    expiration: 7200
-#    header: Authorization
-#    prefix: bearer
+
 
 auth:
   serviceId: ace-auth
