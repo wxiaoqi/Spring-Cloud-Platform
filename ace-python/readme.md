@@ -17,6 +17,12 @@ https://gitee.com/superjery/tornado_boilerplate
 
 Python 安装 3.5
 tornado 安装 4.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 运行python server.py即可启动Web
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+两种访问接口方式:
+http://localhost:5689/ace-python/test/test
+http://localhost:5689/ace-python/message/123

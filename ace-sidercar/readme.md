@@ -19,3 +19,6 @@ class HealthHandler(tornado.web.RequestHandler):
 health：
 {"status":"UP"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+切记，通过此代理访问不到远程Python提供的服务，
+需通过ace-python封装后才可访问到。
