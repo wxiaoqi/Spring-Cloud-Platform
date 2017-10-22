@@ -1,10 +1,5 @@
 server:
-    port: 5688 #启动端口
-
-sidecar:
-    port: 5680 #python接口
-    health:
-        uri: http://localhost:${sidecar.port}/health
+    port: 5689 #启动端口
 
 spring:
     application:
