@@ -1,7 +1,0 @@
-server:
-    port: 5689 #启动端口
-
-spring:
-    application:
-        name: ace-python
-
