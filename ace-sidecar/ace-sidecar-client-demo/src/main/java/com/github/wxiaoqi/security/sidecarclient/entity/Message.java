@@ -1,4 +1,4 @@
-package com.github.wxiaoqi.security.python.entity;
+package com.github.wxiaoqi.security.sidecarclient.entity;
 
 /**
  * ${DESCRIPTION}

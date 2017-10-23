@@ -24,5 +24,5 @@ tornado 安装 4.5
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 两种访问接口方式:
-http://localhost:5689/ace-python/test/test
-http://localhost:5689/ace-python/message/123
+http://localhost:5689/ace-sidecar-client-demo/test/test
+http://localhost:5689/ace-sidecar-client-demo/message/123

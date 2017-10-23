@@ -1,9 +1,9 @@
-package com.github.wxiaoqi.security.python.rest;
+package com.github.wxiaoqi.security.sidecarclient.rest;
 
-import com.github.wxiaoqi.security.python.entity.Message;
+import com.github.wxiaoqi.security.sidecarclient.entity.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-import com.github.wxiaoqi.security.python.client.PythonFeignClient;
+import com.github.wxiaoqi.security.sidecarclient.client.PythonFeignClient;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
