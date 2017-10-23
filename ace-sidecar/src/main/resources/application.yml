@@ -8,5 +8,5 @@ sidecar:
 
 spring:
     application:
-        name: ace-sidercar
+        name: ace-sidecar
 
