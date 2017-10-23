@@ -15,6 +15,7 @@ import io.jsonwebtoken.SignatureException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.List;
@@ -24,6 +25,7 @@ import java.util.List;
  */
 @Configuration
 @Slf4j
+@EnableScheduling
 public class ServiceAuthUtil {
     @Autowired
     private ServiceAuthConfig serviceAuthConfig;
@@ -56,7 +58,7 @@ public class ServiceAuthUtil {
     }
 
 
-    @Scheduled(cron = "0 0/5 * * * ?")
+    @Scheduled(cron = "0 0/3 * * * ?")
     public void refreshClientToken() {
         try {
             log.info("refresh client token.....");
