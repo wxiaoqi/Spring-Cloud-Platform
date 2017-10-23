@@ -14,5 +14,5 @@ import com.github.wxiaoqi.security.common.biz.BaseBiz;
  * @date ${datetime}
  */
 @Service
-public class ${className}eBiz extends BaseBiz<${className}Mapper,${className}> {
+public class ${className}Biz extends BaseBiz<${className}Mapper,${className}> {
 }

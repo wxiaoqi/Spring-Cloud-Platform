@@ -1,18 +1,25 @@
 spring:
-    cloud:
-        config:
-            label: master
-            uri: http://localhost:8750
-            name: gate
-            profile: dev
+  cloud:
+    config:
+        discovery:
+           service-id: ace-config
+           enabled: true
+        label: master  # git 分支
+        name: gate
+        profile: dev
 
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 5000
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+        # docker 部署开启
+#        prefer-ip-address: true
+#        ip-address: 127.0.0.1
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+                    # docker 部署开启
+#            defaultZone: http://center:8761/eureka/
 
 #请求和响应GZIP压缩支持
 feign:
