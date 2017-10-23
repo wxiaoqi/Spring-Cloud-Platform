@@ -5,3 +5,10 @@ spring:
     application:
         name: ace-sidecar-client-demo
 
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
