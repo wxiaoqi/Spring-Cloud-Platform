@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * Created by ace on 2017/9/8.
  */
@@ -20,8 +23,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(getServiceAuthRestInterceptor()).addPathPatterns("/**");
-        registry.addInterceptor(getUserAuthRestInterceptor()).addPathPatterns("/**").excludePathPatterns("/api/user/username/**");
+        ArrayList<String> commonPathPatterns = getExcludeCommonPathPatterns();
+        registry.addInterceptor(getServiceAuthRestInterceptor()).addPathPatterns("/**").excludePathPatterns(commonPathPatterns.toArray(new String[]{}));
+        commonPathPatterns .add("/api/user/username/**");
+        registry.addInterceptor(getUserAuthRestInterceptor()).addPathPatterns("/**").excludePathPatterns(commonPathPatterns.toArray(new String[]{}));
         super.addInterceptors(registry);
     }
 
@@ -33,5 +38,16 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     UserAuthRestInterceptor getUserAuthRestInterceptor(){
         return new UserAuthRestInterceptor();
+    }
+
+    private ArrayList<String> getExcludeCommonPathPatterns(){
+        ArrayList<String> list = new ArrayList<>();
+        String[] urls = {
+                "/v2/api-docs",
+                "/swagger-resources/**"
+        };
+        Collections.addAll(list,urls);
+        return list;
+
     }
 }

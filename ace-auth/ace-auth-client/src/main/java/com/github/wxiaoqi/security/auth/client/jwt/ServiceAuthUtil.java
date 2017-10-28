@@ -58,17 +58,13 @@ public class ServiceAuthUtil {
     }
 
 
-    @Scheduled(cron = "0 0/3 * * * ?")
+    @Scheduled(cron = "0 0 0/1 * * ?")
     public void refreshClientToken() {
-        try {
-            log.info("refresh client token.....");
-            this.getInfoFromToken(this.clientToken);
-        } catch (Exception e) {
-            BaseResponse resp = serviceAuthFeign.getAccessToken(serviceAuthConfig.getClientId(), serviceAuthConfig.getClientSecret());
-            if (resp.getStatus() == 200) {
-                ObjectRestResponse<String> clientToken = (ObjectRestResponse<String>) resp;
-                this.clientToken = clientToken.getData();
-            }
+        log.info("refresh client token.....");
+        BaseResponse resp = serviceAuthFeign.getAccessToken(serviceAuthConfig.getClientId(), serviceAuthConfig.getClientSecret());
+        if (resp.getStatus() == 200) {
+            ObjectRestResponse<String> clientToken = (ObjectRestResponse<String>) resp;
+            this.clientToken = clientToken.getData();
         }
     }
 
