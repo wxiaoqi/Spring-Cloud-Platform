@@ -41,7 +41,7 @@ import java.util.regex.Pattern;
  */
 @Component
 @Slf4j
-public class SessionAccessFilter extends ZuulFilter {
+public class AdminAccessFilter extends ZuulFilter {
 
     @Autowired
     private IUserService userService;
@@ -93,13 +93,11 @@ public class SessionAccessFilter extends ZuulFilter {
         }
         IJWTInfo user = null;
         try {
-            user = getJWTUser(request);
-            ctx.addZuulRequestHeader(userAuthConfig.getTokenHeader(),BaseContextHandler.getToken());
+            user = getJWTUser(request,ctx);
         } catch (Exception e) {
             setFailedRequest(JSON.toJSONString(new TokenErrorResponse(e.getMessage())),200);
             return null;
         }
-
         List<PermissionInfo> permissionInfos = userService.getAllPermissionInfo();
         // 判断资源是否启用权限约束
         Collection<PermissionInfo> result = getPermissionInfos(requestUri, method, permissionInfos);
@@ -144,14 +142,15 @@ public class SessionAccessFilter extends ZuulFilter {
     /**
      * 返回session中的用户信息
      * @param request
+     * @param ctx
      * @return
      */
-    private IJWTInfo getJWTUser(HttpServletRequest request) throws Exception {
+    private IJWTInfo getJWTUser(HttpServletRequest request,RequestContext ctx) throws Exception {
         String authToken = request.getHeader(userAuthConfig.getTokenHeader());
         if(StringUtils.isBlank(authToken)){
             authToken = request.getParameter("token");
         }
-        BaseContextHandler.setToken(authToken);
+        ctx.addZuulRequestHeader(userAuthConfig.getTokenHeader(),BaseContextHandler.getToken());
         return userAuthUtil.getInfoFromToken(authToken);
     }
 

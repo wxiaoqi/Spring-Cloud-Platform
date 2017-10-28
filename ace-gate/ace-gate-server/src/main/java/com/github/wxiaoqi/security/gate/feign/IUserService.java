@@ -17,7 +17,7 @@ import java.util.List;
  * @author wanghaobin
  * @create 2017-06-21 8:11
  */
-@FeignClient(value = "admin-back",configuration = {ZuulConfig.class})
+@FeignClient(value = "ace-admin",configuration = {ZuulConfig.class})
 @RequestMapping("api")
 public interface IUserService {
   @RequestMapping(value = "/user/username/{username}", method = RequestMethod.GET)
