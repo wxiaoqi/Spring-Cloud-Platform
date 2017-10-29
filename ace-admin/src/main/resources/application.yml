@@ -4,7 +4,7 @@ logging:
         com.github.wxiaoqi.security.admin: DEBUG
 spring:
     application:
-        name: admin-back
+        name: ace-admin
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
         time-zone: GMT+8

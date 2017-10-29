@@ -35,11 +35,7 @@ zuul:
   routes:
     back:
       path: /admin/**
-      serviceId: admin-back
-
-    blog:
-      path: /blog/**
-      serviceId: blog-admin
+      serviceId: ace-admin
 
     auth:
       path: /auth/**

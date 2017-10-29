@@ -45,4 +45,10 @@ public class UserAuthRestInterceptor extends HandlerInterceptorAdapter {
         BaseContextHandler.setUserID(infoFromToken.getId());
         return super.preHandle(request, response, handler);
     }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        BaseContextHandler.remove();
+        super.afterCompletion(request, response, handler, ex);
+    }
 }
