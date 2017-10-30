@@ -150,7 +150,7 @@ public class AdminAccessFilter extends ZuulFilter {
         if(StringUtils.isBlank(authToken)){
             authToken = request.getParameter("token");
         }
-        ctx.addZuulRequestHeader(userAuthConfig.getTokenHeader(),BaseContextHandler.getToken());
+        ctx.addZuulRequestHeader(userAuthConfig.getTokenHeader(),authToken);
         return userAuthUtil.getInfoFromToken(authToken);
     }
 
