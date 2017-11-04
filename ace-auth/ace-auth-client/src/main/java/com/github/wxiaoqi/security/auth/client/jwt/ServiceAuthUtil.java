@@ -6,10 +6,10 @@ import com.github.wxiaoqi.security.auth.client.exception.JwtIllegalArgumentExcep
 import com.github.wxiaoqi.security.auth.client.exception.JwtSignatureException;
 import com.github.wxiaoqi.security.auth.client.exception.JwtTokenExpiredException;
 import com.github.wxiaoqi.security.auth.client.feign.ServiceAuthFeign;
+import com.github.wxiaoqi.security.auth.common.util.jwt.IJWTInfo;
+import com.github.wxiaoqi.security.auth.common.util.jwt.JWTHelper;
 import com.github.wxiaoqi.security.common.msg.BaseResponse;
 import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
-import com.github.wxiaoqi.security.common.util.jwt.IJWTInfo;
-import com.github.wxiaoqi.security.common.util.jwt.JWTHelper;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 import lombok.extern.slf4j.Slf4j;

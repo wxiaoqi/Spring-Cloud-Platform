@@ -1,4 +1,4 @@
-package com.github.wxiaoqi.security.common.util;
+package com.github.wxiaoqi.security.auth.common.util.jwt;
 
 import java.io.*;
 import java.security.*;
