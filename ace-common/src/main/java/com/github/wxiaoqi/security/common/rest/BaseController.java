@@ -1,17 +1,14 @@
 package com.github.wxiaoqi.security.common.rest;
 
 import com.github.wxiaoqi.security.common.biz.BaseBiz;
+import com.github.wxiaoqi.security.common.context.BaseContextHandler;
 import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import com.github.wxiaoqi.security.common.msg.TableResultResponse;
 import com.github.wxiaoqi.security.common.util.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;
-import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -66,7 +63,6 @@ public class BaseController<Biz extends BaseBiz,Entity> {
         return baseBiz.selectByQuery(query);
     }
     public String getCurrentUserName(){
-        String authorization = request.getHeader("Authorization");
-        return new String(Base64Utils.decodeFromString(authorization));
+        return BaseContextHandler.getUsername();
     }
 }

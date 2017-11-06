@@ -6,6 +6,7 @@ import com.github.wxiaoqi.security.auth.client.exception.JwtIllegalArgumentExcep
 import com.github.wxiaoqi.security.auth.client.exception.JwtSignatureException;
 import com.github.wxiaoqi.security.auth.client.exception.JwtTokenExpiredException;
 import com.github.wxiaoqi.security.auth.client.feign.ServiceAuthFeign;
+import com.github.wxiaoqi.security.auth.common.event.AuthRemoteEvent;
 import com.github.wxiaoqi.security.auth.common.util.jwt.IJWTInfo;
 import com.github.wxiaoqi.security.auth.common.util.jwt.JWTHelper;
 import com.github.wxiaoqi.security.common.msg.BaseResponse;
@@ -14,6 +15,7 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -26,7 +28,7 @@ import java.util.List;
 @Configuration
 @Slf4j
 @EnableScheduling
-public class ServiceAuthUtil {
+public class ServiceAuthUtil  implements ApplicationListener<AuthRemoteEvent> {
     @Autowired
     private ServiceAuthConfig serviceAuthConfig;
     @Autowired
@@ -47,7 +49,6 @@ public class ServiceAuthUtil {
         }
     }
 
-    @Scheduled(cron = "0 0/5 * * * ?")
     public void refreshAllowedClient() {
         log.info("refresh allowedClient.....");
         BaseResponse resp = serviceAuthFeign.getAllowedClient(serviceAuthConfig.getClientId(), serviceAuthConfig.getClientSecret());
@@ -83,4 +84,8 @@ public class ServiceAuthUtil {
         return allowedClient;
     }
 
+    @Override
+    public void onApplicationEvent(AuthRemoteEvent authRemoteEvent) {
+        this.allowedClient = authRemoteEvent.getAllowedClient();
+    }
 }
