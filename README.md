@@ -6,6 +6,9 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 - 课程地址：
 http://edu.csdn.net/course/detail/5840
 
+## 阿里云服务器太贵？送你阿里云神卷，优惠最高达25%
+https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=ryr8l9eb&utm_source=ryr8l9eb
+
 QQ群号：169824183
 
 ![img](http://upload-images.jianshu.io/upload_images/5700335-002735d1727ec11b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
