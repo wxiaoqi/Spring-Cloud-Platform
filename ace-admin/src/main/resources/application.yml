@@ -30,6 +30,11 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+    rabbitmq:
+        host: localhost
+        port: 5672
+        username: guest
+        password: guest
 mybatis:
     basepackage: com.github.wxiaoqi.security.admin.mapper
     xmlLocation: classpath:mapper/**/*.xml

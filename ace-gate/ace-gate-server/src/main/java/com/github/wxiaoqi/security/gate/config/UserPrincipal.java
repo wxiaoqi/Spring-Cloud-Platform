@@ -3,7 +3,7 @@ package com.github.wxiaoqi.security.gate.config;
 import com.github.wxiaoqi.gate.ratelimit.config.IUserPrincipal;
 import com.github.wxiaoqi.security.auth.client.config.UserAuthConfig;
 import com.github.wxiaoqi.security.auth.client.jwt.UserAuthUtil;
-import com.github.wxiaoqi.security.common.util.jwt.IJWTInfo;
+import com.github.wxiaoqi.security.auth.common.util.jwt.IJWTInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 

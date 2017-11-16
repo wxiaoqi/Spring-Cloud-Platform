@@ -12,7 +12,7 @@ spring:
             max-active: 20
     datasource:
       name: test
-      url: jdbc:mysql://localhost:3306/ag_gate?useUnicode=true&characterEncoding=UTF8
+      url: jdbc:mysql://localhost:3306/ag_auth?useUnicode=true&characterEncoding=UTF8
       username: root
       password: 123456
       # 使用druid数据源
@@ -31,13 +31,17 @@ spring:
       testOnReturn: false
       poolPreparedStatements: true
       maxOpenPreparedStatements: 20
-
+    rabbitmq:
+      host: localhost
+      port: 5672
+      username: guest
+      password: guest
 mybatis:
     basepackage: com.github.wxiaoqi.security.auth.mapper
     xmlLocation: classpath:mapper/**/*.xml
 
 server:
-    port: 8777 #启动端口
+    port: 9777 #启动端口
 
 ribbon:
   eureka:

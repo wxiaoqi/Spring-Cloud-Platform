@@ -88,7 +88,7 @@ public class BaseContextHandler {
                 BaseContextHandler.set("test", "moo");
 
                 try {
-                    Thread.currentThread().sleep(3000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -101,7 +101,7 @@ public class BaseContextHandler {
                 logger.info("thread two done!");
             }).start();
 
-            Thread.currentThread().sleep(5000);
+            Thread.sleep(5000);
             assertEquals(BaseContextHandler.get("test"), "main");
             logger.info("main one done!");
         }

@@ -40,27 +40,6 @@ public class AuthServiceImpl implements AuthService {
         jwtTokenUtil.getInfoFromToken(token);
     }
 
-//    @Override
-//    public FrontUser getUserInfo(String token) throws Exception {
-//        String username = jwtTokenUtil.getInfoFromToken(token).getUniqueName();
-//        if (username == null) {
-//            return null;
-//        }
-//        UserInfo user = userService.getUserByUsername(username);
-//        FrontUser frontUser = new FrontUser();
-//        BeanUtils.copyProperties(user, frontUser);
-//        List<PermissionInfo> permissionInfos = userService.getPermissionByUsername(username);
-//        Stream<PermissionInfo> menus = permissionInfos.parallelStream().filter((permission) -> {
-//            return permission.getType().equals(CommonConstants.RESOURCE_TYPE_MENU);
-//        });
-//        frontUser.setMenus(menus.collect(Collectors.toList()));
-//        Stream<PermissionInfo> elements = permissionInfos.parallelStream().filter((permission) -> {
-//            return !permission.getType().equals(CommonConstants.RESOURCE_TYPE_MENU);
-//        });
-//        frontUser.setElements(elements.collect(Collectors.toList()));
-//        return frontUser;
-//    }
-
     @Override
     public Boolean invalid(String token) {
         // TODO: 2017/9/11 注销token

@@ -15,6 +15,7 @@
     <modules>
         <module>ace-auth-client</module>
         <module>ace-auth-server</module>
+        <module>ace-auth-common</module>
     </modules>
 
 </project>

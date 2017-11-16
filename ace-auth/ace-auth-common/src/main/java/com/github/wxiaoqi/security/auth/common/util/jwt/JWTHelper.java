@@ -1,8 +1,7 @@
-package com.github.wxiaoqi.security.common.util.jwt;
+package com.github.wxiaoqi.security.auth.common.util.jwt;
 
-import com.github.wxiaoqi.security.common.constant.CommonConstants;
-import com.github.wxiaoqi.security.common.util.RsaKeyHelper;
-import com.github.wxiaoqi.security.common.util.StringHelper;
+import com.github.wxiaoqi.security.auth.common.constatns.CommonConstants;
+import com.github.wxiaoqi.security.auth.common.util.StringHelper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;

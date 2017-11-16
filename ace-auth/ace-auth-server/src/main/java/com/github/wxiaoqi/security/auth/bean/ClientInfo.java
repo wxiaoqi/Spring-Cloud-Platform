@@ -1,7 +1,7 @@
 package com.github.wxiaoqi.security.auth.bean;
 
 
-import com.github.wxiaoqi.security.common.util.jwt.IJWTInfo;
+import com.github.wxiaoqi.security.auth.common.util.jwt.IJWTInfo;
 
 /**
  * Created by ace on 2017/9/10.
