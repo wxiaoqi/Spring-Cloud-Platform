@@ -24,6 +24,8 @@ public class ServiceFeignInterceptor implements RequestInterceptor {
     @Autowired
     private ServiceAuthUtil serviceAuthUtil;
 
+    public ServiceFeignInterceptor() {
+    }
 
 
     @Override
