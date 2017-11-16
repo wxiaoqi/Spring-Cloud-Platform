@@ -7,27 +7,11 @@ package com.github.wxiaoqi.security.common.msg;
  * @create 2017-06-09 7:32
  */
 public class ListRestResponse<T> {
-    boolean rel;
     String msg;
     T result;
     int count;
-    String callback;
 
-    public String getCallback() {
-        return callback;
-    }
 
-    public void setCallback(String callback) {
-        this.callback = callback;
-    }
-
-    public boolean isRel() {
-        return rel;
-    }
-
-    public void setRel(boolean rel) {
-        this.rel = rel;
-    }
 
     public String getMsg() {
         return msg;
@@ -60,11 +44,6 @@ public class ListRestResponse<T> {
 
     public ListRestResponse count(Long count) {
         this.setCount(count.intValue());
-        return this;
-    }
-
-    public ListRestResponse rel(boolean rel) {
-        this.setRel(rel);
         return this;
     }
 
