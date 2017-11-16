@@ -20,13 +20,14 @@ public class UserRest {
     @Autowired
     private PermissionService permissionService;
 
-    @RequestMapping(value = "/user/username/{username}",method = RequestMethod.GET, produces="application/json")
-    public  @ResponseBody UserInfo getUserByUsername(@PathVariable("username")String username) {
-        return permissionService.getUserByUsername(username);
-    }
-
+//    @RequestMapping(value = "/user/username/{username}",method = RequestMethod.GET, produces="application/json")
+//    public  @ResponseBody UserInfo getUserByUsername(@PathVariable("username")String username) {
+//        return permissionService.getUserByUsername(username);
+//    }
+//
     @RequestMapping(value = "/permissions", method = RequestMethod.GET)
-    public @ResponseBody List<PermissionInfo> getAllPermission(){
+    public @ResponseBody
+    List<PermissionInfo> getAllPermission(){
         return permissionService.getAllPermission();
     }
 
@@ -35,4 +36,11 @@ public class UserRest {
     public @ResponseBody List<PermissionInfo> getPermissionByUsername(@PathVariable("username") String username){
         return permissionService.getPermissionByUsername(username);
     }
+
+    @RequestMapping(value = "/user/validate", method = RequestMethod.POST)
+    public @ResponseBody UserInfo validate(String username,String password){
+        return permissionService.validate(username,password);
+    }
+
+
 }

@@ -17,7 +17,7 @@ import java.util.Collections;
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
-    GlobalExceptionHandler getGlobalExceptionHandler(){
+    GlobalExceptionHandler getGlobalExceptionHandler() {
         return new GlobalExceptionHandler();
     }
 
@@ -25,28 +25,28 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         ArrayList<String> commonPathPatterns = getExcludeCommonPathPatterns();
         registry.addInterceptor(getServiceAuthRestInterceptor()).addPathPatterns("/**").excludePathPatterns(commonPathPatterns.toArray(new String[]{}));
-        commonPathPatterns .add("/api/user/username/**");
+        commonPathPatterns.add("/api/user/validate");
         registry.addInterceptor(getUserAuthRestInterceptor()).addPathPatterns("/**").excludePathPatterns(commonPathPatterns.toArray(new String[]{}));
         super.addInterceptors(registry);
     }
 
     @Bean
-    ServiceAuthRestInterceptor getServiceAuthRestInterceptor(){
+    ServiceAuthRestInterceptor getServiceAuthRestInterceptor() {
         return new ServiceAuthRestInterceptor();
     }
 
     @Bean
-    UserAuthRestInterceptor getUserAuthRestInterceptor(){
+    UserAuthRestInterceptor getUserAuthRestInterceptor() {
         return new UserAuthRestInterceptor();
     }
 
-    private ArrayList<String> getExcludeCommonPathPatterns(){
+    private ArrayList<String> getExcludeCommonPathPatterns() {
         ArrayList<String> list = new ArrayList<>();
         String[] urls = {
                 "/v2/api-docs",
                 "/swagger-resources/**"
         };
-        Collections.addAll(list,urls);
+        Collections.addAll(list, urls);
         return list;
 
     }
