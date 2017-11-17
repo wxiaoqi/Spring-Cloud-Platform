@@ -8,6 +8,7 @@ import com.github.wxiaoqi.security.auth.util.user.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -26,9 +27,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String login(String username, String password) throws Exception {
-        UserInfo info = userService.getUserByUsername(username);
+        UserInfo info = userService.validate(username,password);
         String token = "";
-        if (encoder.matches(password, info.getPassword())) {
+        if (!StringUtils.isEmpty(info.getId())) {
             token = jwtTokenUtil.generateToken(new JWTInfo(info.getUsername(), info.getId() + "", info.getName()));
         }
         return token;

@@ -1,6 +1,5 @@
 package com.github.wxiaoqi.security.auth.controller;
 
-import com.github.pagehelper.PageHelper;
 import com.github.wxiaoqi.security.auth.service.AuthService;
 import com.github.wxiaoqi.security.auth.util.user.JwtAuthenticationRequest;
 import com.github.wxiaoqi.security.auth.util.user.JwtAuthenticationResponse;
@@ -50,5 +49,4 @@ public class AuthController {
         authService.invalid(token);
         return ResponseEntity.ok(true);
     }
-
 }

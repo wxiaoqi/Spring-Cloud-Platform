@@ -6,7 +6,18 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 - 课程地址：
 http://edu.csdn.net/course/detail/5840
 
-QQ群号：169824183
+### QQ群号：169824183
+
+## AG线上最新体验地址，感谢【[千铭云](https://www.chanmir.com/?u=45433C)】赞助的服务器。
+
+http://43.248.136.159:9999/
+
+## [老A专属优惠链接](https://www.chanmir.com/?u=45433C)，优惠卷：2B3158
+
+
+### 阿里云服务器太贵？送你阿里云神卷，优惠最高达20%
+https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=ryr8l9eb&utm_source=ryr8l9eb
+
 
 ![img](http://upload-images.jianshu.io/upload_images/5700335-002735d1727ec11b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -14,6 +25,13 @@ QQ群号：169824183
 
 
 ---------
+
+# 更新日志
+### 2017年11月17日 v2.2-SNARSHOT
+
+- ace-admin集成`ace-cache`
+- ace-auth集成`rabbitmq`
+
 
 # 模块说明
 ![img](http://upload-images.jianshu.io/upload_images/5700335-5ceb4c68e4080107.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -38,14 +56,14 @@ QQ群号：169824183
 下载完后端代码后，记得先安装`lombok插件`，否则你的IDE会报代码缺失。
 ## 后端工程启动
 ### 环境须知
-- mysql数据库一个，redis数据库一个
+- mysql一个，redis一个，rabbitmq一个
 - jdk1.8
 - IDE插件一个，`lombok插件`，具体百度即可
 
 ### 运行步骤
 - 运行数据库脚本：依次运行数据库：ace-admin/db/init.sql、ace-auth-server/db/init.sql
 - 修改配置数据库配置：ace-admin/src/main/resources/application.yml、ace-gate/src/main/resources/application.yml
-- 依次运行main类：CenterBootstrap（ace-center）、ConfigServerBootstrap（ace-config）、GateBootstrap（ace-gate）、AdminBootstrap（ace-admin）、AuthBootstrap（ace-auth-server）
+- 按`顺序`运行main类：CenterBootstrap（ace-center）、ConfigServerBootstrap（ace-config）、AdminBootstrap（ace-admin）、AuthBootstrap（ace-auth-server）、GateBootstrap（ace-gate）
 
 ### 项目结构
 ```

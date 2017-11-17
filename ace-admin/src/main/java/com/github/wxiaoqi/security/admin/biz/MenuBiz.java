@@ -1,10 +1,12 @@
 package com.github.wxiaoqi.security.admin.biz;
 
-import com.github.wxiaoqi.security.admin.entity.Menu;
-import com.github.wxiaoqi.security.common.biz.BaseBiz;
+import com.ace.cache.annotation.Cache;
+import com.ace.cache.annotation.CacheClear;
 import com.github.wxiaoqi.security.admin.constant.AdminCommonConstant;
-import org.springframework.stereotype.Service;
+import com.github.wxiaoqi.security.admin.entity.Menu;
 import com.github.wxiaoqi.security.admin.mapper.MenuMapper;
+import com.github.wxiaoqi.security.common.biz.BaseBiz;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -15,43 +17,61 @@ import java.util.List;
  * @create 2017-06-12 8:48
  */
 @Service
-public class MenuBiz extends BaseBiz<MenuMapper,Menu> {
+public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
     @Override
+    @Cache(key="permission:menu")
+    public List<Menu> selectListAll() {
+        return super.selectListAll();
+    }
+
+    @Override
+    @CacheClear(pre="permission:menu")
     public void insertSelective(Menu entity) {
-        if(AdminCommonConstant.ROOT == entity.getParentId()){
-            entity.setPath("/"+entity.getCode());
-        }else{
+        if (AdminCommonConstant.ROOT == entity.getParentId()) {
+            entity.setPath("/" + entity.getCode());
+        } else {
             Menu parent = this.selectById(entity.getParentId());
-            entity.setPath(parent.getPath()+"/"+entity.getCode());
+            entity.setPath(parent.getPath() + "/" + entity.getCode());
         }
         super.insertSelective(entity);
     }
 
     @Override
+    @CacheClear(pre="permission:menu")
     public void updateById(Menu entity) {
-        if(AdminCommonConstant.ROOT == entity.getParentId()){
-            entity.setPath("/"+entity.getCode());
-        }else{
+        if (AdminCommonConstant.ROOT == entity.getParentId()) {
+            entity.setPath("/" + entity.getCode());
+        } else {
             Menu parent = this.selectById(entity.getParentId());
-            entity.setPath(parent.getPath()+"/"+entity.getCode());
+            entity.setPath(parent.getPath() + "/" + entity.getCode());
         }
         super.updateById(entity);
     }
+
+    @Override
+    @CacheClear(pre="permission:menu")
+    public void updateSelectiveById(Menu entity) {
+        super.updateSelectiveById(entity);
+    }
+
     /**
      * 获取用户可以访问的菜单
+     *
      * @param id
      * @return
      */
-    public List<Menu> getUserAuthorityMenuByUserId(int id){
+    @Cache(key = "permission:menu:u{1}")
+    public List<Menu> getUserAuthorityMenuByUserId(int id) {
         return mapper.selectAuthorityMenuByUserId(id);
     }
 
     /**
      * 根据用户获取可以访问的系统
+     *
      * @param id
      * @return
      */
-    public List<Menu> getUserAuthoritySystemByUserId(int id){
+    public List<Menu> getUserAuthoritySystemByUserId(int id) {
         return mapper.selectAuthoritySystemByUserId(id);
     }
 }

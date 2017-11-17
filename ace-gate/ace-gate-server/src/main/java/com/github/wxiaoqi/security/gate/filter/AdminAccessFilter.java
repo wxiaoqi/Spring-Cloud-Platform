@@ -3,9 +3,9 @@ package com.github.wxiaoqi.security.gate.filter;
 import com.alibaba.fastjson.JSON;
 import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
 import com.github.wxiaoqi.security.api.vo.log.LogInfo;
-import com.github.wxiaoqi.security.api.vo.user.UserInfo;
 import com.github.wxiaoqi.security.auth.client.config.ServiceAuthConfig;
 import com.github.wxiaoqi.security.auth.client.config.UserAuthConfig;
+import com.github.wxiaoqi.security.auth.client.interceptor.ServiceFeignInterceptor;
 import com.github.wxiaoqi.security.auth.client.jwt.ServiceAuthUtil;
 import com.github.wxiaoqi.security.auth.client.jwt.UserAuthUtil;
 import com.github.wxiaoqi.security.auth.common.util.jwt.IJWTInfo;
@@ -18,14 +18,20 @@ import com.github.wxiaoqi.security.gate.feign.IUserService;
 import com.github.wxiaoqi.security.gate.utils.DBLog;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import feign.Feign;
+import feign.jackson.JacksonDecoder;
+import feign.jackson.JacksonEncoder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.net.URLEncoder;
 import java.util.Collection;
@@ -43,7 +49,6 @@ import java.util.regex.Pattern;
 @Slf4j
 public class AdminAccessFilter extends ZuulFilter {
 
-    @Autowired
     private IUserService userService;
     @Autowired
     private ILogService logService;
@@ -64,6 +69,22 @@ public class AdminAccessFilter extends ZuulFilter {
 
     @Autowired
     private ServiceAuthUtil serviceAuthUtil;
+
+    @Autowired
+    private EurekaClient discoveryClient;
+
+    @PostConstruct
+    public void init() {
+        InstanceInfo prodSvcInfo =  discoveryClient.getNextServerFromEureka("ACE-ADMIN", false);
+        ServiceFeignInterceptor serviceFeignInterceptor = new ServiceFeignInterceptor();
+        serviceFeignInterceptor.setServiceAuthConfig(serviceAuthConfig);
+        serviceFeignInterceptor.setServiceAuthUtil(serviceAuthUtil);
+        serviceFeignInterceptor.setUserAuthConfig(userAuthConfig);
+        this.userService = Feign.builder().encoder(new JacksonEncoder())
+                .decoder(new JacksonDecoder())
+                .requestInterceptor(serviceFeignInterceptor)
+                .target(IUserService.class, prodSvcInfo.getHomePageUrl());
+    }
 
     @Override
     public String filterType() {
@@ -102,7 +123,7 @@ public class AdminAccessFilter extends ZuulFilter {
         // 判断资源是否启用权限约束
         Collection<PermissionInfo> result = getPermissionInfos(requestUri, method, permissionInfos);
         if(result.size()>0){
-            checkAllow(requestUri, method, ctx, user.getUniqueName());
+            checkUserPermission(requestUri, method, ctx, user);
         }
         // 申请客户端密钥头
         ctx.addZuulRequestHeader(serviceAuthConfig.getTokenHeader(),serviceAuthUtil.getClientToken());
@@ -130,13 +151,12 @@ public class AdminAccessFilter extends ZuulFilter {
             });
     }
 
-    private void setCurrentUserInfoAndLog(RequestContext ctx, String username, PermissionInfo pm) {
-        UserInfo info = userService.getUserByUsername(username);
+    private void setCurrentUserInfoAndLog(RequestContext ctx, IJWTInfo user, PermissionInfo pm) {
         String host =  ClientUtil.getClientIp(ctx.getRequest());
-        ctx.addZuulRequestHeader("userId", info.getId());
-        ctx.addZuulRequestHeader("userName", URLEncoder.encode(info.getName()));
+        ctx.addZuulRequestHeader("userId", user.getId());
+        ctx.addZuulRequestHeader("userName", URLEncoder.encode(user.getName()));
         ctx.addZuulRequestHeader("userHost", ClientUtil.getClientIp(ctx.getRequest()));
-        LogInfo logInfo = new LogInfo(pm.getMenu(),pm.getName(),pm.getUri(),new Date(),info.getId(),info.getName(),host);
+        LogInfo logInfo = new LogInfo(pm.getMenu(),pm.getName(),pm.getUri(),new Date(),user.getId(),user.getName(),host);
         DBLog.getInstance().setLogService(logService).offerQueue(logInfo);
     }
 
@@ -178,9 +198,9 @@ public class AdminAccessFilter extends ZuulFilter {
      * @param requestUri
      * @param method
      */
-    private void checkAllow(final String requestUri, final String method ,RequestContext ctx,String username) {
+    private void checkUserPermission(final String requestUri, final String method ,RequestContext ctx,IJWTInfo user) {
         log.debug("uri：" + requestUri + "----method：" + method);
-        List<PermissionInfo> permissionInfos = getPermissionInfos(ctx.getRequest(), username) ;
+        List<PermissionInfo> permissionInfos = getPermissionInfos(ctx.getRequest(), user.getUniqueName()) ;
         Collection<PermissionInfo> result = getPermissionInfos(requestUri, method, permissionInfos);
         if (result.size() <= 0) {
             setFailedRequest(JSON.toJSONString(new TokenForbiddenResponse("Token Forbidden!")), 200);
@@ -188,7 +208,7 @@ public class AdminAccessFilter extends ZuulFilter {
             PermissionInfo[] pms =  result.toArray(new PermissionInfo[]{});
             PermissionInfo pm = pms[0];
             if(!"GET".equals(method)){
-                setCurrentUserInfoAndLog(ctx, username, pm);
+                setCurrentUserInfoAndLog(ctx, user, pm);
             }
         }
     }

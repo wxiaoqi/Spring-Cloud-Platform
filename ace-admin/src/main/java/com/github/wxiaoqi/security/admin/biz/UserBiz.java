@@ -1,5 +1,7 @@
 package com.github.wxiaoqi.security.admin.biz;
 
+import com.ace.cache.annotation.Cache;
+import com.ace.cache.annotation.CacheClear;
 import com.github.wxiaoqi.security.admin.entity.User;
 import com.github.wxiaoqi.security.admin.mapper.MenuMapper;
 import com.github.wxiaoqi.security.admin.mapper.UserMapper;
@@ -31,10 +33,8 @@ public class UserBiz extends BaseBiz<UserMapper,User> {
     }
 
     @Override
+    @CacheClear(pre="user{1.username}")
     public void updateSelectiveById(User entity) {
-
-//        String password = new BCryptPasswordEncoder(UserConstant.PW_ENCORDER_SALT).encode(entity.getPassword());
-//        entity.setPassword(password);
         super.updateSelectiveById(entity);
     }
 
@@ -43,6 +43,7 @@ public class UserBiz extends BaseBiz<UserMapper,User> {
      * @param username
      * @return
      */
+    @Cache(key="user{1}")
     public User getUserByUsername(String username){
         User user = new User();
         user.setUsername(username);
