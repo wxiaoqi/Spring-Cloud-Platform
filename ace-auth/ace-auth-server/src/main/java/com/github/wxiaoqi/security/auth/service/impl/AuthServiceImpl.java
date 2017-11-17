@@ -1,10 +1,10 @@
 package com.github.wxiaoqi.security.auth.service.impl;
 
 import com.github.wxiaoqi.security.api.vo.user.UserInfo;
+import com.github.wxiaoqi.security.auth.common.util.jwt.JWTInfo;
 import com.github.wxiaoqi.security.auth.feign.IUserService;
 import com.github.wxiaoqi.security.auth.service.AuthService;
 import com.github.wxiaoqi.security.auth.util.user.JwtTokenUtil;
-import com.github.wxiaoqi.security.common.util.jwt.JWTInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

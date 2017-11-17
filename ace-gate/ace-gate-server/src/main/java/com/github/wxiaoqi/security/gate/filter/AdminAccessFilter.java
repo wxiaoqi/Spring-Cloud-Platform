@@ -49,7 +49,6 @@ import java.util.regex.Pattern;
 @Slf4j
 public class AdminAccessFilter extends ZuulFilter {
 
-//    @Autowired
     private IUserService userService;
     @Autowired
     private ILogService logService;
