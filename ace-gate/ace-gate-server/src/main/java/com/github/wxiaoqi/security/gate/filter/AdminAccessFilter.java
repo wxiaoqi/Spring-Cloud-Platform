@@ -37,6 +37,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -121,10 +122,11 @@ public class AdminAccessFilter extends ZuulFilter {
         }
         List<PermissionInfo> permissionIfs = userService.getAllPermissionInfo();
         // 判断资源是否启用权限约束
-        Stream<PermissionInfo> result = getPermissionIfs(requestUri, method, permissionIfs);
-        Object[] permissions = result.toArray();
+        Stream<PermissionInfo> stream = getPermissionIfs(requestUri, method, permissionIfs);
+        List<PermissionInfo> result = stream.collect(Collectors.toList());
+        PermissionInfo[] permissions = result.toArray(new PermissionInfo[]{});
         if (permissions.length > 0) {
-            checkUserPermission((PermissionInfo[]) permissions, ctx, user);
+            checkUserPermission(permissions, ctx, user);
         }
         // 申请客户端密钥头
         ctx.addZuulRequestHeader(serviceAuthConfig.getTokenHeader(), serviceAuthUtil.getClientToken());
@@ -198,7 +200,7 @@ public class AdminAccessFilter extends ZuulFilter {
         if (current == null) {
             setFailedRequest(JSON.toJSONString(new TokenForbiddenResponse("Token Forbidden!")), 200);
         } else {
-            if (!RequestMethod.GET.equals(current.getMethod())) {
+            if (!RequestMethod.GET.toString().equals(current.getMethod())) {
                 setCurrentUserInfoAndLog(ctx, user, current);
             }
         }
