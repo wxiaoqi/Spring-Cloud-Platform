@@ -1,5 +1,6 @@
 package com.github.wxiaoqi.security.admin.rpc;
 
+import com.ace.cache.annotation.Cache;
 import com.github.wxiaoqi.security.admin.rpc.service.PermissionService;
 import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
 import com.github.wxiaoqi.security.api.vo.user.UserInfo;
@@ -20,12 +21,14 @@ public class UserRest {
     @Autowired
     private PermissionService permissionService;
 
+    @Cache(key="permission")
     @RequestMapping(value = "/permissions", method = RequestMethod.GET)
     public @ResponseBody
     List<PermissionInfo> getAllPermission(){
         return permissionService.getAllPermission();
     }
 
+    @Cache(key="permission:u{1}")
     @RequestMapping(value = "/user/un/{username}/permissions", method = RequestMethod.GET)
     public @ResponseBody List<PermissionInfo> getPermissionByUsername(@PathVariable("username") String username){
         return permissionService.getPermissionByUsername(username);

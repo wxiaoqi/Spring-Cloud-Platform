@@ -16,8 +16,6 @@ import com.github.wxiaoqi.security.common.util.ClientUtil;
 import com.github.wxiaoqi.security.gate.feign.ILogService;
 import com.github.wxiaoqi.security.gate.feign.IUserService;
 import com.github.wxiaoqi.security.gate.utils.DBLog;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Collections2;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.zuul.ZuulFilter;
@@ -30,14 +28,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.net.URLEncoder;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 /**
  * ${DESCRIPTION}
@@ -75,7 +75,7 @@ public class AdminAccessFilter extends ZuulFilter {
 
     @PostConstruct
     public void init() {
-        InstanceInfo prodSvcInfo =  discoveryClient.getNextServerFromEureka("ACE-ADMIN", false);
+        InstanceInfo prodSvcInfo = discoveryClient.getNextServerFromEureka("ACE-ADMIN", false);
         ServiceFeignInterceptor serviceFeignInterceptor = new ServiceFeignInterceptor();
         serviceFeignInterceptor.setServiceAuthConfig(serviceAuthConfig);
         serviceFeignInterceptor.setServiceAuthUtil(serviceAuthUtil);
@@ -114,101 +114,92 @@ public class AdminAccessFilter extends ZuulFilter {
         }
         IJWTInfo user = null;
         try {
-            user = getJWTUser(request,ctx);
+            user = getJWTUser(request, ctx);
         } catch (Exception e) {
-            setFailedRequest(JSON.toJSONString(new TokenErrorResponse(e.getMessage())),200);
+            setFailedRequest(JSON.toJSONString(new TokenErrorResponse(e.getMessage())), 200);
             return null;
         }
-        List<PermissionInfo> permissionInfos = userService.getAllPermissionInfo();
+        List<PermissionInfo> permissionIfs = userService.getAllPermissionInfo();
         // 判断资源是否启用权限约束
-        Collection<PermissionInfo> result = getPermissionInfos(requestUri, method, permissionInfos);
-        if(result.size()>0){
-            checkUserPermission(requestUri, method, ctx, user);
+        Stream<PermissionInfo> result = getPermissionIfs(requestUri, method, permissionIfs);
+        Object[] permissions = result.toArray();
+        if (permissions.length > 0) {
+            checkUserPermission((PermissionInfo[]) permissions, ctx, user);
         }
         // 申请客户端密钥头
-        ctx.addZuulRequestHeader(serviceAuthConfig.getTokenHeader(),serviceAuthUtil.getClientToken());
+        ctx.addZuulRequestHeader(serviceAuthConfig.getTokenHeader(), serviceAuthUtil.getClientToken());
         BaseContextHandler.remove();
         return null;
     }
 
     /**
      * 获取目标权限资源
+     *
      * @param requestUri
      * @param method
      * @param serviceInfo
      * @return
      */
-    private Collection<PermissionInfo> getPermissionInfos(final String requestUri, final String method, List<PermissionInfo> serviceInfo) {
-        return Collections2.filter(serviceInfo, new Predicate<PermissionInfo>() {
-                @Override
-                public boolean apply(PermissionInfo permissionInfo) {
-                    String url = permissionInfo.getUri();
-                    String uri = url.replaceAll("\\{\\*\\}", "[a-zA-Z\\\\d]+");
-                    String regEx = "^" + uri + "$";
-                    return (Pattern.compile(regEx).matcher(requestUri).find() || requestUri.startsWith(url + "/"))
-                            && method.equals(permissionInfo.getMethod());
-                }
-            });
+    private Stream<PermissionInfo> getPermissionIfs(final String requestUri, final String method, List<PermissionInfo> serviceInfo) {
+        return serviceInfo.parallelStream().filter(new Predicate<PermissionInfo>() {
+            @Override
+            public boolean test(PermissionInfo permissionInfo) {
+                String url = permissionInfo.getUri();
+                String uri = url.replaceAll("\\{\\*\\}", "[a-zA-Z\\\\d]+");
+                String regEx = "^" + uri + "$";
+                return (Pattern.compile(regEx).matcher(requestUri).find() || requestUri.startsWith(url + "/"))
+                        && method.equals(permissionInfo.getMethod());
+            }
+        });
     }
 
     private void setCurrentUserInfoAndLog(RequestContext ctx, IJWTInfo user, PermissionInfo pm) {
-        String host =  ClientUtil.getClientIp(ctx.getRequest());
+        String host = ClientUtil.getClientIp(ctx.getRequest());
         ctx.addZuulRequestHeader("userId", user.getId());
         ctx.addZuulRequestHeader("userName", URLEncoder.encode(user.getName()));
         ctx.addZuulRequestHeader("userHost", ClientUtil.getClientIp(ctx.getRequest()));
-        LogInfo logInfo = new LogInfo(pm.getMenu(),pm.getName(),pm.getUri(),new Date(),user.getId(),user.getName(),host);
+        LogInfo logInfo = new LogInfo(pm.getMenu(), pm.getName(), pm.getUri(), new Date(), user.getId(), user.getName(), host);
         DBLog.getInstance().setLogService(logService).offerQueue(logInfo);
     }
 
     /**
      * 返回session中的用户信息
+     *
      * @param request
      * @param ctx
      * @return
      */
-    private IJWTInfo getJWTUser(HttpServletRequest request,RequestContext ctx) throws Exception {
+    private IJWTInfo getJWTUser(HttpServletRequest request, RequestContext ctx) throws Exception {
         String authToken = request.getHeader(userAuthConfig.getTokenHeader());
-        if(StringUtils.isBlank(authToken)){
+        if (StringUtils.isBlank(authToken)) {
             authToken = request.getParameter("token");
         }
-        ctx.addZuulRequestHeader(userAuthConfig.getTokenHeader(),authToken);
+        ctx.addZuulRequestHeader(userAuthConfig.getTokenHeader(), authToken);
         BaseContextHandler.setToken(authToken);
         return userAuthUtil.getInfoFromToken(authToken);
     }
 
-    /**
-     * 读取权限
-     * @param request
-     * @param username
-     * @return
-     */
-    private List<PermissionInfo> getPermissionInfos(HttpServletRequest request, String username) {
-        List<PermissionInfo> permissionInfos;
-        if (request.getSession().getAttribute("permission") == null) {
-            permissionInfos = userService.getPermissionByUsername(username);
-            request.getSession().setAttribute("permission", permissionInfos);
-        } else {
-            permissionInfos = (List<PermissionInfo>) request.getSession().getAttribute("permission");
-        }
-        return permissionInfos;
-    }
 
-    /**
-     * 权限校验
-     * @param requestUri
-     * @param method
-     */
-    private void checkUserPermission(final String requestUri, final String method ,RequestContext ctx,IJWTInfo user) {
-        log.debug("uri：" + requestUri + "----method：" + method);
-        List<PermissionInfo> permissionInfos = getPermissionInfos(ctx.getRequest(), user.getUniqueName()) ;
-        Collection<PermissionInfo> result = getPermissionInfos(requestUri, method, permissionInfos);
-        if (result.size() <= 0) {
+    private void checkUserPermission(PermissionInfo[] permissions, RequestContext ctx, IJWTInfo user) {
+        List<PermissionInfo> permissionInfos = userService.getPermissionByUsername(user.getUniqueName());
+        PermissionInfo current = null;
+        for (PermissionInfo info : permissions) {
+            boolean anyMatch = permissionInfos.parallelStream().anyMatch(new Predicate<PermissionInfo>() {
+                @Override
+                public boolean test(PermissionInfo permissionInfo) {
+                    return permissionInfo.getCode().equals(info.getCode());
+                }
+            });
+            if (anyMatch) {
+                current = info;
+                break;
+            }
+        }
+        if (current == null) {
             setFailedRequest(JSON.toJSONString(new TokenForbiddenResponse("Token Forbidden!")), 200);
-        } else{
-            PermissionInfo[] pms =  result.toArray(new PermissionInfo[]{});
-            PermissionInfo pm = pms[0];
-            if(!"GET".equals(method)){
-                setCurrentUserInfoAndLog(ctx, user, pm);
+        } else {
+            if (!RequestMethod.GET.equals(current.getMethod())) {
+                setCurrentUserInfoAndLog(ctx, user, current);
             }
         }
     }
@@ -216,6 +207,7 @@ public class AdminAccessFilter extends ZuulFilter {
 
     /**
      * URI是否以什么打头
+     *
      * @param requestUri
      * @return
      */
@@ -230,7 +222,7 @@ public class AdminAccessFilter extends ZuulFilter {
     }
 
     /**
-     * Reports an error message given a response body and code.
+     * 网关抛异常
      *
      * @param body
      * @param code
@@ -242,7 +234,7 @@ public class AdminAccessFilter extends ZuulFilter {
         if (ctx.getResponseBody() == null) {
             ctx.setResponseBody(body);
             ctx.setSendZuulResponse(false);
-//            throw new RuntimeException("Code: " + code + ", " + body); //optional
         }
     }
+
 }
