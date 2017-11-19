@@ -32,13 +32,13 @@ public class ElementBiz extends BaseBiz<ElementMapper,Element> {
     }
 
     @Override
-    @CacheClear(pre="permission:ele")
+    @CacheClear(keys={"permission:ele","permission"})
     public void insertSelective(Element entity) {
         super.insertSelective(entity);
     }
 
     @Override
-    @CacheClear(pre="permission:ele")
+    @CacheClear(keys={"permission:ele","permission"})
     public void updateSelectiveById(Element entity) {
         super.updateSelectiveById(entity);
     }

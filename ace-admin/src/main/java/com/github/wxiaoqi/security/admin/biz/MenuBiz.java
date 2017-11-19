@@ -25,7 +25,7 @@ public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
     }
 
     @Override
-    @CacheClear(pre="permission:menu")
+    @CacheClear(keys={"permission:menu","permission"})
     public void insertSelective(Menu entity) {
         if (AdminCommonConstant.ROOT == entity.getParentId()) {
             entity.setPath("/" + entity.getCode());
@@ -37,7 +37,7 @@ public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
     }
 
     @Override
-    @CacheClear(pre="permission:menu")
+    @CacheClear(keys={"permission:menu","permission"})
     public void updateById(Menu entity) {
         if (AdminCommonConstant.ROOT == entity.getParentId()) {
             entity.setPath("/" + entity.getCode());
@@ -49,7 +49,7 @@ public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
     }
 
     @Override
-    @CacheClear(pre="permission:menu")
+    @CacheClear(keys={"permission:menu","permission"})
     public void updateSelectiveById(Menu entity) {
         super.updateSelectiveById(entity);
     }
