@@ -14,11 +14,6 @@ http://43.248.136.159:9999/
 
 ## [老A专属优惠链接](https://www.chanmir.com/?u=45433C)，优惠卷：2B3158
 
-
-### 阿里云服务器太贵？送你阿里云神卷，优惠最高达20%
-https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=ryr8l9eb&utm_source=ryr8l9eb
-
-
 ![img](http://upload-images.jianshu.io/upload_images/5700335-002735d1727ec11b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
