@@ -9,6 +9,7 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * ${DESCRIPTION}
@@ -24,6 +25,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableAceAuthClient
 @ServletComponentScan("com.github.wxiaoqi.security.admin.config.druid")
 @EnableAceCache
+@EnableTransactionManagement
 public class AdminBootstrap {
     public static void main(String[] args) {
         new SpringApplicationBuilder(AdminBootstrap.class).web(true).run(args);    }

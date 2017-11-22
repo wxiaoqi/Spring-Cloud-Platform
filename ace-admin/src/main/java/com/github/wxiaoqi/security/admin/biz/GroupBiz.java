@@ -15,6 +15,7 @@ import com.github.wxiaoqi.security.common.biz.BaseBiz;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.*;
@@ -26,6 +27,7 @@ import java.util.*;
  * @create 2017-06-12 8:48
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class GroupBiz extends BaseBiz<GroupMapper, Group> {
     @Autowired
     private UserMapper userMapper;

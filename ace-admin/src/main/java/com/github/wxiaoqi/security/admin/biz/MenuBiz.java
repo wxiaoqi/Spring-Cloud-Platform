@@ -7,6 +7,7 @@ import com.github.wxiaoqi.security.admin.entity.Menu;
 import com.github.wxiaoqi.security.admin.mapper.MenuMapper;
 import com.github.wxiaoqi.security.common.biz.BaseBiz;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
  * @create 2017-06-12 8:48
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
     @Override
     @Cache(key="permission:menu")
