@@ -1,17 +1,14 @@
 package com.github.wxiaoqi.security.common.rest;
 
 import com.github.wxiaoqi.security.common.biz.BaseBiz;
+import com.github.wxiaoqi.security.common.context.BaseContextHandler;
 import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import com.github.wxiaoqi.security.common.msg.TableResultResponse;
 import com.github.wxiaoqi.security.common.util.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;
-import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -31,26 +28,29 @@ public class BaseController<Biz extends BaseBiz,Entity> {
     @ResponseBody
     public ObjectRestResponse<Entity> add(@RequestBody Entity entity){
         baseBiz.insertSelective(entity);
-        return new ObjectRestResponse<Entity>().rel(true);
+        return new ObjectRestResponse<Entity>();
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody
     public ObjectRestResponse<Entity> get(@PathVariable int id){
-        return new ObjectRestResponse<Entity>().rel(true).data(baseBiz.selectById(id));
+        ObjectRestResponse<Entity> entityObjectRestResponse = new ObjectRestResponse<>();
+        Object o = baseBiz.selectById(id);
+        entityObjectRestResponse.data((Entity)o);
+        return entityObjectRestResponse;
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
     @ResponseBody
     public ObjectRestResponse<Entity> update(@RequestBody Entity entity){
         baseBiz.updateSelectiveById(entity);
-        return new ObjectRestResponse<Entity>().rel(true);
+        return new ObjectRestResponse<Entity>();
     }
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     @ResponseBody
     public ObjectRestResponse<Entity> remove(@PathVariable int id){
         baseBiz.deleteById(id);
-        return new ObjectRestResponse<Entity>().rel(true);
+        return new ObjectRestResponse<Entity>();
     }
 
     @RequestMapping(value = "/all",method = RequestMethod.GET)
@@ -66,7 +66,6 @@ public class BaseController<Biz extends BaseBiz,Entity> {
         return baseBiz.selectByQuery(query);
     }
     public String getCurrentUserName(){
-        String authorization = request.getHeader("Authorization");
-        return new String(Base64Utils.decodeFromString(authorization));
+        return BaseContextHandler.getUsername();
     }
 }

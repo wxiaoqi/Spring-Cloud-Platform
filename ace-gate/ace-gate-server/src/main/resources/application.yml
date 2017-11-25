@@ -82,3 +82,4 @@ auth:
     secret: 123456
     pub-key:
       path: client/pub.key
+

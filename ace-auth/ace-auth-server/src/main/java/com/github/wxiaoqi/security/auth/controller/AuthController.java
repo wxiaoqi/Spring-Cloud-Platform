@@ -1,9 +1,8 @@
 package com.github.wxiaoqi.security.auth.controller;
 
+import com.github.wxiaoqi.security.auth.service.AuthService;
 import com.github.wxiaoqi.security.auth.util.user.JwtAuthenticationRequest;
 import com.github.wxiaoqi.security.auth.util.user.JwtAuthenticationResponse;
-import com.github.wxiaoqi.security.auth.service.AuthService;
-import com.github.wxiaoqi.security.auth.vo.FrontUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -49,15 +48,5 @@ public class AuthController {
     public ResponseEntity<?> invalid(@RequestHeader("access-token") String token){
         authService.invalid(token);
         return ResponseEntity.ok(true);
-    }
-
-    @RequestMapping(value = "user", method = RequestMethod.GET)
-    public ResponseEntity<?> getUserInfo(String token) throws Exception {
-        FrontUser userInfo = authService.getUserInfo(token);
-        if(userInfo==null) {
-            return ResponseEntity.status(401).body(false);
-        } else {
-            return ResponseEntity.ok(userInfo);
-        }
     }
 }

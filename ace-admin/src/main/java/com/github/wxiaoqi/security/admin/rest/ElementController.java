@@ -1,11 +1,8 @@
 package com.github.wxiaoqi.security.admin.rest;
 
-import com.github.pagehelper.PageHelper;
 import com.github.wxiaoqi.security.admin.biz.ElementBiz;
 import com.github.wxiaoqi.security.admin.biz.UserBiz;
 import com.github.wxiaoqi.security.admin.entity.Element;
-import com.github.wxiaoqi.security.admin.entity.User;
-import com.github.wxiaoqi.security.common.biz.BaseBiz;
 import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import com.github.wxiaoqi.security.common.msg.TableResultResponse;
 import com.github.wxiaoqi.security.common.rest.BaseController;
@@ -51,7 +48,7 @@ public class ElementController extends BaseController<ElementBiz, Element> {
   public ObjectRestResponse<Element> getAuthorityElement(String menuId) {
     int userId = userBiz.getUserByUsername(getCurrentUserName()).getId();
     List<Element> elements = baseBiz.getAuthorityElementByUserId(userId + "",menuId);
-    return new ObjectRestResponse<List<Element>>().rel(true).data(elements);
+    return new ObjectRestResponse<List<Element>>().data(elements);
   }
 
   @RequestMapping(value = "/user/menu", method = RequestMethod.GET)
@@ -59,6 +56,6 @@ public class ElementController extends BaseController<ElementBiz, Element> {
   public ObjectRestResponse<Element> getAuthorityElement() {
     int userId = userBiz.getUserByUsername(getCurrentUserName()).getId();
     List<Element> elements = baseBiz.getAuthorityElementByUserId(userId + "");
-    return new ObjectRestResponse<List<Element>>().rel(true).data(elements);
+    return new ObjectRestResponse<List<Element>>().data(elements);
   }
 }

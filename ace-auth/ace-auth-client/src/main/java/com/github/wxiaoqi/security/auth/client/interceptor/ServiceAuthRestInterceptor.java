@@ -3,8 +3,8 @@ package com.github.wxiaoqi.security.auth.client.interceptor;
 import com.github.wxiaoqi.security.auth.client.annotation.IgnoreClientToken;
 import com.github.wxiaoqi.security.auth.client.config.ServiceAuthConfig;
 import com.github.wxiaoqi.security.auth.client.jwt.ServiceAuthUtil;
+import com.github.wxiaoqi.security.auth.common.util.jwt.IJWTInfo;
 import com.github.wxiaoqi.security.common.exception.auth.ClientForbiddenException;
-import com.github.wxiaoqi.security.common.util.jwt.IJWTInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public class ServiceAuthRestInterceptor extends HandlerInterceptorAdapter {
 
         String token = request.getHeader(serviceAuthConfig.getTokenHeader());
         IJWTInfo infoFromToken = serviceAuthUtil.getInfoFromToken(token);
-        String uniqueName = infoFromToken.getUniqueName(); // clientName（code）
+        String uniqueName = infoFromToken.getUniqueName();
         for(String client:serviceAuthUtil.getAllowedClient()){
             if(client.equals(uniqueName)){
                 return super.preHandle(request, response, handler);
