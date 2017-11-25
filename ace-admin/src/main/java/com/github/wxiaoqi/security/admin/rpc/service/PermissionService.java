@@ -17,6 +17,7 @@ import com.github.wxiaoqi.security.common.util.TreeUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -37,12 +38,24 @@ public class PermissionService {
     private ElementBiz elementBiz;
     @Autowired
     private UserAuthUtil userAuthUtil;
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+
 
     public UserInfo getUserByUsername(String username) {
         UserInfo info = new UserInfo();
         User user = userBiz.getUserByUsername(username);
         BeanUtils.copyProperties(user, info);
         info.setId(user.getId().toString());
+        return info;
+    }
+
+    public UserInfo validate(String username,String password){
+        UserInfo info = new UserInfo();
+        User user = userBiz.getUserByUsername(username);
+        if (encoder.matches(password, user.getPassword())) {
+            BeanUtils.copyProperties(user, info);
+            info.setId(user.getId().toString());
+        }
         return info;
     }
 

@@ -1,6 +1,7 @@
 package com.github.wxiaoqi.security.auth.service.impl;
 
 import com.github.wxiaoqi.security.auth.bean.ClientInfo;
+import com.github.wxiaoqi.security.auth.common.event.AuthRemoteEvent;
 import com.github.wxiaoqi.security.auth.entity.Client;
 import com.github.wxiaoqi.security.auth.mapper.ClientMapper;
 import com.github.wxiaoqi.security.auth.service.ClientService;
@@ -9,6 +10,7 @@ import com.github.wxiaoqi.security.common.exception.auth.ClientInvalidException;
 import com.github.wxiaoqi.security.common.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,13 @@ public class DBClientService implements ClientService {
     private ClientTokenUtil clientTokenUtil;
     @Autowired
     private DiscoveryClient discovery;
+    private ApplicationContext context;
+
+    @Autowired
+    public DBClientService(ApplicationContext context) {
+        this.context = context;
+    }
+
     @Override
     public String apply(String clientId, String secret) throws Exception {
         Client client = getClient(clientId, secret);
@@ -52,6 +61,13 @@ public class DBClientService implements ClientService {
         return clients;
     }
 
+    private Client getClient(String clientId) {
+        Client client = new Client();
+        client.setCode(clientId);
+        client = clientMapper.selectOne(client);
+        return client;
+    }
+
     @Override
     @Scheduled(cron = "0 0/1 * * * ?")
     public void registryClient() {
@@ -60,9 +76,17 @@ public class DBClientService implements ClientService {
             Client client = new Client();
             client.setName(name);
             client.setCode(name);
-            if(clientMapper.selectCount(client)== 0) {
+            Client dbClient = clientMapper.selectOne(client);
+            if(dbClient==null) {
                 client.setSecret(UUIDUtils.generateShortUuid());
                 clientMapper.insert(client);
+            }else{
+                // 主动推送
+                final List<String> clients = clientMapper.selectAllowedClient(dbClient.getId() + "");
+                final String myUniqueId = context.getId();
+                final AuthRemoteEvent event =
+                        new AuthRemoteEvent(this, myUniqueId, name, clients);
+                context.publishEvent(event);
             }
         });
     }
