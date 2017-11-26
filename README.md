@@ -3,8 +3,10 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 
 ## 推荐🌧
 考虑许多码友对于Spring Cloud的前后端分离和微服务实战有较多的疑问。老A专门录制课程如下，便于对AG-Admin更深入的了解
-- 课程地址：
+
+### AG-Admin初级课程地址：
 http://edu.csdn.net/course/detail/5840
+
 
 ### QQ群号：169824183
 
@@ -179,3 +181,11 @@ Apache License Version 2.0
 # 我们的用户
 ![img](http://upload-images.jianshu.io/upload_images/5700335-67814644d39fce24.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)![image.png](http://upload-images.jianshu.io/upload_images/5700335-a6f45909f94ab3b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![NLDCF.png](https://s1.ax1x.com/2017/10/24/NLDCF.png)
+
+# 相信有了你们的支持，AG开源会越来越好，项目也会越来越完善。
+
+通过微信或支付宝，扫描下面的二维码，即可捐赠，如下图所示：
+
+微信 | 支付宝
+---|---
+![微信](http://upload-images.jianshu.io/upload_images/5700335-41754303a4ccb703.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/q/50) | ![支付宝](http://upload-images.jianshu.io/upload_images/5700335-c4a626166c15058e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/q/50)
