@@ -13,6 +13,11 @@ spring:
         host: 127.0.0.1
         pool:
             max-active: 20
+    rabbitmq:
+        host: localhost
+        port: 5672
+        username: guest
+        password: guest
 server:
     port: 8765 #启动端口
 #
