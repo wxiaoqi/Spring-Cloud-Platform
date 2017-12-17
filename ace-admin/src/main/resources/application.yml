@@ -67,14 +67,10 @@ auth:
   serviceId: ace-auth
   user:
     token-header: Authorization
-    pub-key:
-      path: jwt/pub.key
   client:
     id: ace-admin
     secret: 123456
     token-header: client-token
-    pub-key:
-      path: client/pub.key
 
 #redis-cache 相关
 redis:

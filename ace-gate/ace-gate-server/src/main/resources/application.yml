@@ -13,6 +13,11 @@ spring:
         host: 127.0.0.1
         pool:
             max-active: 20
+    rabbitmq:
+        host: localhost
+        port: 5672
+        username: guest
+        password: guest
 server:
     port: 8765 #启动端口
 #
@@ -74,12 +79,7 @@ auth:
   serviceId: ace-auth
   user:
     token-header: Authorization
-    pub-key:
-      path: jwt/pub.key
   client:
     token-header: client-token
     id: ace-gate  #不填则默认读取spring.application.name
     secret: 123456
-    pub-key:
-      path: client/pub.key
-

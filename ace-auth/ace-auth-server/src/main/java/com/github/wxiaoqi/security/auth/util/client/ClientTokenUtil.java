@@ -2,8 +2,10 @@ package com.github.wxiaoqi.security.auth.util.client;
 
 import com.github.wxiaoqi.security.auth.common.util.jwt.IJWTInfo;
 import com.github.wxiaoqi.security.auth.common.util.jwt.JWTHelper;
+import com.github.wxiaoqi.security.auth.configuration.KeyConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,17 +18,15 @@ public class ClientTokenUtil {
 
     @Value("${client.expire}")
     private int expire;
-    @Value("${client.pri-key.path}")
-    private String priKeyPath;
-    @Value("${client.pub-key.path}")
-    private String pubKeyPath;
+    @Autowired
+    private KeyConfig keyConfig;
 
     public String generateToken(IJWTInfo jwtInfo) throws Exception {
-        return JWTHelper.generateToken(jwtInfo,priKeyPath,expire);
+        return JWTHelper.generateToken(jwtInfo, keyConfig.getServicePriKey(), expire);
     }
 
     public IJWTInfo getInfoFromToken(String token) throws Exception {
-        return JWTHelper.getInfoFromToken(token,pubKeyPath);
+        return JWTHelper.getInfoFromToken(token, keyConfig.getServicePubKey());
     }
 
 }

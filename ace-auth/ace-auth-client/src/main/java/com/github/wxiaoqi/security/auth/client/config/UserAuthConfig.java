@@ -8,10 +8,11 @@ import javax.servlet.http.HttpServletRequest;
  * Created by ace on 2017/9/15.
  */
 public class UserAuthConfig {
-    @Value("${auth.user.pub-key.path}")
-    private String pubKeyPath;
+
     @Value("${auth.user.token-header}")
     private String tokenHeader;
+
+    private byte[] pubKeyByte;
 
     public String getTokenHeader() {
         return tokenHeader;
@@ -21,17 +22,15 @@ public class UserAuthConfig {
         this.tokenHeader = tokenHeader;
     }
 
-    public String getPubKeyPath() {
-        return pubKeyPath;
-    }
-
-    public void setPubKeyPath(String pubKeyPath) {
-        this.pubKeyPath = pubKeyPath;
-    }
-
     public String getToken(HttpServletRequest request){
         return request.getHeader(this.getTokenHeader());
     }
 
+    public byte[] getPubKeyByte() {
+        return pubKeyByte;
+    }
 
+    public void setPubKeyByte(byte[] pubKeyByte) {
+        this.pubKeyByte = pubKeyByte;
+    }
 }

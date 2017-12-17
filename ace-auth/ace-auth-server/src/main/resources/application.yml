@@ -83,17 +83,11 @@ eureka:
 jwt:
   token-header: Authorization
   expire: 3600
-  pri-key:
-    path: jwt/pri.key
-  pub-key:
-    path: jwt/pub.key
-    
+  rsa-secret: xx1WET12^%3^(WE45
+
 client:
   id: ace-auth
   secret: 123456
   token-header: client-token
   expire: 3600
-  pri-key:
-    path: client/pri.key
-  pub-key:
-    path: client/pub.key
+  rsa-secret: x2318^^(*WRYQWR(QW&T
