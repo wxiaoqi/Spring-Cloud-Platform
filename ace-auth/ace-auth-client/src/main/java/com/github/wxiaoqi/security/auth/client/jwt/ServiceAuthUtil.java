@@ -39,7 +39,7 @@ public class ServiceAuthUtil  implements ApplicationListener<AuthRemoteEvent> {
 
     public IJWTInfo getInfoFromToken(String token) throws Exception {
         try {
-            return JWTHelper.getInfoFromToken(token, serviceAuthConfig.getPubKeyPath());
+            return JWTHelper.getInfoFromToken(token, serviceAuthConfig.getPubKeyByte());
         } catch (ExpiredJwtException ex) {
             throw new JwtTokenExpiredException("Client token expired!");
         } catch (SignatureException ex) {

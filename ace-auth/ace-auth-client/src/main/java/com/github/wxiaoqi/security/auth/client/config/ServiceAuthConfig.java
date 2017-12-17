@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 
 public class ServiceAuthConfig {
-    @Value("${auth.client.pub-key.path}")
-    private String pubKeyPath;
+    private byte[] pubKeyByte;
     @Value("${auth.client.id:null}")
     private String clientId;
     @Value("${auth.client.secret}")
@@ -27,15 +26,6 @@ public class ServiceAuthConfig {
     public void setTokenHeader(String tokenHeader) {
         this.tokenHeader = tokenHeader;
     }
-
-    public String getPubKeyPath() {
-        return pubKeyPath;
-    }
-
-    public void setPubKeyPath(String pubKeyPath) {
-        this.pubKeyPath = pubKeyPath;
-    }
-
 
     public String getClientId() {
         return "null".equals(clientId)?applicationName:clientId;
@@ -57,4 +47,11 @@ public class ServiceAuthConfig {
         return request.getHeader(this.getTokenHeader());
     }
 
+    public byte[] getPubKeyByte() {
+        return pubKeyByte;
+    }
+
+    public void setPubKeyByte(byte[] pubKeyByte) {
+        this.pubKeyByte = pubKeyByte;
+    }
 }

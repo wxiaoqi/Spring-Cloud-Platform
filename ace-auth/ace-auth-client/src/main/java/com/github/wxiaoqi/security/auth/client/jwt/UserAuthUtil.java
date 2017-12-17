@@ -20,7 +20,7 @@ public class UserAuthUtil {
     private UserAuthConfig userAuthConfig;
     public IJWTInfo getInfoFromToken(String token) throws Exception {
         try {
-            return JWTHelper.getInfoFromToken(token, userAuthConfig.getPubKeyPath());
+            return JWTHelper.getInfoFromToken(token, userAuthConfig.getPubKeyByte());
         }catch (ExpiredJwtException ex){
             throw new JwtTokenExpiredException("User token expired!");
         }catch (SignatureException ex){

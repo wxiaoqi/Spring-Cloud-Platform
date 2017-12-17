@@ -18,4 +18,6 @@ public interface ClientService {
     public List<String> getAllowedClient(String serviceId, String secret);
 
     public void registryClient();
+
+    public void validate(String clientId, String secret) throws Exception;
 }

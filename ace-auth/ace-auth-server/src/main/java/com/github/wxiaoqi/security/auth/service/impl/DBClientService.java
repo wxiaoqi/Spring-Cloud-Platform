@@ -51,6 +51,15 @@ public class DBClientService implements ClientService {
         return client;
     }
 
+    public void validate(String clientId, String secret) throws Exception {
+        Client client = new Client();
+        client.setCode(clientId);
+        client = clientMapper.selectOne(client);
+        if(client==null||!client.getSecret().equals(secret)){
+            throw new ClientInvalidException("Client not found or Client secret is error!");
+        }
+    }
+
     @Override
     public List<String> getAllowedClient(String clientId, String secret) {
         Client info = this.getClient(clientId, secret);

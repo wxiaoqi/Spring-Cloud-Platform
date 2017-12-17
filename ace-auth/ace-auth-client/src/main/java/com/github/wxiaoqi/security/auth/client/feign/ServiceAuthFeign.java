@@ -17,6 +17,9 @@ public interface ServiceAuthFeign {
     public ObjectRestResponse<List<String>> getAllowedClient(@RequestParam("serviceId") String serviceId, @RequestParam("secret") String secret);
     @RequestMapping(value = "/client/token",method = RequestMethod.POST)
     public ObjectRestResponse getAccessToken(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret);
-
+    @RequestMapping(value = "/client/servicePubKey",method = RequestMethod.POST)
+    public ObjectRestResponse<byte[]> getServicePublicKey(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret);
+    @RequestMapping(value = "/client/userPubKey",method = RequestMethod.POST)
+    public ObjectRestResponse<byte[]> getUserPublicKey(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret);
 
 }
