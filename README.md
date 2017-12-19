@@ -60,7 +60,7 @@ http://43.248.136.159:9999/
 ### 运行步骤
 - 运行数据库脚本：依次运行数据库：ace-admin/db/init.sql、ace-auth-server/db/init.sql
 - 修改配置数据库配置：ace-admin/src/main/resources/application.yml、ace-gate/src/main/resources/application.yml
-- 按`顺序`运行main类：CenterBootstrap（ace-center）、ConfigServerBootstrap（ace-config）、AdminBootstrap（ace-admin）、AuthBootstrap（ace-auth-server）、GateBootstrap（ace-gate）
+- 按`顺序`运行main类：CenterBootstrap（ace-center）、ConfigServerBootstrap（ace-config）、AuthBootstrap（ace-auth-server）、AdminBootstrap（ace-admin）、GateBootstrap（ace-gate）
 
 ### 项目结构
 ```
