@@ -9,7 +9,7 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 ---|---
 ![img](http://ofsc32t59.bkt.clouddn.com/17-12-21/1513840695081.jpg) | ![img](http://ofsc32t59.bkt.clouddn.com/17-12-21/1513840653325.jpg)
 
-### 方式二（`发票`报销）：AG-Admin课程地址，可以联系CSDN开发票
+### 方式二（`发票`报销）：AG-Admin线上课程地址，可以联系CSDN开发票
 http://edu.csdn.net/course/detail/5840
 
 
