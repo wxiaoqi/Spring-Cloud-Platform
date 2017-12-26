@@ -37,6 +37,7 @@
         <module>ace-generator</module>
         <module>ace-auth</module>
         <module>ace-sidecar</module>
+        <module>ace-demo</module>
     </modules>
     <packaging>pom</packaging>
     <developers>

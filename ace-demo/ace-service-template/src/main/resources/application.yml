@@ -1,0 +1,45 @@
+logging:
+    level:
+#        tk.mybatis: DEBUG
+        com.github.wxiaoqi.security.demo.mybatis: DEBUG
+spring:
+    application:
+        name: ace-demo-mybatis
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        default-property-inclusion: non_null
+    rabbitmq:
+        host: localhost
+        port: 5672
+        username: guest
+        password: guest
+
+server:
+    port: 9990
+
+# 配置spring cloud 服务发现
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+        # docker 部署开启
+#        prefer-ip-address: true
+#        ip-address: 127.0.0.1
+    client:
+        serviceUrl:
+#            defaultZone: http://localhost:8761/eureka/
+                    # docker 部署开启
+            defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+
+
+# 配置用户认证和服务认证信息
+auth:
+  serviceId: ace-auth
+  user:
+    token-header: Authorization
+  # 配置服务客户端和服务私有密钥
+  client:
+    id: ace-template
+    secret: bZf8yvj8
+    token-header: client-token
