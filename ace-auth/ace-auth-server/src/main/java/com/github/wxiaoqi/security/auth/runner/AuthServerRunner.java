@@ -5,6 +5,7 @@ import com.github.wxiaoqi.security.auth.configuration.KeyConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import java.util.Map;
 
@@ -14,6 +15,12 @@ import java.util.Map;
  */
 @Configuration
 public class AuthServerRunner implements CommandLineRunner {
+    @Autowired
+    private RedisTemplate<String,Object> redisTemplate;
+    private static final String REDIS_USER_PRI_KEY = "AG:AUTH:JWT:PRI";
+    private static final String REDIS_USER_PUB_KEY = "AG:AUTH:JWT:PUB";
+    private static final String REDIS_SERVICE_PRI_KEY = "AG:AUTH:CLIENT:PRI";
+    private static final String REDIS_SERVICE_PUB_KEY = "AG:AUTH:CLIENT:PUB";
     @Autowired
     private KeyConfig keyConfig;
     @Override

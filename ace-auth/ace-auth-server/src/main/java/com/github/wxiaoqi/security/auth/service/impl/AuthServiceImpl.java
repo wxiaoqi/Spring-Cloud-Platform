@@ -6,7 +6,6 @@ import com.github.wxiaoqi.security.auth.feign.IUserService;
 import com.github.wxiaoqi.security.auth.service.AuthService;
 import com.github.wxiaoqi.security.auth.util.user.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -15,7 +14,6 @@ public class AuthServiceImpl implements AuthService {
 
     private JwtTokenUtil jwtTokenUtil;
     private IUserService userService;
-    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     @Autowired
     public AuthServiceImpl(
