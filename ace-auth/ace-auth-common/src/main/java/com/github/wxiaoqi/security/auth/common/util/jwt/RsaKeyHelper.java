@@ -1,5 +1,8 @@
 package com.github.wxiaoqi.security.auth.common.util.jwt;
 
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+
 import java.io.DataInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -143,6 +146,21 @@ public class RsaKeyHelper {
         return map;
     }
 
+    public static String toHexString(byte[] b) {
+        return (new BASE64Encoder()).encodeBuffer(b);
+    }
+
+    public static final byte[] toBytes(String s) throws IOException {
+        return (new BASE64Decoder()).decodeBuffer(s);
+    }
+
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        SecureRandom secureRandom = new SecureRandom("123".getBytes());
+        keyPairGenerator.initialize(1024, secureRandom);
+        KeyPair keyPair = keyPairGenerator.genKeyPair();
+        System.out.println(keyPair.getPublic().getEncoded());
+    }
 
 }
 

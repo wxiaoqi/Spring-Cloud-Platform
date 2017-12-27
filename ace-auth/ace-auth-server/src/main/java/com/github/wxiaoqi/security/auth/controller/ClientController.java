@@ -1,6 +1,6 @@
 package com.github.wxiaoqi.security.auth.controller;
 
-import com.github.wxiaoqi.security.auth.configuration.KeyConfig;
+import com.github.wxiaoqi.security.auth.configuration.KeyConfiguration;
 import com.github.wxiaoqi.security.auth.service.ClientService;
 import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,11 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("client")
-public class ClientController {
+public class ClientController{
     @Autowired
     private ClientService clientService;
     @Autowired
-    private KeyConfig keyConfig;
+    private KeyConfiguration keyConfiguration;
 
     @RequestMapping(value = "/token", method = RequestMethod.POST)
     public ObjectRestResponse getAccessToken(String clientId, String secret) throws Exception {
@@ -35,13 +35,13 @@ public class ClientController {
     @RequestMapping(value = "/servicePubKey",method = RequestMethod.POST)
     public ObjectRestResponse<byte[]> getServicePublicKey(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret) throws Exception {
         clientService.validate(clientId, secret);
-        return new ObjectRestResponse<byte[]>().data(keyConfig.getServicePubKey());
+        return new ObjectRestResponse<byte[]>().data(keyConfiguration.getServicePubKey());
     }
 
     @RequestMapping(value = "/userPubKey",method = RequestMethod.POST)
     public ObjectRestResponse<byte[]> getUserPublicKey(@RequestParam("clientId") String clientId, @RequestParam("secret") String secret) throws Exception {
         clientService.validate(clientId, secret);
-        return new ObjectRestResponse<byte[]>().data(keyConfig.getUserPubKey());
+        return new ObjectRestResponse<byte[]>().data(keyConfiguration.getUserPubKey());
     }
 
 

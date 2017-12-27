@@ -70,6 +70,16 @@ public class DBClientService implements ClientService {
         return clients;
     }
 
+    @Override
+    public List<String> getAllowedClient(String serviceId) {
+        Client info = getClient(serviceId);
+        List<String> clients = clientMapper.selectAllowedClient(info.getId() + "");
+        if(clients==null) {
+            new ArrayList<String>();
+        }
+        return clients;
+    }
+
     private Client getClient(String clientId) {
         Client client = new Client();
         client.setCode(clientId);

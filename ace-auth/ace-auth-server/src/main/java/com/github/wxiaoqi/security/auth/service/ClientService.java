@@ -17,6 +17,13 @@ public interface ClientService {
      */
     public List<String> getAllowedClient(String serviceId, String secret);
 
+    /**
+     * 获取服务授权的客户端列表
+     * @param serviceId
+     * @return
+     */
+    public List<String> getAllowedClient(String serviceId);
+
     public void registryClient();
 
     public void validate(String clientId, String secret) throws Exception;
