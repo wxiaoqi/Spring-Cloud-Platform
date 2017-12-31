@@ -2,7 +2,7 @@ package com.github.wxiaoqi.security.auth.interceptor;
 
 import com.github.wxiaoqi.security.auth.common.util.jwt.IJWTInfo;
 import com.github.wxiaoqi.security.auth.configuration.ClientConfiguration;
-import com.github.wxiaoqi.security.auth.service.ClientService;
+import com.github.wxiaoqi.security.auth.service.AuthClientService;
 import com.github.wxiaoqi.security.auth.util.client.ClientTokenUtil;
 import com.github.wxiaoqi.security.common.exception.auth.ClientForbiddenException;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ public class ServiceAuthRestInterceptor extends HandlerInterceptorAdapter {
     @Autowired
     private ClientTokenUtil clientTokenUtil;
     @Autowired
-    private ClientService clientService;
+    private AuthClientService authClientService;
     @Autowired
     private ClientConfiguration clientConfiguration;
     @Override
@@ -33,7 +33,7 @@ public class ServiceAuthRestInterceptor extends HandlerInterceptorAdapter {
         String token = request.getHeader(clientConfiguration.getClientTokenHeader());
         IJWTInfo infoFromToken = clientTokenUtil.getInfoFromToken(token);
         String uniqueName = infoFromToken.getUniqueName();
-        for(String client:clientService.getAllowedClient(clientConfiguration.getClientId())){
+        for(String client: authClientService.getAllowedClient(clientConfiguration.getClientId())){
             if(client.equals(uniqueName)){
                 return super.preHandle(request, response, handler);
             }

@@ -15,9 +15,9 @@
         </plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/ag_admin?useUnicode=true&amp;characterEncoding=UTF8"
+                        connectionURL="jdbc:mysql://localhost:3306/ag_auth?useUnicode=true&amp;characterEncoding=UTF8"
                         userId="root"
-                        password="">
+                        password="123456">
         </jdbcConnection>
 
         <javaModelGenerator targetPackage="${targetModelPackage}" targetProject="${targetJavaProject}"/>
@@ -44,7 +44,7 @@
         <!--</table>-->
         <!--<table tableName="gate_client" domainObjectName="GateClient">-->
         <!--</table>-->
-        <table tableName="gate_log" domainObjectName="GateLog">
+        <table tableName="gate_client_service" domainObjectName="ClientService">
         </table>
     </context>
 </generatorConfiguration>

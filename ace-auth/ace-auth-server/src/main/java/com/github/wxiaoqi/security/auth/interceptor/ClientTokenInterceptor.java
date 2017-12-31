@@ -1,7 +1,7 @@
 package com.github.wxiaoqi.security.auth.interceptor;
 
 import com.github.wxiaoqi.security.auth.configuration.ClientConfiguration;
-import com.github.wxiaoqi.security.auth.service.ClientService;
+import com.github.wxiaoqi.security.auth.service.AuthClientService;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import org.slf4j.Logger;
@@ -16,12 +16,12 @@ public class ClientTokenInterceptor implements RequestInterceptor {
     @Autowired
     private ClientConfiguration clientConfiguration;
     @Autowired
-    private ClientService clientService;
+    private AuthClientService authClientService;
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
         try {
-            requestTemplate.header(clientConfiguration.getClientTokenHeader(), clientService.apply(clientConfiguration.getClientId(), clientConfiguration.getClientSecret()));
+            requestTemplate.header(clientConfiguration.getClientTokenHeader(), authClientService.apply(clientConfiguration.getClientId(), clientConfiguration.getClientSecret()));
         } catch (Exception e) {
             e.printStackTrace();
         }

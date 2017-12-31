@@ -4,7 +4,7 @@ import com.github.wxiaoqi.security.auth.bean.ClientInfo;
 import com.github.wxiaoqi.security.auth.common.event.AuthRemoteEvent;
 import com.github.wxiaoqi.security.auth.entity.Client;
 import com.github.wxiaoqi.security.auth.mapper.ClientMapper;
-import com.github.wxiaoqi.security.auth.service.ClientService;
+import com.github.wxiaoqi.security.auth.service.AuthClientService;
 import com.github.wxiaoqi.security.auth.util.client.ClientTokenUtil;
 import com.github.wxiaoqi.security.common.exception.auth.ClientInvalidException;
 import com.github.wxiaoqi.security.common.util.UUIDUtils;
@@ -21,7 +21,7 @@ import java.util.List;
  * Created by ace on 2017/9/10.
  */
 @Service
-public class DBClientService implements ClientService {
+public class DBAuthClientService implements AuthClientService {
     @Autowired
     private ClientMapper clientMapper;
     @Autowired
@@ -31,7 +31,7 @@ public class DBClientService implements ClientService {
     private ApplicationContext context;
 
     @Autowired
-    public DBClientService(ApplicationContext context) {
+    public DBAuthClientService(ApplicationContext context) {
         this.context = context;
     }
 

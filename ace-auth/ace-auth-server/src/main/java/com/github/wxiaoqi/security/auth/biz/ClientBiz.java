@@ -1,10 +1,15 @@
 package com.github.wxiaoqi.security.auth.biz;
 
-import org.springframework.stereotype.Service;
-
 import com.github.wxiaoqi.security.auth.entity.Client;
+import com.github.wxiaoqi.security.auth.entity.ClientService;
 import com.github.wxiaoqi.security.auth.mapper.ClientMapper;
+import com.github.wxiaoqi.security.auth.mapper.ClientServiceMapper;
 import com.github.wxiaoqi.security.common.biz.BaseBiz;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.util.List;
 
 /**
  * 
@@ -15,4 +20,25 @@ import com.github.wxiaoqi.security.common.biz.BaseBiz;
  */
 @Service
 public class ClientBiz extends BaseBiz<ClientMapper,Client> {
+    @Autowired
+    private ClientServiceMapper clientServiceMapper;
+    @Autowired
+    private ClientServiceBiz clientServiceBiz;
+
+    public List<Client> getClientServices(int id) {
+        return mapper.selectAuthorityServiceInfo(id);
+    }
+
+    public void modifyClientServices(int id, String clients) {
+        clientServiceMapper.deleteByServiceId(id);
+        if (!StringUtils.isEmpty(clients)) {
+            String[] mem = clients.split(",");
+            for (String m : mem) {
+                ClientService clientService = new ClientService();
+                clientService.setServiceId(m);
+                clientService.setClientId(id+"");
+                clientServiceBiz.insertSelective(clientService);
+            }
+        }
+    }
 }
