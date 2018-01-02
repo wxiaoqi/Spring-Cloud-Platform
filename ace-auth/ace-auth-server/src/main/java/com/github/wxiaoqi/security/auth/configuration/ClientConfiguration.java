@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
  * Created by ace on 2017/9/12.
  */
 @Configuration
-public class ClientConfig {
+public class ClientConfiguration {
     @Value("${client.id}")
     private String clientId;
     @Value("${client.secret}")

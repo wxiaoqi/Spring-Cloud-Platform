@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @Data
-public class KeyConfig {
+public class KeyConfiguration {
     @Value("${jwt.rsa-secret}")
     private String userSecret;
     @Value("${client.rsa-secret}")

@@ -1,14 +1,12 @@
 package com.github.wxiaoqi.security.auth.interceptor;
 
-import com.github.wxiaoqi.security.auth.configuration.ClientConfig;
-import com.github.wxiaoqi.security.auth.service.AuthService;
-import com.github.wxiaoqi.security.auth.service.ClientService;
+import com.github.wxiaoqi.security.auth.configuration.ClientConfiguration;
+import com.github.wxiaoqi.security.auth.service.AuthClientService;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by ace on 2017/9/12.
@@ -16,14 +14,14 @@ import org.springframework.context.annotation.Configuration;
 public class ClientTokenInterceptor implements RequestInterceptor {
     private Logger logger = LoggerFactory.getLogger(ClientTokenInterceptor.class);
     @Autowired
-    private ClientConfig clientConfig;
+    private ClientConfiguration clientConfiguration;
     @Autowired
-    private ClientService clientService;
+    private AuthClientService authClientService;
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
         try {
-            requestTemplate.header(clientConfig.getClientTokenHeader(), clientService.apply(clientConfig.getClientId(), clientConfig.getClientSecret()));
+            requestTemplate.header(clientConfiguration.getClientTokenHeader(), authClientService.apply(clientConfiguration.getClientId(), clientConfiguration.getClientSecret()));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -3,10 +3,10 @@ CREATE DATABASE ag_auth DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
 Use ag_auth;
 
 -- ----------------------------
---  Table structure for `gate_client`
+--  Table structure for `auth_client`
 -- ----------------------------
-DROP TABLE IF EXISTS `gate_client`;
-CREATE TABLE `gate_client` (
+DROP TABLE IF EXISTS `auth_client`;
+CREATE TABLE `auth_client` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(255) DEFAULT NULL,
   `secret` varchar(255) DEFAULT NULL,
@@ -33,17 +33,17 @@ CREATE TABLE `gate_client` (
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
---  Records of `gate_client`
+--  Records of `auth_client`
 -- ----------------------------
 BEGIN;
-INSERT INTO `gate_client` VALUES ('1', 'ace-gate', '123456', 'ace-gate', '0', '', null, '', '', '', '2017-07-07 21:51:32', '1', '管理员', '0:0:0:0:0:0:0:1', '', '', '', '', '', '', '', ''), ('3', 'ace-admin', '123456', 'ace-admin', '0', '', null, null, null, null, '2017-07-06 21:42:17', '1', '管理员', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null), ('4', 'user-center', '123456', 'user-center', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('5', 'ag-gate', '123456', 'ag-gate', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('6', 'ace-auth', '123456', 'ace-auth', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('8', 'admin-back', '2qOT1MH4', 'admin-back', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('10', 'admin-gate', 'J9p7holx', 'admin-gate', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `auth_client` VALUES ('1', 'ace-gate', '123456', 'ace-gate', '0', '', null, '', '', '', '2017-07-07 21:51:32', '1', '管理员', '0:0:0:0:0:0:0:1', '', '', '', '', '', '', '', ''), ('3', 'ace-admin', '123456', 'ace-admin', '0', '', null, null, null, null, '2017-07-06 21:42:17', '1', '管理员', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null), ('4', 'user-center', '123456', 'user-center', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('5', 'ag-gate', '123456', 'ag-gate', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('6', 'ace-auth', '123456', 'ace-auth', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('8', 'admin-back', '2qOT1MH4', 'admin-back', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('10', 'admin-gate', 'J9p7holx', 'admin-gate', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 COMMIT;
 
 -- ----------------------------
---  Table structure for `gate_client_service`
+--  Table structure for `auth_client_service`
 -- ----------------------------
-DROP TABLE IF EXISTS `gate_client_service`;
-CREATE TABLE `gate_client_service` (
+DROP TABLE IF EXISTS `auth_client_service`;
+CREATE TABLE `auth_client_service` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `service_id` varchar(255) DEFAULT NULL,
   `client_id` varchar(255) DEFAULT NULL,
@@ -64,10 +64,10 @@ CREATE TABLE `gate_client_service` (
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
---  Records of `gate_client_service`
+--  Records of `auth_client_service`
 -- ----------------------------
 BEGIN;
-INSERT INTO `gate_client_service` VALUES ('20', '44', '1', null, null, null, null, null, null, null, null, null, null, null, null, null), ('21', '4', '5', null, null, null, null, null, null, null, null, null, null, null, null, null), ('22', '3', '1', null, null, null, null, null, null, null, null, null, null, null, null, null), ('23', '3', '6', null, null, null, null, null, null, null, null, null, null, null, null, null), ('24', '6', '1', null, null, null, null, null, null, null, null, null, null, null, null, null), ('25', '6', '1', null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `auth_client_service` VALUES ('20', '44', '1', null, null, null, null, null, null, null, null, null, null, null, null, null), ('21', '4', '5', null, null, null, null, null, null, null, null, null, null, null, null, null), ('22', '3', '1', null, null, null, null, null, null, null, null, null, null, null, null, null), ('23', '3', '6', null, null, null, null, null, null, null, null, null, null, null, null, null), ('24', '6', '1', null, null, null, null, null, null, null, null, null, null, null, null, null), ('25', '6', '1', null, null, null, null, null, null, null, null, null, null, null, null, null);
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

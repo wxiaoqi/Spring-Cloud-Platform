@@ -51,11 +51,6 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.33</version>
         </dependency>
-        <!--  -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-config-client</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.github.wxiaoqi</groupId>
             <artifactId>ace-auth-client</artifactId>

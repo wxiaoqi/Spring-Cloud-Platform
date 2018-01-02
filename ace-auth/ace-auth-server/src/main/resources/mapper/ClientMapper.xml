@@ -33,9 +33,19 @@
     SELECT
         client.CODE
       FROM
-          gate_client client
-      INNER JOIN gate_client_service gcs ON gcs.client_id = client.id
+          auth_client client
+      INNER JOIN auth_client_service gcs ON gcs.client_id = client.id
     WHERE
         gcs.service_id = #{serviceId}
+  </select>
+
+  <select id="selectAuthorityServiceInfo" resultMap="BaseResultMap">
+    SELECT
+    client.*
+    FROM
+    auth_client client
+    INNER JOIN auth_client_service gcs ON gcs.service_id = client.id
+    WHERE
+    gcs.client_id = #{clientId}
   </select>
 </mapper>

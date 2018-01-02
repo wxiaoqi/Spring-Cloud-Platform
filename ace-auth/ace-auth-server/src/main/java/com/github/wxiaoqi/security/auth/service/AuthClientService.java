@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by ace on 2017/9/10.
  */
-public interface ClientService {
+public interface AuthClientService {
     public String apply(String clientId, String secret) throws Exception;
 
     /**
@@ -16,6 +16,13 @@ public interface ClientService {
      * @return
      */
     public List<String> getAllowedClient(String serviceId, String secret);
+
+    /**
+     * 获取服务授权的客户端列表
+     * @param serviceId
+     * @return
+     */
+    public List<String> getAllowedClient(String serviceId);
 
     public void registryClient();
 

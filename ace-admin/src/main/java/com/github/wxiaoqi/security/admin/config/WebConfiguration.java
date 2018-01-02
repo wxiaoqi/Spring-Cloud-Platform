@@ -17,7 +17,7 @@ import java.util.Collections;
  */
 @Configuration("admimWebConfig")
 @Primary
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     GlobalExceptionHandler getGlobalExceptionHandler() {
         return new GlobalExceptionHandler();
