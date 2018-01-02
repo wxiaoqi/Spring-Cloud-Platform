@@ -16,6 +16,10 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 ---------
 
 # 更新日志
+### 2018年1月1日
+- ace-auth增加服务注册和授权模块
+![image.png](http://upload-images.jianshu.io/upload_images/5700335-e83767c67c15c2e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ### 2017年11月17日 v2.2-SNARSHOT
 
 - ace-admin集成`ace-cache`
