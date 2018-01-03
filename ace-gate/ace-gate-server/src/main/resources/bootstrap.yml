@@ -1,0 +1,33 @@
+spring:
+  cloud:
+    config:
+        discovery:
+           service-id: ace-config
+           enabled: true
+        label: master  # git 分支
+        name: gate
+        profile: dev
+
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+        # docker 部署开启
+#        prefer-ip-address: true
+#        ip-address: 127.0.0.1
+    client:
+        serviceUrl:
+#            defaultZone: http://localhost:8761/eureka/
+                    # docker 部署开启
+            defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+
+#请求和响应GZIP压缩支持
+feign:
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+

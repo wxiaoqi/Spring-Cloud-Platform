@@ -3,11 +3,10 @@ package com.github.wxiaoqi.security.common.util;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Field;
 import java.net.URLDecoder;
-import java.sql.Timestamp;
 import java.util.Date;
-import javax.servlet.http.HttpServletRequest;
 
 
 
@@ -114,8 +113,9 @@ public class EntityUtils {
 	 * @date 2016年4月28日
 	 */
 	public static <T> boolean isPKNotNull(T entity,String field){
-		if(!ReflectionUtils.hasField(entity, field))
+		if(!ReflectionUtils.hasField(entity, field)) {
 			return false;
+		}
 		Object value = ReflectionUtils.getFieldValue(entity, field);
 		return value!=null&&!"".equals(value);
 	}

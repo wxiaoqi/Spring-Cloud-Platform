@@ -8,45 +8,62 @@ import java.util.List;
  * @author wanghaobin
  * @create 2017-06-14 22:40
  */
-public class TableResultResponse<T> {
-    int total;
-    List<T> rows;
+public class TableResultResponse<T> extends BaseResponse {
 
-    public TableResultResponse(int total, List<T> rows) {
-        this.total = total;
-        this.rows = rows;
-    }
+    TableData<T> data;
 
-    public TableResultResponse(Long total, List<T> rows) {
-        this.total = total.intValue();
-        this.rows = rows;
+    public TableResultResponse(long total, List<T> rows) {
+        this.data = new TableData<T>(total, rows);
     }
 
     public TableResultResponse() {
+        this.data = new TableData<T>();
     }
 
-    TableResultResponse<T> total(int total){
-        this.total = total;
-        return this;
-    }
-    TableResultResponse<T> total(List<T> rows){
-        this.rows = rows;
+    TableResultResponse<T> total(int total) {
+        this.data.setTotal(total);
         return this;
     }
 
-    public int getTotal() {
-        return total;
+    TableResultResponse<T> total(List<T> rows) {
+        this.data.setRows(rows);
+        return this;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public TableData<T> getData() {
+        return data;
     }
 
-    public List<T> getRows() {
-        return rows;
+    public void setData(TableData<T> data) {
+        this.data = data;
     }
 
-    public void setRows(List<T> rows) {
-        this.rows = rows;
+    class TableData<T> {
+        long total;
+        List<T> rows;
+
+        public TableData(long total, List<T> rows) {
+            this.total = total;
+            this.rows = rows;
+        }
+
+        public TableData() {
+        }
+
+        public long getTotal() {
+            return total;
+        }
+
+        public void setTotal(long total) {
+            this.total = total;
+        }
+
+        public List<T> getRows() {
+            return rows;
+        }
+
+        public void setRows(List<T> rows) {
+            this.rows = rows;
+        }
     }
 }

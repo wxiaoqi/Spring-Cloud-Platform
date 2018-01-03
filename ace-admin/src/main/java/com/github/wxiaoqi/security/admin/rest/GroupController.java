@@ -3,10 +3,8 @@ package com.github.wxiaoqi.security.admin.rest;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.wxiaoqi.security.admin.biz.ResourceAuthorityBiz;
-import com.github.wxiaoqi.security.admin.constant.CommonConstant;
-import com.github.wxiaoqi.security.admin.entity.Element;
+import com.github.wxiaoqi.security.admin.constant.AdminCommonConstant;
 import com.github.wxiaoqi.security.admin.vo.AuthorityMenuTree;
 import com.github.wxiaoqi.security.admin.vo.GroupUsers;
 import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
@@ -44,16 +42,21 @@ public class GroupController extends BaseController<GroupBiz, Group> {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public List<Group> list(String name,String groupType) {
-        if(StringUtils.isBlank(name)&&StringUtils.isBlank(groupType))
+        if(StringUtils.isBlank(name)&&StringUtils.isBlank(groupType)) {
             return new ArrayList<Group>();
+        }
         Example example = new Example(Group.class);
-        if (StringUtils.isNotBlank(name))
+        if (StringUtils.isNotBlank(name)) {
             example.createCriteria().andLike("name", "%" + name + "%");
-        if (StringUtils.isNotBlank(groupType))
+        }
+        if (StringUtils.isNotBlank(groupType)) {
             example.createCriteria().andEqualTo("groupType", groupType);
+        }
 
         return baseBiz.selectByExample(example);
     }
+
+
 
     @RequestMapping(value = "/{id}/user", method = RequestMethod.PUT)
     @ResponseBody
@@ -65,13 +68,13 @@ public class GroupController extends BaseController<GroupBiz, Group> {
     @RequestMapping(value = "/{id}/user", method = RequestMethod.GET)
     @ResponseBody
     public ObjectRestResponse<GroupUsers> getUsers(@PathVariable int id){
-        return new ObjectRestResponse<GroupUsers>().rel(true).result(baseBiz.getGroupUsers(id));
+        return new ObjectRestResponse<GroupUsers>().rel(true).data(baseBiz.getGroupUsers(id));
     }
 
     @RequestMapping(value = "/{id}/authority/menu", method = RequestMethod.POST)
     @ResponseBody
-    public ObjectRestResponse modifiyMenuAuthority(@PathVariable  int id, String menuTrees){
-        List<AuthorityMenuTree> menus =  JSONObject.parseArray(menuTrees,AuthorityMenuTree.class);
+    public ObjectRestResponse modifyMenuAuthority(@PathVariable  int id, String menuTrees){
+        String [] menus = menuTrees.split(",");
         baseBiz.modifyAuthorityMenu(id, menus);
         return new ObjectRestResponse().rel(true);
     }
@@ -79,7 +82,7 @@ public class GroupController extends BaseController<GroupBiz, Group> {
     @RequestMapping(value = "/{id}/authority/menu", method = RequestMethod.GET)
     @ResponseBody
     public ObjectRestResponse<List<AuthorityMenuTree>> getMenuAuthority(@PathVariable  int id){
-        return new ObjectRestResponse().result(baseBiz.getAuthorityMenu(id)).rel(true);
+        return new ObjectRestResponse().data(baseBiz.getAuthorityMenu(id)).rel(true);
     }
 
     @RequestMapping(value = "/{id}/authority/element/add", method = RequestMethod.POST)
@@ -98,8 +101,37 @@ public class GroupController extends BaseController<GroupBiz, Group> {
 
     @RequestMapping(value = "/{id}/authority/element", method = RequestMethod.GET)
     @ResponseBody
-    public ObjectRestResponse<List<Integer>> addElementAuthority(@PathVariable  int id){
-        return new ObjectRestResponse().result(baseBiz.getAuthorityElement(id)).rel(true);
+    public ObjectRestResponse<List<Integer>> getElementAuthority(@PathVariable  int id){
+        return new ObjectRestResponse().data(baseBiz.getAuthorityElement(id)).rel(true);
     }
 
+
+    @RequestMapping(value = "/tree", method = RequestMethod.GET)
+    @ResponseBody
+    public List<GroupTree> tree(String name,String groupType) {
+        if(StringUtils.isBlank(name)&&StringUtils.isBlank(groupType)) {
+            return new ArrayList<GroupTree>();
+        }
+        Example example = new Example(Group.class);
+        if (StringUtils.isNotBlank(name)) {
+            example.createCriteria().andLike("name", "%" + name + "%");
+        }
+        if (StringUtils.isNotBlank(groupType)) {
+            example.createCriteria().andEqualTo("groupType", groupType);
+        }
+        return  getTree(baseBiz.selectByExample(example), AdminCommonConstant.ROOT);
+    }
+
+
+    private List<GroupTree> getTree(List<Group> groups,int root) {
+        List<GroupTree> trees = new ArrayList<GroupTree>();
+        GroupTree node = null;
+        for (Group group : groups) {
+            node = new GroupTree();
+            node.setLabel(group.getName());
+            BeanUtils.copyProperties(group, node);
+            trees.add(node);
+        }
+        return TreeUtil.bulid(trees,root) ;
+    }
 }

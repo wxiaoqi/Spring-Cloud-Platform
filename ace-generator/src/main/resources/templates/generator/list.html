@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Table</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="plugins/bootstrap-table/css/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="css/layui.css" media="all"/>
+    <link rel="stylesheet" href="css/global.css" media="all">
+    <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+<div class="admin-main">
+    <form class="layui-form layui-form-pane" onsubmit="javascript:return false;">
+        <div class="layui-form-item" style="margin-bottom:0px;">
+            <label class="layui-form-label">表名</label>
+            <div class="layui-input-inline">
+                <input type="text" onchange="javascript:$('#btn_query').click();" class="layui-input" id="name">
+            </div>
+            <button class="layui-btn" id="btn_query">
+                查询
+            </button>
+
+            <button class="layui-btn" id="btn_generate">
+                <i class="layui-icon">&#xe654;</i>生成代码
+            </button>
+
+
+        </div>
+    </form>
+
+    <table id="generatorTable">
+
+    </table>
+
+</div>
+
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap.min.js"></script>
+<script type="text/javascript" src="plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="layui.js"></script>
+<script type="text/javascript" src="ag/generator/generator.js"></script>
+</body>
+
+</html>

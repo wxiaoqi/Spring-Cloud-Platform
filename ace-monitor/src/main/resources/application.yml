@@ -1,7 +1,13 @@
 spring:
     application:
         name: ace-monitor
-
+    boot:
+        admin:
+          routes:
+            endpoints: env,metrics,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream
+          turbine:
+            clusters: jscloud
+            location: turbine
 server:
     port: 8764 #启动端口
 
@@ -10,6 +16,7 @@ security:
         name: whb
         password: 123456
         role: USER
+
 eureka:
      instance:
         preferIpAddress: true

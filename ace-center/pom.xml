@@ -42,14 +42,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>${docker.plugin.version}</version>
@@ -62,7 +54,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <imageName>${docker.image.prefix}/${project.build.finalName}</imageName>
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
                     <resources>
                         <resource>

@@ -1,0 +1,19 @@
+server:
+    port: 5688 #启动端口
+
+spring:
+    application:
+        name: ace-sidecar-server
+
+sidecar:
+    port: 5680 #python接口
+    health:
+        uri: http://localhost:${sidecar.port}/health
+
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
