@@ -30,7 +30,6 @@
         <module>ace-admin</module>
         <module>ace-center</module>
         <module>ace-api</module>
-        <module>ace-monitor</module>
         <module>ace-gate</module>
         <module>ace-common</module>
         <module>ace-config</module>
@@ -38,6 +37,7 @@
         <module>ace-auth</module>
         <module>ace-sidecar</module>
         <module>ace-demo</module>
+        <module>ace-control</module>
     </modules>
     <packaging>pom</packaging>
     <developers>

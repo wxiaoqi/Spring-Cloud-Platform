@@ -35,6 +35,11 @@ spring:
         port: 5672
         username: guest
         password: guest
+    zipkin:
+        enabled: true
+    sleuth:
+      sampler:
+        percentage: 1
 mybatis:
     basepackage: com.github.wxiaoqi.security.admin.mapper
     xmlLocation: classpath:mapper/**/*.xml
