@@ -18,6 +18,11 @@ spring:
         port: 5672
         username: guest
         password: guest
+    zipkin:
+      enabled: true
+    sleuth:
+      sampler:
+        percentage: 1
 server:
     port: 8765 #启动端口
 #
