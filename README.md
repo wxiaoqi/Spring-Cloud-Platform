@@ -3,7 +3,7 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 
 ## 推荐🌧
 考虑许多码友对于Spring Cloud的前后端分离和微服务实战有较多的疑问。老A专门录制课程如下，便于对AG-Admin更深入的了解
-
+![image.png](http://upload-images.jianshu.io/upload_images/5700335-5c96c3af61306ae5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ### 联系老A，`QQ：463540703`，`微信：whb2lyx`，进行课程购买
 
 ### QQ群号：169824183
@@ -18,11 +18,13 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 # 更新日志
 ### 2018年1月7日
 - 增加监控模块 
+
 ![image.png](http://upload-images.jianshu.io/upload_images/5700335-901b5df8a68f3922.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![image.png](http://upload-images.jianshu.io/upload_images/5700335-21792b34eaa2e56e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 2018年1月1日
 - ace-auth增加服务注册和授权模块
+
 ![image.png](http://upload-images.jianshu.io/upload_images/5700335-e83767c67c15c2e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 2017年11月17日 v2.2-SNARSHOT
