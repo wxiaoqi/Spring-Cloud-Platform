@@ -5,7 +5,6 @@ import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
 import com.github.wxiaoqi.security.api.vo.log.LogInfo;
 import com.github.wxiaoqi.security.auth.client.config.ServiceAuthConfig;
 import com.github.wxiaoqi.security.auth.client.config.UserAuthConfig;
-import com.github.wxiaoqi.security.auth.client.interceptor.ServiceFeignInterceptor;
 import com.github.wxiaoqi.security.auth.client.jwt.ServiceAuthUtil;
 import com.github.wxiaoqi.security.auth.client.jwt.UserAuthUtil;
 import com.github.wxiaoqi.security.auth.common.util.jwt.IJWTInfo;
@@ -16,21 +15,16 @@ import com.github.wxiaoqi.security.common.util.ClientUtil;
 import com.github.wxiaoqi.security.gate.feign.ILogService;
 import com.github.wxiaoqi.security.gate.feign.IUserService;
 import com.github.wxiaoqi.security.gate.utils.DBLog;
-import com.netflix.appinfo.InstanceInfo;
-import com.netflix.discovery.EurekaClient;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-import feign.Feign;
-import feign.jackson.JacksonDecoder;
-import feign.jackson.JacksonEncoder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.net.URLEncoder;
 import java.util.Date;
@@ -49,9 +43,11 @@ import java.util.stream.Stream;
 @Component
 @Slf4j
 public class AdminAccessFilter extends ZuulFilter {
-
+    @Autowired
+    @Lazy
     private IUserService userService;
     @Autowired
+    @Lazy
     private ILogService logService;
 
     @Value("${gate.ignore.startWith}")
@@ -70,22 +66,6 @@ public class AdminAccessFilter extends ZuulFilter {
 
     @Autowired
     private ServiceAuthUtil serviceAuthUtil;
-
-    @Autowired
-    private EurekaClient discoveryClient;
-
-    @PostConstruct
-    public void init() {
-        InstanceInfo prodSvcInfo = discoveryClient.getNextServerFromEureka("ACE-ADMIN", false);
-        ServiceFeignInterceptor serviceFeignInterceptor = new ServiceFeignInterceptor();
-        serviceFeignInterceptor.setServiceAuthConfig(serviceAuthConfig);
-        serviceFeignInterceptor.setServiceAuthUtil(serviceAuthUtil);
-        serviceFeignInterceptor.setUserAuthConfig(userAuthConfig);
-        this.userService = Feign.builder().encoder(new JacksonEncoder())
-                .decoder(new JacksonDecoder())
-                .requestInterceptor(serviceFeignInterceptor)
-                .target(IUserService.class, prodSvcInfo.getHomePageUrl());
-    }
 
     @Override
     public String filterType() {

@@ -54,8 +54,8 @@ zuul:
 ribbon:
   eureka:
     enabled: true
-  ReadTimeout: 60000
-  ConnectTimeout: 60000
+  ReadTimeout: 120000
+  ConnectTimeout: 120000
   MaxAutoRetries: 0
   MaxAutoRetriesNextServer: 1
   OkToRetryOnAllOperations: false
@@ -73,6 +73,7 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 50000
+          strategy: SEMAPHORE
 
 
 gate:
