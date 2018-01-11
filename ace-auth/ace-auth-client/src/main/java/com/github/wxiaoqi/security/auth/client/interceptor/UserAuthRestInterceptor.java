@@ -5,12 +5,14 @@ import com.github.wxiaoqi.security.auth.client.config.UserAuthConfig;
 import com.github.wxiaoqi.security.auth.client.jwt.UserAuthUtil;
 import com.github.wxiaoqi.security.auth.common.util.jwt.IJWTInfo;
 import com.github.wxiaoqi.security.common.context.BaseContextHandler;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -34,11 +36,19 @@ public class UserAuthRestInterceptor extends HandlerInterceptorAdapter {
         if (annotation == null) {
             annotation = handlerMethod.getMethodAnnotation(IgnoreUserToken.class);
         }
-        if(annotation!=null) {
+        if (annotation != null) {
             return super.preHandle(request, response, handler);
         }
-
         String token = request.getHeader(userAuthConfig.getTokenHeader());
+        if (StringUtils.isEmpty(token)) {
+            if (request.getCookies() != null) {
+                for (Cookie cookie : request.getCookies()) {
+                    if (cookie.getName().equals(userAuthConfig.getTokenHeader())) {
+                        token = cookie.getValue();
+                    }
+                }
+            }
+        }
         IJWTInfo infoFromToken = userAuthUtil.getInfoFromToken(token);
         BaseContextHandler.setUsername(infoFromToken.getUniqueName());
         BaseContextHandler.setName(infoFromToken.getName());
