@@ -1,0 +1,58 @@
+version: '2'
+services:
+  eureka:
+    image: ag/ace-center
+    ports:
+      - "8761:8761"
+  ace-auth:
+    image: ag/ace-auth
+    ports:
+      - "9777:9777"
+    depends_on:
+      - eureka
+    environment:
+      - EUREKA_HOST=eureka
+      - EUREKA_PORT=8761
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - RABBIT_MQ_HOST=rabbitmq
+      - RABBIT_MQ_HOST=5672
+  ace-admin:
+    image: ag/ace-admin
+    ports:
+      - "8762:8762"
+    links:
+      - ace-auth
+    entrypoint: ./wait-for-it.sh ace-auth:9777 -t 600 --
+    command: java -Djava.security.egd=file:/dev/./urandom -jar /app.jar
+    environment:
+      - EUREKA_HOST=eureka
+      - EUREKA_PORT=8761
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - RABBIT_MQ_HOST=rabbitmq
+      - RABBIT_MQ_HOST=5672
+  ace-gate:
+    image: ag/ace-gate
+    ports:
+      - "8765:8765"
+    links:
+      - ace-auth
+    entrypoint: ./wait-for-it.sh ace-auth:9777 -t 600 --
+    command: java -Djava.security.egd=file:/dev/./urandom -jar /app.jar
+    environment:
+      - EUREKA_HOST=eureka
+      - EUREKA_PORT=8761
+      - RABBIT_MQ_HOST=rabbitmq
+      - RABBIT_MQ_HOST=5672
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./.docker/redis:/var/lib/redis

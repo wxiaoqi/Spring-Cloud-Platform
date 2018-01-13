@@ -14,8 +14,8 @@ spring:
         pool:
             max-active: 20
     rabbitmq:
-        host: localhost
-        port: 5672
+        host: ${RABBIT_MQ_HOST:localhost}
+        port:  ${RABBIT_MQ_PORT:5672}
         username: guest
         password: guest
     zipkin:
