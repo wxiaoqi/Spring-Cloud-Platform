@@ -100,7 +100,7 @@
 
         <dependency>
             <groupId>com.github.wxiaoqi</groupId>
-            <artifactId>ace-api</artifactId>
+            <artifactId>ace-admin-interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
