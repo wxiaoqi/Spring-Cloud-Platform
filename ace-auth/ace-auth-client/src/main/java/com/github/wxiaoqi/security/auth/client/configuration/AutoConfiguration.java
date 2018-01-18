@@ -23,4 +23,5 @@ public class AutoConfiguration {
     UserAuthConfig getUserAuthConfig(){
         return new UserAuthConfig();
     }
+
 }

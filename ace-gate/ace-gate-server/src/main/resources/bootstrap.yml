@@ -23,6 +23,10 @@ eureka:
 
 #请求和响应GZIP压缩支持
 feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
   compression:
     request:
       enabled: true

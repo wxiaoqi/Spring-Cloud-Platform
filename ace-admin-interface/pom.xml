@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ace-api</artifactId>
+    <artifactId>ace-admin-interface</artifactId>
 
     <dependencies>
         <dependency>

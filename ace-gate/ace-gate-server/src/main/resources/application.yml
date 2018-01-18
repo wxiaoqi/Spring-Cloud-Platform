@@ -14,8 +14,8 @@ spring:
         pool:
             max-active: 20
     rabbitmq:
-        host: localhost
-        port: 5672
+        host: ${RABBIT_MQ_HOST:localhost}
+        port:  ${RABBIT_MQ_PORT:5672}
         username: guest
         password: guest
     zipkin:
@@ -54,8 +54,8 @@ zuul:
 ribbon:
   eureka:
     enabled: true
-  ReadTimeout: 60000
-  ConnectTimeout: 60000
+  ReadTimeout: 120000
+  ConnectTimeout: 120000
   MaxAutoRetries: 0
   MaxAutoRetriesNextServer: 1
   OkToRetryOnAllOperations: false
@@ -73,6 +73,7 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 50000
+          strategy: SEMAPHORE
 
 
 gate:
