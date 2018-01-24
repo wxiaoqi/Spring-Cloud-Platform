@@ -10,10 +10,12 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 - 提供`分布式事务`解决方案和中间件，解决服务拆分后的事物控制问题;
 - 提供`服务运维`基础部署，监控服务的状态、服务的链路调用。
 
-### 第一批名额限制：200名，已上车：`18人`，前50名有优惠价格：1380，`享永久授权特权`，私聊老A：463540703。
+### 第一批名额限制：200名，已上车：`16人`，前50名有优惠价格：1380，`享永久授权特权`，私聊老A：463540703。
 - 永久授权：享有后续企业版的不断新增的功能。
 - 一年授权：只享有企业版一年更新内容，来年需再次付费。
 
+![image.png](http://upload-images.jianshu.io/upload_images/5700335-d8e3ab4eb7111f86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![侧hi](http://upload-images.jianshu.io/upload_images/5700335-fa80b10fb16d4fe9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ## 推荐🌧
 考虑许多码友对于Spring Cloud的前后端分离和微服务实战有较多的疑问。老A专门录制课程如下，便于对AG-Admin更深入的了解
