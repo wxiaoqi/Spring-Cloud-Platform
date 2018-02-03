@@ -59,4 +59,9 @@
          on t.id = cs.service_id
          and cs.client_id = #{clientId}
     </select>
+    <select id="selectAllElementPermissions" resultMap="BaseResultMap">
+        select distinct t.code,t.type,t.name,t.uri,t.method,m.title as menu_id from base_element t
+        inner join base_menu m
+        on t.menu_id = m.id
+    </select>
 </mapper>

@@ -64,7 +64,7 @@ public class PermissionService {
         List<PermissionInfo> result = new ArrayList<PermissionInfo>();
         PermissionInfo info = null;
         menu2permission(menus, result);
-        List<Element> elements = elementBiz.selectListAll();
+        List<Element> elements = elementBiz.getAllElementPermissions();
         element2permission(result, elements);
         return result;
     }
