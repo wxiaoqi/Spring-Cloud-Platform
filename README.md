@@ -1,7 +1,7 @@
-# AG-Admin
+# AG-Admin(`开源学习`）
 AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系统，其中包含具备用户管理、资源权限管理、网关API管理等多个模块，支持多业务系统并行开发，可以作为后端服务的开发脚手架。代码简洁，架构清晰，适合学习和直接项目中使用。核心技术采用Eureka、Fegin、Ribbon、Zuul、Hystrix、`JWT Token`、Mybatis等主要框架和中间件，前端采用`vue-element-admin`组件。 
 
-# AG-Enterprise（`企业版`）🎉
+# AG-Enterprise（`企业商用`）
 
 - 提供`开箱即用的服务Cli`，减少开发人员的项目搭建成本，只需关注业务的开发实现，企业项目的开发利器；
 - 减少人员技术学习成本（会`spring+myabtis+mvc`即可），由专人管控平台，非常适合`单体项目转型`、`语言转型`的项目团队；
@@ -41,7 +41,7 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 
 ----
 
-## 教程推荐🌧
+## 教程推荐
 考虑许多码友对于Spring Cloud的前后端分离和微服务实战有较多的疑问。老A专门录制课程如下，便于对AG-Admin更深入的了解
 ![image.png](http://upload-images.jianshu.io/upload_images/5700335-5c96c3af61306ae5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ### 联系老A，`QQ：463540703`，`微信：whb2lyx`，进行课程购买
@@ -51,26 +51,6 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 ![img](http://upload-images.jianshu.io/upload_images/5700335-002735d1727ec11b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-
-
----------
-
-# 更新日志
-### 2018年1月7日
-- 增加监控模块 
-
-![image.png](http://upload-images.jianshu.io/upload_images/5700335-901b5df8a68f3922.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](http://upload-images.jianshu.io/upload_images/5700335-21792b34eaa2e56e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-### 2018年1月1日
-- ace-auth增加服务注册和授权模块
-
-![image.png](http://upload-images.jianshu.io/upload_images/5700335-e83767c67c15c2e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-### 2017年11月17日 v2.2-SNARSHOT
-
-- ace-admin集成`ace-cache`
-- ace-auth集成`rabbitmq`
 
 
 # 模块说明
