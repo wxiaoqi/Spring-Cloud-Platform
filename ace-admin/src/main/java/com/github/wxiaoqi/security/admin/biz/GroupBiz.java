@@ -99,7 +99,7 @@ public class GroupBiz extends BaseBiz<GroupMapper, Group> {
      * @param groupId
      * @param menus
      */
-    @CacheClear(pre = "permission:menu")
+    @CacheClear(keys = {"permission:menu","permission:u"})
     public void modifyAuthorityMenu(int groupId, String[] menus) {
         resourceAuthorityMapper.deleteByAuthorityIdAndResourceType(groupId + "", AdminCommonConstant.RESOURCE_TYPE_MENU);
         List<Menu> menuList = menuMapper.selectAll();
@@ -138,7 +138,7 @@ public class GroupBiz extends BaseBiz<GroupMapper, Group> {
      * @param menuId
      * @param elementId
      */
-    @CacheClear(pre = "permission:ele")
+    @CacheClear(keys = {"permission:ele","permission:u"})
     public void modifyAuthorityElement(int groupId, int menuId, int elementId) {
         ResourceAuthority authority = new ResourceAuthority(AdminCommonConstant.AUTHORITY_TYPE_GROUP, AdminCommonConstant.RESOURCE_TYPE_BTN);
         authority.setAuthorityId(groupId + "");
@@ -154,7 +154,7 @@ public class GroupBiz extends BaseBiz<GroupMapper, Group> {
      * @param menuId
      * @param elementId
      */
-    @CacheClear(pre = "permission:ele")
+    @CacheClear(keys = {"permission:ele","permission:u"})
     public void removeAuthorityElement(int groupId, int menuId, int elementId) {
         ResourceAuthority authority = new ResourceAuthority();
         authority.setAuthorityId(groupId + "");
