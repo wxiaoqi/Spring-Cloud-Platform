@@ -41,17 +41,6 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 
 ----
 
-## 教程推荐
-考虑许多码友对于Spring Cloud的前后端分离和微服务实战有较多的疑问。老A专门录制课程如下，便于对AG-Admin更深入的了解
-![image.png](http://upload-images.jianshu.io/upload_images/5700335-5c96c3af61306ae5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-### 联系老A，`QQ：463540703`，`微信：whb2lyx`，进行课程购买
-
-### QQ群号：169824183
-
-![img](http://upload-images.jianshu.io/upload_images/5700335-002735d1727ec11b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
-
 
 # 模块说明
 ![image.png](http://upload-images.jianshu.io/upload_images/5700335-8d69f4e885a4ec85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -69,7 +58,19 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 因为采取了服务的分布，为了避免服务之间的调用“雪崩”，采用了`Hystrix`的作为熔断器，避免了服务之间的“雪崩”。
 
 ------
-# 启动指南
+
+# `启动指南`
+
+## AG-Admin教程推荐
+考虑许多码友对于Spring Cloud的前后端分离和微服务实战有较多的疑问。老A专门录制课程如下，便于对AG-Admin更深入的了解
+![image.png](http://upload-images.jianshu.io/upload_images/5700335-5c96c3af61306ae5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+### 联系老A，`QQ：463540703`，`微信：whb2lyx`，进行课程购买
+
+### QQ群号：169824183
+
+![img](http://upload-images.jianshu.io/upload_images/5700335-002735d1727ec11b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
 ## 须知
 因为AG-Admin是一个`前后端分离`的项目，所以后端的服务必须先启动，在后端服务启动完成后，再启动前端的工程。
 ## 最多人问：代码有漏
