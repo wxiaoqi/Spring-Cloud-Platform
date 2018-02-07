@@ -1,5 +1,6 @@
 # AG-Admin(`开源学习`）
 AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系统，其中包含具备用户管理、资源权限管理、网关API管理等多个模块，支持多业务系统并行开发，可以作为后端服务的开发脚手架。代码简洁，架构清晰，适合学习和直接项目中使用。核心技术采用Eureka、Fegin、Ribbon、Zuul、Hystrix、`JWT Token`、Mybatis等主要框架和中间件，前端采用`vue-element-admin`组件。 
+### QQ群号：169824183
 
 # AG-Enterprise（`企业商用`）
 
@@ -29,28 +30,19 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 完整开发文档|×|`√`
 快速工程Cli|×|`√`
 跨服务数据聚合|×|`√`
-部门岗位|×|×
-多租户模块|×|×
-数据权限|×|×
-定时任务|×|×
+部门岗位|×|设计开发中
+多租户模块|×|设计开发中
+数据权限|×|设计开发中
+定时任务|×|设计开发中
 
+![img](http://ofsc32t59.bkt.clouddn.com/18-02-07/1517971520689.jpg?imageView2/2/w/1240)
+![img](http://ofsc32t59.bkt.clouddn.com/18-02-07/1517971843392.jpg?imageView2/2/w/1240)
 ![image.png](http://upload-images.jianshu.io/upload_images/5700335-d8e3ab4eb7111f86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![侧hi](http://upload-images.jianshu.io/upload_images/5700335-fa80b10fb16d4fe9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 联系老A，`QQ：463540703`，`微信：whb2lyx`，进行企业版购买
 
 ----
-
-## 教程推荐
-考虑许多码友对于Spring Cloud的前后端分离和微服务实战有较多的疑问。老A专门录制课程如下，便于对AG-Admin更深入的了解
-![image.png](http://upload-images.jianshu.io/upload_images/5700335-5c96c3af61306ae5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-### 联系老A，`QQ：463540703`，`微信：whb2lyx`，进行课程购买
-
-### QQ群号：169824183
-
-![img](http://upload-images.jianshu.io/upload_images/5700335-002735d1727ec11b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
 
 
 # 模块说明
@@ -69,7 +61,16 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 因为采取了服务的分布，为了避免服务之间的调用“雪崩”，采用了`Hystrix`的作为熔断器，避免了服务之间的“雪崩”。
 
 ------
-# 启动指南
+
+# `启动指南`
+
+![img](http://upload-images.jianshu.io/upload_images/5700335-002735d1727ec11b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+## AG-Admin教程推荐
+考虑许多码友对于Spring Cloud的前后端分离和微服务实战有较多的疑问。老A专门录制课程如下，便于对AG-Admin更深入的了解
+![image.png](http://upload-images.jianshu.io/upload_images/5700335-5c96c3af61306ae5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+### 联系老A，`QQ：463540703`，`微信：whb2lyx`，进行课程购买
+
 ## 须知
 因为AG-Admin是一个`前后端分离`的项目，所以后端的服务必须先启动，在后端服务启动完成后，再启动前端的工程。
 ## 最多人问：代码有漏
