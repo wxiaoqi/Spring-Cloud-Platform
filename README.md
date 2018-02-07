@@ -30,11 +30,13 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 完整开发文档|×|`√`
 快速工程Cli|×|`√`
 跨服务数据聚合|×|`√`
-部门岗位|×|×
-多租户模块|×|×
-数据权限|×|×
-定时任务|×|×
+部门岗位|×|设计开发中
+多租户模块|×|设计开发中
+数据权限|×|设计开发中
+定时任务|×|设计开发中
 
+![img](http://ofsc32t59.bkt.clouddn.com/18-02-07/1517971520689.jpg?imageView2/2/w/1240)
+![img](http://ofsc32t59.bkt.clouddn.com/18-02-07/1517971843392.jpg?imageView2/2/w/1240)
 ![image.png](http://upload-images.jianshu.io/upload_images/5700335-d8e3ab4eb7111f86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![侧hi](http://upload-images.jianshu.io/upload_images/5700335-fa80b10fb16d4fe9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
