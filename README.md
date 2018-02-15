@@ -43,7 +43,7 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 ![img](http://geek_qi.gitee.io/ag-admin/img/preview2.gif)
 
 ## 服务管理
-![img](http://geek_qi.gitee.io/ag-admin/img/service.gif)
+![img](http://geek_qi.gitee.io/ag-admin/img/service.gif)
 
 ### 联系老A，`QQ：463540703`，`微信：whb2lyx`，进行企业版购买
 
