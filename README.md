@@ -30,16 +30,16 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 完整开发文档|×|`√`
 快速工程Cli|×|`√`
 跨服务数据聚合|×|`√`
-部门岗位|×|设计开发中
-多租户模块|×|设计开发中
-数据权限|×|设计开发中
+部门岗位|×|`√`
+多租户模块|×|`√`
+数据权限|×|`√`
+分级授权|x|`√`
 定时任务|×|设计开发中
 
-![img](http://ofsc32t59.bkt.clouddn.com/18-02-07/1517971520689.jpg?imageView2/2/w/1240)
-![img](http://ofsc32t59.bkt.clouddn.com/18-02-07/1517971843392.jpg?imageView2/2/w/1240)
-![image.png](http://upload-images.jianshu.io/upload_images/5700335-d8e3ab4eb7111f86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![侧hi](http://upload-images.jianshu.io/upload_images/5700335-fa80b10fb16d4fe9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
+## 超级管理员
+![img](http://geek_qi.gitee.io/ag-admin/img/preview1.gif)
+## 分级租户管理员
+![img](http://geek_qi.gitee.io/ag-admin/img/preview2.gif)
 ### 联系老A，`QQ：463540703`，`微信：whb2lyx`，进行企业版购买
 
 ----
