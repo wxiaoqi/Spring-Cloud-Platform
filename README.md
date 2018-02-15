@@ -37,7 +37,7 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 定时任务|×|设计开发中
 
 ## 超级管理员
-![img](http://geek_qi.gitee.io/ag-admin/img/preview.gif)
+![img](https://wxiaoqi.github.io/images/preview1.gif)
 
 ## 分级租户管理员
 ![img](http://geek_qi.gitee.io/ag-admin/img/preview2.gif)
