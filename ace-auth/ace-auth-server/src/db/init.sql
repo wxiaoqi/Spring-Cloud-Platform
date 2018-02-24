@@ -1,6 +1,6 @@
 
-CREATE DATABASE ag_auth DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-Use ag_auth;
+CREATE DATABASE ag_auth_v1 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+Use ag_auth_v1;
 /*
  Navicat Premium Data Transfer
 

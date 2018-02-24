@@ -45,7 +45,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "invalid", method = RequestMethod.POST)
-    public ResponseEntity<?> invalid(@RequestHeader("access-token") String token){
+    public ResponseEntity<?> invalid(String token){
         authService.invalid(token);
         return ResponseEntity.ok(true);
     }
