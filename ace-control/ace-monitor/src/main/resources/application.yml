@@ -11,11 +11,6 @@ spring:
 server:
     port: 8764 #启动端口
 
-security:
-    user:
-        name: whb
-        password: 123456
-        role: USER
 
 eureka:
      instance:
@@ -25,3 +20,6 @@ eureka:
         fetchRegistry: true
         serviceUrl:
           defaultZone: http://localhost:8761/eureka/
+management:
+  security:
+    enabled: false
