@@ -24,9 +24,9 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 权限管理|√|√
 操作日志|√|√
 数据字典|×|`√`
-服务运维监控| ×|`√`
+服务运维监控| √|`√`
 完整用户认证 | × | `√`
-服务管理模块|×|`√`
+服务管理模块|√|`√`
 分布式事务|×|`√`
 2.0UI|×|`√`
 完整开发文档|×|`√`
@@ -36,7 +36,7 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 多租户模块|×|`√`
 数据权限|×|`√`
 分级授权|x|`√`
-定时任务|×|设计开发中
+定时任务|×|`√`
 
 ## 超级管理员
 ![img](http://geek_qi.gitee.io/ag-admin/img/base.gif)
@@ -50,7 +50,17 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 ### 联系老A，`QQ：463540703`，`微信：whb2lyx`，进行企业版购买
 
 ----
+# 开源版更新日志
+### 2018.02.25
+- 增加服务管理模块
 
+![img](http://geek_qi.gitee.io/ag-admin/img/serviceManager.png)
+
+- 增加运维监控模块
+
+![img](http://geek_qi.gitee.io/ag-admin/img/zipkinManager.png)
+![img](http://geek_qi.gitee.io/ag-admin/img/eurekaManager.png)
+![img](http://geek_qi.gitee.io/ag-admin/img/monitorManager.png)
 
 # 模块说明
 ![image.png](http://upload-images.jianshu.io/upload_images/5700335-8d69f4e885a4ec85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
