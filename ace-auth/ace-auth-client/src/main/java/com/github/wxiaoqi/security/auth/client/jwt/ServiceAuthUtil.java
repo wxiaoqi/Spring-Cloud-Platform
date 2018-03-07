@@ -3,7 +3,6 @@ package com.github.wxiaoqi.security.auth.client.jwt;
 
 import com.github.wxiaoqi.security.auth.client.config.ServiceAuthConfig;
 import com.github.wxiaoqi.security.auth.client.feign.ServiceAuthFeign;
-import com.github.wxiaoqi.security.auth.common.event.AuthRemoteEvent;
 import com.github.wxiaoqi.security.auth.common.util.jwt.IJWTInfo;
 import com.github.wxiaoqi.security.auth.common.util.jwt.JWTHelper;
 import com.github.wxiaoqi.security.common.exception.auth.ClientTokenException;
@@ -26,11 +25,13 @@ import java.util.List;
 @Configuration
 @Slf4j
 @EnableScheduling
-public class ServiceAuthUtil  implements ApplicationListener<AuthRemoteEvent> {
+public class ServiceAuthUtil{
     @Autowired
     private ServiceAuthConfig serviceAuthConfig;
+
     @Autowired
     private ServiceAuthFeign serviceAuthFeign;
+
     private List<String> allowedClient;
     private String clientToken;
 
@@ -80,10 +81,5 @@ public class ServiceAuthUtil  implements ApplicationListener<AuthRemoteEvent> {
             this.refreshAllowedClient();
         }
         return allowedClient;
-    }
-
-    @Override
-    public void onApplicationEvent(AuthRemoteEvent authRemoteEvent) {
-        this.allowedClient = authRemoteEvent.getAllowedClient();
     }
 }

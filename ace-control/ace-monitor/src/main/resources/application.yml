@@ -1,16 +1,9 @@
 spring:
     application:
         name: ace-monitor
-    boot:
-        admin:
-          routes:
-            endpoints: env,metrics,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream
-          turbine:
-            clusters: jscloud
-            location: turbine
+
 server:
     port: 8764 #启动端口
-
 
 eureka:
      instance:
@@ -20,6 +13,7 @@ eureka:
         fetchRegistry: true
         serviceUrl:
           defaultZone: http://localhost:8761/eureka/
+
 management:
   security:
     enabled: false

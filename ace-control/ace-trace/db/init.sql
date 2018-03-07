@@ -1,7 +1,3 @@
-
-CREATE DATABASE ag_zipkin DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-Use ag_zipkin;
-
 CREATE TABLE IF NOT EXISTS zipkin_spans (
   `trace_id_high` BIGINT NOT NULL DEFAULT 0 COMMENT 'If non zero, this means the trace uses 128 bit traceIds instead of 64 bit',
   `trace_id` BIGINT NOT NULL,
@@ -45,7 +41,8 @@ CREATE TABLE IF NOT EXISTS zipkin_dependencies (
   `day` DATE NOT NULL,
   `parent` VARCHAR(255) NOT NULL,
   `child` VARCHAR(255) NOT NULL,
-  `call_count` BIGINT
+  `call_count` BIGINT,
+  `error_count` BIGINT
 ) ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci;
 
 ALTER TABLE zipkin_dependencies ADD UNIQUE KEY(`day`, `parent`, `child`);

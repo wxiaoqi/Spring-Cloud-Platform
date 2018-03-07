@@ -33,7 +33,7 @@ public class SpringDataRateLimiter extends AbstractRateLimiter {
 
     @Override
     protected Rate getRate(String key) {
-        return this.repository.findOne(key);
+        return this.repository.findById(key).get();
     }
 
     @Override
