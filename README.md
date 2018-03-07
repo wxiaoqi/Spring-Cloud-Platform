@@ -61,6 +61,8 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 - 增加Lucense全文搜索模块
 - 增加OSS附件服务模块
 
+![img](http://geek_qi.gitee.io/ag-admin/img/adminMonitor.png)
+
 ### 2018.02.25
 - 增加服务管理模块
 

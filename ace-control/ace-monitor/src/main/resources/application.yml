@@ -8,12 +8,12 @@ server:
 eureka:
      instance:
         preferIpAddress: true
+        statusPageUrlPath: /actuator/info
+        healthCheckUrlPath: /actuator/health
      client:
         registerWithEureka: true
         fetchRegistry: true
         serviceUrl:
           defaultZone: http://localhost:8761/eureka/
 
-management:
-  security:
-    enabled: false
+

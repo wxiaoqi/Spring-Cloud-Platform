@@ -3,9 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.4.RELEASE</version>
+        <artifactId>ace-control</artifactId>
+        <groupId>com.github.wxiaoqi</groupId>
+        <version>2.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -13,8 +13,7 @@
     <artifactId>ace-monitor</artifactId>
 
     <properties>
-        <hystrix.version>1.5.12</hystrix.version>
-        <boot.admin.version>1.5.3</boot.admin.version>
+        <boot.admin.version>2.0.0-SNAPSHOT</boot.admin.version>
     </properties>
 
     <dependencies>
@@ -29,22 +28,13 @@
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-netflix-turbine</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>de.codecentric</groupId>-->
-            <!--<artifactId>spring-boot-admin-server-ui-turbine</artifactId>-->
-            <!--<version>${boot.admin.version}</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-server</artifactId>
@@ -55,13 +45,6 @@
             <artifactId>spring-boot-admin-server-ui</artifactId>
             <version>${boot.admin.version}</version>
         </dependency>
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-server-ui-hystrix</artifactId>
-            <version>${boot.admin.version}</version>
-        </dependency>
-
-
     </dependencies>
     <build>
         <finalName>ace-monitor</finalName>
@@ -96,15 +79,4 @@
             <!--</plugin>-->
         </plugins>
     </build>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Dalston.SR1</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 </project>
