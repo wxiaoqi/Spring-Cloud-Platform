@@ -110,7 +110,6 @@ public class AdminAccessFilter extends ZuulFilter {
         }
         // 申请客户端密钥头
         ctx.addZuulRequestHeader(serviceAuthConfig.getTokenHeader(), serviceAuthUtil.getClientToken());
-        BaseContextHandler.remove();
         return null;
     }
 

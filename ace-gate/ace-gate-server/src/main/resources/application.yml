@@ -11,20 +11,23 @@ spring:
     redis:
         database: 1
         host: 127.0.0.1
-        pool:
-            max-active: 20
+        jedis:
+          pool:
+              max-active: 20
     rabbitmq:
         host: ${RABBIT_MQ_HOST:localhost}
         port:  ${RABBIT_MQ_PORT:5672}
         username: guest
         password: guest
-    zipkin:
-      enabled: true
     sleuth:
       sampler:
         percentage: 1
+      zuul:
+        enabled: true
 server:
     port: 8765 #启动端口
+
+
 #
 zuul:
   ignored-services: "*"
@@ -54,11 +57,15 @@ zuul:
 ribbon:
   eureka:
     enabled: true
-  ReadTimeout: 120000
-  ConnectTimeout: 120000
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
   MaxAutoRetries: 0
   MaxAutoRetriesNextServer: 1
   OkToRetryOnAllOperations: false
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
 
 
 hystrix:

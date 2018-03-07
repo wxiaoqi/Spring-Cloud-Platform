@@ -1,7 +1,6 @@
 package com.github.wxiaoqi.security.auth.service.impl;
 
 import com.github.wxiaoqi.security.auth.bean.ClientInfo;
-import com.github.wxiaoqi.security.auth.common.event.AuthRemoteEvent;
 import com.github.wxiaoqi.security.auth.entity.Client;
 import com.github.wxiaoqi.security.auth.mapper.ClientMapper;
 import com.github.wxiaoqi.security.auth.service.AuthClientService;
@@ -51,6 +50,7 @@ public class DBAuthClientService implements AuthClientService {
         return client;
     }
 
+    @Override
     public void validate(String clientId, String secret) throws Exception {
         Client client = new Client();
         client.setCode(clientId);
@@ -99,13 +99,6 @@ public class DBAuthClientService implements AuthClientService {
             if(dbClient==null) {
                 client.setSecret(UUIDUtils.generateShortUuid());
                 clientMapper.insert(client);
-            }else{
-                // 主动推送
-                final List<String> clients = clientMapper.selectAllowedClient(dbClient.getId() + "");
-                final String myUniqueId = context.getId();
-                final AuthRemoteEvent event =
-                        new AuthRemoteEvent(this, myUniqueId, name, clients);
-                context.publishEvent(event);
             }
         });
     }
