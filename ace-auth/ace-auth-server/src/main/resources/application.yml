@@ -10,7 +10,7 @@ spring:
         host: ${REDIS_HOST:localhost}
         port: ${REDIS_PORT:6379}
         pool:
-            max-active: 20
+        max-active: 20
     datasource:
       name: test
       url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/ag_auth_v1?useUnicode=true&characterEncoding=UTF8
