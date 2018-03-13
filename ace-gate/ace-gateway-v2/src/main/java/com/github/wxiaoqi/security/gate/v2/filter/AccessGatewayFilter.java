@@ -76,6 +76,7 @@ public class AccessGatewayFilter implements GlobalFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange serverWebExchange, GatewayFilterChain gatewayFilterChain) {
+        log.info("check token and user permission....");
         ServerHttpRequest request = serverWebExchange.getRequest();
         final String requestUri = request.getPath().pathWithinApplication().value();
         final String method = request.getMethod().toString();
@@ -91,7 +92,7 @@ public class AccessGatewayFilter implements GlobalFilter {
             user = getJWTUser(request, mutate);
         } catch (Exception e) {
             log.error("用户Token过期异常", e);
-            return getVoidMono(serverWebExchange,new TokenForbiddenResponse("User Token Forbidden or Expired!"));
+            return getVoidMono(serverWebExchange, new TokenForbiddenResponse("User Token Forbidden or Expired!"));
         }
         List<PermissionInfo> permissionIfs = userService.getAllPermissionInfo();
         // 判断资源是否启用权限约束
@@ -100,7 +101,7 @@ public class AccessGatewayFilter implements GlobalFilter {
         PermissionInfo[] permissions = result.toArray(new PermissionInfo[]{});
         if (permissions.length > 0) {
             if (checkUserPermission(permissions, serverWebExchange, user)) {
-                return getVoidMono(serverWebExchange,new TokenForbiddenResponse("User Forbidden!Does not has Permission!"));
+                return getVoidMono(serverWebExchange, new TokenForbiddenResponse("User Forbidden!Does not has Permission!"));
             }
         }
         // 申请客户端密钥头
@@ -116,7 +117,7 @@ public class AccessGatewayFilter implements GlobalFilter {
      * @param body
      */
     @NotNull
-    private Mono<Void> getVoidMono(ServerWebExchange serverWebExchange,BaseResponse body) {
+    private Mono<Void> getVoidMono(ServerWebExchange serverWebExchange, BaseResponse body) {
         serverWebExchange.getResponse().setStatusCode(HttpStatus.OK);
         byte[] bytes = JSONObject.toJSONString(body).getBytes(StandardCharsets.UTF_8);
         DataBuffer buffer = serverWebExchange.getResponse().bufferFactory().wrap(bytes);
@@ -228,4 +229,5 @@ public class AccessGatewayFilter implements GlobalFilter {
         serverWebExchange.getResponse().setStatusCode(HttpStatus.OK);
         return serverWebExchange.getResponse().setComplete();
     }
+
 }

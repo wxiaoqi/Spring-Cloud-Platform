@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * ${DESCRIPTION}
@@ -35,8 +36,8 @@ public class UserRest {
     }
 
     @RequestMapping(value = "/user/validate", method = RequestMethod.POST)
-    public @ResponseBody UserInfo validate(String username,String password){
-        return permissionService.validate(username,password);
+    public @ResponseBody UserInfo validate(@RequestBody Map<String,String> body){
+        return permissionService.validate(body.get("username"),body.get("password"));
     }
 
 

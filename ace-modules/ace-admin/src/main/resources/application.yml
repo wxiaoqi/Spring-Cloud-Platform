@@ -36,9 +36,10 @@ spring:
         username: guest
         password: guest
     sleuth:
-      sampler:
-        percentage: 1
-
+      enabled: true
+      http:
+        legacy:
+          enabled: true
 sample:
   zipkin:
     # When enabled=false, traces log to the console. Comment to send to zipkin

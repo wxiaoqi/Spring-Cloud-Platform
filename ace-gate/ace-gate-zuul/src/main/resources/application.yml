@@ -20,10 +20,10 @@ spring:
         username: guest
         password: guest
     sleuth:
-      sampler:
-        percentage: 1
-      zuul:
-        enabled: true
+      enabled: true
+      http:
+        legacy:
+          enabled: true
 server:
     port: 8766 #启动端口
 

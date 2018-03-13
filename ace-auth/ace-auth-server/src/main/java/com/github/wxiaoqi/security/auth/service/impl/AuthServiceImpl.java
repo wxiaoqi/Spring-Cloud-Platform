@@ -4,10 +4,12 @@ import com.github.wxiaoqi.security.api.vo.user.UserInfo;
 import com.github.wxiaoqi.security.auth.common.util.jwt.JWTInfo;
 import com.github.wxiaoqi.security.auth.feign.IUserService;
 import com.github.wxiaoqi.security.auth.service.AuthService;
+import com.github.wxiaoqi.security.auth.util.user.JwtAuthenticationRequest;
 import com.github.wxiaoqi.security.auth.util.user.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -24,8 +26,8 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String login(String username, String password) throws Exception {
-        UserInfo info = userService.validate(username,password);
+    public String login(JwtAuthenticationRequest authenticationRequest) throws Exception {
+        UserInfo info = userService.validate(authenticationRequest);
         String token = "";
         if (!StringUtils.isEmpty(info.getId())) {
             token = jwtTokenUtil.generateToken(new JWTInfo(info.getUsername(), info.getId() + "", info.getName()));
