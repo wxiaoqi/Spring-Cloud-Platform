@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ace-gate-server</artifactId>
+    <artifactId>ace-gate-zuul</artifactId>
 
     <dependencies>
         <dependency>

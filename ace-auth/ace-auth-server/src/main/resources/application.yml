@@ -101,6 +101,6 @@ jwt:
 client:
   id: ace-auth
   secret: 123456
-  token-header: client-token
+  token-header: x-client-token
   expire: 14400
   rsa-secret: x2318^^(*WRYQWR(QW&T

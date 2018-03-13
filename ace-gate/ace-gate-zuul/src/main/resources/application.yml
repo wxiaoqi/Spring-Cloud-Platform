@@ -25,7 +25,7 @@ spring:
       zuul:
         enabled: true
 server:
-    port: 8765 #启动端口
+    port: 8766 #启动端口
 
 
 #
@@ -93,6 +93,6 @@ auth:
   user:
     token-header: Authorization
   client:
-    token-header: client-token
+    token-header: x-client-token
     id: ace-gate  #不填则默认读取spring.application.name
     secret: 123456

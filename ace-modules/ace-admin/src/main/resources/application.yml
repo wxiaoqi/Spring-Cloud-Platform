@@ -112,7 +112,7 @@ auth:
   client:
     id: ace-admin
     secret: 123456
-    token-header: client-token
+    token-header: x-client-token
 
 #redis-cache 相关
 redis:
