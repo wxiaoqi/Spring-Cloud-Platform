@@ -160,9 +160,6 @@ npm 版本：3.10.10
 
 ```
 ------------
-# 功能简介
-![img](http://upload-images.jianshu.io/upload_images/5700335-94d83ae2906db34f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
------
 
 ## 功能截图
 ### 基本功能
