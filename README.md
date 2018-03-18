@@ -1,10 +1,11 @@
-# AG-Admin(`开源学习`）
+# AG-Admin(`开源项目`）
 AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系统，其中包含具备用户管理、资源权限管理、网关API管理等多个模块，支持多业务系统并行开发，可以作为后端服务的开发脚手架。代码简洁，架构清晰，适合学习和直接项目中使用。核心技术采用`Spring Boot2`以及`Spring Cloud (Finchley.M8)`相关核心组件，前端采用`vue-element-admin`组件。 
 
+### 开源用户登记，宣传用：[点击打开](https://gitee.com/geek_qi/ace-security/issues/II9SP)
 ### QQ群号：169824183
 ### 更新日志，查看[点击打开](https://gitee.com/geek_qi/ace-security/blob/master/README.md#%E5%BC%80%E6%BA%90%E7%89%88%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
 
-# AG-Enterprise（`企业商用`）
+# AG-Enterprise（`企业效率`）
 
 体验地址：http://118.126.104.133:81/
 
@@ -15,8 +16,9 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 - 提供`分布式事务`解决方案和中间件，解决服务拆分后的事物控制问题;
 - 提供`服务运维`基础部署，监控服务的状态、服务的链路调用。
 
-### 第一批名额限制：200名，优惠价格：1680，`享终身授权特权`，示例证书：[点击打开](http://geek_qi.gitee.io/ag-admin/img/demo.pdf)，私聊老A：463540703。
+### 第二批名额限制：20名，优惠价格：1880，`享终身授权特权`，示例证书：[点击打开](http://geek_qi.gitee.io/ag-admin/img/demo.pdf)，，私聊老A：463540703。
 
+#### 一期功能
 功能清单 | 开源版 | 企业版
 ---|---|---
 用户管理|√|√
@@ -38,8 +40,16 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 数据权限|×|`√`
 分级授权|x|`√`
 定时任务|×|`√`
-附件服务|`Doing`|`Doing`
-消息服务|`Doing`|`Doing`
+
+#### 二期功能（同步推出Spring Boot+vue版本）
+
+功能清单 | 开源版 | 企业版
+---|---|---
+附件服务|`Done`|`Doing`
+搜索服务|`Done`|`Doing`
+工作流服务|x|`Design`
+
+消息、第三方、支付等等……
 
 ## 超级管理员
 ![img](http://geek_qi.gitee.io/ag-admin/img/base.gif)
@@ -53,6 +63,9 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 ----
 # 开源版更新日志
 
+### 2018.03.18 重大更新
+- 网关模块全面升级`Spring Cloud Gateway`，性能提升、保留Zuul网关（端口迁移8766）
+
 ### 2018.03.08 重大更新
 - 全面升级`Spring Boot 2.0.0.Release`&`Spring Cloud Finchley.M8`
 - 调整目录结构，移除ace-demo模块
@@ -60,6 +73,8 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 - monitor监控模块优化
 - 增加Lucense全文搜索模块
 - 增加OSS附件服务模块
+
+![img](http://geek_qi.gitee.io/ag-admin/img/adminMonitor.png)
 
 ### 2018.02.25
 - 增加服务管理模块
@@ -81,7 +96,7 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 #### 监控
 利用Spring Boot Admin 来监控各个独立Service的运行状态；利用Hystrix Dashboard来实时查看接口的运行状态和调用频率等。
 #### 负载均衡
-将服务保留的rest进行代理和网关控制，除了平常经常使用的node.js、nginx外，Spring Cloud系列的zuul和rebbion，可以帮我们进行正常的网关管控和负载均衡。其中扩展和借鉴国外项目的扩展基于JWT的`Zuul限流插件`，方面进行限流。
+将服务保留的rest进行代理和网关控制，除了平常经常使用的node.js、nginx外，Spring Cloud系列的zuul和ribbon，可以帮我们进行正常的网关管控和负载均衡。其中扩展和借鉴国外项目的扩展基于JWT的`Zuul限流插件`，方面进行限流。
 #### 服务注册与调用
 基于Eureka来实现的服务注册与调用，在Spring Cloud中使用Feign, 我们可以做到使用HTTP请求远程服务时能与调用本地方法一样的编码体验，开发者完全感知不到这是远程方法，更感知不到这是个HTTP请求。
 #### 熔断机制
@@ -109,9 +124,9 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 - IDE插件一个，`lombok插件`，具体百度即可
 
 ### 运行步骤
-- 运行数据库脚本：依次运行数据库：ace-admin/db/init.sql、ace-auth-server/db/init.sql
+- 运行数据库脚本：依次运行数据库：ace-admin/db/init.sql、ace-auth-server/db/init.sql、ace-trace
 - 修改配置数据库配置：ace-admin/src/main/resources/application.yml、ace-gate/src/main/resources/application.yml
-- 按`顺序`运行main类：CenterBootstrap（ace-center）、ConfigServerBootstrap（ace-config）、AuthBootstrap（ace-auth-server）、AdminBootstrap（ace-admin）、GateBootstrap（ace-gate）
+- 按`顺序`运行main类：CenterBootstrap（ace-center）、AuthBootstrap（ace-auth-server）、AdminBootstrap（ace-admin）、GatewayV2Bootstrap（ace-gateway-v2）
 
 ### 项目结构
 ```
@@ -192,9 +207,6 @@ npm 版本：3.10.10
 
 ```
 ------------
-# 功能简介
-![img](http://upload-images.jianshu.io/upload_images/5700335-94d83ae2906db34f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
------
 
 ## 功能截图
 ### 基本功能

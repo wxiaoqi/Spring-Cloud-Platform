@@ -13,7 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>ace-gate-ratelimit</module>
-        <module>ace-gate-server</module>
+        <module>ace-gate-zuul</module>
+        <module>ace-gateway-v2</module>
     </modules>
 
 </project>

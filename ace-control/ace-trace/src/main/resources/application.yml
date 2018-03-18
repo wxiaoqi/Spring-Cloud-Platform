@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/ag_zipkin?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    continue-on-error: true
+  application:
+    name: ace-trace
+   #zipkin数据保存到数据库中需要进行如下配置
+   #表示当前程序不使用sleuth
+  sleuth:
+    enabled: false
+   #表示zipkin数据存储方式是mysql
+
+zipkin:
+  storage:
+    type: mysql
+  collector:
+    rabbitmq:
+      addresses: ${RABBIT_MQ_HOST:127.0.0.1}
+      port: ${RABBIT_MQ_PORT:5672}
+      password: guest
+      username: guest
+      queue: zipkin
+server:
+  port: 9411
+
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+        # docker 部署开启
+#        prefer-ip-address: true
+#        ip-address: 127.0.0.1
+    client:
+        serviceUrl:
+#            defaultZone: http://localhost:8761/eureka/
+                    # docker 部署开启
+            defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/

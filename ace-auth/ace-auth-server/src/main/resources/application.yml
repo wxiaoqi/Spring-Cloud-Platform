@@ -10,7 +10,7 @@ spring:
         host: ${REDIS_HOST:localhost}
         port: ${REDIS_PORT:6379}
         pool:
-            max-active: 20
+        max-active: 20
     datasource:
       name: test
       url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/ag_auth_v1?useUnicode=true&characterEncoding=UTF8
@@ -38,9 +38,10 @@ spring:
       username: guest
       password: guest
     sleuth:
-        sampler:
-            percentage: 1
-
+      enabled: true
+      http:
+        legacy:
+          enabled: true
 
 mybatis:
     basepackage: com.github.wxiaoqi.security.auth.mapper
@@ -101,6 +102,11 @@ jwt:
 client:
   id: ace-auth
   secret: 123456
-  token-header: client-token
+  token-header: x-client-token
   expire: 14400
   rsa-secret: x2318^^(*WRYQWR(QW&T
+
+logging:
+    level:
+#        tk.mybatis: DEBUG
+        com.github.wxiaoqi.security.auth: DEBUG

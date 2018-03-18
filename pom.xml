@@ -67,6 +67,11 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </repository>
     </repositories>
     <!--依赖管理，用于管理spring-cloud的依赖，其中Camden.SR3是版本号-->
     <dependencyManagement>

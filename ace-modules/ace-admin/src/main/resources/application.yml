@@ -36,9 +36,10 @@ spring:
         username: guest
         password: guest
     sleuth:
-      sampler:
-        percentage: 1
-
+      enabled: true
+      http:
+        legacy:
+          enabled: true
 sample:
   zipkin:
     # When enabled=false, traces log to the console. Comment to send to zipkin
@@ -75,8 +76,8 @@ feign:
 ribbon:
   eureka:
     enabled: true
-  ReadTimeout: 120000
-  ConnectTimeout: 120000
+  ReadTimeout: 100000
+  ConnectTimeout: 100000
   MaxAutoRetries: 0
   MaxAutoRetriesNextServer: 1
   OkToRetryOnAllOperations: false
@@ -112,7 +113,7 @@ auth:
   client:
     id: ace-admin
     secret: 123456
-    token-header: client-token
+    token-header: x-client-token
 
 #redis-cache 相关
 redis:
