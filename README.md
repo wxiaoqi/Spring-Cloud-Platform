@@ -16,8 +16,55 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 - 提供`分布式事务`解决方案和中间件，解决服务拆分后的事物控制问题;
 - 提供`服务运维`基础部署，监控服务的状态、服务的链路调用。
 
+### 第二批名额限制：20名，优惠价格：1880，`享终身授权特权`，示例证书：[点击打开](http://geek_qi.gitee.io/ag-admin/img/demo.pdf)，，私聊老A：463540703。
+
+#### 一期功能
+功能清单 | 开源版 | 企业版
+---|---|---
+用户管理|√|√
+角色管理|√|√
+菜单管理|√|√
+权限管理|√|√
+操作日志|√|√
+服务运维监控| √|`√`
+服务管理模块|√|`√`
+分布式事务|×|`√`
+数据字典|×|`√`
+新版UI|×|`√`
+完整开发文档|×|`√`
+快速工程Cli|×|`√`
+跨服务数据聚合|×|`√`
+服务动态路由|×|`√`
+部门岗位|×|`√`
+多租户模块|×|`√`
+数据权限|×|`√`
+分级授权|x|`√`
+定时任务|×|`√`
+
+#### 二期功能（同步推出Spring Boot+vue版本）
+
+功能清单 | 开源版 | 企业版
+---|---|---
+附件服务|`Done`|`Doing`
+搜索服务|`Done`|`Doing`
+工作流服务|x|`Design`
+
+消息、第三方、支付等等……
+
+## 超级管理员
+![img](http://geek_qi.gitee.io/ag-admin/img/base.gif)
+
+## 分级租户管理员
+![img](http://geek_qi.gitee.io/ag-admin/img/preview2.gif)
+
+## 服务管理
+![img](http://geek_qi.gitee.io/ag-admin/img/service.gif)
+
 ----
 # 开源版更新日志
+
+### 2018.03.18 重大更新
+- 网关模块全面升级`Spring Cloud Gateway`，性能提升、保留Zuul网关（端口迁移8766）
 
 ### 2018.03.08 重大更新
 - 全面升级`Spring Boot 2.0.0.Release`&`Spring Cloud Finchley.M8`
@@ -49,7 +96,7 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 #### 监控
 利用Spring Boot Admin 来监控各个独立Service的运行状态；利用Hystrix Dashboard来实时查看接口的运行状态和调用频率等。
 #### 负载均衡
-将服务保留的rest进行代理和网关控制，除了平常经常使用的node.js、nginx外，Spring Cloud系列的zuul和rebbion，可以帮我们进行正常的网关管控和负载均衡。其中扩展和借鉴国外项目的扩展基于JWT的`Zuul限流插件`，方面进行限流。
+将服务保留的rest进行代理和网关控制，除了平常经常使用的node.js、nginx外，Spring Cloud系列的zuul和ribbon，可以帮我们进行正常的网关管控和负载均衡。其中扩展和借鉴国外项目的扩展基于JWT的`Zuul限流插件`，方面进行限流。
 #### 服务注册与调用
 基于Eureka来实现的服务注册与调用，在Spring Cloud中使用Feign, 我们可以做到使用HTTP请求远程服务时能与调用本地方法一样的编码体验，开发者完全感知不到这是远程方法，更感知不到这是个HTTP请求。
 #### 熔断机制
@@ -79,7 +126,7 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 ### 运行步骤
 - 运行数据库脚本：依次运行数据库：ace-admin/db/init.sql、ace-auth-server/db/init.sql、ace-trace
 - 修改配置数据库配置：ace-admin/src/main/resources/application.yml、ace-gate/src/main/resources/application.yml
-- 按`顺序`运行main类：CenterBootstrap（ace-center）、AuthBootstrap（ace-auth-server）、AdminBootstrap（ace-admin）、GateBootstrap（ace-gate-server）
+- 按`顺序`运行main类：CenterBootstrap（ace-center）、AuthBootstrap（ace-auth-server）、AdminBootstrap（ace-admin）、GatewayV2Bootstrap（ace-gateway-v2）
 
 ### 项目结构
 ```
