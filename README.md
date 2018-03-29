@@ -31,7 +31,6 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 分布式事务|×|`√`
 数据字典|×|`√`
 新版UI|×|`√`
-完整开发文档|×|`√`
 快速工程Cli|×|`√`
 跨服务数据聚合|×|`√`
 服务动态路由|×|`√`
@@ -43,14 +42,13 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 
 #### 二期功能（同步推出Spring Boot+vue版本）
 
-功能清单 | 开源版 | 企业版
----|---|---
-附件服务|``|`Doing`
-搜索服务|`Done`|`Doing`
-单点登录|x|`Design`
-
-
-消息、第三方、支付等等……
+功能清单 | 开源版 | 企业版 | Spring Boot版（4月）
+---|---|---|---
+附件服务|`√`|`Doing`|`TODO`
+搜索服务|`√`|`Doing`|`TODO`
+单点登录|x|`Design`|`TODO`
+消息服务|x|`Design`|`TODO`
+工作流|x|`Design`|`TODO`
 
 ## 超级管理员
 ![img](http://geek_qi.gitee.io/ag-admin/img/base.gif)
