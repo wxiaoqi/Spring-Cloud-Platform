@@ -3,6 +3,8 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 
 ### 开源用户登记，宣传用：[点击打开](https://gitee.com/geek_qi/ace-security/issues/II9SP)
 ### QQ群号：169824183
+### 联系QQ：2014314038（由于老A个人工作原因，该项目暂时转交维护）
+### 更新日志，查看[点击打开](https://gitee.com/geek_qi/ace-security/blob/master/README.md#%E5%BC%80%E6%BA%90%E7%89%88%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
 
 # AG-Enterprise（`企业效率`）
 
@@ -39,7 +41,7 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 
 #### 二期功能（同步推出Spring Boot+vue版本）
 
-功能清单 | 开源版 | 企业版 | Spring Boot版（4月）
+功能清单 | 开源版 | 企业版 | Spring Boot版
 ---|---|---|---
 附件服务|`√`|`Doing`|`TODO`
 搜索服务|`√`|`Doing`|`TODO`
@@ -48,7 +50,6 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 工作流|x|`Design`|`TODO`
 
 
-### 更新日志，查看[点击打开](https://gitee.com/geek_qi/ace-security/blob/master/README.md#%E5%BC%80%E6%BA%90%E7%89%88%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
 
 # 开源版更新日志
 
