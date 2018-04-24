@@ -43,10 +43,9 @@ AG-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有
 
 功能清单 | 开源版 | 企业版 | Spring Boot版
 ---|---|---|---
-附件服务|`√`|`Doing`|`TODO`
-搜索服务|`√`|`Doing`|`TODO`
-单点登录|x|`Design`|`TODO`
-消息服务|x|`Design`|`TODO`
+附件服务|`√`|`√`|`√`
+搜索服务|`√`|`√`|`√`
+单点登录|x|`√`|`√`
 工作流|x|`Design`|`TODO`
 
 
