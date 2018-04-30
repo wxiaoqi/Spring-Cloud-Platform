@@ -10,7 +10,6 @@ import com.github.wxiaoqi.security.auth.client.jwt.UserAuthUtil;
 import com.github.wxiaoqi.security.auth.common.util.jwt.IJWTInfo;
 import com.github.wxiaoqi.security.common.context.BaseContextHandler;
 import com.github.wxiaoqi.security.common.msg.BaseResponse;
-import com.github.wxiaoqi.security.common.msg.auth.TokenErrorResponse;
 import com.github.wxiaoqi.security.common.msg.auth.TokenForbiddenResponse;
 import com.github.wxiaoqi.security.common.util.ClientUtil;
 import com.github.wxiaoqi.security.gate.v2.feign.ILogService;
@@ -23,20 +22,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.cloud.gateway.support.ServerWebExchangeUtils;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
@@ -62,6 +64,8 @@ public class AccessGatewayFilter implements GlobalFilter {
 
     //    @Value("${zuul.prefix}")
 //    private String zuulPrefix;
+
+    private static final String GATE_WAY_PREFIX = "/api";
     @Autowired
     private UserAuthUtil userAuthUtil;
 
@@ -77,8 +81,18 @@ public class AccessGatewayFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange serverWebExchange, GatewayFilterChain gatewayFilterChain) {
         log.info("check token and user permission....");
+        LinkedHashSet requiredAttribute = serverWebExchange.getRequiredAttribute(ServerWebExchangeUtils.GATEWAY_ORIGINAL_REQUEST_URL_ATTR);
         ServerHttpRequest request = serverWebExchange.getRequest();
-        final String requestUri = request.getPath().pathWithinApplication().value();
+        String requestUri = request.getPath().pathWithinApplication().value();
+        if (requiredAttribute != null) {
+            Iterator<URI> iterator = requiredAttribute.iterator();
+            while (iterator.hasNext()){
+                URI next = iterator.next();
+                if(next.getPath().startsWith(GATE_WAY_PREFIX)){
+                    requestUri = next.getPath().substring(GATE_WAY_PREFIX.length());
+                }
+            }
+        }
         final String method = request.getMethod().toString();
         BaseContextHandler.setToken(null);
         ServerHttpRequest.Builder mutate = request.mutate();
@@ -137,17 +151,19 @@ public class AccessGatewayFilter implements GlobalFilter {
         return serviceInfo.parallelStream().filter(new Predicate<PermissionInfo>() {
             @Override
             public boolean test(PermissionInfo permissionInfo) {
-                String url = permissionInfo.getUri();
-                String uri = url.replaceAll("\\{\\*\\}", "[a-zA-Z\\\\d]+");
+                String uri = permissionInfo.getUri();
+                if (uri.indexOf("{") > 0) {
+                    uri = uri.replaceAll("\\{\\*\\}", "[a-zA-Z\\\\d]+");
+                }
                 String regEx = "^" + uri + "$";
-                return (Pattern.compile(regEx).matcher(requestUri).find() || requestUri.startsWith(url + "/"))
+                return (Pattern.compile(regEx).matcher(requestUri).find())
                         && method.equals(permissionInfo.getMethod());
             }
         });
     }
 
     private void setCurrentUserInfoAndLog(ServerWebExchange serverWebExchange, IJWTInfo user, PermissionInfo pm) {
-        String host = ClientUtil.getClientIp((HttpServletRequest) serverWebExchange.getRequest());
+        String host = serverWebExchange.getRequest().getRemoteAddress().toString();
         LogInfo logInfo = new LogInfo(pm.getMenu(), pm.getName(), pm.getUri(), new Date(), user.getId(), user.getName(), host);
         DBLog.getInstance().setLogService(logService).offerQueue(logInfo);
     }

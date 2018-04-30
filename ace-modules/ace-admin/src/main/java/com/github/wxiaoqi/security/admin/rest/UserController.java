@@ -1,6 +1,8 @@
 package com.github.wxiaoqi.security.admin.rest;
 
+import com.github.wxiaoqi.security.admin.biz.MenuBiz;
 import com.github.wxiaoqi.security.admin.biz.UserBiz;
+import com.github.wxiaoqi.security.admin.entity.Menu;
 import com.github.wxiaoqi.security.admin.entity.User;
 import com.github.wxiaoqi.security.admin.rpc.service.PermissionService;
 import com.github.wxiaoqi.security.admin.vo.FrontUser;
@@ -8,7 +10,10 @@ import com.github.wxiaoqi.security.admin.vo.MenuTree;
 import com.github.wxiaoqi.security.common.rest.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -23,6 +28,10 @@ import java.util.List;
 public class UserController extends BaseController<UserBiz,User> {
     @Autowired
     private PermissionService permissionService;
+
+    @Autowired
+    private MenuBiz menuBiz;
+
     @RequestMapping(value = "/front/info", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> getUserInfo(String token) throws Exception {
@@ -38,5 +47,11 @@ public class UserController extends BaseController<UserBiz,User> {
     public @ResponseBody
     List<MenuTree> getMenusByUsername(String token) throws Exception {
         return permissionService.getMenusByUsername(token);
+    }
+
+    @RequestMapping(value = "/front/menu/all", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Menu> getAllMenus() throws Exception {
+        return menuBiz.selectListAll();
     }
 }

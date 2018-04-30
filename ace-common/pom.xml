@@ -46,7 +46,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>4.3.4.RELEASE</version>
+            <version>5.0.4.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.github.pagehelper</groupId>
@@ -57,7 +57,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>4.3.9.RELEASE</version>
+            <version>5.0.4.RELEASE</version>
         </dependency>
 
 
