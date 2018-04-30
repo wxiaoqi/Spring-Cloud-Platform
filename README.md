@@ -1,95 +1,30 @@
 # Cloud-Admin(`开源项目`）
 Cloud-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系统，其中包含具备用户管理、资源权限管理、网关API管理等多个模块，支持多业务系统并行开发，可以作为后端服务的开发脚手架。代码简洁，架构清晰，适合学习和直接项目中使用。核心技术采用`Spring Boot2`以及`Spring Cloud (Finchley.M8)`相关核心组件，前端采用`vue-element-admin`组件。 
 
-### 开源用户登记，宣传用：[点击打开](https://gitee.com/geek_qi/ace-security/issues/II9SP)
+# AG-Enterprise（`企业效率`）[点击打开](http://www.bbcto.cn/view/9)
+
+### 开源用户登记，宣传用：[点击打开](https://gitee.com/minull/ace-security/issues/II9SP)
 ### QQ群号：169824183
 ### 联系QQ：2014314038（由于老A个人工作原因，该项目暂时转交维护）
-### 更新日志，查看[点击打开](https://gitee.com/geek_qi/ace-security/blob/master/README.md#%E5%BC%80%E6%BA%90%E7%89%88%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
 
-# AG-Enterprise（`企业效率`）
-
-体验地址：http://118.126.104.133:81/
-
-- 提供`开箱即用的服务Cli`，减少开发人员的项目搭建成本，只需关注业务的开发实现，企业项目的开发利器；
-- 减少人员技术学习成本（会`spring+myabtis+mvc`即可），由专人管控平台，非常适合`单体项目转型`、`语言转型`的项目团队；
-- 提供完善的`架构部署指南`，从单机部署到集群落地，减少部署弯路，让服务群更加稳定；
-- 提供各种`开发中间件`示例教程，包括：消息总线、增删改查脚手架和生成器;
-- 提供`分布式事务`解决方案和中间件，解决服务拆分后的事物控制问题;
-- 提供`服务运维`基础部署，监控服务的状态、服务的链路调用。
-
-#### 一期功能
-功能清单 | 开源版 | 企业版
----|---|---
-用户管理|√|√
-角色管理|√|√
-菜单管理|√|√
-权限管理|√|√
-操作日志|√|√
-服务运维监控| √|`√`
-服务管理模块|√|`√`
-分布式事务|×|`√`
-数据字典|×|`√`
-新版UI|×|`√`
-快速工程Cli|×|`√`
-跨服务数据聚合|×|`√`
-服务动态路由|×|`√`
-部门岗位|×|`√`
-多租户模块|×|`√`
-数据权限|×|`√`
-分级授权|x|`√`
-定时任务|×|`√`
-
-#### 二期功能（同步推出Spring Boot+vue版本）
-
-功能清单 | 开源版 | 企业版 | Spring Boot版
----|---|---|---
-附件服务|`√`|`√`|`√`
-搜索服务|`√`|`√`|`√`
-单点登录|x|`√`|`√`
-工作流|x|`Design`|`TODO`
-
-
-
-# 开源版更新日志
-### 2018.04.30 重大修复
-- 修复新版网关`Spring Cloud Gateway`鉴权无效bug，同步更新数据脚本
-
-### 2018.03.18 重大更新
-- 网关模块全面升级`Spring Cloud Gateway`，性能提升、保留Zuul网关（端口迁移8766）
-
-### 2018.03.08 重大更新
-- 全面升级`Spring Boot 2.0.0.Release`&`Spring Cloud Finchley.M8`
-- 调整目录结构，移除ace-demo模块
-- zipkin链路模块升级
-- monitor监控模块优化
-- 增加Lucense全文搜索模块
-- 增加OSS附件服务模块
-
-![img](http://geek_qi.gitee.io/ag-admin/img/adminMonitor.png)
-
-### 2018.02.25
-- 增加服务管理模块
-
-![img](http://geek_qi.gitee.io/ag-admin/img/serviceManager.png)
-
-- 增加运维监控模块
-
-![img](http://geek_qi.gitee.io/ag-admin/img/zipkinManager.png)
-![img](http://geek_qi.gitee.io/ag-admin/img/eurekaManager.png)
-![img](http://geek_qi.gitee.io/ag-admin/img/monitorManager.png)
+### 更新日志，查看[点击打开](https://gitee.com/minull/ace-security/wikis/Cloud-Admin%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
 
 # 模块说明
 ![image.png](http://upload-images.jianshu.io/upload_images/5700335-8d69f4e885a4ec85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-### 架构详解
+### 架构摘要
 #### 服务鉴权
 老A独有的通过`JWT`的方式来加强服务之间调度的权限验证，保证内部服务的安全性。
+
 #### 监控
 利用Spring Boot Admin 来监控各个独立Service的运行状态；利用Hystrix Dashboard来实时查看接口的运行状态和调用频率等。
+
 #### 负载均衡
 将服务保留的rest进行代理和网关控制，除了平常经常使用的node.js、nginx外，Spring Cloud系列的zuul和ribbon，可以帮我们进行正常的网关管控和负载均衡。其中扩展和借鉴国外项目的扩展基于JWT的`Zuul限流插件`，方面进行限流。
+
 #### 服务注册与调用
 基于Eureka来实现的服务注册与调用，在Spring Cloud中使用Feign, 我们可以做到使用HTTP请求远程服务时能与调用本地方法一样的编码体验，开发者完全感知不到这是远程方法，更感知不到这是个HTTP请求。
+
 #### 熔断机制
 因为采取了服务的分布，为了避免服务之间的调用“雪崩”，采用了`Hystrix`的作为熔断器，避免了服务之间的“雪崩”。
 
@@ -97,22 +32,7 @@ Cloud-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具
 
 # `启动指南`
 
-![img](http://upload-images.jianshu.io/upload_images/5700335-002735d1727ec11b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-## 须知
-因为AG-Admin是一个`前后端分离`的项目，所以后端的服务必须先启动，在后端服务启动完成后，再启动前端的工程。
-## 最多人问：代码有漏
-下载完后端代码后，记得先安装`lombok插件`，否则你的IDE会报代码缺失。
 ## 后端工程启动
-### 环境须知
-- mysql一个，redis一个，rabbitmq一个
-- jdk1.8
-- IDE插件一个，`lombok插件`，具体百度即可
-
-### 运行步骤
-- 运行数据库脚本：依次运行数据库：ace-admin/db/init.sql、ace-auth-server/db/init.sql、ace-trace
-- 修改配置数据库配置：ace-admin/src/main/resources/application.yml、ace-gate/src/main/resources/application.yml
-- 按`顺序`运行main类：CenterBootstrap（ace-center）、AuthBootstrap（ace-auth-server）、AdminBootstrap（ace-admin）、GatewayServerBootstrap（ace-gateway-v2）
 
 ### 项目结构
 ```
@@ -120,7 +40,9 @@ Cloud-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具
 │  │  
 │  ├─ace-modules--------------公共服务模块（基础系统、搜索、OSS）
 │  │ 
-│  ├─ace-auth-----------------鉴权中心
+│  ├─ace-auth-----------------服务鉴权中心
+│  │ 
+│  ├─ace-oauth----------------用户认证中心
 │  │ 
 │  ├─ace-gate-----------------网关负载中心
 │  │ 
@@ -133,33 +55,51 @@ Cloud-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具
 │  └─ace-sidebar--------------调用第三方语言
 │
 ```
+
+### 环境须知
+- mysql一个，redis一个，rabbitmq一个
+- jdk1.8
+- IDE插件一个，`lombok插件`，具体百度即可
+
+### 须知
+因为AG-Admin是一个`前后端分离`的项目，所以后端的服务必须先启动，在后端服务启动完成后，再启动前端的工程。
+
+### 最多人问：代码有漏
+下载完后端代码后，记得先安装`lombok插件`，否则你的IDE会报代码缺失。
+
+### 运行步骤
+- 运行数据库脚本：依次运行数据库：ace-admin/db/init.sql、ace-auth-server/db/init.sql、ace-trace
+- 修改配置数据库配置：ace-admin/src/main/resources/application.yml、ace-gate/src/main/resources/application.yml
+- 按`顺序`运行main类：CenterBootstrap（ace-center）、AuthBootstrap（ace-auth-server）、AdminBootstrap（ace-admin）、GatewayServerBootstrap（ace-gateway-v2）
+
 ----
 
-## 前端工程启动[Cloud-Admin-UI][地址](https://gitee.com/minull/AG-Admin-v2.0)
+## UI工程启动[Cloud-Admin-UI][点击打开](https://gitee.com/minull/AG-Admin-v2.0)
+
 ### 环境搭建
 ```
 node 版本：v6.11.2
 npm 版本：3.10.10
 ```
-### 开发
+
+### 开发（在UI目录下）
 
 ```bash
     
     # 安装依赖
     npm install
-    //or # 建议不要用cnpm  安装有各种诡异的bug 可以通过如下操作解决npm速度慢的问题
+
+    ## 若上述不行则采取下面命令
     npm install --registry=https://registry.npm.taobao.org
 
     # 本地开发 开启服务
     npm run dev
 ```
+
 浏览器访问 http://localhost:9527
 
 ### 发布
 ```bash
-    # 发布测试环境 带webpack ananalyzer
-    npm run build:sit-preview
-
     # 构建生成环境
     npm run build:prod
 ```
@@ -196,6 +136,9 @@ npm 版本：3.10.10
 
 ## 功能截图
 ### 基本功能
+
+![img](http://upload-images.jianshu.io/upload_images/5700335-002735d1727ec11b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ![img](http://upload-images.jianshu.io/upload_images/5700335-e5e56924aaeacf1e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ![img](http://upload-images.jianshu.io/upload_images/5700335-b3044673b4a55203.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
