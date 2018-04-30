@@ -51,6 +51,8 @@ Cloud-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具
 
 
 # 开源版更新日志
+### 2018.04.30 重大修复
+- 修复新版网关`Spring Cloud Gateway`鉴权无效bug，同步更新数据脚本
 
 ### 2018.03.18 重大更新
 - 网关模块全面升级`Spring Cloud Gateway`，性能提升、保留Zuul网关（端口迁移8766）
@@ -212,10 +214,5 @@ npm 版本：3.10.10
 
 
 ## License
-
 Apache License Version 2.0
 
-
-
-# 郑重声明
-## 虽然本产品是开源产品，但未经本人允许擅自申请专利，将公开追究法律责任。
