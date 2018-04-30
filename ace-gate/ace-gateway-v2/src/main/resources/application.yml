@@ -84,7 +84,7 @@ management:
 
 gate:
   ignore:
-    startWith: /jwt
+    startWith: /auth/jwt
 
 
 auth:
