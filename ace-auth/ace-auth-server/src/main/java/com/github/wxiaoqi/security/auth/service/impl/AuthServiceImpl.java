@@ -40,14 +40,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public Boolean invalid(String token) {
-        // TODO: 2017/9/11 注销token
-        return null;
-    }
-
-    @Override
-    public String refresh(String oldToken) {
-        // TODO: 2017/9/11 刷新token
-        return null;
+    public String refresh(String oldToken) throws Exception {
+        return jwtTokenUtil.generateToken(jwtTokenUtil.getInfoFromToken(oldToken));
     }
 }

@@ -33,7 +33,7 @@ public class AuthController {
 
     @RequestMapping(value = "refresh", method = RequestMethod.GET)
     public ObjectRestResponse<String> refreshAndGetAuthenticationToken(
-            HttpServletRequest request) {
+            HttpServletRequest request) throws Exception {
         String token = request.getHeader(tokenHeader);
         String refreshedToken = authService.refresh(token);
         return new ObjectRestResponse<>().data(refreshedToken);
@@ -42,12 +42,6 @@ public class AuthController {
     @RequestMapping(value = "verify", method = RequestMethod.GET)
     public ObjectRestResponse<?> verify(String token) throws Exception {
         authService.validate(token);
-        return new ObjectRestResponse<>();
-    }
-
-    @RequestMapping(value = "invalid", method = RequestMethod.POST)
-    public ObjectRestResponse<?> invalid(String token){
-        authService.invalid(token);
         return new ObjectRestResponse<>();
     }
 }
