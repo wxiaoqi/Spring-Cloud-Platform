@@ -6,10 +6,10 @@ import com.github.wxiaoqi.security.auth.feign.IUserService;
 import com.github.wxiaoqi.security.auth.service.AuthService;
 import com.github.wxiaoqi.security.auth.util.user.JwtAuthenticationRequest;
 import com.github.wxiaoqi.security.auth.util.user.JwtTokenUtil;
+import com.github.wxiaoqi.security.common.exception.auth.UserInvalidException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -28,11 +28,10 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String login(JwtAuthenticationRequest authenticationRequest) throws Exception {
         UserInfo info = userService.validate(authenticationRequest);
-        String token = "";
         if (!StringUtils.isEmpty(info.getId())) {
-            token = jwtTokenUtil.generateToken(new JWTInfo(info.getUsername(), info.getId() + "", info.getName()));
+            return jwtTokenUtil.generateToken(new JWTInfo(info.getUsername(), info.getId() + "", info.getName()));
         }
-        return token;
+        throw new UserInvalidException("用户不存在或账户密码错误!");
     }
 
     @Override
