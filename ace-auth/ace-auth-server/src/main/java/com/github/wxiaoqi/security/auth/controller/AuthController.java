@@ -2,12 +2,14 @@ package com.github.wxiaoqi.security.auth.controller;
 
 import com.github.wxiaoqi.security.auth.service.AuthService;
 import com.github.wxiaoqi.security.auth.util.user.JwtAuthenticationRequest;
-import com.github.wxiaoqi.security.auth.util.user.JwtAuthenticationResponse;
+import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,34 +24,24 @@ public class AuthController {
     private AuthService authService;
 
     @RequestMapping(value = "token", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(
+    public ObjectRestResponse<String> createAuthenticationToken(
             @RequestBody JwtAuthenticationRequest authenticationRequest) throws Exception {
         log.info(authenticationRequest.getUsername()+" require logging...");
         final String token = authService.login(authenticationRequest);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+        return new ObjectRestResponse<>().data(token);
     }
 
     @RequestMapping(value = "refresh", method = RequestMethod.GET)
-    public ResponseEntity<?> refreshAndGetAuthenticationToken(
-            HttpServletRequest request) {
+    public ObjectRestResponse<String> refreshAndGetAuthenticationToken(
+            HttpServletRequest request) throws Exception {
         String token = request.getHeader(tokenHeader);
         String refreshedToken = authService.refresh(token);
-        if(refreshedToken == null) {
-            return ResponseEntity.badRequest().body(null);
-        } else {
-            return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
-        }
+        return new ObjectRestResponse<>().data(refreshedToken);
     }
 
     @RequestMapping(value = "verify", method = RequestMethod.GET)
-    public ResponseEntity<?> verify(String token) throws Exception {
+    public ObjectRestResponse<?> verify(String token) throws Exception {
         authService.validate(token);
-        return ResponseEntity.ok(true);
-    }
-
-    @RequestMapping(value = "invalid", method = RequestMethod.POST)
-    public ResponseEntity<?> invalid(String token){
-        authService.invalid(token);
-        return ResponseEntity.ok(true);
+        return new ObjectRestResponse<>();
     }
 }
