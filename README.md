@@ -3,12 +3,15 @@ Cloud-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具
 
 ### QQ群号：169824183（`快速开发文档`）
 
-#### 基础文档[点击查看](https://gitee.com/minull/ace-security/wikis/Cloud-Admin%E5%90%AF%E5%8A%A8%E6%8C%87%E5%8D%97?parent=%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C)
+### 开源用户登记，宣传用：[点击打开](https://gitee.com/minull/ace-security/issues/II9SP)
 
+### 最新更新日志，[点击查看](https://gitee.com/minull/ace-security/wikis/Cloud-Admin%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
+
+### 基础文档，[点击查看](https://gitee.com/minull/ace-security/wikis/Cloud-Admin%E5%90%AF%E5%8A%A8%E6%8C%87%E5%8D%97?parent=%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C)
+
+-----
 # Cloud-Enterprise（`企业效率`）[点击打开](http://www.bbcto.cn/view/9)
 
-### 开源用户登记，宣传用：[点击打开](https://gitee.com/minull/ace-security/issues/II9SP)
-### 最新更新日志，[点击查看](https://gitee.com/minull/ace-security/wikis/Cloud-Admin%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
 
 # 模块说明
 ![image.png](http://upload-images.jianshu.io/upload_images/5700335-8d69f4e885a4ec85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
