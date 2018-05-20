@@ -3,6 +3,8 @@ Cloud-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具
 
 ## 该项目由他人进行维护，最新地址：https://gitee.com/minull/ace-security
 
+## 新课程筹备：Spring Cloud多租户实现，[点击查看](http://www.bbcto.cn/view/12)
+
 # Cloud-Enterprise（`企业效率`）[点击打开](http://www.bbcto.cn/view/9)
 
 ### 开源用户登记，宣传用：[点击打开](https://gitee.com/minull/ace-security/issues/II9SP)
