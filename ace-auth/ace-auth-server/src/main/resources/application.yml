@@ -6,7 +6,7 @@ spring:
         time-zone: GMT+8
         default-property-inclusion: non_null
     redis:
-        database: 1
+        database: 2
         host: ${REDIS_HOST:localhost}
         port: ${REDIS_PORT:6379}
         pool:
@@ -110,3 +110,11 @@ logging:
     level:
 #        tk.mybatis: DEBUG
         com.github.wxiaoqi.security.auth: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  security:
+    enabled: false

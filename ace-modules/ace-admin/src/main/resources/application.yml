@@ -129,3 +129,11 @@ redis:
     sysName: ace-admin
     enable: true
     database: 0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  security:
+    enabled: false

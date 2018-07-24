@@ -33,7 +33,7 @@ spring:
   application:
       name: ace-gateway-v2
   redis:
-      database: 1
+      database: 2
       host: 127.0.0.1
       jedis:
         pool:
