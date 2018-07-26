@@ -9,8 +9,6 @@ Cloud-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具
 
 ### 基础文档，[点击查看](https://gitee.com/minull/ace-security/wikis/Cloud-Admin%E5%90%AF%E5%8A%A8%E6%8C%87%E5%8D%97?parent=%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C)
 
-# Cloud-Enterprise（`企业版`）[点击打开](http://www.bbcto.cn/view/9)
-
 # 模块说明
 ![image.png](http://upload-images.jianshu.io/upload_images/5700335-8d69f4e885a4ec85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
