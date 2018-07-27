@@ -1,5 +1,7 @@
 package com.github.wxiaoqi.security.common.util;
 
+import com.github.wxiaoqi.security.common.context.BaseContextHandler;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -43,11 +45,19 @@ public class EntityUtils {
 		String name = "";
 		String id = "";
 		if(request!=null) {
-			hostIp = String.valueOf(request.getHeader("userHost"));
-			name = String.valueOf(request.getHeader("userName"));
+			hostIp = StringUtils.trimToEmpty(request.getHeader("userHost"));
+			name = StringUtils.trimToEmpty(request.getHeader("userName"));
 			name = URLDecoder.decode(name);
-			id = String.valueOf(request.getHeader("userId"));
+			id = StringUtils.trimToEmpty(request.getHeader("userId"));
 		}
+
+		if (StringUtils.isBlank(name)) {
+			name = BaseContextHandler.getUsername();
+		}
+		if (StringUtils.isBlank(id)) {
+			id = BaseContextHandler.getUserID();
+		}
+
 		// 默认属性
 		String[] fields = {"crtName","crtUser","crtHost","crtTime"};
 		Field field = ReflectionUtils.getAccessibleField(entity, "crtTime");
@@ -72,11 +82,19 @@ public class EntityUtils {
 		String name = "";
 		String id = "";
 		if(request!=null) {
-			hostIp = String.valueOf(request.getHeader("userHost"));
-			name = String.valueOf(request.getHeader("userName"));
+			hostIp = StringUtils.trimToEmpty(request.getHeader("userHost"));
+			name = StringUtils.trimToEmpty(request.getHeader("userName"));
 			name = URLDecoder.decode(name);
-			id = String.valueOf(request.getHeader("userId"));
+			id = StringUtils.trimToEmpty(request.getHeader("userId"));
 		}
+
+		if (StringUtils.isBlank(name)) {
+			name = BaseContextHandler.getUsername();
+		}
+		if (StringUtils.isBlank(id)) {
+			id = BaseContextHandler.getUserID();
+		}
+
 		// 默认属性
 		String[] fields = {"updName","updUser","updHost","updTime"};
 		Field field = ReflectionUtils.getAccessibleField(entity, "updTime");
