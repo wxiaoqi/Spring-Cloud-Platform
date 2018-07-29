@@ -45,7 +45,7 @@ public class EntityUtils {
 		String name = "";
 		String id = "";
 		if(request!=null) {
-			hostIp = StringUtils.defaultIfBlank(request.getHeader("userHost"), IpUtils.getClientRealIp(request));
+			hostIp = StringUtils.defaultIfBlank(request.getHeader("userHost"), ClientUtil.getClientIp(request));
 			name = StringUtils.trimToEmpty(request.getHeader("userName"));
 			name = URLDecoder.decode(name);
 			id = StringUtils.trimToEmpty(request.getHeader("userId"));
@@ -82,7 +82,7 @@ public class EntityUtils {
 		String name = "";
 		String id = "";
 		if(request!=null) {
-			hostIp = StringUtils.defaultIfBlank(request.getHeader("userHost"), IpUtils.getClientRealIp(request));
+			hostIp = StringUtils.defaultIfBlank(request.getHeader("userHost"), ClientUtil.getClientIp(request));
 			name = StringUtils.trimToEmpty(request.getHeader("userName"));
 			name = URLDecoder.decode(name);
 			id = StringUtils.trimToEmpty(request.getHeader("userId"));
