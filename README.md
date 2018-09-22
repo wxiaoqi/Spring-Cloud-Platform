@@ -1,5 +1,10 @@
 # Cloud-Admin(`开源版`）
-Cloud-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系统，其中包含具备用户管理、资源权限管理、网关API管理等多个模块，支持多业务系统并行开发，可以作为后端服务的开发脚手架。代码简洁，架构清晰，适合学习和直接项目中使用。核心技术采用`Spring Boot2`以及`Spring Cloud (Finchley.M8)`相关核心组件，前端采用`vue-element-admin`组件。 
+Cloud-Admin是国内首个基于`Spring 
+Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系统，其中包含具备用户管理、资源权限管理、网关API
+管理等多个模块，支持多业务系统并行开发，可以作为后端服务的开发脚手架。代码简洁，架构清晰，适合学习和直接项目中使用。
+核心技术采用`Spring Boot 
+2.0.1`以及`Spring Cloud (Finchley.RELEASE)
+`相关核心组件，采用`Consul注册中心`，前端采用`vue-element-admin`组件。 
 
 ### QQ群号：169824183
 
@@ -35,6 +40,8 @@ Cloud-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具
 ## 功能截图
 
 ### 基本功能
+
+![image.png](https://geek_qi.oschina.io/ag-admin/img/consul.png)
 
 ![image.png](https://upload-images.jianshu.io/upload_images/5700335-6cc59493c7726637.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
