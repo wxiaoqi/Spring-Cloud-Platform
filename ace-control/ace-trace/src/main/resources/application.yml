@@ -12,6 +12,17 @@ spring:
   sleuth:
     enabled: false
    #表示zipkin数据存储方式是mysql
+  cloud:
+     consul:
+       enabled: true
+       host: 127.0.0.1
+       port: 8500
+       discovery:
+         healthCheckPath: /actuator/health
+         healthCheckInterval: 5s
+         instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+         register: true
+         enabled: true
 
 zipkin:
   storage:

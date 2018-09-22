@@ -49,10 +49,12 @@ spring:
       legacy:
         enabled: true
   cloud:
-    gateway:
-      locator:
-        enabled: true
-      routes:
+     gateway:
+       discovery:
+         locator:
+           lowerCaseServiceId: true
+           enabled: true
+     routes:
       # =====================================
       - id: ace-auth
         uri: lb://ace-auth
@@ -68,7 +70,16 @@ spring:
         - Path=/api/admin/**
         filters:
         - StripPrefix=2
-
+  consul:
+    enabled: true
+    host: 127.0.0.1
+    port: 8500
+    discovery:
+      healthCheckPath: /actuator/health
+      healthCheckInterval: 5s
+      instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+      register: true
+      enabled: true
 
 logging:
   level:
