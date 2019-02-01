@@ -2,16 +2,9 @@ spring:
     application:
         name: ace-monitor
     cloud:
-        consul:
-            enabled: true
-            host: 127.0.0.1
-            port: 8500
-            discovery:
-              healthCheckPath: /actuator/health
-              healthCheckInterval: 5s
-              instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
-              register: true
-              enabled: true
+      nacos:
+        discovery:
+          server-addr: 127.0.0.1:8848
 
 server:
     port: 8764 #启动端口

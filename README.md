@@ -64,11 +64,6 @@ Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系�
 
 ![image.png](http://upload-images.jianshu.io/upload_images/5700335-e83767c67c15c2e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-![image.png](http://upload-images.jianshu.io/upload_images/5700335-901b5df8a68f3922.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![image.png](http://upload-images.jianshu.io/upload_images/5700335-21792b34eaa2e56e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
 
 
 ## License

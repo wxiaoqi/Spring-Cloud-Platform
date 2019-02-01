@@ -15,6 +15,7 @@ public class MenuTree extends TreeNode {
     String authority;
     String redirect;
     String code;
+    String type;
 
     public String getCode() {
         return code;
@@ -111,5 +112,13 @@ public class MenuTree extends TreeNode {
 
     public void setSpread(boolean spread) {
         this.spread = spread;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

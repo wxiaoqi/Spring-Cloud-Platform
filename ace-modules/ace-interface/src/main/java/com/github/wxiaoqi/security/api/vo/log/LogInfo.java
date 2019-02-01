@@ -16,8 +16,7 @@ public class LogInfo implements Serializable{
 
     private String uri;
 
-
-    private Date crtTime;
+    private Long crtTime;
 
     private String crtUser;
 
@@ -25,14 +24,17 @@ public class LogInfo implements Serializable{
 
     private String crtHost;
 
-    public LogInfo(String menu, String option, String uri,  Date crtTime, String crtUser, String crtName, String crtHost) {
+    private String body;
+
+    public LogInfo(String menu, String option, String uri,  Date crtTime, String crtUser, String crtName, String crtHost,String body) {
         this.menu = menu;
         this.opt = option;
         this.uri = uri;
-        this.crtTime = crtTime;
+        this.crtTime = crtTime.getTime();
         this.crtUser = crtUser;
         this.crtName = crtName;
         this.crtHost = crtHost;
+        this.body = body;
     }
 
     public LogInfo() {
@@ -62,12 +64,12 @@ public class LogInfo implements Serializable{
         this.uri = uri;
     }
 
-    public Date getCrtTime() {
+    public Long getCrtTime() {
         return crtTime;
     }
 
     public void setCrtTime(Date crtTime) {
-        this.crtTime = crtTime;
+        this.crtTime = crtTime.getTime();
     }
 
     public String getCrtUser() {
@@ -92,5 +94,13 @@ public class LogInfo implements Serializable{
 
     public void setCrtHost(String crtHost) {
         this.crtHost = crtHost;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
     }
 }

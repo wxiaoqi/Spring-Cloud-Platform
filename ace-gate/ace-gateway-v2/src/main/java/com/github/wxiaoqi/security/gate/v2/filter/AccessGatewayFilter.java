@@ -45,6 +45,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static com.github.wxiaoqi.security.gate.v2.handler.RequestBodyRoutePredicateFactory.REQUEST_BODY_ATTR;
+
 /**
  * @author ace
  * @create 2018/3/12.
@@ -164,7 +166,7 @@ public class AccessGatewayFilter implements GlobalFilter {
 
     private void setCurrentUserInfoAndLog(ServerWebExchange serverWebExchange, IJWTInfo user, PermissionInfo pm) {
         String host = serverWebExchange.getRequest().getRemoteAddress().toString();
-        LogInfo logInfo = new LogInfo(pm.getMenu(), pm.getName(), pm.getUri(), new Date(), user.getId(), user.getName(), host);
+        LogInfo logInfo = new LogInfo(pm.getMenu(), pm.getName(), pm.getUri(), new Date(), user.getId(), user.getName(), host, String.valueOf(serverWebExchange.getAttributes().get(REQUEST_BODY_ATTR)));
         DBLog.getInstance().setLogService(logService).offerQueue(logInfo);
     }
 
