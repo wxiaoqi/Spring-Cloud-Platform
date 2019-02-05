@@ -29,7 +29,6 @@
         <maven.compile.target>1.8</maven.compile.target>
     </properties>
     <modules>
-        <module>ace-center</module>
         <module>ace-gate</module>
         <module>ace-common</module>
         <module>ace-auth</module>
