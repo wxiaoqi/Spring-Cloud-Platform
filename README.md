@@ -41,10 +41,10 @@ Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系�
 
 ![image.png](https://geek_qi.oschina.io/ag-admin/img/consul.png)
 
-![image.png](https://upload-images.jianshu.io/upload_images/5700335-6cc59493c7726637.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 ![image.png](https://upload-images.jianshu.io/upload_images/5700335-c1d6c24e3b126677.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+
+![image.png](https://upload-images.jianshu.io/upload_images/5700335-6cc59493c7726637.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ![img](http://upload-images.jianshu.io/upload_images/5700335-002735d1727ec11b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
