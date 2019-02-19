@@ -1,6 +1,5 @@
 package com.github.wxiaoqi.security.generator.rest;
 
-import com.alibaba.fastjson.JSON;
 import com.github.wxiaoqi.security.common.msg.TableResultResponse;
 import com.github.wxiaoqi.security.generator.service.GeneratorService;
 import org.apache.commons.io.IOUtils;
@@ -44,7 +43,7 @@ public class GeneratorRest {
     public void code(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String[] tableNames = new String[]{};
         String tables = request.getParameter("tables");
-        tableNames = JSON.parseArray(tables).toArray(tableNames);
+        tableNames = tables.split(",");
 
         byte[] data = generatorService.generatorCode(tableNames);
 

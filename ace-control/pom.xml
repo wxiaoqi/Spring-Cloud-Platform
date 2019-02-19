@@ -12,7 +12,6 @@
     <artifactId>ace-control</artifactId>
     <modules>
         <module>ace-monitor</module>
-        <module>ace-trace</module>
     </modules>
 
 

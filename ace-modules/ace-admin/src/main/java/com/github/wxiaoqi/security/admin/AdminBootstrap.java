@@ -30,5 +30,5 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableSwagger2Doc
 public class AdminBootstrap {
     public static void main(String[] args) {
-        new SpringApplicationBuilder(AdminBootstrap.class).web(true).run(args);    }
+        new SpringApplicationBuilder(AdminBootstrap.class).run(args);    }
 }

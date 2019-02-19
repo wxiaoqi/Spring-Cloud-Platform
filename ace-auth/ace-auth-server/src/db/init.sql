@@ -4,17 +4,17 @@ Use ag_auth_v1;
 /*
  Navicat Premium Data Transfer
 
- Source Server         : ag-admin
+ Source Server         : localhost
  Source Server Type    : MySQL
  Source Server Version : 50718
  Source Host           : localhost
- Source Database       : ag_auth
+ Source Database       : ag_auth_v1
 
  Target Server Type    : MySQL
  Target Server Version : 50718
  File Encoding         : utf-8
 
- Date: 01/03/2018 19:13:21 PM
+ Date: 02/05/2019 21:40:34 PM
 */
 
 SET NAMES utf8;
@@ -48,13 +48,13 @@ CREATE TABLE `auth_client` (
   `attr7` varchar(255) DEFAULT NULL,
   `attr8` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Records of `auth_client`
 -- ----------------------------
 BEGIN;
-INSERT INTO `auth_client` VALUES ('1', 'ace-gate', '123456', 'ace-gate', '0', '', null, '', '', '', '2017-07-07 21:51:32', '1', '管理员', '0:0:0:0:0:0:0:1', '', '', '', '', '', '', '', ''), ('3', 'ace-admin', '123456', 'ace-admin', '0', '', null, null, null, null, '2017-07-06 21:42:17', '1', '管理员', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null), ('6', 'ace-auth', '123456', 'ace-auth', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('11', 'ace-config', 'fXHsssa2', 'ace-config', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('12', 'ace-demo-mybatis', 'bZf8yvj9', 'ace-demo-mybatis', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('13', 'ace-template', 'bZf8yvj8', 'ace-template', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `auth_client` VALUES ('1', 'ace-gate', '123456', 'ace-gate', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('3', 'ace-admin', '123456', 'ace-admin', '0', '', null, null, null, null, '2017-07-06 21:42:17', '1', '管理员', '0:0:0:0:0:0:0:1', null, null, null, null, null, null, null, null), ('6', 'ace-auth', '123456', 'ace-auth', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('11', 'ace-config', 'fXHsssa2', 'ace-config', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('13', 'ace-template', 'bZf8yvj8', 'ace-template', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('14', 'ace-trace', 'wKTl6GGE', 'ace-trace', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), ('15', 'ace-monitor', 'eEQBUcnW', 'ace-monitor', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 COMMIT;
 
 -- ----------------------------

@@ -1,9 +1,11 @@
 package com.github.wxiaoqi.security.admin.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "gate_log")
 public class GateLog {
@@ -16,7 +18,10 @@ public class GateLog {
 
     private String uri;
 
+    private String body;
+
     @Column(name = "crt_time")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     private Date crtTime;
 
     @Column(name = "crt_user")
@@ -132,5 +137,13 @@ public class GateLog {
 
     public void setOpt(String opt) {
         this.opt = opt;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
     }
 }
