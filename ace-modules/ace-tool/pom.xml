@@ -42,17 +42,17 @@
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-core</artifactId>
-            <version>6.4.1</version>
+            <version>7.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-queryparser</artifactId>
-            <version>6.4.1</version>
+            <version>7.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-analyzers-common</artifactId>
-            <version>6.4.1</version>
+            <version>7.1.0</version>
         </dependency>
         <!-- 中文分词查询器smartcn-->
         <dependency>
@@ -63,7 +63,7 @@
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-highlighter</artifactId>
-            <version>6.4.1</version>
+            <version>7.1.0</version>
         </dependency>
 
         <dependency>
