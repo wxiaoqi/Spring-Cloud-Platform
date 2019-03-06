@@ -38,7 +38,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 public class ToolBootstrap {
     public static void main(String[] args) {
-        new SpringApplicationBuilder(ToolBootstrap.class).web(true).run(args);
+        new SpringApplicationBuilder(ToolBootstrap.class).run(args);
     }
 
 }

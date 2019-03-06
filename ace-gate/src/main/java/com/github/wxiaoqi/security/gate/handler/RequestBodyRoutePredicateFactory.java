@@ -53,7 +53,7 @@ public class RequestBodyRoutePredicateFactory
     @Override
     public AsyncPredicate<ServerWebExchange> applyAsync(Config config) {
         return exchange -> {
-            if ("GET".equals(exchange.getRequest().getMethodValue())) {
+            if (!"POST".equals(exchange.getRequest().getMethodValue())) {
                 return Mono.just(true);
             }
             Object cachedBody = exchange.getAttribute(REQUEST_BODY_ATTR);

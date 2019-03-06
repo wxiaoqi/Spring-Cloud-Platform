@@ -1,14 +1,16 @@
 package com.github.wxiaoqi.security.admin.rest;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.github.wxiaoqi.security.admin.biz.GroupBiz;
 import com.github.wxiaoqi.security.admin.biz.ResourceAuthorityBiz;
 import com.github.wxiaoqi.security.admin.constant.AdminCommonConstant;
+import com.github.wxiaoqi.security.admin.entity.Group;
 import com.github.wxiaoqi.security.admin.vo.AuthorityMenuTree;
+import com.github.wxiaoqi.security.admin.vo.GroupTree;
 import com.github.wxiaoqi.security.admin.vo.GroupUsers;
 import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
-import io.swagger.annotations.*;
+import com.github.wxiaoqi.security.common.rest.BaseController;
+import com.github.wxiaoqi.security.common.util.TreeUtil;
+import io.swagger.annotations.Api;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +19,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.github.wxiaoqi.security.admin.biz.GroupBiz;
-import com.github.wxiaoqi.security.admin.entity.Group;
-import com.github.wxiaoqi.security.admin.vo.GroupTree;
-import com.github.wxiaoqi.security.common.rest.BaseController;
-import com.github.wxiaoqi.security.common.util.TreeUtil;
-
 import tk.mybatis.mapper.entity.Example;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ${DESCRIPTION}
@@ -71,7 +69,7 @@ public class GroupController extends BaseController<GroupBiz, Group> {
         return new ObjectRestResponse<GroupUsers>().rel(true).data(baseBiz.getGroupUsers(id));
     }
 
-    @RequestMapping(value = "/{id}/authority/menu", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/authority/menu", method = RequestMethod.PUT)
     @ResponseBody
     public ObjectRestResponse modifyMenuAuthority(@PathVariable  int id, String menuTrees){
         String [] menus = menuTrees.split(",");
@@ -85,14 +83,14 @@ public class GroupController extends BaseController<GroupBiz, Group> {
         return new ObjectRestResponse().data(baseBiz.getAuthorityMenu(id)).rel(true);
     }
 
-    @RequestMapping(value = "/{id}/authority/element/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/authority/element/add", method = RequestMethod.PUT)
     @ResponseBody
     public ObjectRestResponse addElementAuthority(@PathVariable  int id,int menuId, int elementId){
         baseBiz.modifyAuthorityElement(id,menuId,elementId);
         return new ObjectRestResponse().rel(true);
     }
 
-    @RequestMapping(value = "/{id}/authority/element/remove", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/authority/element/remove", method = RequestMethod.PUT)
     @ResponseBody
     public ObjectRestResponse removeElementAuthority(@PathVariable int id,int menuId, int elementId){
         baseBiz.removeAuthorityElement(id,menuId,elementId);
