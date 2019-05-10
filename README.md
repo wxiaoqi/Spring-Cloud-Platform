@@ -1,7 +1,7 @@
 # Cloud-Admin(`开源项目`）
 Cloud-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系统，其中包含具备用户管理、资源权限管理、网关API管理等多个模块，支持多业务系统并行开发，可以作为后端服务的开发脚手架。代码简洁，架构清晰，适合学习和直接项目中使用。核心技术采用`Spring Boot2`以及`Spring Cloud (Finchley.M8)`相关核心组件，前端采用`vue-element-admin`组件。 QQ群号：169824183
 
-## 该项目由他人进行维护，最新地址：https://gitee.com/minull/ace-security
+## 该项目由他人进行维护，最新地址：https://gitee.com/minull
 ### 开源用户登记，宣传用：[点击打开](https://gitee.com/minull/ace-security/issues/II9SP)
 ### 最新更新日志，[点击查看](https://gitee.com/minull/ace-security/wikis/Cloud-Admin%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
 
