@@ -8,7 +8,7 @@ Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系�
 
 ### QQ群号：169824183(1)、661605461(2)
 
-### 开源用户登记，宣传用：[点击打开](https://gitee.com/minull/ace-security/issues/II9SP)
+### 开源用户登记，宣传用：[点击打开](https://gitee.com/geek_qi/cloud-platform/issues/II9SP)
 
 ### 最新更新日志，[点击查看](https://gitee.com/geek_qi/cloud-platform/wikis/Cloud-Platform更新日志?sort_id=320050)
 
