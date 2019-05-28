@@ -15,7 +15,7 @@ Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系�
 ### 基础文档，[点击查看](https://gitee.com/geek_qi/cloud-platform/wikis/Home)
 
 # 模块说明
-![image.png](https://upload-images.jianshu.io/upload_images/5700335-dab38445194e6729.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![架构图](https://images.gitee.com/uploads/images/2019/0528/205306_9a8b8d83_1899222.png "1.png")
 
 ### 架构摘要
 #### 服务鉴权
@@ -39,32 +39,28 @@ Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系�
 
 ### 基本功能
 # 功能截图
-![image.png](https://upload-images.jianshu.io/upload_images/5700335-bb4d5072f32f5927.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205334_7a892d09_1899222.png "2.png")
 
-![image.png](https://upload-images.jianshu.io/upload_images/5700335-a9f26458195dca0f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205343_124202af_1899222.png "3.png")
 
-![image.png](https://upload-images.jianshu.io/upload_images/5700335-6cc59493c7726637.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205353_2fd7c93f_1899222.png "4.png")
 
-![image.png](https://upload-images.jianshu.io/upload_images/5700335-6d1898aec1f8d6ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205407_942a9540_1899222.png "5.png")
 
-![img](http://upload-images.jianshu.io/upload_images/5700335-002735d1727ec11b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205420_01f6b933_1899222.png "6.png")
 
-![img](http://upload-images.jianshu.io/upload_images/5700335-e5e56924aaeacf1e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205429_5c7bb102_1899222.png "7.png")
 
-![img](http://upload-images.jianshu.io/upload_images/5700335-b3044673b4a55203.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205438_f1cd07c4_1899222.png "8.png")
 
-![img](http://upload-images.jianshu.io/upload_images/5700335-75151a17ae4319cf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205447_878d8a39_1899222.png "9.png")
 
-![img](http://upload-images.jianshu.io/upload_images/5700335-ab942829c130389e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205456_ec6fe29c_1899222.png "10.png")
 
-![img](http://upload-images.jianshu.io/upload_images/5700335-30e6df679695f150.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205504_1ecaec42_1899222.png "11.png")
 
-![img](http://upload-images.jianshu.io/upload_images/5700335-347e3e761188a824.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205514_27cd17dc_1899222.png "12.png")
 
-![img](http://upload-images.jianshu.io/upload_images/5700335-569696e4e70e5ad2.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![image.png](http://upload-images.jianshu.io/upload_images/5700335-e83767c67c15c2e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205521_7379cb06_1899222.png "13.png")
 ## License
 Apache License Version 2.0
