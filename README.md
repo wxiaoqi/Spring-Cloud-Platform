@@ -161,3 +161,6 @@ npm 版本：3.10.10
 ## License
 Apache License Version 2.0
 
+## 公众号
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0712/085724_6dbd2d31_547642.jpeg "qrcode_for_gh_e5a084d37c0d_258 (1).jpg")
+
