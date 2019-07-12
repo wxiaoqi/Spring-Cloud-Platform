@@ -8,6 +8,9 @@ Cloud-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具
 # 模块说明
 ![image.png](http://upload-images.jianshu.io/upload_images/5700335-8d69f4e885a4ec85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+## 公众号
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0712/091503_c2618a08_547642.jpeg "qrcode_for_gh_e5a084d37c0d_258 (2).jpg")
+
 ### 架构摘要
 #### 服务鉴权
 老A独有的通过`JWT`的方式来加强服务之间调度的权限验证，保证内部服务的安全性。
@@ -161,6 +164,4 @@ npm 版本：3.10.10
 ## License
 Apache License Version 2.0
 
-## 公众号
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0712/085724_6dbd2d31_547642.jpeg "qrcode_for_gh_e5a084d37c0d_258 (1).jpg")
 
