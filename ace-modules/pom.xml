@@ -13,7 +13,6 @@
 
     <modules>
         <module>ace-admin</module>
-        <module>ace-interface</module>
         <module>ace-generator</module>
         <module>ace-tool</module>
     </modules>

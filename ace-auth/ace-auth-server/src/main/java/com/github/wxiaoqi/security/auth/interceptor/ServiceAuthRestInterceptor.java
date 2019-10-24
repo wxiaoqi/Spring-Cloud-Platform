@@ -23,10 +23,13 @@ public class ServiceAuthRestInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
     private ClientTokenUtil clientTokenUtil;
+
     @Autowired
     private AuthClientService authClientService;
+
     @Autowired
     private ClientConfiguration clientConfiguration;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HandlerMethod handlerMethod = (HandlerMethod) handler;

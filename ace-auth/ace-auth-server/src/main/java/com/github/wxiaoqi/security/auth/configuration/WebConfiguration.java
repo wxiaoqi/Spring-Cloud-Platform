@@ -24,7 +24,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(getServiceAuthRestInterceptor()).addPathPatterns("/service/**");
+//        registry.addInterceptor(getServiceAuthRestInterceptor()).addPathPatterns("/service/**");
         registry.addInterceptor(getUserAuthRestInterceptor()).addPathPatterns("/service/**");
     }
 

@@ -7,7 +7,6 @@ import com.github.wxiaoqi.security.auth.common.util.jwt.IJWTInfo;
 import com.github.wxiaoqi.security.common.exception.auth.ClientForbiddenException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -22,10 +21,10 @@ import java.util.List;
 public class ServiceAuthRestInterceptor extends HandlerInterceptorAdapter {
     private Logger logger = LoggerFactory.getLogger(ServiceAuthRestInterceptor.class);
 
-    @Autowired
+//    @Autowired
     private ServiceAuthUtil serviceAuthUtil;
-
-    @Autowired
+//
+//    @Autowired
     private ServiceAuthConfig serviceAuthConfig;
 
     private List<String> allowedClient;

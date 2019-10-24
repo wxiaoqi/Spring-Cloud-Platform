@@ -67,15 +67,15 @@ public class AccessGatewayFilter implements GlobalFilter {
     private static final String GATE_WAY_PREFIX = "/api";
     @Autowired
     private UserAuthUtil userAuthUtil;
-
-    @Autowired
-    private ServiceAuthConfig serviceAuthConfig;
+//
+//    @Autowired
+//    private ServiceAuthConfig serviceAuthConfig;
 
     @Autowired
     private UserAuthConfig userAuthConfig;
 
-    @Autowired
-    private ServiceAuthUtil serviceAuthUtil;
+//    @Autowired
+//    private ServiceAuthUtil serviceAuthUtil;
 
     @Override
     public Mono<Void> filter(ServerWebExchange serverWebExchange, GatewayFilterChain gatewayFilterChain) {
@@ -118,7 +118,7 @@ public class AccessGatewayFilter implements GlobalFilter {
             }
         }
         // 申请客户端密钥头
-        mutate.header(serviceAuthConfig.getTokenHeader(), serviceAuthUtil.getClientToken());
+//        mutate.header(serviceAuthConfig.getTokenHeader(), serviceAuthUtil.getClientToken());
         ServerHttpRequest build = mutate.build();
         return gatewayFilterChain.filter(serverWebExchange.mutate().request(build).build());
 
@@ -147,17 +147,14 @@ public class AccessGatewayFilter implements GlobalFilter {
      * @return
      */
     private Stream<PermissionInfo> getPermissionIfs(final String requestUri, final String method, List<PermissionInfo> serviceInfo) {
-        return serviceInfo.parallelStream().filter(new Predicate<PermissionInfo>() {
-            @Override
-            public boolean test(PermissionInfo permissionInfo) {
-                String uri = permissionInfo.getUri();
-                if (uri.indexOf("{") > 0) {
-                    uri = uri.replaceAll("\\{\\*\\}", "[a-zA-Z\\\\d]+");
-                }
-                String regEx = "^" + uri + "$";
-                return (Pattern.compile(regEx).matcher(requestUri).find())
-                        && method.equals(permissionInfo.getMethod());
+        return serviceInfo.parallelStream().filter(permissionInfo -> {
+            String uri = permissionInfo.getUri();
+            if (uri.indexOf("{") > 0) {
+                uri = uri.replaceAll("\\{\\*\\}", "[a-zA-Z\\\\d]+");
             }
+            String regEx = "^" + uri + "$";
+            return (Pattern.compile(regEx).matcher(requestUri).find())
+                    && method.equals(permissionInfo.getMethod());
         });
     }
 
@@ -196,12 +193,7 @@ public class AccessGatewayFilter implements GlobalFilter {
         List<PermissionInfo> permissionInfos = userService.getPermissionByUsername(user.getUniqueName());
         PermissionInfo current = null;
         for (PermissionInfo info : permissions) {
-            boolean anyMatch = permissionInfos.parallelStream().anyMatch(new Predicate<PermissionInfo>() {
-                @Override
-                public boolean test(PermissionInfo permissionInfo) {
-                    return permissionInfo.getCode().equals(info.getCode());
-                }
-            });
+            boolean anyMatch = permissionInfos.parallelStream().anyMatch(permissionInfo -> permissionInfo.getCode().equals(info.getCode()));
             if (anyMatch) {
                 current = info;
                 break;

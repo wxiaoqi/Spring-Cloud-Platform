@@ -1,6 +1,5 @@
 package com.github.wxiaoqi.security.admin.config;
 
-import com.github.wxiaoqi.security.auth.client.interceptor.ServiceAuthRestInterceptor;
 import com.github.wxiaoqi.security.auth.client.interceptor.UserAuthRestInterceptor;
 import com.github.wxiaoqi.security.common.handler.GlobalExceptionHandler;
 import org.springframework.context.annotation.Bean;
@@ -27,16 +26,16 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(getServiceAuthRestInterceptor()).
-                addPathPatterns(getIncludePathPatterns()).addPathPatterns("/api/user/validate");
+//        registry.addInterceptor(getServiceAuthRestInterceptor()).
+//                addPathPatterns(getIncludePathPatterns()).addPathPatterns("/api/user/validate");
         registry.addInterceptor(getUserAuthRestInterceptor()).
                 addPathPatterns(getIncludePathPatterns());
     }
 
-    @Bean
-    ServiceAuthRestInterceptor getServiceAuthRestInterceptor() {
-        return new ServiceAuthRestInterceptor();
-    }
+//    @Bean
+//    ServiceAuthRestInterceptor getServiceAuthRestInterceptor() {
+//        return new ServiceAuthRestInterceptor();
+//    }
 
     @Bean
     UserAuthRestInterceptor getUserAuthRestInterceptor() {

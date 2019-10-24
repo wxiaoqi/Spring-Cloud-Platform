@@ -37,12 +37,12 @@ public class AuthClientRunner implements CommandLineRunner {
         }catch(Exception e){
             log.error("初始化加载用户pubKey失败,1分钟后自动重试!",e);
         }
-        log.info("初始化加载客户pubKey");
-        try {
-            refreshServicePubKey();
-        }catch(Exception e){
-            log.error("初始化加载客户pubKey失败,1分钟后自动重试!",e);
-        }
+//        log.info("初始化加载客户pubKey");
+//        try {
+//            refreshServicePubKey();
+//        }catch(Exception e){
+//            log.error("初始化加载客户pubKey失败,1分钟后自动重试!",e);
+//        }
     }
     @Scheduled(cron = "0 0/1 * * * ?")
     public void refreshUserPubKey(){
@@ -52,13 +52,14 @@ public class AuthClientRunner implements CommandLineRunner {
             this.userAuthConfig.setPubKeyByte(userResponse.getData());
         }
     }
-    @Scheduled(cron = "0 0/1 * * * ?")
-    public void refreshServicePubKey(){
-        BaseResponse resp = serviceAuthFeign.getServicePublicKey(serviceAuthConfig.getClientId(), serviceAuthConfig.getClientSecret());
-        if (resp.getStatus() == HttpStatus.OK.value()) {
-            ObjectRestResponse<byte[]> userResponse = (ObjectRestResponse<byte[]>) resp;
-            this.serviceAuthConfig.setPubKeyByte(userResponse.getData());
-        }
-    }
+
+//    @Scheduled(cron = "0 0/1 * * * ?")
+//    public void refreshServicePubKey(){
+//        BaseResponse resp = serviceAuthFeign.getServicePublicKey(serviceAuthConfig.getClientId(), serviceAuthConfig.getClientSecret());
+//        if (resp.getStatus() == HttpStatus.OK.value()) {
+//            ObjectRestResponse<byte[]> userResponse = (ObjectRestResponse<byte[]>) resp;
+//            this.serviceAuthConfig.setPubKeyByte(userResponse.getData());
+//        }
+//    }
 
 }
