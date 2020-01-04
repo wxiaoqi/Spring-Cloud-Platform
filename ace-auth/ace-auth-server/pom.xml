@@ -129,7 +129,7 @@
             <version>${boot.admin.client}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
+            <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
         <!--<dependency>-->
@@ -137,7 +137,7 @@
             <!--<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>-->
         <!--</dependency>-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
+            <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
     </dependencies>
