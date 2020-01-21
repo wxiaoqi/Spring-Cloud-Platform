@@ -35,7 +35,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>5.0.4.RELEASE</version>
+            <version>5.1.0.RELEASE</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
