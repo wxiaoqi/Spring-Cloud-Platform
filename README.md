@@ -5,7 +5,7 @@ Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系�
 核心技术采用`Spring Boot 
 2.1.2`以及`Spring Cloud (Greenwich.RELEASE)
 `相关核心组件，采用`Nacos`注册和配置中心，集成流量卫兵`Sentinel`，前端采用`vue-element-admin`组件，`Elastic Search`自行集成。
-### 体验地址(付费版）：http://118.126.104.133:81/，admin/admin
+### 体验地址(付费版）：http://118.126.104.133:81/    admin/admin
 
 ### QQ群号：169824183(1)、661605461(2)、592462556(3)
 
