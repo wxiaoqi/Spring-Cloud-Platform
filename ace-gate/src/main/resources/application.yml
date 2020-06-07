@@ -1,0 +1,112 @@
+server:
+  port: 8765
+
+#请求和响应GZIP压缩支持
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+
+spring:
+  application:
+      name: ace-gateway
+  redis:
+      database: 2
+      host: 127.0.0.1
+      jedis:
+        pool:
+            max-active: 20
+  rabbitmq:
+      host: ${RABBIT_MQ_HOST:localhost}
+      port:  ${RABBIT_MQ_PORT:5672}
+      username: guest
+      password: guest
+  sleuth:
+    enabled: true
+    http:
+      legacy:
+        enabled: true
+  cloud:
+     gateway:
+       discovery:
+         locator:
+           lowerCaseServiceId: true
+           enabled: true
+       routes:
+        # =====================================
+        - id: ace-auth
+          uri: lb://ace-admin
+          order: 8000
+          predicates:
+          - Path=/api/auth/**
+          filters:
+          - StripPrefix=2
+        - id: ace-admin
+          uri: lb://ace-admin
+          order: 8001
+          predicates:
+          - Path=/api/admin/**
+          filters:
+          - StripPrefix=2
+     nacos:
+        discovery:
+          server-addr: 127.0.0.1:8848
+  sentinel:
+    transport:
+      dashboard: localhost:8080
+logging:
+  level:
+    com.github.wxiaoqi.security.gate.v2: info
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  security:
+    enabled: false
+
+
+gate:
+  ignore:
+    startWith: /auth/jwt
+
+
+auth:
+  serviceId: ace-admin
+  user:
+    token-header: Authorization
+  client:
+    id: ace-gate  #不填则默认读取spring.application.name
+    secret: 123456
+
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1000 ##并发执行的最大线程数，默认10
+      maxQueueSize: 1000 ##BlockingQueue的最大队列数
+      queueSizeRejectionThreshold: 500 ##即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000

@@ -1,0 +1,18 @@
+package ${package}.biz;
+
+import org.springframework.stereotype.Service;
+
+import ${package}.entity.${className};
+import ${package}.mapper.${className}Mapper;
+import com.github.wxiaoqi.security.common.biz.BaseBiz;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+@Service
+public class ${className}Biz extends BaseBiz<${className}Mapper,${className}> {
+}

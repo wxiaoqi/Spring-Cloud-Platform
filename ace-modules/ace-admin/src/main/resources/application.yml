@@ -1,0 +1,130 @@
+logging:
+    level:
+#        tk.mybatis: DEBUG
+        com.github.wxiaoqi.security.admin: DEBUG
+spring:
+    application:
+        name: ace-admin
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        default-property-inclusion: non_null
+    datasource:
+        name: test
+        url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/cloud_admin_v1?useUnicode=true&characterEncoding=UTF8
+        username: root
+        password: 123456
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+#    rabbitmq:
+#        host: ${RABBIT_MQ_HOST:localhost}
+#        port:  ${RABBIT_MQ_PORT:5672}
+#        username: guest
+#        password: guest
+#    sleuth:
+#        enabled: true
+#          http:
+#            legacy:
+#              enabled: true
+    cloud:
+      nacos:
+        discovery:
+          server-addr: 127.0.0.1:8848
+      sentinel:
+        transport:
+          dashboard: localhost:8080
+sample:
+  zipkin:
+    # When enabled=false, traces log to the console. Comment to send to zipkin
+    enabled: false
+
+mybatis:
+    basepackage: com.github.wxiaoqi.security.admin.modules.mapper
+    xmlLocation: classpath:mapper/**/*.xml
+    mapper-locations: "classpath*:mapper/*.xml"
+
+server:
+    port: 8762
+
+# 必须配置
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 100000
+  ConnectTimeout: 100000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1000 ##并发执行的最大线程数，默认10
+      maxQueueSize: 1000 ##BlockingQueue的最大队列数
+      queueSizeRejectionThreshold: 500 ##即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 110000
+
+
+# 配置swagger
+swagger:
+    enabled: true
+    base-package: com.github.wxiaoqi.security.admin
+    title: ace-admin
+    version: 1.0.0.SNAPSHOT
+    description: 管理后端服务
+    contact:
+        name: admin
+
+#redis-cache 相关
+redis:
+    pool:
+         maxActive: 300
+         maxIdle: 100
+         maxWait: 1000
+    host: ${REDIS_HOST:localhost}
+    port:  ${REDIS_PORT:6379}
+    password:
+    timeout: 2000
+    # 服务或应用名
+    sysName: cloud-admin
+    enable: true
+    database: 0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  security:
+    enabled: false
+
+# 自定义Jwt认证服务
+jwt:
+  token-header: Authorization
+  expire: 14400
+  rsa-secret: xx1WET12^%3^(WE45

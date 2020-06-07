@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.wxiaoqi.security.modules.admin.mapper.GateLogMapper" >
+  <resultMap id="BaseResultMap" type="com.github.wxiaoqi.security.modules.admin.entity.GateLog" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="menu" property="menu" jdbcType="VARCHAR" />
+    <result column="option" property="option" jdbcType="VARCHAR" />
+    <result column="uri" property="uri" jdbcType="VARCHAR" />
+    <result column="crt_time" property="crtTime" jdbcType="DATE" />
+    <result column="crt_user" property="crtUser" jdbcType="VARCHAR" />
+    <result column="crt_name" property="crtName" jdbcType="VARCHAR" />
+    <result column="crt_host" property="crtHost" jdbcType="VARCHAR" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,84 @@
+2019-10-24 22:52:45,177 INFO com.alibaba.nacos.naming.core.VirtualClusterDomain@512179a {POS} {IP-UPDATE} [192.168.0.102:8764:unknown_1.0_true_false_DEFAULT], action: add
+
+2019-10-24 22:52:45,180 INFO ace-monitor {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.0.102:8764:unknown_1.0_true_false_DEFAULT]
+
+2019-10-24 22:52:45,184 INFO [IP-UPDATED] dom: ace-monitor, ips: 192.168.0.102:8764_true,
+
+2019-10-24 22:55:22,234 INFO com.alibaba.nacos.naming.core.VirtualClusterDomain@6d3deb3f {POS} {IP-UPDATE} [192.168.0.102:8762:unknown_1.0_true_false_DEFAULT], action: add
+
+2019-10-24 22:55:22,234 INFO ace-admin {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.0.102:8762:unknown_1.0_true_false_DEFAULT]
+
+2019-10-24 22:55:22,234 INFO [IP-UPDATED] dom: ace-admin, ips: 192.168.0.102:8762_true,
+
+2019-10-24 22:57:24,306 INFO com.alibaba.nacos.naming.core.VirtualClusterDomain@6d3deb3f {POS} {IP-UPDATE} [192.168.0.102:8762:unknown_1.0_true_false_DEFAULT], action: remove
+
+2019-10-24 22:57:24,307 INFO dom: ace-admin {POS} {IP-REMV} new: [{"app":"","clusterName":"DEFAULT","enabled":true,"instanceId":"","ip":"192.168.0.102","lastBeat":1571929044303,"marked":false,"metadata":{},"port":8762,"serviceName":"","tenant":"","valid":true,"weight":1}] operatorIP: unknown
+
+2019-10-24 22:57:24,308 INFO ace-admin {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.0.102:8762:unknown_1.0_true_false_DEFAULT]
+
+2019-10-24 22:57:24,308 INFO [IP-UPDATED] dom: ace-admin, ips: 
+
+2019-10-24 22:58:46,874 INFO com.alibaba.nacos.naming.core.VirtualClusterDomain@2c81bf45 {POS} {IP-UPDATE} [192.168.0.102:9777:unknown_1.0_true_false_DEFAULT], action: add
+
+2019-10-24 22:58:46,875 INFO ace-auth {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.0.102:9777:unknown_1.0_true_false_DEFAULT]
+
+2019-10-24 22:58:46,875 INFO [IP-UPDATED] dom: ace-auth, ips: 192.168.0.102:9777_true,
+
+2019-10-24 22:59:55,361 INFO com.alibaba.nacos.naming.core.VirtualClusterDomain@6d3deb3f {POS} {IP-UPDATE} [192.168.0.102:8762:unknown_1.0_true_false_DEFAULT], action: add
+
+2019-10-24 22:59:55,363 INFO ace-admin {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.0.102:8762:unknown_1.0_true_false_DEFAULT]
+
+2019-10-24 22:59:55,365 INFO [IP-UPDATED] dom: ace-admin, ips: 192.168.0.102:8762_true,
+
+2019-10-24 23:06:37,489 INFO com.alibaba.nacos.naming.core.VirtualClusterDomain@30a1d883 {POS} {IP-UPDATE} [192.168.0.102:8765:unknown_1.0_true_false_DEFAULT], action: add
+
+2019-10-24 23:06:37,491 INFO ace-gateway {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.0.102:8765:unknown_1.0_true_false_DEFAULT]
+
+2019-10-24 23:06:37,491 INFO [IP-UPDATED] dom: ace-gateway, ips: 192.168.0.102:8765_true,
+
+2019-10-24 23:19:30,529 INFO com.alibaba.nacos.naming.core.VirtualClusterDomain@6d3deb3f {POS} {IP-UPDATE} [192.168.0.102:8762:unknown_1.0_true_false_DEFAULT], action: remove
+
+2019-10-24 23:19:30,536 INFO dom: ace-admin {POS} {IP-REMV} new: [{"app":"","clusterName":"DEFAULT","enabled":true,"instanceId":"","ip":"192.168.0.102","lastBeat":1571930370503,"marked":false,"metadata":{},"port":8762,"serviceName":"","tenant":"","valid":true,"weight":1}] operatorIP: unknown
+
+2019-10-24 23:19:30,541 INFO ace-admin {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.0.102:8762:unknown_1.0_true_false_DEFAULT]
+
+2019-10-24 23:19:30,542 INFO [IP-UPDATED] dom: ace-admin, ips: 
+
+2019-10-24 23:20:39,628 INFO com.alibaba.nacos.naming.core.VirtualClusterDomain@6d3deb3f {POS} {IP-UPDATE} [192.168.0.102:8762:unknown_1.0_true_false_DEFAULT], action: add
+
+2019-10-24 23:20:39,633 INFO ace-admin {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.0.102:8762:unknown_1.0_true_false_DEFAULT]
+
+2019-10-24 23:20:39,633 INFO [IP-UPDATED] dom: ace-admin, ips: 192.168.0.102:8762_true,
+
+2019-10-24 23:26:26,109 INFO com.alibaba.nacos.naming.core.VirtualClusterDomain@512179a {POS} {IP-UPDATE} [192.168.0.102:8764:unknown_1.0_true_false_DEFAULT], action: remove
+
+2019-10-24 23:26:26,113 INFO dom: ace-monitor {POS} {IP-REMV} new: [{"app":"","clusterName":"DEFAULT","enabled":true,"instanceId":"","ip":"192.168.0.102","lastBeat":1571930786093,"marked":false,"metadata":{},"port":8764,"serviceName":"","tenant":"","valid":true,"weight":1}] operatorIP: unknown
+
+2019-10-24 23:26:26,120 INFO ace-monitor {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.0.102:8764:unknown_1.0_true_false_DEFAULT]
+
+2019-10-24 23:26:26,120 INFO [IP-UPDATED] dom: ace-monitor, ips: 
+
+2019-10-24 23:26:27,985 INFO com.alibaba.nacos.naming.core.VirtualClusterDomain@6d3deb3f {POS} {IP-UPDATE} [192.168.0.102:8762:unknown_1.0_true_false_DEFAULT], action: remove
+
+2019-10-24 23:26:27,985 INFO dom: ace-admin {POS} {IP-REMV} new: [{"app":"","clusterName":"DEFAULT","enabled":true,"instanceId":"","ip":"192.168.0.102","lastBeat":1571930787984,"marked":false,"metadata":{},"port":8762,"serviceName":"","tenant":"","valid":true,"weight":1}] operatorIP: unknown
+
+2019-10-24 23:26:27,985 INFO ace-admin {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.0.102:8762:unknown_1.0_true_false_DEFAULT]
+
+2019-10-24 23:26:27,985 INFO [IP-UPDATED] dom: ace-admin, ips: 
+
+2019-10-24 23:26:28,739 INFO com.alibaba.nacos.naming.core.VirtualClusterDomain@2c81bf45 {POS} {IP-UPDATE} [192.168.0.102:9777:unknown_1.0_true_false_DEFAULT], action: remove
+
+2019-10-24 23:26:28,740 INFO dom: ace-auth {POS} {IP-REMV} new: [{"app":"","clusterName":"DEFAULT","enabled":true,"instanceId":"","ip":"192.168.0.102","lastBeat":1571930788739,"marked":false,"metadata":{},"port":9777,"serviceName":"","tenant":"","valid":true,"weight":1}] operatorIP: unknown
+
+2019-10-24 23:26:28,740 INFO ace-auth {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.0.102:9777:unknown_1.0_true_false_DEFAULT]
+
+2019-10-24 23:26:28,741 INFO [IP-UPDATED] dom: ace-auth, ips: 
+
+2019-10-24 23:26:28,897 INFO com.alibaba.nacos.naming.core.VirtualClusterDomain@30a1d883 {POS} {IP-UPDATE} [192.168.0.102:8765:unknown_1.0_true_false_DEFAULT], action: remove
+
+2019-10-24 23:26:28,897 INFO dom: ace-gateway {POS} {IP-REMV} new: [{"app":"","clusterName":"DEFAULT","enabled":true,"instanceId":"","ip":"192.168.0.102","lastBeat":1571930788896,"marked":false,"metadata":{},"port":8765,"serviceName":"","tenant":"","valid":true,"weight":1}] operatorIP: unknown
+
+2019-10-24 23:26:28,897 INFO ace-gateway {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.0.102:8765:unknown_1.0_true_false_DEFAULT]
+
+2019-10-24 23:26:28,897 INFO [IP-UPDATED] dom: ace-gateway, ips: 
+

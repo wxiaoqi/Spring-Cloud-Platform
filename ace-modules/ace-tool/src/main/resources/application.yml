@@ -1,0 +1,33 @@
+logging:
+    level:
+#        tk.mybatis: DEBUG
+        com.github.wxiaoqi: DEBUG
+server:
+    port: 9992
+
+spring:
+    profiles:
+      active: dev
+    application:
+        name: ace-tool
+    rabbitmq:
+      host: ${RABBIT_MQ_HOST:localhost}
+      port:  ${RABBIT_MQ_PORT:5672}
+      username: guest
+      password: guest
+    sleuth:
+        sampler:
+            percentage: 1
+
+search:
+  lucence:
+    path: ./lucence/file
+
+# 具体看类:CloudStorageConfig
+oss:
+  type: 1 # 类型 1：七牛  2：阿里云  3：腾讯云
+  qiniuDomain: http://xxxxx.com
+  qiniuPrefix: oss
+  qiniuAccessKey: xxxxxx
+  qiniuSecretKey: xxxxx
+  qiniuBucketName: xxxBucket

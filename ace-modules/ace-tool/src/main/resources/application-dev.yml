@@ -1,0 +1,12 @@
+# 具体看类:CloudStorageConfig
+oss:
+  type: 1 # 类型 1：七牛  2：阿里云  3：腾讯云
+  qiniuDomain: http://ofsc32t59.bkt.clouddn.com
+  qiniuPrefix: oss
+  qiniuAccessKey: FAvmtRaY_yUC6Taj0b3sM8k2Wa6BDOUBy3KVBdT_
+  qiniuSecretKey: a0P8OtyJv7weu7_z9YtXzplfcIzKtcHR2da_qemk
+  qiniuBucketName: image
+
+search:
+  lucence:
+    path: ./lucence/file

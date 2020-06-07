@@ -1,0 +1,29 @@
+server:
+    port: 5688 #启动端口
+
+spring:
+    application:
+        name: ace-sidecar-server
+    cloud:
+       consul:
+           enabled: true
+           host: 127.0.0.1
+           port: 8500
+           discovery:
+             healthCheckPath: /actuator/health
+             healthCheckInterval: 5s
+             instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+             register: true
+             enabled: true
+sidecar:
+    port: 5680 #python接口
+    health:
+        uri: http://localhost:${sidecar.port}/health
+
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/

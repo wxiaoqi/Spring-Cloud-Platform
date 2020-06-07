@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.wxiaoqi.security.modules.auth.mapper.ClientServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.github.wxiaoqi.security.modules.auth.entity.ClientService" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="service_id" property="serviceId" jdbcType="VARCHAR" />
+    <result column="client_id" property="clientId" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="crt_time" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="crt_user" property="crtUser" jdbcType="VARCHAR" />
+    <result column="crt_name" property="crtName" jdbcType="VARCHAR" />
+    <result column="crt_host" property="crtHost" jdbcType="VARCHAR" />
+    <result column="attr1" property="attr1" jdbcType="VARCHAR" />
+    <result column="attr2" property="attr2" jdbcType="VARCHAR" />
+    <result column="attr3" property="attr3" jdbcType="VARCHAR" />
+    <result column="attr4" property="attr4" jdbcType="VARCHAR" />
+    <result column="attr5" property="attr5" jdbcType="VARCHAR" />
+    <result column="attr6" property="attr6" jdbcType="VARCHAR" />
+    <result column="attr7" property="attr7" jdbcType="VARCHAR" />
+    <result column="attr8" property="attr8" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByServiceId">
+      delete from auth_client_service where client_id = #{id}
+  </delete>
+
+</mapper>
