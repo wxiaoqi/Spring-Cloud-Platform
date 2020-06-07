@@ -43,7 +43,7 @@ spring:
        routes:
         # =====================================
         - id: ace-auth
-          uri: lb://ace-auth
+          uri: lb://ace-admin
           order: 8000
           predicates:
           - Path=/api/auth/**
@@ -81,11 +81,10 @@ gate:
 
 
 auth:
-  serviceId: ace-auth
+  serviceId: ace-admin
   user:
     token-header: Authorization
   client:
-    token-header: x-client-token
     id: ace-gate  #不填则默认读取spring.application.name
     secret: 123456
 

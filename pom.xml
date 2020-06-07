@@ -22,7 +22,7 @@
         <version>2.1.2.RELEASE</version>
     </parent>
     <properties>
-        <docker.image.prefix>ag</docker.image.prefix>
+        <docker.image.prefix>ace</docker.image.prefix>
         <docker.plugin.version>0.4.13</docker.plugin.version>
         <mapper.version>3.4.0</mapper.version>
         <maven.compile.source>1.8</maven.compile.source>
@@ -31,12 +31,11 @@
     </properties>
     <modules>
         <module>ace-gate</module>
-        <module>ace-common</module>
         <module>ace-api</module>
-        <module>ace-auth</module>
         <module>ace-sidecar</module>
         <module>ace-control</module>
         <module>ace-modules</module>
+        <module>ace-dev-base</module>
     </modules>
     <packaging>pom</packaging>
     <developers>

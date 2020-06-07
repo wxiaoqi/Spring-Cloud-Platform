@@ -90,7 +90,7 @@
         </dependency>
         <dependency>
             <groupId>com.github.wxiaoqi</groupId>
-            <artifactId>ace-auth-client</artifactId>
+            <artifactId>ace-auth-sdk</artifactId>
             <version>2.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -133,6 +133,34 @@
     <build>
         <finalName>ace-gate</finalName>
         <plugins>
+            <!--<plugin>-->
+                <!--<groupId>com.spotify</groupId>-->
+                <!--<artifactId>docker-maven-plugin</artifactId>-->
+                <!--<version>${docker.plugin.version}</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>build</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+                <!--<configuration>-->
+                    <!--<skipDocker>${docker.image.skip}</skipDocker>-->
+                    <!--<imageName>-->
+                        <!--${docker.image.prefix}/${project.build.finalName}-->
+                    <!--</imageName>-->
+                    <!--<dockerDirectory>${project.basedir}/src/main/docker-->
+                    <!--</dockerDirectory>-->
+                    <!--<resources>-->
+                        <!--<resource>-->
+                            <!--<targetPath>/</targetPath>-->
+                            <!--<directory>${project.build.directory}</directory>-->
+                            <!--<include>${project.build.finalName}.jar</include>-->
+                        <!--</resource>-->
+                    <!--</resources>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

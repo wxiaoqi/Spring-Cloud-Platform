@@ -11,9 +11,9 @@ spring:
         default-property-inclusion: non_null
     datasource:
         name: test
-        url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/ag_admin_v1?useUnicode=true&characterEncoding=UTF8
+        url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/cloud_admin_v1?useUnicode=true&characterEncoding=UTF8
         username: root
-        password: 123456QWE
+        password: 123456
         # 使用druid数据源
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
@@ -53,7 +53,7 @@ sample:
     enabled: false
 
 mybatis:
-    basepackage: com.github.wxiaoqi.security.admin.mapper
+    basepackage: com.github.wxiaoqi.security.admin.modules.mapper
     xmlLocation: classpath:mapper/**/*.xml
     mapper-locations: "classpath*:mapper/*.xml"
 
@@ -100,15 +100,6 @@ swagger:
     contact:
         name: admin
 
-auth:
-  serviceId: ace-auth
-  user:
-    token-header: Authorization
-  client:
-    id: ace-admin
-    secret: 123456
-    token-header: x-client-token
-
 #redis-cache 相关
 redis:
     pool:
@@ -120,7 +111,7 @@ redis:
     password:
     timeout: 2000
     # 服务或应用名
-    sysName: ace-admin
+    sysName: cloud-admin
     enable: true
     database: 0
 
@@ -132,3 +123,8 @@ management:
   security:
     enabled: false
 
+# 自定义Jwt认证服务
+jwt:
+  token-header: Authorization
+  expire: 14400
+  rsa-secret: xx1WET12^%3^(WE45

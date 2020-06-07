@@ -15,9 +15,9 @@
         <!-- MyBatis Generator -->
         <!-- Java接口和实体类 -->
         <targetJavaProject>${basedir}/src/main/java</targetJavaProject>
-        <targetMapperPackage>com.github.wxiaoqi.security.admin.mapper
+        <targetMapperPackage>com.github.wxiaoqi.security.admin.modules.mapper
         </targetMapperPackage>
-        <targetModelPackage>com.github.wxiaoqi.security.admin.entity
+        <targetModelPackage>com.github.wxiaoqi.security.admin.modules.entity
         </targetModelPackage>
         <!-- XML生成路径 -->
         <targetResourcesProject>${basedir}/src/main/resources
@@ -145,11 +145,6 @@
         </dependency>
         <dependency>
             <groupId>com.github.wxiaoqi</groupId>
-            <artifactId>ace-auth-client</artifactId>
-            <version>2.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.wxiaoqi</groupId>
             <artifactId>ace-cache</artifactId>
             <version>0.0.2</version>
         </dependency>
@@ -175,6 +170,11 @@
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-client</artifactId>
             <version>${boot.admin.client}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
     </dependencies>

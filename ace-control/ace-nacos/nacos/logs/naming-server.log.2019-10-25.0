@@ -1,0 +1,146 @@
+2019-10-25 02:31:20,293 WARN server beat out of date, current: {"adWeight":0,"alive":true,"ip":"192.168.0.102:8848","lastRefTime":1571941880013,"lastRefTimeStr":"2019-10-25 02:31:20","site":"unknown","weight":2}, last: {"adWeight":0,"alive":false,"ip":"192.168.0.102:8848","lastRefTime":1571931077541,"lastRefTimeStr":"2019-10-24 23:31:17","site":"unknown","weight":2}
+
+2019-10-25 04:31:35,225 WARN server beat out of date, current: {"adWeight":0,"alive":true,"ip":"192.168.0.102:8848","lastRefTime":1571949094883,"lastRefTimeStr":"2019-10-25 04:31:34","site":"unknown","weight":2}, last: {"adWeight":0,"alive":false,"ip":"192.168.0.102:8848","lastRefTime":1571941880013,"lastRefTimeStr":"2019-10-25 02:31:20","site":"unknown","weight":2}
+
+2019-10-25 05:15:47,557 WARN server beat out of date, current: {"adWeight":0,"alive":true,"ip":"192.168.0.102:8848","lastRefTime":1571951747498,"lastRefTimeStr":"2019-10-25 05:15:47","site":"unknown","weight":2}, last: {"adWeight":0,"alive":false,"ip":"192.168.0.102:8848","lastRefTime":1571949094883,"lastRefTimeStr":"2019-10-25 04:31:34","site":"unknown","weight":2}
+
+2019-10-25 07:16:27,792 WARN server beat out of date, current: {"adWeight":0,"alive":true,"ip":"192.168.0.102:8848","lastRefTime":1571958987784,"lastRefTimeStr":"2019-10-25 07:16:27","site":"unknown","weight":2}, last: {"adWeight":0,"alive":false,"ip":"192.168.0.102:8848","lastRefTime":1571951777566,"lastRefTimeStr":"2019-10-25 05:16:17","site":"unknown","weight":2}
+
+2019-10-25 08:30:42,674 WARN server beat out of date, current: {"adWeight":0,"alive":true,"ip":"192.168.0.102:8848","lastRefTime":1571963442547,"lastRefTimeStr":"2019-10-25 08:30:42","site":"unknown","weight":2}, last: {"adWeight":0,"alive":false,"ip":"192.168.0.102:8848","lastRefTime":1571958987784,"lastRefTimeStr":"2019-10-25 07:16:27","site":"unknown","weight":2}
+
+2019-10-25 08:30:48,768 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 08:35:48,787 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 08:40:48,797 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 08:45:48,803 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 08:50:48,812 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 08:55:48,819 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 09:00:48,826 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 09:05:48,835 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 09:10:48,845 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 09:15:48,858 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 09:20:48,872 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 09:25:48,881 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 09:30:48,894 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 09:35:48,900 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 09:40:48,907 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 09:45:48,917 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 09:50:48,927 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 09:55:48,939 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 10:00:48,949 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 10:05:48,957 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 10:10:48,965 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 10:15:48,980 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 10:20:48,989 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 10:25:48,998 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 10:30:49,007 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 10:35:49,013 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 10:40:49,025 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 10:45:49,033 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 10:50:49,040 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 10:55:49,049 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 11:00:49,062 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 11:05:49,070 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 11:10:49,815 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 11:15:49,822 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 11:20:49,825 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 11:25:49,828 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 11:30:49,840 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 11:35:49,850 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 11:40:49,862 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 11:45:49,868 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 11:50:49,903 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 11:55:49,911 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 12:00:49,915 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 12:05:49,921 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 12:10:49,936 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 12:15:49,951 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 12:20:49,954 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 12:25:49,958 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 12:30:49,967 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 12:35:49,976 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 12:40:49,988 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 12:45:49,991 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 12:50:50,004 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 12:55:50,011 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 13:00:50,019 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 13:05:50,032 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 13:10:50,045 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 13:15:50,055 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 13:20:50,063 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 13:25:50,071 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 13:30:50,084 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 13:35:50,097 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 13:40:50,109 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 13:45:50,122 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 13:50:50,134 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 13:55:50,147 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 14:00:50,152 INFO [HEALTH-CHECK] health check is true
+
+2019-10-25 14:05:50,164 INFO [HEALTH-CHECK] health check is true
+

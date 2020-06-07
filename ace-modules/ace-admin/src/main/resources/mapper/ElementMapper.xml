@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.github.wxiaoqi.security.admin.mapper.ElementMapper">
-    <resultMap id="BaseResultMap" type="com.github.wxiaoqi.security.admin.entity.Element">
+<mapper namespace="com.github.wxiaoqi.security.modules.admin.mapper.ElementMapper">
+    <resultMap id="BaseResultMap" type="com.github.wxiaoqi.security.modules.admin.entity.Element">
         <!--
           WARNING - @mbggenerated
         -->
