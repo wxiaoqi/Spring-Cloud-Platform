@@ -3,7 +3,7 @@ package com.github.wxiaoqi.security.modules.admin.constant;
 /**
  * ${DESCRIPTION}
  *
- * @author wanghaobin
+ * @author the sun
  * @create 2017-06-17 14:41
  */
 public class AdminCommonConstant {

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * ${DESCRIPTION}
  *
- * @author wanghaobin
+ * @author the sun
  * @create 2017-06-19 13:03
  */
 public class AuthorityMenuTree extends TreeNode implements Serializable{

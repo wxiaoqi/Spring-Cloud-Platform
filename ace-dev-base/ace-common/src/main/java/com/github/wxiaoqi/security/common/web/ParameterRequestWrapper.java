@@ -15,7 +15,7 @@ import java.util.Vector;
 /**
  * ${DESCRIPTION}
  *
- * @author wanghaobin
+ * @author the sun
  * @create 2017-07-01 17:04
  */
 public class ParameterRequestWrapper extends HttpServletRequestWrapper {

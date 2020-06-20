@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * ${DESCRIPTION}
  *
- * @author wanghaobin
+ * @author the sun
  * @create 2017-07-01 15:16
  */
 @FeignClient("ace-admin")

@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>ace-dev-base</artifactId>
-
+    <packaging>pom</packaging>
     <modules>
         <module>ace-common</module>
         <module>ace-auth-sdk</module>

@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * ${DESCRIPTION}
  *
- * @author wanghaobin
+ * @author the sun
  * @create 2017-06-14 22:40
  */
 public class TableResultResponse<T> extends BaseResponse {

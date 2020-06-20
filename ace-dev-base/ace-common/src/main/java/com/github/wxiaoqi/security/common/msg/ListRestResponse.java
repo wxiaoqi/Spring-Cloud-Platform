@@ -3,7 +3,7 @@ package com.github.wxiaoqi.security.common.msg;
 /**
  * ${DESCRIPTION}
  *
- * @author wanghaobin
+ * @author the sun
  * @create 2017-06-09 7:32
  */
 public class ListRestResponse<T> {

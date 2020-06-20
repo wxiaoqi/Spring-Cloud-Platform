@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>ace-security</artifactId>
+        <artifactId>ace-dev-base</artifactId>
         <groupId>com.github.wxiaoqi</groupId>
         <version>2.0-SNAPSHOT</version>
     </parent>
@@ -57,7 +57,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>5.0.4.RELEASE</version>
+            <version>5.1.4.RELEASE</version>
         </dependency>
 
 
@@ -80,6 +80,8 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
         </dependency>
+
+
 
     </dependencies>
 

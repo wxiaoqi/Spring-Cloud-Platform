@@ -1,6 +1,6 @@
 /*
  *
- *  *  Copyright (C) 2018  Wanghaobin<463540703@qq.com>
+ *  *  Copyright (C) 2018  the sun<463540703@qq.com>
  *
  *  *  AG-Enterprise 企业版源码
  *  *  郑重声明:

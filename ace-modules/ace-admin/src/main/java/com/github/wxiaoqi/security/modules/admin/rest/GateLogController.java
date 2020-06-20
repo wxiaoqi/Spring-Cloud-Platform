@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * ${DESCRIPTION}
  *
- * @author wanghaobin
+ * @author the sun
  * @create 2017-07-01 20:32
  */
 @Controller

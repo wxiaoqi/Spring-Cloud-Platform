@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * ${DESCRIPTION}
  *
- * @author wanghaobin
+ * @author the sun
  * @create 2017-06-21 8:12
  */
 public class UserInfo implements Serializable{
