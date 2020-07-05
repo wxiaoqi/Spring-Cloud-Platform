@@ -1,11 +1,12 @@
 package com.github.wxiaoqi.security.modules.auth.controller;
 
-import com.github.wxiaoqi.security.modules.auth.biz.ClientBiz;
-import com.github.wxiaoqi.security.modules.auth.entity.Client;
-import com.github.wxiaoqi.security.modules.auth.entity.ClientService;
 import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import com.github.wxiaoqi.security.common.rest.BaseController;
+import com.github.wxiaoqi.security.modules.auth.biz.ClientBiz;
+import com.github.wxiaoqi.security.modules.auth.entity.Client;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author ace
@@ -19,12 +20,12 @@ public class ServiceController extends BaseController<ClientBiz,Client>{
     @ResponseBody
     public ObjectRestResponse modifyUsers(@PathVariable int id, String clients){
         baseBiz.modifyClientServices(id, clients);
-        return new ObjectRestResponse().rel(true);
+        return new ObjectRestResponse();
     }
 
     @RequestMapping(value = "/{id}/client", method = RequestMethod.GET)
     @ResponseBody
-    public ObjectRestResponse<ClientService> getUsers(@PathVariable int id){
-        return new ObjectRestResponse<ClientService>().rel(true).data(baseBiz.getClientServices(id));
+    public ObjectRestResponse<List<Client>> getUsers(@PathVariable int id){
+        return new ObjectRestResponse<List<Client>>().data(baseBiz.getClientServices(id));
     }
 }

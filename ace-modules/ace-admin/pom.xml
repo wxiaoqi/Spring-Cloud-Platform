@@ -137,7 +137,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>20.0</version>
+            <version>[24.1.1,)</version>
         </dependency>
         <dependency>
             <groupId>com.github.wxiaoqi</groupId>

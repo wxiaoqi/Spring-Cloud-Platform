@@ -17,7 +17,7 @@ feign:
 
 spring:
   application:
-      name: ace-gateway
+      name: ace-gate
   redis:
       database: 2
       host: 127.0.0.1
