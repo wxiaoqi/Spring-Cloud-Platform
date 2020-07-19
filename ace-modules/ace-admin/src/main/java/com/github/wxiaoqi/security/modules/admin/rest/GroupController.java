@@ -39,9 +39,9 @@ public class GroupController extends BaseController<GroupBiz, Group> {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public List<Group> list(String name,String groupType) {
+    public ObjectRestResponse<List<Group>> list(String name,String groupType) {
         if(StringUtils.isBlank(name)&&StringUtils.isBlank(groupType)) {
-            return new ArrayList<Group>();
+            return new ObjectRestResponse<>().data(new ArrayList<Group>());
         }
         Example example = new Example(Group.class);
         if (StringUtils.isNotBlank(name)) {
@@ -51,7 +51,7 @@ public class GroupController extends BaseController<GroupBiz, Group> {
             example.createCriteria().andEqualTo("groupType", groupType);
         }
 
-        return baseBiz.selectByExample(example);
+        return new ObjectRestResponse().data(baseBiz.selectByExample(example));
     }
 
 

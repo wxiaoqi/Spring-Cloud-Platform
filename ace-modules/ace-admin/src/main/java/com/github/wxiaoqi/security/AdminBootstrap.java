@@ -1,6 +1,5 @@
 package com.github.wxiaoqi.security;
 
-import com.ace.cache.EnableAceCache;
 import com.spring4all.swagger.EnableSwagger2Doc;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,7 +17,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableDiscoveryClient
 @EnableCircuitBreaker
 @SpringBootApplication
-@EnableAceCache
 @EnableTransactionManagement
 @MapperScan("com.github.wxiaoqi.security.modules.*.mapper")
 @EnableSwagger2Doc

@@ -1,12 +1,9 @@
 package com.github.wxiaoqi.security.modules.admin.biz;
 
-import com.ace.cache.annotation.Cache;
-import com.ace.cache.annotation.CacheClear;
 import com.github.wxiaoqi.security.common.biz.BaseBiz;
-import com.github.wxiaoqi.security.common.constant.UserConstant;
 import com.github.wxiaoqi.security.modules.admin.entity.User;
 import com.github.wxiaoqi.security.modules.admin.mapper.UserMapper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import com.github.wxiaoqi.security.modules.admin.util.Sha256PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,15 +17,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = Exception.class)
 public class UserBiz extends BaseBiz<UserMapper,User> {
 
+    private Sha256PasswordEncoder encoder = new Sha256PasswordEncoder();
+
     @Override
     public void insertSelective(User entity) {
-        String password = new BCryptPasswordEncoder(UserConstant.PW_ENCORDER_SALT).encode(entity.getPassword());
+        String password = encoder.encode(entity.getPassword());
         entity.setPassword(password);
         super.insertSelective(entity);
     }
 
     @Override
-    @CacheClear(pre="user{1.username}")
     public void updateSelectiveById(User entity) {
         super.updateSelectiveById(entity);
     }
@@ -38,7 +36,6 @@ public class UserBiz extends BaseBiz<UserMapper,User> {
      * @param username
      * @return
      */
-    @Cache(key="user{1}")
     public User getUserByUsername(String username){
         User user = new User();
         user.setUsername(username);

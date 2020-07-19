@@ -3,8 +3,10 @@ package com.github.wxiaoqi.security.modules.auth.service;
 
 import com.github.wxiaoqi.security.modules.auth.util.user.JwtAuthenticationRequest;
 
+import java.util.Map;
+
 public interface AuthService {
-    String login(JwtAuthenticationRequest authenticationRequest) throws Exception;
+    Map login(JwtAuthenticationRequest authenticationRequest) throws Exception;
     String refresh(String oldToken) throws Exception;
     void validate(String token) throws Exception;
 }

@@ -36,6 +36,16 @@ spring:
         enabled: true
   cloud:
      gateway:
+       default-filters:
+         - DedupeResponseHeader=Access-Control-Allow-Origin
+       globalcors:
+         add-to-simple-url-handler-mapping: true
+         corsConfigurations:
+           '[/**]':
+             allowed-origins: "*"
+             allowed-methods: "*"
+             allowed-headers: "*"
+             allow-credentials: true
        discovery:
          locator:
            lowerCaseServiceId: true

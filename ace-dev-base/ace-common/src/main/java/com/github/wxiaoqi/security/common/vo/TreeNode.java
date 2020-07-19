@@ -1,6 +1,5 @@
 package com.github.wxiaoqi.security.common.vo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ public class TreeNode {
         this.children = children;
     }
 
-    List<TreeNode> children = new ArrayList<TreeNode>();
+    List<TreeNode> children = null;
 
     public int getId() {
         return id;

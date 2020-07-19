@@ -1,5 +1,6 @@
 package com.github.wxiaoqi.security.modules.admin.rest;
 
+import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import com.github.wxiaoqi.security.modules.admin.biz.MenuBiz;
 import com.github.wxiaoqi.security.modules.admin.biz.UserBiz;
 import com.github.wxiaoqi.security.modules.admin.entity.Menu;
@@ -34,22 +35,22 @@ public class MenuController extends BaseController<MenuBiz, Menu> {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public List<Menu> list(String title) {
+    public ObjectRestResponse<List<Menu>> list(String title) {
         Example example = new Example(Menu.class);
         if (StringUtils.isNotBlank(title)) {
             example.createCriteria().andLike("title", "%" + title + "%");
         }
-        return baseBiz.selectByExample(example);
+        return new ObjectRestResponse<>().data(baseBiz.selectByExample(example));
     }
 
     @RequestMapping(value = "/tree", method = RequestMethod.GET)
     @ResponseBody
-    public List<MenuTree> getTree(String title) {
+    public ObjectRestResponse<List<MenuTree>> getTree(String title) {
         Example example = new Example(Menu.class);
         if (StringUtils.isNotBlank(title)) {
             example.createCriteria().andLike("title", "%" + title + "%");
         }
-        return getMenuTree(baseBiz.selectByExample(example), AdminCommonConstant.ROOT);
+        return new ObjectRestResponse<>().data(getMenuTree(baseBiz.selectByExample(example), AdminCommonConstant.ROOT));
     }
 
 

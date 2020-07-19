@@ -1,11 +1,9 @@
 package com.github.wxiaoqi.security.modules.admin.biz;
 
-import com.ace.cache.annotation.Cache;
-import com.ace.cache.annotation.CacheClear;
+import com.github.wxiaoqi.security.common.biz.BaseBiz;
 import com.github.wxiaoqi.security.modules.admin.constant.AdminCommonConstant;
 import com.github.wxiaoqi.security.modules.admin.entity.Menu;
 import com.github.wxiaoqi.security.modules.admin.mapper.MenuMapper;
-import com.github.wxiaoqi.security.common.biz.BaseBiz;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,13 +19,11 @@ import java.util.List;
 @Transactional(rollbackFor = Exception.class)
 public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
     @Override
-    @Cache(key="permission:menu")
     public List<Menu> selectListAll() {
         return super.selectListAll();
     }
 
     @Override
-    @CacheClear(keys={"permission:menu","permission"})
     public void insertSelective(Menu entity) {
         if (AdminCommonConstant.ROOT == entity.getParentId()) {
             entity.setPath("/" + entity.getCode());
@@ -39,7 +35,6 @@ public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
     }
 
     @Override
-    @CacheClear(keys={"permission:menu","permission"})
     public void updateById(Menu entity) {
         if (AdminCommonConstant.ROOT == entity.getParentId()) {
             entity.setPath("/" + entity.getCode());
@@ -51,7 +46,6 @@ public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
     }
 
     @Override
-    @CacheClear(keys={"permission:menu","permission"})
     public void updateSelectiveById(Menu entity) {
         super.updateSelectiveById(entity);
     }
@@ -62,7 +56,6 @@ public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
      * @param id
      * @return
      */
-    @Cache(key = "permission:menu:u{1}")
     public List<Menu> getUserAuthorityMenuByUserId(int id) {
         return mapper.selectAuthorityMenuByUserId(id);
     }

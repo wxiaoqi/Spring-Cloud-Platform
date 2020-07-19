@@ -1,8 +1,8 @@
 package com.github.wxiaoqi.security.modules.auth.controller;
 
+import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import com.github.wxiaoqi.security.modules.auth.service.AuthService;
 import com.github.wxiaoqi.security.modules.auth.util.user.JwtAuthenticationRequest;
-import com.github.wxiaoqi.security.common.msg.ObjectRestResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 @RestController
 @RequestMapping("jwt")
@@ -27,8 +28,8 @@ public class  AuthController {
     public ObjectRestResponse<String> createAuthenticationToken(
             @RequestBody JwtAuthenticationRequest authenticationRequest) throws Exception {
         log.info(authenticationRequest.getUsername()+" require logging...");
-        final String token = authService.login(authenticationRequest);
-        return new ObjectRestResponse<>().data(token);
+        Map result = authService.login(authenticationRequest);
+        return new ObjectRestResponse<>().data(result);
     }
 
     @RequestMapping(value = "refresh", method = RequestMethod.GET)

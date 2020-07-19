@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserTokenException.class)
     public BaseResponse userTokenExceptionHandler(HttpServletResponse response, UserTokenException ex) {
-        response.setStatus(200);
+        response.setStatus(401);
         logger.error(ex.getMessage(),ex);
         return new BaseResponse(ex.getStatus(), ex.getMessage());
     }

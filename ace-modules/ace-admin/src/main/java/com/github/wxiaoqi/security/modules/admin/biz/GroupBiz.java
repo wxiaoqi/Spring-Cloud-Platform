@@ -1,6 +1,6 @@
 package com.github.wxiaoqi.security.modules.admin.biz;
 
-import com.ace.cache.annotation.CacheClear;
+import com.github.wxiaoqi.security.common.biz.BaseBiz;
 import com.github.wxiaoqi.security.modules.admin.constant.AdminCommonConstant;
 import com.github.wxiaoqi.security.modules.admin.entity.Group;
 import com.github.wxiaoqi.security.modules.admin.entity.Menu;
@@ -11,7 +11,6 @@ import com.github.wxiaoqi.security.modules.admin.mapper.ResourceAuthorityMapper;
 import com.github.wxiaoqi.security.modules.admin.mapper.UserMapper;
 import com.github.wxiaoqi.security.modules.admin.vo.AuthorityMenuTree;
 import com.github.wxiaoqi.security.modules.admin.vo.GroupUsers;
-import com.github.wxiaoqi.security.common.biz.BaseBiz;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,7 +74,6 @@ public class GroupBiz extends BaseBiz<GroupMapper, Group> {
      * @param members
      * @param leaders
      */
-    @CacheClear(pre = "permission")
     public void modifyGroupUsers(int groupId, String members, String leaders) {
         mapper.deleteGroupLeadersById(groupId);
         mapper.deleteGroupMembersById(groupId);
@@ -99,7 +97,6 @@ public class GroupBiz extends BaseBiz<GroupMapper, Group> {
      * @param groupId
      * @param menus
      */
-    @CacheClear(keys = {"permission:menu","permission:u"})
     public void modifyAuthorityMenu(int groupId, String[] menus) {
         resourceAuthorityMapper.deleteByAuthorityIdAndResourceType(groupId + "", AdminCommonConstant.RESOURCE_TYPE_MENU);
         List<Menu> menuList = menuMapper.selectAll();
@@ -138,7 +135,6 @@ public class GroupBiz extends BaseBiz<GroupMapper, Group> {
      * @param menuId
      * @param elementId
      */
-    @CacheClear(keys = {"permission:ele","permission:u"})
     public void modifyAuthorityElement(int groupId, int menuId, int elementId) {
         ResourceAuthority authority = new ResourceAuthority(AdminCommonConstant.AUTHORITY_TYPE_GROUP, AdminCommonConstant.RESOURCE_TYPE_BTN);
         authority.setAuthorityId(groupId + "");
@@ -154,7 +150,6 @@ public class GroupBiz extends BaseBiz<GroupMapper, Group> {
      * @param menuId
      * @param elementId
      */
-    @CacheClear(keys = {"permission:ele","permission:u"})
     public void removeAuthorityElement(int groupId, int menuId, int elementId) {
         ResourceAuthority authority = new ResourceAuthority();
         authority.setAuthorityId(groupId + "");

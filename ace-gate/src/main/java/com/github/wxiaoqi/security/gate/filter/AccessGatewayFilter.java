@@ -82,9 +82,9 @@ public class AccessGatewayFilter implements GlobalFilter {
         String requestUri = request.getPath().pathWithinApplication().value();
         if (requiredAttribute != null) {
             Iterator<URI> iterator = requiredAttribute.iterator();
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
                 URI next = iterator.next();
-                if(next.getPath().startsWith(GATE_WAY_PREFIX)){
+                if (next.getPath().startsWith(GATE_WAY_PREFIX)) {
                     requestUri = next.getPath().substring(GATE_WAY_PREFIX.length());
                 }
             }
@@ -102,7 +102,7 @@ public class AccessGatewayFilter implements GlobalFilter {
             user = getJWTUser(request, mutate);
         } catch (Exception e) {
             log.error("用户Token过期异常", e);
-            return getVoidMono(serverWebExchange, new TokenForbiddenResponse("User Token Forbidden or Expired!"));
+            return getVoidMono(serverWebExchange, new TokenForbiddenResponse("User Token Forbidden or Expired!"),HttpStatus.UNAUTHORIZED);
         }
         List<PermissionInfo> permissionIfs = userService.getAllPermissionInfo();
         // 判断资源是否启用权限约束
@@ -111,7 +111,7 @@ public class AccessGatewayFilter implements GlobalFilter {
         PermissionInfo[] permissions = result.toArray(new PermissionInfo[]{});
         if (permissions.length > 0) {
             if (checkUserPermission(permissions, serverWebExchange, user)) {
-                return getVoidMono(serverWebExchange, new TokenForbiddenResponse("User Forbidden!Does not has Permission!"));
+                return getVoidMono(serverWebExchange, new TokenForbiddenResponse("User Forbidden!Does not has Permission!"),HttpStatus.FORBIDDEN);
             }
         }
         // 申请客户端密钥头
@@ -127,8 +127,8 @@ public class AccessGatewayFilter implements GlobalFilter {
      * @param body
      */
     @NotNull
-    private Mono<Void> getVoidMono(ServerWebExchange serverWebExchange, BaseResponse body) {
-        serverWebExchange.getResponse().setStatusCode(HttpStatus.OK);
+    private Mono<Void> getVoidMono(ServerWebExchange serverWebExchange, BaseResponse body,HttpStatus status) {
+        serverWebExchange.getResponse().setStatusCode(status);
         byte[] bytes = JSONObject.toJSONString(body).getBytes(StandardCharsets.UTF_8);
         DataBuffer buffer = serverWebExchange.getResponse().bufferFactory().wrap(bytes);
         return serverWebExchange.getResponse().writeWith(Flux.just(buffer));

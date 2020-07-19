@@ -15,8 +15,9 @@ public class ObjectRestResponse<T> extends BaseResponse {
         return data;
     }
 
-    public void setData(T data) {
+    public ObjectRestResponse setData(T data) {
         this.data = data;
+        return this;
     }
 
 

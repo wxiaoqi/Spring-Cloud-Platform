@@ -97,6 +97,9 @@ public class JWTHelper {
      * @throws Exception
      */
     public static IJWTInfo getInfoFromToken(String token, byte[] pubKey) throws Exception {
+        if(token.startsWith("Bearer")){
+            token = token.replace("Bearer ","");
+        }
         Jws<Claims> claimsJws = parserToken(token, pubKey);
         Claims body = claimsJws.getBody();
         return new JWTInfo(body.getSubject(), StringHelper.getObjectValue(body.get(CommonConstants.JWT_KEY_USER_ID)), StringHelper.getObjectValue(body.get(CommonConstants.JWT_KEY_NAME)));

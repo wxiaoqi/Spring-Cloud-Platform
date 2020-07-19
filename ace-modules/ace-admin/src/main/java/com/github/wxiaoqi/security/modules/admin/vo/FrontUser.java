@@ -15,6 +15,8 @@ public class FrontUser {
     private String image;
     private List<PermissionInfo> menus;
     private List<PermissionInfo> elements;
+
+
     public String getImage() {
         return image;
     }
