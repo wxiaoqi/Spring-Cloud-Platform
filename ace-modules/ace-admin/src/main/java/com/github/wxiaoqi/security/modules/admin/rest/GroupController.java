@@ -106,9 +106,9 @@ public class GroupController extends BaseController<GroupBiz, Group> {
 
     @RequestMapping(value = "/tree", method = RequestMethod.GET)
     @ResponseBody
-    public List<GroupTree> tree(String name, String groupType) {
+    public ObjectRestResponse<List<GroupTree>> tree(String name, String groupType) {
         if(StringUtils.isBlank(name)&&StringUtils.isBlank(groupType)) {
-            return new ArrayList<GroupTree>();
+            return new ObjectRestResponse<>().data(new ArrayList<GroupTree>());
         }
         Example example = new Example(Group.class);
         if (StringUtils.isNotBlank(name)) {
@@ -117,7 +117,7 @@ public class GroupController extends BaseController<GroupBiz, Group> {
         if (StringUtils.isNotBlank(groupType)) {
             example.createCriteria().andEqualTo("groupType", groupType);
         }
-        return  getTree(baseBiz.selectByExample(example), AdminCommonConstant.ROOT);
+        return  new ObjectRestResponse<>().data(getTree(baseBiz.selectByExample(example), AdminCommonConstant.ROOT));
     }
 
 

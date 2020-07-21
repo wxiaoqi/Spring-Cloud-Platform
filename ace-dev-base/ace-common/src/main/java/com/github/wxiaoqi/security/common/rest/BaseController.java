@@ -57,8 +57,8 @@ public class BaseController<Biz extends BaseBiz,Entity> {
 
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     @ResponseBody
-    public List<Entity> all(){
-        return baseBiz.selectListAll();
+    public ObjectRestResponse<List<Entity>> all(){
+        return new ObjectRestResponse<>().data(baseBiz.selectListAll());
     }
     @RequestMapping(value = "/page",method = RequestMethod.GET)
     @ResponseBody

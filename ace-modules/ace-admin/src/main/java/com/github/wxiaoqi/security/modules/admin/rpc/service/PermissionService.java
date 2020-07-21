@@ -187,11 +187,12 @@ public class PermissionService {
             interfaces.add(accessInterface);
         }
         frontUser.setAccessMenus(TreeUtil.bulid(trees, AdminCommonConstant.ROOT));
+        List<AccessRouteTree> routes = new ArrayList<>();
         for(Integer menuId:menuIds){
-            routeTrees = TreeUtil.bulid(routeTrees, menuId);
+            routes.addAll(TreeUtil.bulid(routeTrees, menuId));
         }
         frontUser.setAccessHeader(header);
-        frontUser.setAccessRoutes(routeTrees);
+        frontUser.setAccessRoutes(routes);
         frontUser.setUserPermissions(permissions);
         frontUser.setUserName(user.getName());
         frontUser.setAccessInterfaces(interfaces);
