@@ -14,7 +14,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableAceAuthClient
-@EnableFeignClients({"com.github.wxiaoqi.security.auth.client.feign","com.github.wxiaoqi.security.gate.feign"})
+//TODO 切换为webclient
+@EnableFeignClients({"com.github.wxiaoqi.security.auth.client.feign"})
 public class GatewayServerBootstrap {
     public static void main(String[] args) {
         DBLog.getInstance().start();

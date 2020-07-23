@@ -1,7 +1,7 @@
 package com.github.wxiaoqi.security.gate.utils;
 
 import com.github.wxiaoqi.security.api.vo.log.LogInfo;
-import com.github.wxiaoqi.security.gate.feign.ILogService;
+import com.github.wxiaoqi.security.gate.service.LogService;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -20,18 +20,18 @@ public class DBLog extends Thread {
     private static DBLog dblog = null;
     private static BlockingQueue<LogInfo> logInfoQueue = new LinkedBlockingQueue<LogInfo>(1024);
 
-    public ILogService getLogService() {
+    public LogService getLogService() {
         return logService;
     }
 
-    public DBLog setLogService(ILogService logService) {
+    public DBLog setLogService(LogService logService) {
         if(this.logService==null) {
             this.logService = logService;
         }
         return this;
     }
 
-    private ILogService logService;
+    private LogService logService;
     public static synchronized DBLog getInstance() {
         if (dblog == null) {
             dblog = new DBLog();

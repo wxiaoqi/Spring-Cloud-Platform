@@ -3,7 +3,7 @@ package com.github.wxiaoqi.security.modules.admin.vo;
 import lombok.Data;
 
 /**
- * @author wanghaobin
+ * @author Ths Sun
  * @create 2020/7/17.
  */
 @Data

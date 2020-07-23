@@ -53,6 +53,8 @@ spring:
       sentinel:
         transport:
           dashboard: localhost:8080
+    sleuth:
+      enabled: false
 sample:
   zipkin:
     # When enabled=false, traces log to the console. Comment to send to zipkin

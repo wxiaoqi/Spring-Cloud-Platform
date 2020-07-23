@@ -26,7 +26,7 @@ public class EntityUtils {
 	 * 快速将bean的crtUser、crtHost、crtTime、updUser、updHost、updTime附上相关值
 	 * 
 	 * @param entity 实体bean 
-	 * @author 王浩彬
+	 * @author Ths Sun
 	 */
 	public static <T> void setCreatAndUpdatInfo(T entity) {
 		setCreateInfo(entity);
@@ -37,7 +37,7 @@ public class EntityUtils {
 	 * 快速将bean的crtUser、crtHost、crtTime附上相关值
 	 * 
 	 * @param entity 实体bean
-	 * @author 王浩彬
+	 * @author Ths Sun
 	 */
 	public static <T> void setCreateInfo(T entity){
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
@@ -74,7 +74,7 @@ public class EntityUtils {
 	 * 快速将bean的updUser、updHost、updTime附上相关值
 	 * 
 	 * @param entity 实体bean
-	 * @author 王浩彬
+	 * @author Ths Sun
 	 */
 	public static <T> void setUpdatedInfo(T entity){
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
@@ -111,7 +111,7 @@ public class EntityUtils {
 	 * @param entity 对象
 	 * @param fields 属性数组
 	 * @param value 值数组
-	 * @author 王浩彬
+	 * @author Ths Sun
 	 */
 	private static <T> void setDefaultValues(T entity, String[] fields, Object[] value) {
 		for(int i=0;i<fields.length;i++){
@@ -127,7 +127,7 @@ public class EntityUtils {
 	 * @param entity
 	 * @param field
 	 * @return 主键为空，则返回false；主键有值，返回true
-	 * @author 王浩彬
+	 * @author Ths Sun
 	 * @date 2016年4月28日
 	 */
 	public static <T> boolean isPKNotNull(T entity,String field){

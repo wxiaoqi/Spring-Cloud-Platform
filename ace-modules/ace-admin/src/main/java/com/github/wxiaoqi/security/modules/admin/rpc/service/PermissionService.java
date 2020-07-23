@@ -1,6 +1,7 @@
 package com.github.wxiaoqi.security.modules.admin.rpc.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.wxiaoqi.security.api.vo.authority.CheckPermissionInfo;
 import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
 import com.github.wxiaoqi.security.api.vo.user.UserInfo;
 import com.github.wxiaoqi.security.common.constant.CommonConstants;
@@ -20,9 +21,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -135,7 +138,7 @@ public class PermissionService {
         User user = userBiz.getUserByUsername(username);
         FrontUserV2 frontUser = new FrontUserV2();
         List<Menu> menus = menuBiz.getUserAuthorityMenuByUserId(user.getId());
-        List<AccessMenuTree> trees = new ArrayList<AccessMenuTree>();
+        List<AccessMenuTree> menuTrees = new ArrayList<AccessMenuTree>();
         List<AccessRouteTree> routeTrees = new ArrayList<>();
         AccessMenuTree node = null;
         AccessRouteTree routeNode = null;
@@ -149,9 +152,9 @@ public class PermissionService {
             node.setTitle(menu.getTitle());
             node.setId(menu.getId());
             node.setParentId(menu.getParentId());
-            trees.add(node);
+            menuTrees.add(node);
             // 系统节点路由
-            if(menu.getParentId().equals(AdminCommonConstant.ROOT)){
+            if (menu.getParentId().equals(AdminCommonConstant.ROOT)) {
                 menuIds.add(menu.getId());
                 node = new AccessMenuTree();
                 node.setIcon(menu.getIcon());
@@ -171,7 +174,7 @@ public class PermissionService {
             routeNode.setComponent(menu.getAttr3());
             routeNode.setComponentPath(menu.getAttr1());
             JSONObject jsonObject = JSONObject.parseObject(menu.getAttr2());
-            jsonObject.put("title",menu.getTitle());
+            jsonObject.put("title", menu.getTitle());
             routeNode.setMeta(jsonObject);
             routeTrees.add(routeNode);
         }
@@ -186,13 +189,15 @@ public class PermissionService {
             accessInterface.setPath(element.getUri());
             interfaces.add(accessInterface);
         }
-        frontUser.setAccessMenus(TreeUtil.bulid(trees, AdminCommonConstant.ROOT));
-        List<AccessRouteTree> routes = new ArrayList<>();
-        for(Integer menuId:menuIds){
-            routes.addAll(TreeUtil.bulid(routeTrees, menuId));
+        List<AccessRouteTree> accessRoutes = new ArrayList<>();
+//        List<AccessMenuTree> accessMenus = new ArrayList<>();
+        for (Integer menuId : menuIds) {
+//            accessMenus.addAll(TreeUtil.bulid(menuTrees, menuId));
+            accessRoutes.addAll(TreeUtil.bulid(routeTrees, menuId));
         }
+        frontUser.setAccessMenus(TreeUtil.bulid(menuTrees, AdminCommonConstant.ROOT));
         frontUser.setAccessHeader(header);
-        frontUser.setAccessRoutes(routes);
+        frontUser.setAccessRoutes(accessRoutes);
         frontUser.setUserPermissions(permissions);
         frontUser.setUserName(user.getName());
         frontUser.setAccessInterfaces(interfaces);
@@ -228,5 +233,41 @@ public class PermissionService {
         User user = userBiz.getUserByUsername(username);
         List<Menu> menus = menuBiz.getUserAuthorityMenuByUserId(user.getId());
         return getMenuTree(menus, AdminCommonConstant.ROOT);
+    }
+
+    public Mono<CheckPermissionInfo> checkUserPermission(String username, String requestUri, String requestMethod) {
+        CheckPermissionInfo checkPermissionInfo = new CheckPermissionInfo();
+        //TODO 做缓存优化
+
+        List<PermissionInfo> allPermission = this.getAllPermission();
+        List<PermissionInfo> matchPermission = allPermission.parallelStream().filter(permissionInfo -> {
+            String uri = permissionInfo.getUri();
+            if (uri.indexOf("{") > 0) {
+                uri = uri.replaceAll("\\{\\*\\}", "[a-zA-Z\\\\d]+");
+            }
+            String regEx = "^" + uri + "$";
+            return (Pattern.compile(regEx).matcher(requestUri).find())
+                    && requestMethod.equals(permissionInfo.getMethod());
+        }).collect(Collectors.toList());
+        if (matchPermission.size() == 0) {
+            checkPermissionInfo.setIsAuth(true);
+            return Mono.just(checkPermissionInfo);
+        }
+        List<PermissionInfo> permissions = this.getPermissionByUsername(username);
+        PermissionInfo current = null;
+        for (PermissionInfo info : permissions) {
+            boolean anyMatch = matchPermission.parallelStream().anyMatch(permissionInfo -> permissionInfo.getCode().equals(info.getCode()));
+            if (anyMatch) {
+                current = info;
+                break;
+            }
+        }
+        if (current == null) {
+            checkPermissionInfo.setIsAuth(false);
+        } else {
+            checkPermissionInfo.setIsAuth(true);
+            checkPermissionInfo.setPermissionInfo(current);
+        }
+        return Mono.just(checkPermissionInfo);
     }
 }
