@@ -1,16 +1,15 @@
 package ${package}.mapper;
 
 import ${package}.entity.${className};
-import tk.mybatis.mapper.common.Mapper;
+import com.github.wxiaoqi.cloud.common.mapper.CommonMapper;
 
 /**
  * ${comments}
  * 
  * @author ${author}
  * @email ${email}
- * @date ${datetime}
+ * @version ${datetime}
  */
-@Mapper
-public interface ${className}Mapper extends Mapper<${className}> {
+public interface ${className}Mapper extends CommonMapper<${className}> {
 	
 }

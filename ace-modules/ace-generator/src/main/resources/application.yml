@@ -1,26 +1,100 @@
-# Tomcat
 server:
-    tomcat:
-        max-threads: 10
-        min-spare-threads: 10
-    port: 7777
+  port: 8769
 
-# mysql
-spring:
-    datasource:
-        type: com.alibaba.druid.pool.DruidDataSource
-        driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/ag_auth?useUnicode=true&characterEncoding=UTF-8
-        username: root
-        password: 123456
-    jackson:
-        time-zone: GMT+8
-        date-format: yyyy-MM-dd HH:mm:ss
-    thymeleaf:
-        mode: LEGACYHTML5
-        cache: false
-
-# Mybatis配置
+#请求和响应GZIP压缩支持
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
 mybatis:
-    mapperLocations: classpath:mapper/**/*.xml
+  basepackage: com.github.wxiaoqi.cloud.generator.mapper
+  xmlLocation: classpath:mapper/**/*.xml
+  mapper-locations: "classpath*:mapper/*.xml"
 
+
+spring:
+  application:
+      name: ace-generator
+  datasource:
+      name: 管理后端数据库
+      url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/cloud_admin_v1?useUnicode=true&characterEncoding=UTF8
+      username: root
+      password: 123456
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+  sample-datasource:
+      name: Sample后端数据库
+      url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/cloud_sample?useUnicode=true&characterEncoding=UTF8
+      username: root
+      password: 123456
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+  redis:
+      database: 2
+      host: 127.0.0.1
+      jedis:
+        pool:
+            max-active: 20
+  sleuth:
+    enabled: true
+    http:
+      legacy:
+        enabled: true
+  cloud:
+     nacos:
+        discovery:
+          server-addr: 127.0.0.1:8848
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri:  http://${AUTH_SERVER_HOST:localhost}:${AUTH_SERVER_PORT:9777}/.well-known/jwks.json
+#  sentinel:
+#    transport:
+#      dashboard: localhost:8080
+logging:
+  level:
+    com.github.wxiaoqi.cloud.gate.v2: info
+#    com
+    org.springframework: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  security:
+    enabled: false
+
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1000 ## 并发执行的最大线程数，默认10
+      maxQueueSize: 1000 ## BlockingQueue的最大队列数
+      queueSizeRejectionThreshold: 500 ## 即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000

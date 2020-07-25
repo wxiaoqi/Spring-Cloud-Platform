@@ -68,6 +68,13 @@ spring:
           - Path=/api/admin/**
           filters:
           - StripPrefix=2
+        - id: ace-admin
+          uri: lb://ace-generator
+          order: 8001
+          predicates:
+            - Path=/api/code/**
+          filters:
+            - StripPrefix=1
      nacos:
         discovery:
           server-addr: 127.0.0.1:8848

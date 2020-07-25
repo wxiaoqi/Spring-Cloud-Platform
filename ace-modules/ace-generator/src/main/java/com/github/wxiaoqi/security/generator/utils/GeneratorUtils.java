@@ -1,3 +1,26 @@
+/*
+ *  Copyright (C) 2018  老干爹<2014314038@qq.com>
+
+ *  Boot-Platform 企业版源码
+ *  郑重声明:
+ *  如果你从其他途径获取到，请告知老干爹传播人，奖励1000。
+ *  老干爹将追究授予人和传播人的法律责任!
+
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+
+ *  You should have received a copy of the GNU General Public License along
+ *  with this program; if not, write to the Free Software Foundation, Inc.,
+ *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+
 package com.github.wxiaoqi.security.generator.utils;
 
 import com.github.wxiaoqi.security.generator.entity.ColumnEntity;
@@ -24,7 +47,7 @@ import java.util.zip.ZipOutputStream;
  *
  * @author chenshun
  * @email sunlightcs@gmail.com
- * @date 2016年12月19日 下午11:40:24
+ * @version 2016年12月19日 下午11:40:24
  */
 public class GeneratorUtils {
 
@@ -44,7 +67,7 @@ public class GeneratorUtils {
      * 生成代码
      */
     public static void generatorCode(Map<String, String> table,
-                                     List<Map<String, String>> columns, ZipOutputStream zip) {
+                                     List<Map<String, String>> columns, ZipOutputStream zip,String author,String path,String mainModule) {
         //配置信息
         Configuration config = getConfig();
 
@@ -103,11 +126,11 @@ public class GeneratorUtils {
         map.put("classname", tableEntity.getClassname());
         map.put("pathName", tableEntity.getClassname().toLowerCase());
         map.put("columns", tableEntity.getColumns());
-        map.put("package", config.getString("package"));
-        map.put("author", config.getString("author"));
+        map.put("package", path);
+        map.put("author", author);
         map.put("email", config.getString("email"));
         map.put("datetime", DateUtils.format(new Date(), DateUtils.DATE_TIME_PATTERN));
-        map.put("moduleName", config.getString("mainModule"));
+        map.put("moduleName", mainModule);
         map.put("secondModuleName", toLowerCaseFirstOne(className));
         VelocityContext context = new VelocityContext(map);
 
@@ -121,7 +144,7 @@ public class GeneratorUtils {
 
             try {
                 //添加到zip
-                zip.putNextEntry(new ZipEntry(getFileName(template, tableEntity.getClassName(), config.getString("package"), config.getString("mainModule"))));
+                zip.putNextEntry(new ZipEntry(getFileName(template, tableEntity.getClassName(), path, mainModule)));
                 IOUtils.write(sw.toString(), zip, "UTF-8");
                 IOUtils.closeQuietly(sw);
                 zip.closeEntry();

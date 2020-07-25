@@ -17,7 +17,9 @@
 
 package com.github.wxiaoqi.security.gate.handler;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.cloud.gateway.handler.AsyncPredicate;
@@ -78,13 +80,13 @@ public class RequestBodyRoutePredicateFactory
                 }
                 return Mono.just(true);
             } else {
-                return ServerWebExchangeUtils.cacheRequestBodyAndRequest(exchange, (serverHttpRequest) -> {
-                    return ServerRequest.create(exchange.mutate().request(serverHttpRequest).build(), this.messageReaders).bodyToMono(String.class).doOnNext((objectValue) -> {
+                return ServerWebExchangeUtils.cacheRequestBodyAndRequest(exchange, (serverHttpRequest) -> ServerRequest.create(exchange.mutate().request(serverHttpRequest).build(), this.messageReaders).bodyToMono(String.class).defaultIfEmpty("").doOnNext((objectValue) -> {
+                    if(StringUtils.isBlank(objectValue)){
+                        exchange.getAttributes().put(REQUEST_BODY_ATTR, JSON.toJSONString(exchange.getRequest().getQueryParams()));
+                    }else {
                         exchange.getAttributes().put(REQUEST_BODY_ATTR, objectValue);
-                    }).map((objectValue) -> {
-                        return true;
-                    });
-                });
+                    }
+                }).map((objectValue) -> true));
 
             }
         };

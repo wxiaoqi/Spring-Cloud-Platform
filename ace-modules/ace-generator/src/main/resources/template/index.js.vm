@@ -1,37 +1,37 @@
-import fetch from 'utils/fetch';
+import request from '@/utils/request'
 
 export function page(query) {
-return fetch({
+return request({
 url: '/api/${moduleName}/${secondModuleName}/page',
 method: 'get',
 params: query
-});
+})
 }
 
 export function addObj(obj) {
-return fetch({
+return request({
 url: '/api/${moduleName}/${secondModuleName}',
 method: 'post',
 data: obj
-});
+})
 }
 
 export function getObj(id) {
-return fetch({
+return request({
 url: '/api/${moduleName}/${secondModuleName}/' + id,
 method: 'get'
 })
 }
 
 export function delObj(id) {
-return fetch({
+return request({
 url: '/api/${moduleName}/${secondModuleName}/' + id,
 method: 'delete'
 })
 }
 
 export function putObj(id, obj) {
-return fetch({
+return request({
 url: '/api/${moduleName}/${secondModuleName}/' + id,
 method: 'put',
 data: obj

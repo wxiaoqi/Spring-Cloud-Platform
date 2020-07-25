@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  * 
  * @author ${author}
  * @email ${email}
- * @date ${datetime}
+ * @version ${datetime}
  */
 @Table(name = "${tableName}")
 public class ${className} implements Serializable {
