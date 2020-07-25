@@ -56,7 +56,7 @@ spring:
           uri: lb://ace-admin
           order: 8000
           predicates:
-          - ReadBody
+          - RequestBody=true
           - Path=/api/auth/**
           filters:
           - StripPrefix=2
@@ -64,6 +64,7 @@ spring:
           uri: lb://ace-admin
           order: 8001
           predicates:
+          - RequestBody=true
           - Path=/api/admin/**
           filters:
           - StripPrefix=2

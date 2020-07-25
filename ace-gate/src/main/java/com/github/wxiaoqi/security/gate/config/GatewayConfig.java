@@ -1,6 +1,5 @@
 package com.github.wxiaoqi.security.gate.config;
 
-import com.github.wxiaoqi.security.gate.handler.RequestBodyRoutePredicateFactory;
 import feign.codec.Decoder;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.ObjectFactory;
@@ -23,10 +22,6 @@ import java.util.List;
  */
 @Configuration
 public class GatewayConfig {
-    @Bean
-    RequestBodyRoutePredicateFactory requestBodyRoutePredicateFactory() {
-        return new RequestBodyRoutePredicateFactory();
-    }
 
     @Bean
     public Decoder feignDecoder() {
@@ -56,4 +51,5 @@ public class GatewayConfig {
     public WebClient.Builder loadBalancedWebClientBuilder() {
         return WebClient.builder();
     }
+
 }

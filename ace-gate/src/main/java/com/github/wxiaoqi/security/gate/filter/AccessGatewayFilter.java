@@ -50,7 +50,6 @@ public class AccessGatewayFilter implements GlobalFilter {
     @Value("${gate.ignore.startWith}")
     private String startWith;
 
-
     private static final String GATE_WAY_PREFIX = "/api";
 
     @Autowired
