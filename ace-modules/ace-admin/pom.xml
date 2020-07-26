@@ -179,6 +179,12 @@
             <version>5.2.6.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.whvcse</groupId>
+            <artifactId>easy-captcha</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>ace-admin</finalName>

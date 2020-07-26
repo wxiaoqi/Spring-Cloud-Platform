@@ -30,4 +30,9 @@ public class AdminCommonConstant {
 
     public final static String BOOLEAN_NUMBER_TRUE = "1";
 
+    /**
+     * 验证码有效期：2分钟
+     */
+    public final static Integer LOGIN_CAPTCHA_EXPIRATION = 2;
+
 }

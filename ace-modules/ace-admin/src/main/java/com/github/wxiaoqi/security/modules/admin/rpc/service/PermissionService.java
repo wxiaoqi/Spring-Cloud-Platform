@@ -1,5 +1,6 @@
 package com.github.wxiaoqi.security.modules.admin.rpc.service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.wxiaoqi.security.api.vo.authority.CheckPermissionInfo;
 import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
@@ -11,6 +12,7 @@ import com.github.wxiaoqi.security.modules.admin.biz.ElementBiz;
 import com.github.wxiaoqi.security.modules.admin.biz.MenuBiz;
 import com.github.wxiaoqi.security.modules.admin.biz.UserBiz;
 import com.github.wxiaoqi.security.modules.admin.constant.AdminCommonConstant;
+import com.github.wxiaoqi.security.modules.admin.constant.RedisKeyConstant;
 import com.github.wxiaoqi.security.modules.admin.entity.Element;
 import com.github.wxiaoqi.security.modules.admin.entity.Menu;
 import com.github.wxiaoqi.security.modules.admin.entity.User;
@@ -20,11 +22,13 @@ import com.github.wxiaoqi.security.modules.auth.util.user.JwtTokenUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -44,6 +48,8 @@ public class PermissionService {
     private JwtTokenUtil userAuthUtil;
     private Sha256PasswordEncoder encoder = new Sha256PasswordEncoder();
 
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     public UserInfo getUserByUsername(String username) {
         UserInfo info = new UserInfo();
@@ -64,12 +70,19 @@ public class PermissionService {
     }
 
     public List<PermissionInfo> getAllPermission() {
-        List<Menu> menus = menuBiz.selectListAll();
-        List<PermissionInfo> result = new ArrayList<PermissionInfo>();
-        menu2permission(menus, result);
-        List<Element> elements = elementBiz.getAllElementPermissions();
-        element2permission(result, elements);
-        return result;
+        String key = RedisKeyConstant.REDIS_KEY_ALL_PERMISISON;
+        String s = stringRedisTemplate.opsForValue().get(key);
+        if (s == null || org.apache.commons.lang.StringUtils.isBlank(s)) {
+            List<Menu> menus = menuBiz.selectListAll();
+            List<PermissionInfo> result = new ArrayList<PermissionInfo>();
+            menu2permission(menus, result);
+            List<Element> elements = elementBiz.getAllElementPermissions();
+            element2permission(result, elements);
+            stringRedisTemplate.opsForValue().set(key, JSON.toJSONString(result), 12, TimeUnit.HOURS);
+
+        }
+        List<PermissionInfo> permissionInfos = JSON.parseArray(s, PermissionInfo.class);
+        return permissionInfos;
     }
 
     private void menu2permission(List<Menu> menus, List<PermissionInfo> result) {
@@ -95,13 +108,21 @@ public class PermissionService {
     }
 
     public List<PermissionInfo> getPermissionByUsername(String username) {
-        User user = userBiz.getUserByUsername(username);
-        List<Menu> menus = menuBiz.getUserAuthorityMenuByUserId(user.getId());
-        List<PermissionInfo> result = new ArrayList<PermissionInfo>();
-        menu2permission(menus, result);
-        List<Element> elements = elementBiz.getAuthorityElementByUserId(user.getId() + "");
-        element2permission(result, elements);
-        return result;
+        String key = String.format(RedisKeyConstant.REDIS_KEY_USER_PERMISISON, username);
+        String s = stringRedisTemplate.opsForValue().get(key);
+        if (s == null || org.apache.commons.lang.StringUtils.isBlank(s)) {
+            User user = userBiz.getUserByUsername(username);
+            List<Menu> menus = menuBiz.getUserAuthorityMenuByUserId(user.getId());
+            List<PermissionInfo> result = new ArrayList<PermissionInfo>();
+            menu2permission(menus, result);
+            List<Element> elements = elementBiz.getAuthorityElementByUserId(user.getId() + "");
+            element2permission(result, elements);
+            stringRedisTemplate.opsForValue().set(key, JSON.toJSONString(result), 12, TimeUnit.HOURS);
+
+            return result;
+        }
+        List<PermissionInfo> permissionInfos = JSON.parseArray(s, PermissionInfo.class);
+        return permissionInfos;
     }
 
     private void element2permission(List<PermissionInfo> result, List<Element> elements) {
