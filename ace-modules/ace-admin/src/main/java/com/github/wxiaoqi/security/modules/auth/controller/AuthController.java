@@ -37,8 +37,11 @@ public class AuthController {
         log.info(authenticationRequest.getUsername() + " require logging...");
         // 获取session中的验证码
         String sessionCode = stringRedisTemplate.opsForValue().get(String.format(REDIS_KEY_CAPTCHA, authenticationRequest.getUuid()));
+        if(sessionCode == null){
+            throw new UserInvalidException("验证码已过期");
+        }
         // 判断验证码
-        if (sessionCode == null || authenticationRequest.getVerCode() == null || !sessionCode.equals(authenticationRequest.getVerCode().trim().toLowerCase())) {
+        if (authenticationRequest.getVerCode() == null || !sessionCode.equals(authenticationRequest.getVerCode().trim().toLowerCase())) {
             throw new UserInvalidException("验证码不正确");
         }
         Map result = authService.login(authenticationRequest);
