@@ -6,7 +6,9 @@ import com.github.wxiaoqi.security.api.vo.authority.PermissionInfo;
 import com.github.wxiaoqi.security.api.vo.log.LogInfo;
 import com.github.wxiaoqi.security.auth.client.config.UserAuthConfig;
 import com.github.wxiaoqi.security.auth.client.jwt.UserAuthUtil;
+import com.github.wxiaoqi.security.common.constant.RedisKeyConstant;
 import com.github.wxiaoqi.security.common.context.BaseContextHandler;
+import com.github.wxiaoqi.security.common.exception.auth.UserTokenException;
 import com.github.wxiaoqi.security.common.msg.BaseResponse;
 import com.github.wxiaoqi.security.common.msg.auth.TokenForbiddenResponse;
 import com.github.wxiaoqi.security.common.util.jwt.IJWTInfo;
@@ -23,6 +25,7 @@ import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.support.ServerWebExchangeUtils;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.buffer.DataBuffer;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -60,6 +63,9 @@ public class AccessGatewayFilter implements GlobalFilter {
 
     @Autowired
     private WebClient.Builder webClientBuilder;
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     @Override
     public Mono<Void> filter(ServerWebExchange serverWebExchange, GatewayFilterChain gatewayFilterChain) {
@@ -148,9 +154,14 @@ public class AccessGatewayFilter implements GlobalFilter {
                 authToken = strings.get(0);
             }
         }
+        IJWTInfo infoFromToken = userAuthUtil.getInfoFromToken(authToken);
+        String s = stringRedisTemplate.opsForValue().get(RedisKeyConstant.REDIS_KEY_TOKEN + ":" + infoFromToken.getTokenId());
+        if (StringUtils.isBlank(s)) {
+            throw new UserTokenException("User token expired!");
+        }
         ctx.header(userAuthConfig.getTokenHeader(), authToken);
         BaseContextHandler.setToken(authToken);
-        return userAuthUtil.getInfoFromToken(authToken);
+        return infoFromToken;
     }
 
 
