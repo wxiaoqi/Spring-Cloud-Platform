@@ -185,6 +185,13 @@
             <version>1.6.2</version>
         </dependency>
 
+        <!-- 解析客户端操作系统、浏览器等 -->
+        <dependency>
+            <groupId>eu.bitwalker</groupId>
+            <artifactId>UserAgentUtils</artifactId>
+            <version>1.19</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>ace-admin</finalName>

@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static com.github.wxiaoqi.security.modules.admin.constant.AdminCommonConstant.LOGIN_CAPTCHA_EXPIRATION;
-import static com.github.wxiaoqi.security.modules.admin.constant.RedisKeyConstant.REDIS_KEY_CAPTCHA;
+import static com.github.wxiaoqi.security.common.constant.RedisKeyConstant.REDIS_KEY_CAPTCHA;
 
 /**
  * @author Ths Sun

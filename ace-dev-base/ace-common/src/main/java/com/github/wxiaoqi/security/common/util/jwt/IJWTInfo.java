@@ -21,4 +21,10 @@ public interface IJWTInfo {
      * @return
      */
     String getName();
+
+    /**
+     * tokenId
+     * @return
+     */
+    String getTokenId();
 }

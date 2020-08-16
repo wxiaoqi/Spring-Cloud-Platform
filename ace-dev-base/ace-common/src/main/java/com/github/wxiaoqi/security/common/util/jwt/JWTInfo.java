@@ -1,5 +1,7 @@
 package com.github.wxiaoqi.security.common.util.jwt;
 
+import com.github.wxiaoqi.security.common.util.UUIDUtils;
+
 import java.io.Serializable;
 
 /**
@@ -9,11 +11,20 @@ public class JWTInfo implements Serializable,IJWTInfo {
     private String username;
     private String userId;
     private String name;
+    private String tokenId;
 
     public JWTInfo(String username, String userId, String name) {
         this.username = username;
         this.userId = userId;
         this.name = name;
+        this.tokenId = UUIDUtils.generateShortUuid();
+    }
+
+    public JWTInfo(String username, String userId, String name,String tokenId) {
+        this.username = username;
+        this.userId = userId;
+        this.name = name;
+        this.tokenId = tokenId;
     }
 
     @Override
@@ -37,6 +48,16 @@ public class JWTInfo implements Serializable,IJWTInfo {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTokenId() {
+        return tokenId;
+    }
+
+
+    public void setTokenId(String tokenId) {
+        this.tokenId = tokenId;
     }
 
     public void setName(String name) {

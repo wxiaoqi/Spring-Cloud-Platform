@@ -73,6 +73,7 @@ management:
     web:
       exposure:
         include: '*'
+        exclude: heapdump,dump,threaddump,configprops,env
   security:
     enabled: false
 

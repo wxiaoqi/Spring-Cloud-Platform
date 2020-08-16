@@ -128,8 +128,9 @@ management:
     web:
       exposure:
         include: '*'
+        exclude: heapdump,dump,threaddump,configprops,env
   security:
-    enabled: false
+    enabled: true
 
 # 自定义Jwt认证服务
 jwt:

@@ -47,6 +47,7 @@ public class JWTHelper {
                 .setSubject(jwtInfo.getUniqueName())
                 .claim(CommonConstants.JWT_KEY_USER_ID, jwtInfo.getId())
                 .claim(CommonConstants.JWT_KEY_NAME, jwtInfo.getName())
+                .claim(CommonConstants.JWT_ID, jwtInfo.getTokenId())
                 .setExpiration(DateTime.now().plusSeconds(expire).toDate())
                 .signWith(SignatureAlgorithm.RS256, rsaKeyHelper.getPrivateKey(priKey))
                 .compact();
@@ -102,6 +103,6 @@ public class JWTHelper {
         }
         Jws<Claims> claimsJws = parserToken(token, pubKey);
         Claims body = claimsJws.getBody();
-        return new JWTInfo(body.getSubject(), StringHelper.getObjectValue(body.get(CommonConstants.JWT_KEY_USER_ID)), StringHelper.getObjectValue(body.get(CommonConstants.JWT_KEY_NAME)));
+        return new JWTInfo(body.getSubject(), StringHelper.getObjectValue(body.get(CommonConstants.JWT_KEY_USER_ID)), StringHelper.getObjectValue(body.get(CommonConstants.JWT_KEY_NAME)),StringHelper.getObjectValue(body.get(CommonConstants.JWT_ID)));
     }
 }

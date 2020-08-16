@@ -12,7 +12,7 @@ import com.github.wxiaoqi.security.modules.admin.biz.ElementBiz;
 import com.github.wxiaoqi.security.modules.admin.biz.MenuBiz;
 import com.github.wxiaoqi.security.modules.admin.biz.UserBiz;
 import com.github.wxiaoqi.security.modules.admin.constant.AdminCommonConstant;
-import com.github.wxiaoqi.security.modules.admin.constant.RedisKeyConstant;
+import com.github.wxiaoqi.security.common.constant.RedisKeyConstant;
 import com.github.wxiaoqi.security.modules.admin.entity.Element;
 import com.github.wxiaoqi.security.modules.admin.entity.Menu;
 import com.github.wxiaoqi.security.modules.admin.entity.User;
@@ -78,8 +78,8 @@ public class PermissionService {
             menu2permission(menus, result);
             List<Element> elements = elementBiz.getAllElementPermissions();
             element2permission(result, elements);
-            stringRedisTemplate.opsForValue().set(key, JSON.toJSONString(result), 12, TimeUnit.HOURS);
-
+            s = JSON.toJSONString(result);
+            stringRedisTemplate.opsForValue().set(key, s, 12, TimeUnit.HOURS);
         }
         List<PermissionInfo> permissionInfos = JSON.parseArray(s, PermissionInfo.class);
         return permissionInfos;

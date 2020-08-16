@@ -1,4 +1,4 @@
-package com.github.wxiaoqi.security.modules.admin.constant;
+package com.github.wxiaoqi.security.common.constant;
 
 /**
  * @author Ths Sun
@@ -10,4 +10,6 @@ public class RedisKeyConstant {
     public static final String REDIS_KEY_ALL_PERMISISON = "admin:permissions";
 
     public static final String REDIS_KEY_CAPTCHA = "admin:captcha:%s";
+
+    public static final String REDIS_KEY_TOKEN = "admin:token";
 }

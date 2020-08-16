@@ -16,12 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-import static com.github.wxiaoqi.security.modules.admin.constant.RedisKeyConstant.REDIS_KEY_CAPTCHA;
+import static com.github.wxiaoqi.security.common.constant.RedisKeyConstant.REDIS_KEY_CAPTCHA;
 
 @RestController
 @RequestMapping("jwt")
 @Slf4j
 public class AuthController {
+    @Autowired
+    protected HttpServletRequest request;
+
     @Value("${jwt.token-header}")
     private String tokenHeader;
 
@@ -32,8 +35,8 @@ public class AuthController {
     private StringRedisTemplate stringRedisTemplate;
 
     @RequestMapping(value = "token", method = RequestMethod.POST)
-    public ObjectRestResponse<String> createAuthenticationToken(HttpServletRequest request,
-                                                                @RequestBody JwtAuthenticationRequest authenticationRequest) throws Exception {
+    public ObjectRestResponse<String> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest) throws Exception {
+
         log.info(authenticationRequest.getUsername() + " require logging...");
         // 获取session中的验证码
         String sessionCode = stringRedisTemplate.opsForValue().get(String.format(REDIS_KEY_CAPTCHA, authenticationRequest.getUuid()));
@@ -45,6 +48,7 @@ public class AuthController {
             throw new UserInvalidException("验证码不正确");
         }
         Map result = authService.login(authenticationRequest);
+
         return new ObjectRestResponse<>().data(result);
     }
 
@@ -61,4 +65,11 @@ public class AuthController {
         authService.validate(token);
         return new ObjectRestResponse<>();
     }
+
+    @RequestMapping(value = "logout", method = RequestMethod.DELETE)
+    public ObjectRestResponse<?> logout(String token) throws Exception {
+        authService.logout(token);
+        return new ObjectRestResponse<>();
+    }
+
 }

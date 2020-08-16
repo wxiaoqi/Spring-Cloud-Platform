@@ -47,4 +47,11 @@ public class ClientInfo implements IJWTInfo {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String getTokenId() {
+        return null;
+    }
+
+
 }

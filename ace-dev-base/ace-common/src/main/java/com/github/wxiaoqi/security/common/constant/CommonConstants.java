@@ -20,6 +20,15 @@ public class CommonConstants {
     public static final String CONTEXT_KEY_USER_TOKEN = "currentUserToken";
     public static final String JWT_KEY_USER_ID = "userId";
     public static final String JWT_KEY_NAME = "name";
+    public static final String JWT_ID = "id";
 
+    /**
+     * UTF-8 字符集
+     */
+    public static final String UTF8 = "UTF-8";
 
+    /**
+     * GBK 字符集
+     */
+    public static final String GBK = "GBK";
 }
