@@ -42,6 +42,19 @@ Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系�
 
 ### 基本功能
 # 功能截图
+
+![用户模块](https://images.gitee.com/uploads/images/2020/0823/155325_c046aafe_547642.png "会员模块.png")
+
+![菜单模块](https://images.gitee.com/uploads/images/2020/0823/155423_ce11e6c6_547642.png "菜单模块.png")
+
+![角色授权](https://images.gitee.com/uploads/images/2020/0823/155515_511c1ec7_547642.png "角色授权.png")
+
+![角色类型](https://images.gitee.com/uploads/images/2020/0823/155635_8a29c078_547642.png "角色类型.png")
+
+![操作日志](https://images.gitee.com/uploads/images/2020/0823/170358_7e4bb227_547642.png "操作日志.png")
+
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0823/171316_d05156ac_547642.png "表单设计器.png")
+
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205334_7a892d09_1899222.png "2.png")
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205343_124202af_1899222.png "3.png")
@@ -50,21 +63,6 @@ Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系�
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205407_942a9540_1899222.png "5.png")
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205420_01f6b933_1899222.png "6.png")
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205429_5c7bb102_1899222.png "7.png")
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205438_f1cd07c4_1899222.png "8.png")
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205447_878d8a39_1899222.png "9.png")
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205456_ec6fe29c_1899222.png "10.png")
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205504_1ecaec42_1899222.png "11.png")
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205514_27cd17dc_1899222.png "12.png")
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0528/205521_7379cb06_1899222.png "13.png")
 ## License
 Apache License Version 2.0
 
