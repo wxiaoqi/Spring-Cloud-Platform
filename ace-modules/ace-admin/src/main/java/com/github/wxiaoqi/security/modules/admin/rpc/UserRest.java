@@ -16,7 +16,7 @@ import java.util.List;
  * @create 2017-06-21 8:15
  */
 @RestController
-@RequestMapping("api")
+@RequestMapping("/api")
 public class UserRest {
     @Autowired
     private PermissionService permissionService;
