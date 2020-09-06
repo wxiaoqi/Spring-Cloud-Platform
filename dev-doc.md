@@ -103,7 +103,7 @@ npm run dev
 npm run build:prod
 ```
 
-### 前端框架更多文档查看工程Readme或D2admin官方文档[点击打开](https://d2.pub/zh/doc/d2-admin/learn/start.htm)
+### 前端框架更多文档查看工程Readme或D2admin官方文档[点击打开](https://d2.pub/zh/doc/d2-admin/learn/start.html)
 
 ## 更多文档
 ```

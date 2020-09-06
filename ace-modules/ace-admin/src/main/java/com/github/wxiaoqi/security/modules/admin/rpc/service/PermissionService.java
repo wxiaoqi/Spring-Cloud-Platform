@@ -165,7 +165,7 @@ public class PermissionService {
         AccessRouteTree routeNode = null;
         List<Integer> menuIds = new ArrayList<>();
         List<AccessMenuTree> header = new ArrayList<>();
-        //TODO 按系统区分菜单和路由
+        // 设置菜单树
         for (Menu menu : menus) {
             node = new AccessMenuTree();
             node.setIcon(menu.getIcon());
@@ -174,7 +174,7 @@ public class PermissionService {
             node.setId(menu.getId());
             node.setParentId(menu.getParentId());
             menuTrees.add(node);
-            // 系统节点路由
+            // 设置系统头部菜单
             if (menu.getParentId().equals(AdminCommonConstant.ROOT)) {
                 menuIds.add(menu.getId());
                 node = new AccessMenuTree();
@@ -199,6 +199,7 @@ public class PermissionService {
             routeNode.setMeta(jsonObject);
             routeTrees.add(routeNode);
         }
+        // 配置页面资源权限
         List<Element> elements = elementBiz.getAuthorityElementByUserId(user.getId() + "");
         List<String> permissions = new ArrayList<>();
         List<AccessInterface> interfaces = new ArrayList<>();
@@ -210,10 +211,9 @@ public class PermissionService {
             accessInterface.setPath(element.getUri());
             interfaces.add(accessInterface);
         }
+        // 配置路由权限
         List<AccessRouteTree> accessRoutes = new ArrayList<>();
-//        List<AccessMenuTree> accessMenus = new ArrayList<>();
         for (Integer menuId : menuIds) {
-//            accessMenus.addAll(TreeUtil.bulid(menuTrees, menuId));
             accessRoutes.addAll(TreeUtil.bulid(routeTrees, menuId));
         }
         frontUser.setAccessMenus(TreeUtil.bulid(menuTrees, AdminCommonConstant.ROOT));
@@ -222,6 +222,7 @@ public class PermissionService {
         frontUser.setUserPermissions(permissions);
         frontUser.setUserName(user.getName());
         frontUser.setAccessInterfaces(interfaces);
+        //TODO 待接入头像附件上传服务
         frontUser.setAvatarUrl("https://api.adorable.io/avatars/85/abott@adorable.png");
         return frontUser;
     }
@@ -258,9 +259,8 @@ public class PermissionService {
 
     public Mono<CheckPermissionInfo> checkUserPermission(String username, String requestUri, String requestMethod) {
         CheckPermissionInfo checkPermissionInfo = new CheckPermissionInfo();
-        //TODO 做缓存优化
-
         List<PermissionInfo> allPermission = this.getAllPermission();
+        // 判断当前访问资源是否有权限控制
         List<PermissionInfo> matchPermission = allPermission.parallelStream().filter(permissionInfo -> {
             String uri = permissionInfo.getUri();
             if (uri.indexOf("{") > 0) {
@@ -270,10 +270,12 @@ public class PermissionService {
             return (Pattern.compile(regEx).matcher(requestUri).find())
                     && requestMethod.equals(permissionInfo.getMethod());
         }).collect(Collectors.toList());
+        // 说明当前访问资源不做权限控制
         if (matchPermission.size() == 0) {
             checkPermissionInfo.setIsAuth(true);
             return Mono.just(checkPermissionInfo);
         }
+        // 判断当前用户是否拥有该访问资源的权限
         List<PermissionInfo> permissions = this.getPermissionByUsername(username);
         PermissionInfo current = null;
         for (PermissionInfo info : permissions) {
@@ -284,8 +286,10 @@ public class PermissionService {
             }
         }
         if (current == null) {
+            // 当前用户不拥有该权限
             checkPermissionInfo.setIsAuth(false);
         } else {
+            // 当前用户拥有该资源的访问权限
             checkPermissionInfo.setIsAuth(true);
             checkPermissionInfo.setPermissionInfo(current);
         }

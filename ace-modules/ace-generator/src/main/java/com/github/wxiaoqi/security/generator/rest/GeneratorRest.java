@@ -24,10 +24,10 @@
 package com.github.wxiaoqi.security.generator.rest;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.github.wxiaoqi.security.generator.config.SwitchDB;
-import com.github.wxiaoqi.security.generator.service.GeneratorService;
 import com.github.wxiaoqi.security.common.msg.TableResultResponse;
 import com.github.wxiaoqi.security.common.util.Query;
+import com.github.wxiaoqi.security.generator.config.SwitchDB;
+import com.github.wxiaoqi.security.generator.service.GeneratorService;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,10 +85,10 @@ public class GeneratorRest {
      * 生成代码
      */
     @RequestMapping("/build")
-    public void code(String tables, String path, String mainModule, String author, String dbName, HttpServletResponse response) throws IOException {
+    public void code(String tables, String path, String mainModule, String author, String dbName, String tablePrefix, HttpServletResponse response) throws IOException {
         if (StringUtils.isNoneBlank(tables)) {
             switchDB.change(dbName);
-            byte[] data = generatorService.generatorCode(tables.split(","), path, mainModule, author);
+            byte[] data = generatorService.generatorCode(tables.split(","), path, mainModule, author, tablePrefix);
             response.reset();
             response.setHeader("Content-Disposition", "attachment; filename=\"generator-code.zip\"");
             response.addHeader("Content-Length", "" + data.length);

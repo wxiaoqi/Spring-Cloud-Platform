@@ -16,5 +16,6 @@
         <module>ace-generator</module>
         <module>ace-tool</module>
         <module>ace-nlp</module>
+        <module>ace-sample</module>
     </modules>
 </project>

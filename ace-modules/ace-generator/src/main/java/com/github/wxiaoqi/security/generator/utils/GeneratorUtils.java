@@ -46,8 +46,8 @@ import java.util.zip.ZipOutputStream;
  * 代码生成器   工具类
  *
  * @author chenshun
- * @email sunlightcs@gmail.com
  * @version 2016年12月19日 下午11:40:24
+ * @email sunlightcs@gmail.com
  */
 public class GeneratorUtils {
 
@@ -67,7 +67,7 @@ public class GeneratorUtils {
      * 生成代码
      */
     public static void generatorCode(Map<String, String> table,
-                                     List<Map<String, String>> columns, ZipOutputStream zip,String author,String path,String mainModule) {
+                                     List<Map<String, String>> columns, ZipOutputStream zip, String author, String path, String mainModule, String tablePrefix) {
         //配置信息
         Configuration config = getConfig();
 
@@ -76,7 +76,7 @@ public class GeneratorUtils {
         tableEntity.setTableName(table.get("tableName"));
         tableEntity.setComments(table.get("tableComment"));
         //表名转换成Java类名
-        String className = tableToJava(tableEntity.getTableName(), config.getString("tablePrefix"));
+        String className = tableToJava(tableEntity.getTableName(), StringUtils.isBlank(tablePrefix) ? config.getString("tablePrefix") : tablePrefix);
         tableEntity.setClassName(className);
         tableEntity.setClassname(StringUtils.uncapitalize(className));
 

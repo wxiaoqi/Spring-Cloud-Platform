@@ -72,6 +72,7 @@ public class AccessGatewayFilter implements GlobalFilter {
         log.info("check token and user permission....");
         LinkedHashSet requiredAttribute = serverWebExchange.getRequiredAttribute(ServerWebExchangeUtils.GATEWAY_ORIGINAL_REQUEST_URL_ATTR);
         ServerHttpRequest request = serverWebExchange.getRequest();
+        // 获取当前网关访问的URI
         String requestUri = request.getPath().pathWithinApplication().value();
         if (requiredAttribute != null) {
             Iterator<URI> iterator = requiredAttribute.iterator();
@@ -85,13 +86,14 @@ public class AccessGatewayFilter implements GlobalFilter {
         final String method = request.getMethod().toString();
         BaseContextHandler.setToken(null);
         ServerHttpRequest.Builder mutate = request.mutate();
-        // 不进行拦截的地址
+        // 网关不进行拦截的URI配置，常见如验证码、Login接口
         if (isStartWith(requestUri)) {
             ServerHttpRequest build = mutate.build();
             return gatewayFilterChain.filter(serverWebExchange.mutate().request(build).build());
         }
         IJWTInfo user = null;
         try {
+            // 判断用户token，获取用户信息
             user = getJWTUser(request, mutate);
         } catch (Exception e) {
             log.error("用户Token过期异常", e);
@@ -103,13 +105,16 @@ public class AccessGatewayFilter implements GlobalFilter {
 
         IJWTInfo finalUser = user;
         return checkPermissionInfoMono.flatMap(checkPermissionInfo -> {
+            // 当前用户具有访问权限
             if (checkPermissionInfo.getIsAuth()) {
-                if (checkPermissionInfo.getPermissionInfo() != null && !method.equals("GET")) {
+                if (checkPermissionInfo.getPermissionInfo() != null) {
+                    // 若资源存在则请求设置访问日志
                     setCurrentUserInfoAndLog(serverWebExchange, finalUser, checkPermissionInfo.getPermissionInfo());
                 }
                 ServerHttpRequest build = mutate.build();
                 return gatewayFilterChain.filter(serverWebExchange.mutate().request(build).build());
             } else {
+                // 当前用户不具有访问权限
                 return getVoidMono(serverWebExchange, new TokenForbiddenResponse("Forbidden!Does not has Permission!"), HttpStatus.FORBIDDEN);
             }
         });

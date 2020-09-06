@@ -15,7 +15,7 @@ feign:
     response:
       enabled: true
 mybatis:
-  basepackage: com.github.wxiaoqi.cloud.generator.mapper
+  basepackage: com.github.wxiaoqi.security.generator.mapper
   xmlLocation: classpath:mapper/**/*.xml
   mapper-locations: "classpath*:mapper/*.xml"
 
@@ -54,11 +54,6 @@ spring:
      nacos:
         discovery:
           server-addr: 127.0.0.1:8848
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          jwk-set-uri:  http://${AUTH_SERVER_HOST:localhost}:${AUTH_SERVER_PORT:9777}/.well-known/jwks.json
 #  sentinel:
 #    transport:
 #      dashboard: localhost:8080

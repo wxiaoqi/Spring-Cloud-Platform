@@ -5,7 +5,7 @@
       <div class="filter-container">
         <el-input  size="small" @keyup.enter.native="handleFilter" style="width: 200px;margin-right: 10px;" class="filter-item" placeholder="姓名或账户" v-model="listQuery.name"> </el-input>
         <el-button size="small" class="filter-item" type="primary" icon="search" @click="handleFilter">搜索</el-button>
-        <el-button size="small" class="filter-item" v-if="${secondModuleName}Manager_btn_add" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
+        <el-button size="small" class="filter-item"  v-permission:function="['${secondModuleName}Manager_btn_add']" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
       </div>
     </template>
 
@@ -27,9 +27,9 @@
   #end
 #end
       <el-table-column fixed="right" align="center" label="操作" width="150"> <template slot-scope="scope">
-        <el-button v-if="${secondModuleName}Manager_btn_edit" size="small" type="success" @click="handleUpdate(scope.row)">编辑
+        <el-button v-permission:function="['${secondModuleName}Manager_btn_edit']" size="small" type="success" @click="handleUpdate(scope.row)">编辑
         </el-button>
-        <el-button v-if="${secondModuleName}Manager_btn_del" size="small" type="danger" @click="handleDelete(scope.row)">删除
+        <el-button v-permission:function="['${secondModuleName}Manager_btn_del']" size="small" type="danger" @click="handleDelete(scope.row)">删除
         </el-button>
       </template> </el-table-column>
     </el-table>
@@ -86,12 +86,6 @@ ${column.attrname}: [
     required: true,
     message: '请输入${column.comments}',
     trigger: 'blur'
-  },
-  {
-    min: 5,
-    max: 20,
-    message: '长度在 3 到 20 个字符',
-    trigger: 'blur'
   }
 ]#if($velocityCount != $columns.size()), #end#end
 #end
@@ -106,9 +100,6 @@ ${column.attrname}: [
         },
         dialogFormVisible: false,
         dialogStatus: '',
-        ${secondModuleName}Manager_btn_edit: false,
-        ${secondModuleName}Manager_btn_del: false,
-        ${secondModuleName}Manager_btn_add: false,
         textMap: {
           update: '编辑',
           create: '创建'
@@ -118,9 +109,6 @@ ${column.attrname}: [
     },
     created() {
       this.getList();
-      this.${secondModuleName}Manager_btn_edit = this.elements['${secondModuleName}Manager:btn_edit'];
-      this.${secondModuleName}Manager_btn_del = this.elements['${secondModuleName}Manager:btn_del'];
-      this.${secondModuleName}Manager_btn_add = this.elements['${secondModuleName}Manager:btn_add'];
     },
     computed: {
       ...mapGetters([
@@ -131,8 +119,8 @@ ${column.attrname}: [
       getList() {
         this.listLoading = true;
         page(this.listQuery).then(response => {
-          this.list = response.data.rows;
-          this.total = response.data.total;
+          this.list = response.rows;
+          this.total = response.total;
           this.listLoading = false;
       })
       },
@@ -155,7 +143,7 @@ ${column.attrname}: [
       handleUpdate(row) {
         getObj(row.id)
             .then(response => {
-          this.form = response.data;
+          this.form = response;
         this.dialogFormVisible = true;
         this.dialogStatus = 'update';
       });

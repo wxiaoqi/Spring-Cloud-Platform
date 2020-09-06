@@ -1,0 +1,106 @@
+server:
+  port: 9999
+
+
+mybatis:
+  basepackage: com.github.wxiaoqi.cloud.sample.mapper
+  xmlLocation: classpath:mapper/**/*.xml
+  mapper-locations: "classpath*:mapper/*.xml"
+
+# 配置swagger
+swagger:
+  enabled: true
+  base-package: com.github.wxiaoqi.security.sample
+  title: ace-sample
+  version: 1.0.0.SNAPSHOT
+  description: Sample样板服务
+  contact:
+    name: admin
+
+spring:
+  application:
+    name: ace-sample
+  datasource:
+    name: 管理后端数据库
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/cloud_sample?useUnicode=true&characterEncoding=UTF8
+    username: root
+    password: 123456
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    database: 2
+    host: 127.0.0.1
+    jedis:
+      pool:
+          max-active: 20
+  sleuth:
+    enabled: false
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+
+
+auth:
+  serviceId: ace-admin
+  user:
+    token-header: Authorization
+  client:
+    id: ace-sample  #不填则默认读取spring.application.name
+    secret: 123456
+
+logging:
+  level:
+    com.github.wxiaoqi.security.sample: info
+#    com
+    org.springframework: DEBUG
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude: heapdump,dump,threaddump,configprops,env
+  security:
+    enabled: false
+
+#请求和响应GZIP压缩支持
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1000 ## 并发执行的最大线程数，默认10
+      maxQueueSize: 1000 ## BlockingQueue的最大队列数
+      queueSizeRejectionThreshold: 500 ## 即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
