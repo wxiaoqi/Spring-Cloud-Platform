@@ -19,7 +19,7 @@ Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系�
 ![架构图](https://images.gitee.com/uploads/images/2019/0528/205306_9a8b8d83_1899222.png "1.png")
 
 ## 公众号
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0712/091503_c2618a08_547642.jpeg "qrcode_for_gh_e5a084d37c0d_258 (2).jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/1020/172724_5199b6ea_547642.png "WX20201020-172705@2x.png")
 
 ### 架构摘要
 #### 中台化前端
