@@ -13,7 +13,7 @@
     <artifactId>ace-monitor</artifactId>
 
     <properties>
-        <boot.admin.version>2.1.2</boot.admin.version>
+        <boot.admin.version>2.2.3</boot.admin.version>
     </properties>
 
     <dependencies>
