@@ -42,7 +42,7 @@ spring:
          add-to-simple-url-handler-mapping: true
          corsConfigurations:
            '[/**]':
-             allowed-origins: "*"
+             allowed-origins: "http://localhost:8080"
              allowed-methods: "*"
              allowed-headers: "*"
              allow-credentials: true
@@ -86,6 +86,9 @@ spring:
      nacos:
         discovery:
           server-addr: 127.0.0.1:8848
+     loadbalancer:
+       ribbon:
+         enabled: false
   sentinel:
     transport:
       dashboard: localhost:8080
