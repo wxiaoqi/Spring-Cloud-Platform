@@ -4,8 +4,8 @@ Cloud-Platform是国内首个基于`Spring
 Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系统，其中包含具备用户管理、资源权限管理、网关API
 管理等多个模块，支持多业务系统并行开发，可以作为后端服务的开发脚手架。代码简洁，架构清晰，适合学习和直接项目中使用。
 核心技术采用`Spring Boot 
-2.1.2`以及`Spring Cloud (Greenwich.RELEASE)
-`相关核心组件，采用`Nacos`注册和配置中心，集成流量卫兵`Sentinel`，前端采用`vue-element-admin`组件，`Elastic Search`自行集成。
+2.4.1`、`Spring Cloud (2020.0.0)`以及`Spring Cloud Alibaba 2.2.4`
+相关核心组件，采用`Nacos`注册和配置中心，集成流量卫兵`Sentinel`，前端采用`vue-element-admin`组件，`Elastic Search`自行集成。
 
 ### QQ群号：169824183(1)、592462556(2)、661605461(3)
 
