@@ -62,7 +62,7 @@ ace-security
 
 ----
 
-## UI工程启动[Cloud-Admin-UI-V2][点击打开](https://github.com/wxiaoqi/Spring-Cloud-PlatformUI)
+## UI工程启动[Cloud-Admin-UI-V2][点击打开](https://github.com/wxiaoqi/Spring-Cloud-Platform-UI)
 
 ### 环境搭建(node 版本 > 8)
 ```
