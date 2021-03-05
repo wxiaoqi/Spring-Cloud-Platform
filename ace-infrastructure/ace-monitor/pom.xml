@@ -13,7 +13,7 @@
     <artifactId>ace-monitor</artifactId>
 
     <properties>
-        <boot.admin.version>2.2.3</boot.admin.version>
+        <boot.admin.version>2.4.0</boot.admin.version>
     </properties>
 
     <dependencies>
@@ -48,6 +48,12 @@
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-server</artifactId>
             <version>${boot.admin.version}</version>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.springframework.boot</groupId>-->
+<!--                    <artifactId>spring-boot-starter-webflux</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
 
         <dependency>

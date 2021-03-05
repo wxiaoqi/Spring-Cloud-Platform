@@ -35,7 +35,10 @@ spring:
       pool:
           max-active: 20
   sleuth:
-    enabled: false
+    enabled: true
+    http:
+      legacy:
+        enabled: true
   cloud:
     nacos:
       discovery:
@@ -57,7 +60,7 @@ logging:
   level:
     com.github.wxiaoqi.security.sample: info
 #    com
-    org.springframework: DEBUG
+    org.springframework: info
 
 
 management:

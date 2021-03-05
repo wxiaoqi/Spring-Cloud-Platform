@@ -27,7 +27,7 @@
         <mapper.version>3.4.0</mapper.version>
         <maven.compile.source>1.8</maven.compile.source>
         <maven.compile.target>1.8</maven.compile.target>
-        <boot.admin.client>2.3.1</boot.admin.client>
+        <boot.admin.client>2.4.0</boot.admin.client>
     </properties>
     <modules>
         <module>ace-gate</module>
