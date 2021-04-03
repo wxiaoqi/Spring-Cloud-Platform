@@ -35,10 +35,10 @@ spring:
       legacy:
         enabled: true
   cloud:
-     gateway:
-       default-filters:
+    gateway:
+      default-filters:
          - DedupeResponseHeader=Access-Control-Allow-Origin
-       globalcors:
+      globalcors:
          add-to-simple-url-handler-mapping: true
          corsConfigurations:
            '[/**]':
@@ -46,11 +46,11 @@ spring:
              allowed-methods: "*"
              allowed-headers: "*"
              allow-credentials: true
-       discovery:
-         locator:
-           lowerCaseServiceId: true
-           enabled: true
-       routes:
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+          enabled: true
+      routes:
         # =====================================
         - id: ace-auth
           uri: lb://ace-admin
@@ -83,15 +83,10 @@ spring:
             - Path=/api/sample/**
           filters:
             - StripPrefix=2
-     nacos:
-        discovery:
-          server-addr: 127.0.0.1:8848
-     loadbalancer:
-       ribbon:
-         enabled: false
-  sentinel:
-    transport:
-      dashboard: localhost:8080
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+
 logging:
   level:
     com.github.wxiaoqi.security.gate.v2: info

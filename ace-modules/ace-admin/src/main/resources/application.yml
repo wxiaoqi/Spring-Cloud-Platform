@@ -36,30 +36,10 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
-#    rabbitmq:
-#        host: ${RABBIT_MQ_HOST:localhost}
-#        port:  ${RABBIT_MQ_PORT:5672}
-#        username: guest
-#        password: guest
-#    sleuth:
-#        enabled: true
-#          http:
-#            legacy:
-#              enabled: true
     cloud:
-      nacos:
-        discovery:
-          server-addr: 127.0.0.1:8848
-    sentinel:
-      transport:
-        dashboard: localhost:8080
-    sleuth:
-      enabled: false
-sample:
-  zipkin:
-    # When enabled=false, traces log to the console. Comment to send to zipkin
-    enabled: false
-
+      sentinel:
+        transport:
+          dashboard: localhost:8080
 mybatis:
     basepackage: com.github.wxiaoqi.security.admin.modules.mapper
     xmlLocation: classpath:mapper/**/*.xml
