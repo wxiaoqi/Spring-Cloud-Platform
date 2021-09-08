@@ -24,7 +24,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.cloud.gateway.handler.AsyncPredicate;
 import org.springframework.cloud.gateway.handler.predicate.AbstractRoutePredicateFactory;
-import org.springframework.cloud.gateway.handler.predicate.ReadBodyPredicateFactory;
 import org.springframework.cloud.gateway.support.ServerWebExchangeUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.codec.HttpMessageReader;
@@ -47,7 +46,7 @@ import java.util.function.Predicate;
 @Order(1)
 public class RequestBodyRoutePredicateFactory
         extends AbstractRoutePredicateFactory<RequestBodyRoutePredicateFactory.Config> {
-    protected static final Log LOGGER = LogFactory.getLog(ReadBodyPredicateFactory.class);
+    protected static final Log LOGGER = LogFactory.getLog(RequestBodyRoutePredicateFactory.class);
     private final List<HttpMessageReader<?>> messageReaders;
 
     public RequestBodyRoutePredicateFactory() {

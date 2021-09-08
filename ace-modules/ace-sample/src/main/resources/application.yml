@@ -35,14 +35,15 @@ spring:
       pool:
           max-active: 20
   sleuth:
-    enabled: false
+    enabled: true
+    http:
+      legacy:
+        enabled: true
   cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
     sentinel:
       transport:
         dashboard: localhost:8080
+
 
 
 auth:
@@ -57,7 +58,7 @@ logging:
   level:
     com.github.wxiaoqi.security.sample: info
 #    com
-    org.springframework: DEBUG
+    org.springframework: info
 
 
 management:

@@ -2,16 +2,9 @@ package com.github.wxiaoqi.security.common.context;
 
 import com.github.wxiaoqi.security.common.constant.CommonConstants;
 import com.github.wxiaoqi.security.common.util.StringHelper;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by ace on 2017/9/8.
@@ -77,41 +70,41 @@ public class BaseContextHandler {
         threadLocal.remove();
     }
 
-    @RunWith(MockitoJUnitRunner.class)
-    public static class UnitTest {
-        private Logger logger = LoggerFactory.getLogger(UnitTest.class);
-
-        @Test
-        public void testSetContextVariable() throws InterruptedException {
-            BaseContextHandler.set("test", "main");
-            new Thread(()->{
-                BaseContextHandler.set("test", "moo");
-
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                assertEquals(BaseContextHandler.get("test"), "moo");
-                logger.info("thread one done!");
-            }).start();
-            new Thread(()->{
-                BaseContextHandler.set("test", "moo2");
-                assertEquals(BaseContextHandler.get("test"), "moo2");
-                logger.info("thread two done!");
-            }).start();
-
-            Thread.sleep(5000);
-            assertEquals(BaseContextHandler.get("test"), "main");
-            logger.info("main one done!");
-        }
-
-        @Test
-        public void testSetUserInfo(){
-            BaseContextHandler.setUserID("test");
-            assertEquals(BaseContextHandler.getUserID(), "test");
-            BaseContextHandler.setUsername("test2");
-            assertEquals(BaseContextHandler.getUsername(), "test2");
-        }
-    }
+//    @RunWith(MockitoJUnitRunner.class)
+//    public static class UnitTest {
+//        private Logger logger = LoggerFactory.getLogger(UnitTest.class);
+//
+//        @Test
+//        public void testSetContextVariable() throws InterruptedException {
+//            BaseContextHandler.set("test", "main");
+//            new Thread(()->{
+//                BaseContextHandler.set("test", "moo");
+//
+//                try {
+//                    Thread.sleep(3000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                assertEquals(BaseContextHandler.get("test"), "moo");
+//                logger.info("thread one done!");
+//            }).start();
+//            new Thread(()->{
+//                BaseContextHandler.set("test", "moo2");
+//                assertEquals(BaseContextHandler.get("test"), "moo2");
+//                logger.info("thread two done!");
+//            }).start();
+//
+//            Thread.sleep(5000);
+//            assertEquals(BaseContextHandler.get("test"), "main");
+//            logger.info("main one done!");
+//        }
+//
+//        @Test
+//        public void testSetUserInfo(){
+//            BaseContextHandler.setUserID("test");
+//            assertEquals(BaseContextHandler.getUserID(), "test");
+//            BaseContextHandler.setUsername("test2");
+//            assertEquals(BaseContextHandler.getUsername(), "test2");
+//        }
+//    }
 }
