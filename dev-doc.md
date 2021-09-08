@@ -60,6 +60,7 @@ ace-security
 
 - 按`顺序`运行main类：AdminBootstrap（ace-admin）、GatewayServerBootstrap（ace-gate）
 
+- 第一次启动跨域问题：ace-gate/src/main/resources/application.yml 路径下 corsConfigurations.allowed-origins: "http://localhost:8081"对应前端ip和端口
 ----
 
 ## UI工程启动[Cloud-Admin-UI-V2][点击打开](https://github.com/wxiaoqi/Spring-Cloud-Platform-UI)
