@@ -46,7 +46,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>5.0.4.RELEASE</version>
+            <version>5.2.20.RELEASE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
