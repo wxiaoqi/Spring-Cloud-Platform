@@ -16,7 +16,7 @@ Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系�
 
 #### 最新更新日志，[点击查看](https://gitee.com/geek_qi/cloud-platform/wikis/Cloud-Platform更新日志?sort_id=320050)
 
-#### 基础文档，[点击查看](https://gitee.com/geek_qi/cloud-platform/blob/master/dev-doc.md)
+#### 基础文档，[点击查看](https://gitee.com/geek_qi/cloud-platform/wikis/Home)
 
 # 模块说明
 ![架构图](https://images.gitee.com/uploads/images/2019/0528/205306_9a8b8d83_1899222.png "1.png")
