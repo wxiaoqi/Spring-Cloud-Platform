@@ -50,7 +50,22 @@ spring:
     http:
       legacy:
         enabled: true
-
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+      discovery:
+        server-addr: 127.0.0.1:8848
+        cluster-name: Chengdu
+      sleuth:
+        enabled: false
+        sample:
+          zipkin:
+            # When enabled=false, traces log to the console. Comment to send to zipkin
+            enabled: false
+  main:
+    allow-bean-definition-overriding: true
 #  sentinel:
 #    transport:
 #      dashboard: localhost:8080
