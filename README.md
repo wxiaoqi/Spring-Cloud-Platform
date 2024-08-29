@@ -10,13 +10,13 @@ Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系�
 ### QQ群号：169824183(1)、592462556(2)、661605461(3)
 
 ### 公众号
-![输入图片说明](https://images.gitee.com/uploads/images/2020/1020/173334_53541846_547642.png "WX20201020-173326@2x.png")
+![输入图片说明](111.jpg)
 
 #### 开源用户登记，宣传用：[点击打开](https://gitee.com/geek_qi/cloud-platform/issues/II9SP)
 
 #### 最新更新日志，[点击查看](https://gitee.com/geek_qi/cloud-platform/wikis/Cloud-Platform更新日志?sort_id=320050)
 
-#### 基础文档，[点击查看](https://gitee.com/geek_qi/cloud-platform/blob/master/dev-doc.md)
+#### 基础文档，[点击查看](https://gitee.com/geek_qi/cloud-platform/wikis/Home)
 
 # 模块说明
 ![架构图](https://images.gitee.com/uploads/images/2019/0528/205306_9a8b8d83_1899222.png "1.png")
