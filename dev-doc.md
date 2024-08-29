@@ -105,16 +105,6 @@ npm run build:prod
 
 ### 前端框架更多文档查看工程Readme或D2admin官方文档[点击打开](https://d2.pub/zh/doc/d2-admin/learn/start.html)
 
-## 更多文档
-```
-https://item.taobao.com/item.htm?id=632347815039
-（2020年最新文档，淘宝购买，留言邮箱）
-```
-
-## Boot&Cloud SaaS版
-```
-淘宝地址：https://item.taobao.com/item.htm?id=589442411015
-```
 
 ## License
 
