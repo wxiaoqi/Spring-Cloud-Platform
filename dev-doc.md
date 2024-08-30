@@ -77,7 +77,7 @@ npm 版本：6.10.2
 ➜  ~ nrm ls
   npm ---- https://registry.npmjs.org/
   cnpm --- http://r.cnpmjs.org/
-* taobao - https://registry.npm.taobao.org/
+* taobao - https://registry.npmmirror.com/
   nj ----- https://registry.nodejitsu.com/
   rednpm - http://registry.mirror.cqupt.edu.cn/
   npmMirror  https://skimdb.npmjs.com/registry/
